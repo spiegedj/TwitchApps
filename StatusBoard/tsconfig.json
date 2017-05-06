@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs"
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "compileOnSave": true,
+  "files": [
+    "Scripts/listManager.ts",
+    "Scripts/twitchFollows.ts",
+    "Scripts/twitchGame.ts"
+  ]
+}
