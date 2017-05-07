@@ -11,7 +11,7 @@ $(document).ready(function() {
     overwatch.setPosition(500, 0);
 
     $(document).keypress(function(event) {
-        if (event.keyCode == 113 || event.keyCode == 81) {
+        if (event.keyCode === 113 || event.keyCode === 81 || event.keyCode === 53) {
             ipcRenderer.send('stop-stream');
         }
     });
