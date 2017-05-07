@@ -73,24 +73,3 @@ ipcMain.on('stop-stream', (event) => {
     exec(command);
   }
 });
-
-// ipcMain.on('save-build', (event, json, filename) => {
-//   writeToFile(json, filename);
-// });
-
-// function writeToFile(json, filename) {
-//   dialog.showOpenDialog({
-//     title: "Select a folder",
-//     properties: ["openDirectory"]
-//   }, function (folderPaths) {
-//     if (folderPaths !== undefined) {
-//       var filepath = folderPaths[0] + "/" + filename + ".json";
-//       fs.writeFile(filepath, json, function (error) {
-//         if (error) {
-//           alert("An error occured writing to the file: " + err.message);
-//           console.log(err);
-//         }
-//       });
-//     }
-//   });
-// }

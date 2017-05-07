@@ -7,17 +7,58 @@
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 
     <!-- Insert this line after script imports -->
     <script>if (window.module) module = window.module;</script>
 
-    <script src="Scripts/listmanager.js"></script>
+    <!--<script src="Scripts/listmanager.js"></script>
     <script src="Scripts/twitchFollows.js"></script>
-    <script src="Scripts/twitchGame.js"></script>
-    <script src="Scripts/main.js"></script>
+    <script src="Scripts/twitchGame.js"></script>-->
+    <script src="Scripts/mainController.js"></script>
     <link rel="stylesheet" type="text/css" href="Styles/main.css" />
 </head>
-<body>
-    <div id="main-div"></div>
+<body ng-app="twitchApp" ng-controller="mainController">
+
+    <!-- Tabs -->
+    <div class="tabs">
+
+    </div>
+
+    <!-- Stream Tiles -->
+    <div class="stream-tiles">
+        <div ng-repeat="stream in streams" ng-mouseover="selectStream(stream)" class="stream-tile">
+            <img ng-src="{{stream.imageURL}}" class="stream-logo"/>
+            <div class="stream-line stream-title">{{ stream.title }}</div>
+            <div class="stream-line">{{ stream.game }}</div>
+            <div class="stream-line">{{ stream.viewers }}</div>
+        </div>
+    </div>
+
+    <!-- Stream Details -->
+    <div class="stream-selected">
+        <div class="selected-preview-container">
+            <div class="selected-title">{{ selectedStream.title }}</div>
+
+            <!--<img ng-src="{{ selectedStream.preview }}" class="selected-preview"/>-->
+            
+            <iframe
+                ng-src="{{getStreamSrc(selectedStream.title)}}"
+                height="720"
+                width="1280"
+                frameborder="0"
+                scrolling="no"
+                allowfullscreen="true"
+                class="selected-preview">
+            </iframe>
+
+            <div class="float-right"> 
+                <span class="selected-text selected-viewers">{{ selectedStream.viewers }}</span>
+            </div>
+
+            <div class="selected-details">{{ selectedStream.details }}</div>
+            <div class="selected-text">{{ selectedStream.game }}</div>
+        </div>
+    </div>
 </body>
 </html>
