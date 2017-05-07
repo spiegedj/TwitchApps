@@ -56,19 +56,18 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
-const exec = require('child_process').exec;
+const spawn = require('child_process').spawn;
 ipcMain.on('launch-stream', (event, streamName) => {
-  var command = "livestreamer --twitch-oauth-token sgy4q0csvrylr2g2xyyi7hfc55ymvw twitch.tv/"
-                + streamName + " 1080p60,720p60,best -np 'omxplayer -o hdmi";
+  // var command = "livestreamer --twitch-oauth-token sgy4q0csvrylr2g2xyyi7hfc55ymvw twitch.tv/"
+  //               + streamName + " 1080p60,720p60,best -np 'omxplayer -o hdmi'";
                 
-  exec(command, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`exec error: ${error}`);
-      return;
-    }
-    console.log(`stdout: ${stdout}`);
-    console.log(`stderr: ${stderr}`);
-    });
+  // exec(command, (error, stdout, stderr) => {});
+  spawn('livestreamer', [
+    "--twitch-oauth-token", "sgy4q0csvrylr2g2xyyi7hfc55ymvw",
+    "twitch.tv/" + streamName,
+    "1080p60,720p60,best",
+    "-np", "'omxplayer -o hdmi'"
+    ]);
 });
 
 // ipcMain.on('save-build', (event, json, filename) => {
