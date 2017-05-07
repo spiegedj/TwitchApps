@@ -57,17 +57,25 @@ app.on('activate', () => {
 // code. You can also put them in separate files and require them here.
 
 const spawn = require('child_process').spawn;
+var process;
 ipcMain.on('launch-stream', (event, streamName) => {
-  // var command = "livestreamer --twitch-oauth-token sgy4q0csvrylr2g2xyyi7hfc55ymvw twitch.tv/"
-  //               + streamName + " 1080p60,720p60,best -np 'omxplayer -o hdmi'";
+  var command = "livestreamer --twitch-oauth-token sgy4q0csvrylr2g2xyyi7hfc55ymvw twitch.tv/"
+                 + streamName + " 1080p60,720p60,best -np 'omxplayer -o hdmi'";
                 
-  // exec(command, (error, stdout, stderr) => {});
-  spawn('livestreamer', [
-    "--twitch-oauth-token", "sgy4q0csvrylr2g2xyyi7hfc55ymvw",
-    "twitch.tv/" + streamName,
-    "1080p60,720p60,best",
-    "-np", "'omxplayer -o hdmi'"
-    ]);
+  process = exec(command, (error, stdout, stderr) => {});
+  // spawn('livestreamer', [
+  //   "--twitch-oauth-token", "sgy4q0csvrylr2g2xyyi7hfc55ymvw",
+  //   "twitch.tv/" + streamName,
+  //   "1080p60,720p60,best",
+  //   "-np", "'omxplayer -o hdmi'"
+  //   ]);
+});
+
+ipcMain.on('stop-stream', (event) => {
+  if (process) {
+    process.kill();
+    process = null;
+  }
 });
 
 // ipcMain.on('save-build', (event, json, filename) => {

@@ -9,4 +9,10 @@ $(document).ready(function() {
 
     var overwatch = new TwitchGame(mainDiv, 5, "Overwatch");
     overwatch.setPosition(500, 0);
+
+    $(document).keypress(function(event) {
+        if (event.keyCode == 113 || event.keyCode == 81) {
+            ipcRenderer.send('stop-stream');
+        }
+    });
 });
