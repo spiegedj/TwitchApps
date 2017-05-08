@@ -1,4 +1,5 @@
 var app = angular.module("twitchApp", []);
+var ipcRenderer = require('electron').ipcRenderer;
 
 app.config(function($sceDelegateProvider) {
   $sceDelegateProvider.resourceUrlWhitelist([
@@ -11,11 +12,12 @@ app.controller("mainController", ["$scope", function ($scope) {
 
     $scope.streams = [];
     $scope.selectedStream = {};
+    $scope.tabs = tabs;
+    $scope.selectedTab = tabs[0];
 
     loadStreams();
     function loadStreams() {
-        // $.get("https://api.twitch.tv/kraken/streams/followed?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k", function(json) {
-        $.get("https://api.twitch.tv/kraken/streams/?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&game=Starcraft II", function(json) {
+        $.get($scope.selectedTab.url, function(json) {
             parseStreams(json);
         });
     };
@@ -51,16 +53,52 @@ app.controller("mainController", ["$scope", function ($scope) {
         $scope.selectedStream = stream;
     };
 
+    $scope.selectTab = function(tab) {
+        $scope.selectedTab = tab;
+        loadStreams();
+    }
+
     $scope.getStreamSrc = function (title) {
         return "http://player.twitch.tv/?channel=" + title;
     };
+
+    $scope.launchStream = function (stream) {
+        ipcRenderer.send('launch-stream', stream.title);
+    };
+
+    $(document).keypress(function(event) {
+        if (event.keyCode === 113 || event.keyCode === 81 || event.keyCode === 53) {
+            ipcRenderer.send('stop-stream');
+        }
+    });
 }]);
 
-
-// $(document).ready(function() {
-//     $(document).keypress(function(event) {
-//         if (event.keyCode === 113 || event.keyCode === 81 || event.keyCode === 53) {
-//             ipcRenderer.send('stop-stream');
-//         }
-//     });
-// });
+var oauthToken = "a7vx7pwxfhiidyn7zmup202fuxgr3k";
+var baseURL = "https://api.twitch.tv/kraken/streams/";
+var tabs = [
+    {
+        title: "Follows",
+        url: baseURL + "followed?oauth_token=" + oauthToken,
+        imageURL: "Images/Twitch-logo.png"
+    },
+    {
+        title: "StarCraft II",
+        url: baseURL + "?oauth_token=" + oauthToken + "&game=Starcraft II",
+        imageURL: "Images/Starcraft2Logo.png"
+    },
+    {
+        title: "Overwatch",
+        url: baseURL + "?oauth_token=" + oauthToken + "&game=Overwatch",
+        imageURL: "Images/Overwatch-Logo.svg"
+    },
+    {
+        title: "Super Mario Maker",
+        url: baseURL + "?oauth_token=" + oauthToken + "&game=Super Mario Maker",
+        imageURL: "Images/SuperMarioMaker.jpg"
+    },
+    {
+        title: "Super Smash Bros. Wii U",
+        url: baseURL + "?oauth_token=" + oauthToken + "&game=Super Smash Bros. for Wii U",
+        imageURL: "Images/SmashBrosLogo.png"
+    },
+];

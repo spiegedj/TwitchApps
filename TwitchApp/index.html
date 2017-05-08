@@ -12,9 +12,6 @@
     <!-- Insert this line after script imports -->
     <script>if (window.module) module = window.module;</script>
 
-    <!--<script src="Scripts/listmanager.js"></script>
-    <script src="Scripts/twitchFollows.js"></script>
-    <script src="Scripts/twitchGame.js"></script>-->
     <script src="Scripts/mainController.js"></script>
     <link rel="stylesheet" type="text/css" href="Styles/main.css" />
 </head>
@@ -22,7 +19,10 @@
 
     <!-- Tabs -->
     <div class="tabs">
-
+        <div ng-repeat="tab in tabs" ng-mousedown="selectTab(tab)" class="tab-tile">
+            <img ng-src="{{tab.imageURL}}" class="tab-logo"/>
+            <div class="tab-title">{{ tab.title }}</div>
+        </div>
     </div>
 
     <!-- Stream Tiles -->
@@ -40,9 +40,9 @@
         <div class="selected-preview-container">
             <div class="selected-title">{{ selectedStream.title }}</div>
 
-            <!--<img ng-src="{{ selectedStream.preview }}" class="selected-preview"/>-->
+            <img ng-src="{{ selectedStream.preview }}" ng-mousedown="launchStream(selectedStream)" class="selected-preview"/>
             
-            <iframe
+            <!--<iframe
                 ng-src="{{getStreamSrc(selectedStream.title)}}"
                 height="720"
                 width="1280"
@@ -50,7 +50,7 @@
                 scrolling="no"
                 allowfullscreen="true"
                 class="selected-preview">
-            </iframe>
+            </iframe>-->
 
             <div class="float-right"> 
                 <span class="selected-text selected-viewers">{{ selectedStream.viewers }}</span>
