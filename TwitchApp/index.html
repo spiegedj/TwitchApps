@@ -20,6 +20,10 @@
 </head>
 <body ng-app="twitchApp" ng-controller="mainController">
 
+    <div class="shield" ng-class="{'nodisp': !streaming}">
+        <img src="Images/spinner.gif"/>
+    </div>
+
     <!-- Tabs -->
     <div class="tabs">
         <div ng-repeat="tab in tabs" ng-mousedown="selectTab(tab)" class="tab-tile" ng-class="{'selected': tab === selectedTab}">

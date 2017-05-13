@@ -10,6 +10,7 @@ app.config(function($sceDelegateProvider) {
 
 app.controller("mainController", ["$scope", function ($scope) {
 
+    $scope.streaming = false;
     $scope.streams = [];
     $scope.selectedStream = {};
     $scope.tabs = tabs;
@@ -65,10 +66,6 @@ app.controller("mainController", ["$scope", function ($scope) {
         return "http://player.twitch.tv/?channel=" + title;
     };
 
-    $scope.launchStream = function(stream) {
-        ipcRenderer.send('launch-stream', stream.title);
-    };
-
     $scope.pageUp = function() {
         $scope.startTile = Math.max($scope.startTile - $scope.maxTiles, 0);
     }
@@ -79,9 +76,16 @@ app.controller("mainController", ["$scope", function ($scope) {
         }
     }
 
+    $scope.launchStream = function(stream) {
+        ipcRenderer.send('launch-stream', stream.title);
+        $scope.streaming = true;
+    };
+
     $(document).keypress(function(event) {
         if (event.keyCode === 113 || event.keyCode === 81 || event.keyCode === 53) {
             ipcRenderer.send('stop-stream');
+            $scope.streaming = false;
+            $scope.$apply();
         }
     });
 }]);
