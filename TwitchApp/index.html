@@ -13,25 +13,41 @@
     <script>if (window.module) module = window.module;</script>
 
     <script src="Scripts/mainController.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="Styles/main.css" />
+
 </head>
 <body ng-app="twitchApp" ng-controller="mainController">
 
     <!-- Tabs -->
     <div class="tabs">
-        <div ng-repeat="tab in tabs" ng-mousedown="selectTab(tab)" class="tab-tile">
+        <div ng-repeat="tab in tabs" ng-mousedown="selectTab(tab)" class="tab-tile" ng-class="{'selected': tab === selectedTab}">
             <img ng-src="{{tab.imageURL}}" class="tab-logo"/>
-            <div class="tab-title">{{ tab.title }}</div>
+            <!--<div class="tab-title">{{ tab.title }}</div>-->
         </div>
     </div>
 
     <!-- Stream Tiles -->
     <div class="stream-tiles">
-        <div ng-repeat="stream in streams" ng-mouseover="selectStream(stream)" class="stream-tile">
-            <img ng-src="{{stream.imageURL}}" class="stream-logo"/>
+        <div ng-click="pageUp()" class="stream-tile stream-page-up" ng-class="{'disabled': startTile === 0}">
+            <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+        </div>
+
+
+        <div ng-repeat="stream in streams.slice(startTile, startTile + maxTiles)" 
+            ng-mouseover="selectStream(stream)" class="stream-tile" ng-class="{'selected': stream === selectedStream}" >
+            <img ng-src="{{stream.imageURL}}" class="stream-logo" draggable="false"/>
             <div class="stream-line stream-title">{{ stream.title }}</div>
             <div class="stream-line">{{ stream.game }}</div>
-            <div class="stream-line">{{ stream.viewers }}</div>
+            <div class="stream-line">
+                <div class="live-indicator"></div>
+                {{ stream.viewers }}
+            </div>
+        </div>
+
+        <div ng-click="pageDown()" class="stream-tile stream-page-down" ng-class="{'disabled': startTile + maxTiles > streams.length}">
+            <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
         </div>
     </div>
 

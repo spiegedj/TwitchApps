@@ -15,6 +15,9 @@ app.controller("mainController", ["$scope", function ($scope) {
     $scope.tabs = tabs;
     $scope.selectedTab = tabs[0];
 
+    $scope.maxTiles = 8;
+    $scope.startTile = 0;
+
     loadStreams();
     function loadStreams() {
         $.get($scope.selectedTab.url, function(json) {
@@ -58,13 +61,23 @@ app.controller("mainController", ["$scope", function ($scope) {
         loadStreams();
     }
 
-    $scope.getStreamSrc = function (title) {
+    $scope.getStreamSrc = function(title) {
         return "http://player.twitch.tv/?channel=" + title;
     };
 
-    $scope.launchStream = function (stream) {
+    $scope.launchStream = function(stream) {
         ipcRenderer.send('launch-stream', stream.title);
     };
+
+    $scope.pageUp = function() {
+        $scope.startTile = Math.max($scope.startTile - $scope.maxTiles, 0);
+    }
+
+    $scope.pageDown = function() {
+        if ($scope.startTile + $scope.maxTiles < $scope.streams.length) {
+            $scope.startTile = $scope.startTile + $scope.maxTiles;
+        }
+    }
 
     $(document).keypress(function(event) {
         if (event.keyCode === 113 || event.keyCode === 81 || event.keyCode === 53) {
@@ -79,26 +92,26 @@ var tabs = [
     {
         title: "Follows",
         url: baseURL + "followed?oauth_token=" + oauthToken,
-        imageURL: "Images/Twitch-logo.png"
+        imageURL: "Images/Follows-Game.jpg"
     },
     {
         title: "StarCraft II",
         url: baseURL + "?oauth_token=" + oauthToken + "&game=Starcraft II",
-        imageURL: "Images/Starcraft2Logo.png"
+        imageURL: "Images/StarCraft2-Game.jpg"
     },
     {
         title: "Overwatch",
         url: baseURL + "?oauth_token=" + oauthToken + "&game=Overwatch",
-        imageURL: "Images/Overwatch-Logo.svg"
+        imageURL: "Images/Overwatch-Game.jpg"
     },
     {
         title: "Super Mario Maker",
         url: baseURL + "?oauth_token=" + oauthToken + "&game=Super Mario Maker",
-        imageURL: "Images/SuperMarioMaker.jpg"
+        imageURL: "Images/SuperMarioMaker-Game.jpg"
     },
     {
         title: "Super Smash Bros. Wii U",
         url: baseURL + "?oauth_token=" + oauthToken + "&game=Super Smash Bros. for Wii U",
-        imageURL: "Images/SmashBrosLogo.png"
+        imageURL: "Images/SuperSmashBros-Game.jpg"
     },
 ];
