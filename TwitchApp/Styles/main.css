@@ -88,25 +88,54 @@ body {
     color: white;
 }
 
-.stream-page-down, .stream-page-up
-{
-    width: 100%;
-    height: 50px;
-    color: white;
-    font-size: 20px;
-    text-align: center;
-}
-
-.disabled > span {
-    display: none;
-}
-
 /***************************** Selected Stream ***************************/
 
 .stream-selected {
-    width: calc(100% - 800px);
+    width: calc(100% - 780px);
+    height: 100%;
     float: right;
+    background-color: #EFEEF1;
 }
+
+
+
+.selected-bar {
+    background-color: white;
+    height: 80px;
+    width: 100%;
+    border: 1px solid #cccccc;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.selected-top-bar span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.selected-stream-logo {
+    display: inline-block;
+    vertical-align: middle;
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+}
+
+.selected-title {
+    font-size: 25pt;
+}
+
+.selected-viewers {
+    float: right;
+    color: #fc3636;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 10px;
+    font-size: 16pt;
+}
+
+
 
 .selected-preview-container {
     width: 90%;
@@ -118,16 +147,15 @@ body {
     cursor: pointer;
 }
 
-.selected-title {
-    font-size: 25pt;
+
+
+.selected-bar-bottom {
+    margin-top: 10px;
+    height: fit-content;
 }
 
 .selected-details {
-    font-size: 20pt;
-}
-
-.selected-viewers {
-    color: red;
+    font-size: 18pt;
 }
 
 .selected-text {
@@ -136,6 +164,11 @@ body {
 
 .float-right {
     float: right;
+}
+
+.profile-banner {
+    width: 100%;
+    height: 200px;
 }
 
 /***************************** Common ***************************/
@@ -171,5 +204,19 @@ body {
 }
 
 .nodisp {
-    display: none;
+    display: none !important;
+}
+
+.disabled span {
+    display: none !important;
+}
+
+.page-down, .page-up
+{
+    width: 100%;
+    height: 50px;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
 }

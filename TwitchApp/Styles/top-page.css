@@ -1,0 +1,38 @@
+.top-page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,.9);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.top-game-tile {
+    width: 160px;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.top-game-tile:hover {
+    color: white;
+    background-color: #4B367C;
+}
+
+.top-game-box {
+    width: 136px;
+    height: 190px;
+}
+
+.tog-game-text {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.top-game-pager {
+    height: 40px;
+    color: black;
+}
+
+.top-game-pager:hover:not(.disabled) {
+    background-color: #4B367C;
+}

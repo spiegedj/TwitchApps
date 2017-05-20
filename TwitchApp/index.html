@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="Styles/main.css" />
+    <link rel="stylesheet" type="text/css" href="Styles/top-page.css" />
 
 </head>
 <body ng-app="twitchApp" ng-controller="mainController">
@@ -34,10 +35,10 @@
 
     <!-- Stream Tiles -->
     <div class="stream-tiles">
-        <div ng-click="pageUp()" class="stream-tile stream-page-up" ng-class="{'disabled': startTile === 0}">
-            <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+        <div ng-click="pageUp()" class="stream-tile page-up" 
+            ng-class="{'disabled': startTile === 0, 'nodisp': streams.length < (maxTiles + 1)}">
+            <span class="glyphicon glyphicon-triangle-top"></span>
         </div>
-
 
         <div ng-repeat="stream in streams.slice(startTile, startTile + maxTiles)" 
             ng-mouseover="selectStream(stream)" class="stream-tile" ng-class="{'selected': stream === selectedStream}" >
@@ -50,17 +51,30 @@
             </div>
         </div>
 
-        <div ng-click="pageDown()" class="stream-tile stream-page-down" ng-class="{'disabled': startTile + maxTiles > streams.length}">
-            <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+        <div ng-click="pageDown()" class="stream-tile page-down" 
+            ng-class="{'disabled': startTile + maxTiles >= streams.length, 'nodisp': streams.length < (maxTiles + 1)}">
+            <span class="glyphicon glyphicon-triangle-bottom"></span>
         </div>
     </div>
 
     <!-- Stream Details -->
     <div class="stream-selected">
-        <div class="selected-preview-container">
-            <div class="selected-title">{{ selectedStream.title }}</div>
+        <!--<img ng-src="{{ selectedStream.profileBanner }}" class="profile-banner" draggable="false"/>-->
 
-            <img ng-src="{{ selectedStream.preview }}" ng-mousedown="launchStream(selectedStream)" class="selected-preview"/>
+        <div class="selected-bar">
+            <img ng-src="{{selectedStream.imageURL}}" class="selected-stream-logo" draggable="false"/>
+            <span class="selected-title">{{ selectedStream.title }}</span>
+            <div class="selected-viewers">
+                <span>
+                    <div class="live-indicator"></div>
+                    {{ selectedStream.viewers }}
+                </span>
+            </div>
+        </div>
+
+        <div class="selected-preview-container" ng-mousedown="launchStream(selectedStream)">
+
+            <img ng-src="{{ selectedStream.preview }}"  class="selected-preview"/>
             
             <!--<iframe
                 ng-src="{{getStreamSrc(selectedStream.title)}}"
@@ -71,13 +85,26 @@
                 allowfullscreen="true"
                 class="selected-preview">
             </iframe>-->
+        </div>
 
-            <div class="float-right"> 
-                <span class="selected-text selected-viewers">{{ selectedStream.viewers }}</span>
-            </div>
-
+        <div class="selected-bar selected-bar-bottom">
             <div class="selected-details">{{ selectedStream.details }}</div>
             <div class="selected-text">{{ selectedStream.game }}</div>
+        </div>
+    </div>
+
+    <!-- Popup -->
+    <div class="top-page" ng-class="{'nodisp': !showTopGames}">
+        <div class="page-up top-game-pager" ng-click="topPageUp()" ng-class="{'disabled': topGamesOffset === 0}">
+            <span class="glyphicon glyphicon-triangle-top"></span>
+        </div>
+        <div ng-repeat="game in topGames" class="top-game-tile" ng-click="topGameSelected(game)">
+            <img ng-src="{{game.box}}" class="top-game-box" draggable="false"/>
+            <div class="tog-game-text">{{game.name}}</div>
+            <div class="tog-game-text">{{game.viewers}}</div>
+        </div>
+        <div class="page-down top-game-pager" ng-click="topPageDown()">
+            <span class="glyphicon glyphicon-triangle-bottom"></span>
         </div>
     </div>
 </body>

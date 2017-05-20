@@ -16,12 +16,18 @@ app.controller("mainController", ["$scope", function ($scope) {
     $scope.tabs = tabs;
     $scope.selectedTab = tabs[0];
 
+    $scope.topGames = [];
+    $scope.loadCount = 48;
+    $scope.topGamesOffset = 0;
+    $scope.showTopGames = false;
+
     $scope.maxTiles = 8;
     $scope.startTile = 0;
 
     loadStreams();
-    function loadStreams() {
-        $.get($scope.selectedTab.url, function(json) {
+    function loadStreams(url) {
+        url = url || $scope.selectedTab.url;
+        $.get(url, function(json) {
             parseStreams(json);
         });
     };
@@ -34,24 +40,27 @@ app.controller("mainController", ["$scope", function ($scope) {
 
             streamObj.title = channel.display_name;
             streamObj.game = "Playing " + channel.game;
-            streamObj.viewers = stream.viewers + " viewers";
+            streamObj.viewers = numberWithCommas(stream.viewers) + " viewers";
             streamObj.details = channel.status;
             streamObj.imageURL = channel.logo;
             streamObj.link = "http://www.twitch.tv/" + streamObj.title;
             streamObj.profileBanner = stream.channel.profile_banner;
-            var preview = stream.preview.template;
-            if (preview) {
-                preview = preview.replace("{width}", 640);
-                preview = preview.replace("{height}", 360);
-            }
-            streamObj.preview = preview;
+            streamObj.template = stream.preview.template;
+            streamObj.preview = getPreviewUrl(streamObj.template, 1920, 1080);
+            var img = $("<img />").attr('src', streamObj.preview);
 
             $scope.streams.push(streamObj);
         }, this);
         
-        $scope.selectedStream = $scope.streams[0];
+        $scope.selectStream($scope.streams[0]);
         $scope.$apply();
     };
+
+    function getPreviewUrl(template, width, height) {
+        template = template.replace("{width}", width);
+        template = template.replace("{height}", height);
+        return template;
+    }
 
     $scope.selectStream = function (stream) {
         $scope.selectedStream = stream;
@@ -59,8 +68,13 @@ app.controller("mainController", ["$scope", function ($scope) {
 
     $scope.selectTab = function(tab) {
         $scope.selectedTab = tab;
-        loadStreams();
-    }
+        if (tab.title === "Top Games") {
+            $scope.openTopPage();
+        } else {
+            $scope.startTile = 0;
+            loadStreams();
+        }
+    };
 
     $scope.getStreamSrc = function(title) {
         return "http://player.twitch.tv/?channel=" + title;
@@ -81,17 +95,115 @@ app.controller("mainController", ["$scope", function ($scope) {
         $scope.streaming = true;
     };
 
+    $scope.stopStream = function() {
+        ipcRenderer.send('stop-stream');
+        $scope.streaming = false;
+        $scope.$apply();
+    };
+
     $(document).keypress(function(event) {
-        if (event.keyCode === 113 || event.keyCode === 81 || event.keyCode === 53) {
-            ipcRenderer.send('stop-stream');
-            $scope.streaming = false;
-            $scope.$apply();
+        // Stop Stream
+        if (event.keyCode === constants.key_5 || event.keyCode === constants.key_Q || event.keyCode === constants.key_q) 
+        {
+            $scope.streaming ? $scope.stopStream() : $scope.launchStream($scope.selectedStream);
         }
+        // Tab Up / Down
+        else if (event.keyCode === constants.key_7 || event.keyCode === constants.key_1) 
+        {
+            var index = $scope.tabs.indexOf($scope.selectedTab);
+            event.keyCode === constants.key_1 ? index-- : index++;
+            index = Math.max(0, index);
+            index = Math.min($scope.tabs.length - 1, index);
+            $scope.selectTab($scope.tabs[index]);
+        }
+        // Stream Up / Down
+        else if (event.keyCode === constants.key_3 || event.keyCode === constants.key_9) {
+            var index = $scope.streams.indexOf($scope.selectedStream);
+            event.keyCode === constants.key_3 ? index-- : index++;
+            index = Math.max(0, index);
+            index = Math.min($scope.streams.length - 1, index);
+            $scope.selectStream($scope.streams[index]);
+        }
+        // Page Up / Down
+        else if (event.keyCode === constants.key_2 || event.keyCode === constants.key_8) {
+            event.keyCode === constants.key_2 ? $scope.pageUp() : $scope.pageDown();
+        }
+
+        $scope.$apply();
     });
+
+    $scope.openTopPage = function() {
+        $scope.showTopGames = true;
+        loadTopGames();
+    };
+
+    $scope.topPageDown = function() {
+        $scope.topGamesOffset += $scope.loadCount;
+        loadTopGames();
+    }
+
+    $scope.topPageUp = function() {
+        $scope.topGamesOffset -= $scope.loadCount;
+        $scope.topGamesOffset = Math.max(0, $scope.topGamesOffset);
+        loadTopGames();
+    }
+
+    function loadTopGames() {
+        $.get("https://api.twitch.tv/kraken/games/top?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&limit=" 
+            + $scope.loadCount+ 
+            "&offset=" + $scope.topGamesOffset, 
+        function(json) {
+            parseTopGames(json);
+        });
+    };
+
+    $scope.topGameSelected = function(game) {
+        $scope.showTopGames = false;
+        $scope.selectedTab.imageURL = game.boxHigh;
+        loadStreams(constructStreamUrl(game.name));
+    };
+
+    function parseTopGames(json) {
+        $scope.topGames = [];
+        json.top.forEach(function(topGame) {
+            var gameObj = {};
+
+            gameObj.name = topGame.game.name;
+            gameObj.viewers = numberWithCommas(topGame.viewers) + " viewers";
+            gameObj.box = topGame.game.box.medium;
+            gameObj.boxHigh = topGame.game.box.large;
+
+            $scope.topGames.push(gameObj);
+        }, this);
+        $scope.$apply();
+    };
 }]);
+
+var constants = {
+    key_q: 113,
+    key_Q: 81,
+    key_0: 48,
+    key_1: 49,
+    key_2: 50,
+    key_3: 51,
+    key_4: 52,
+    key_5: 53,
+    key_6: 54,
+    key_7: 55,
+    key_8: 56,
+    key_9: 57
+};
 
 var oauthToken = "a7vx7pwxfhiidyn7zmup202fuxgr3k";
 var baseURL = "https://api.twitch.tv/kraken/streams/";
+var constructStreamUrl = function(gameName) {
+    return baseURL + "?oauth_token=" + oauthToken + "&game=" + gameName;
+};
+
+var numberWithCommas = function(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 var tabs = [
     {
         title: "Follows",
@@ -114,8 +226,7 @@ var tabs = [
         imageURL: "Images/SuperMarioMaker-Game.jpg"
     },
     {
-        title: "Super Smash Bros. Wii U",
-        url: baseURL + "?oauth_token=" + oauthToken + "&game=Super Smash Bros. for Wii U",
-        imageURL: "Images/SuperSmashBros-Game.jpg"
+        title: "Top Games",
+        imageURL: "Images/Top.jpg"
     },
 ];
