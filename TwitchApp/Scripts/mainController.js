@@ -213,7 +213,7 @@ var tabs = [
     {
         title: "StarCraft II",
         url: baseURL + "?oauth_token=" + oauthToken + "&game=Starcraft II",
-        imageURL: "Images/StarCraft2-Game.jpg"
+        imageURL: "Images/Starcraft2-Game.jpg"
     },
     {
         title: "Overwatch",
