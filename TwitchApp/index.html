@@ -27,8 +27,8 @@
 
     <!-- Tabs -->
     <div class="tabs">
-        <div ng-repeat="tab in tabs" ng-mousedown="selectTab(tab)" class="tab-tile" ng-class="{'selected': tab === selectedTab}">
-            <img ng-src="{{tab.imageURL}}" class="tab-logo"/>
+        <div ng-repeat="tab in tabs" ng-mousedown="selectTab(tab)" class="tab-tile" ng-class="{'selected': tab === selectedTab}" >
+            <span ng-style="{'background-image': 'url(' + tab.imageURL + ')'}" class="tab-logo"></span>
             <!--<div class="tab-title">{{ tab.title }}</div>-->
         </div>
     </div>

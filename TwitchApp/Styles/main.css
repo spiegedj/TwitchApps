@@ -16,16 +16,19 @@ body {
 /***************************** Tab Styles ***************************/
 
 .tabs {
-    width: 180px;
+    width: 165px;
     height: 100%;
     float: left;
     background-color: black;
+    display: flex;
+    flex-direction: column;
 }
 
 .tab-tile {
-    padding-left: 25px;
-    height: 215px;
+    padding-left: 5px;
     cursor: pointer;
+    flex: 1 0 auto;
+    position: relative;
 }
 
 .tab-tile:hover {
@@ -33,6 +36,10 @@ body {
 }
 
 .tab-logo {
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
     display: block;
     margin: auto;
     width: 100%;
