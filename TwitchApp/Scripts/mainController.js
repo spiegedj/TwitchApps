@@ -9,12 +9,12 @@ app.config(function($sceDelegateProvider) {
 });
 
 app.controller("mainController", ["$scope", function ($scope) {
-
     $scope.streaming = false;
     $scope.streams = [];
     $scope.selectedStream = {};
     $scope.tabs = tabs;
     $scope.selectedTab = tabs[0];
+    $scope.lastUpdated;
 
     $scope.topGames = [];
     $scope.loadCount = 48;
@@ -27,6 +27,7 @@ app.controller("mainController", ["$scope", function ($scope) {
     loadStreams();
     function loadStreams(url) {
         url = url || $scope.selectedTab.url;
+        $scope.lastUpdated = new Date();
         $.get(url, function(json) {
             parseStreams(json);
         });
@@ -130,6 +131,15 @@ app.controller("mainController", ["$scope", function ($scope) {
         }
 
         $scope.$apply();
+    });
+
+    $(document).mouseover(function(event) {
+        var now = new Date();
+        var secondDiff = (now.getTime() - $scope.lastUpdated.getTime()) / 1000;
+
+        if (secondDiff > (60)) {
+            loadStreams();
+        }
     });
 
     $scope.openTopPage = function() {

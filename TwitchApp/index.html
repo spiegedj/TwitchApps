@@ -91,6 +91,7 @@
             <div class="selected-details">{{ selectedStream.details }}</div>
             <div class="selected-text">{{ selectedStream.game }}</div>
         </div>
+
     </div>
 
     <!-- Popup -->
@@ -107,5 +108,7 @@
             <span class="glyphicon glyphicon-triangle-bottom"></span>
         </div>
     </div>
+
+    <div class="last-updated">Last Updated: {{ lastUpdated | date : 'MM/dd @ h:mma'}}</div>
 </body>
 </html>

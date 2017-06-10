@@ -178,6 +178,13 @@ body {
     height: 200px;
 }
 
+.last-updated {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    font-size: 14pt;
+}
+
 /***************************** Common ***************************/
 
 .live-indicator {
