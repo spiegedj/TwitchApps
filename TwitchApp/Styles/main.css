@@ -234,3 +234,7 @@ body {
     text-align: center;
     cursor: pointer;
 }
+
+.non-english div{
+    color: rgb(175,175,175) !important;
+}

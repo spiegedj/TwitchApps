@@ -41,7 +41,8 @@
         </div>
 
         <div ng-repeat="stream in streams.slice(startTile, startTile + maxTiles)" 
-            ng-mouseover="selectStream(stream)" class="stream-tile" ng-class="{'selected': stream === selectedStream}" >
+            ng-mouseover="selectStream(stream)" class="stream-tile" 
+            ng-class="{'selected': stream === selectedStream, 'non-english': stream.language !== 'en'}" >
             <img ng-src="{{stream.imageURL}}" class="stream-logo" draggable="false"/>
             <div class="stream-line stream-title">{{ stream.title }}</div>
             <div class="stream-line">{{ stream.game }}</div>
@@ -89,7 +90,7 @@
 
         <div class="selected-bar selected-bar-bottom">
             <div class="selected-details">{{ selectedStream.details }}</div>
-            <div class="selected-text">{{ selectedStream.game }}</div>
+            <div class="selected-text">{{ selectedStream.game }} ({{selectedStream.language}})</div>
         </div>
 
     </div>

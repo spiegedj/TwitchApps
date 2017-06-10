@@ -48,6 +48,7 @@ app.controller("mainController", ["$scope", function ($scope) {
             streamObj.profileBanner = stream.channel.profile_banner;
             streamObj.template = stream.preview.template;
             streamObj.preview = getPreviewUrl(streamObj.template, 1920, 1080);
+            streamObj.language = channel.language;
             var img = $("<img />").attr('src', streamObj.preview);
 
             $scope.streams.push(streamObj);
