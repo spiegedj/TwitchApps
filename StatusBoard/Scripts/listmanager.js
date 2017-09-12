@@ -31,7 +31,7 @@ var ListManager = (function () {
         }
     };
     ListManager.prototype.renderTile = function (item) {
-        var tile = this.createElement(this.__listItemsElement, "div", "tile");
+        var tile = this.createElement(this.__listItemsElement, "div", ["tile", this.getStatusClass(item)].join(" "));
         tile.addEventListener("click", function () { window.open(item.link, '_blank'); });
         var image = this.createElement(tile, "img", "tile-image");
         image.setAttribute("src", item.imageURL);
@@ -41,10 +41,6 @@ var ListManager = (function () {
     };
     ListManager.prototype.renderTitle = function () {
         this.__titleElement = this.createElement(this.__listContainer, "h1", "list-title", this.__title);
-        this.__pageUpElement = this.createElement(this.__listContainer, "img", "nav page-up");
-        this.__pageUpElement.setAttribute("src", "Images/TriangleUp.png");
-        this.__pageDownElement = this.createElement(this.__listContainer, "img", "nav page-down");
-        this.__pageDownElement.setAttribute("src", "Images/TriangleDown.png");
     };
     ListManager.prototype.createElement = function (container, type, classNames, innerText) {
         if (classNames === void 0) { classNames = ""; }
@@ -56,6 +52,16 @@ var ListManager = (function () {
         container.appendChild(element);
         return element;
     };
+    ListManager.prototype.getStatusClass = function (item) {
+        switch (item.status) {
+            case Status.blue:
+                return "tile-blue";
+            case Status.green:
+                return "tile-green";
+            default:
+                return "";
+        }
+    };
     return ListManager;
 }());
 var ListItem = (function () {
@@ -63,3 +69,9 @@ var ListItem = (function () {
     }
     return ListItem;
 }());
+var Status;
+(function (Status) {
+    Status[Status["normal"] = 0] = "normal";
+    Status[Status["blue"] = 1] = "blue";
+    Status[Status["green"] = 2] = "green";
+})(Status || (Status = {}));

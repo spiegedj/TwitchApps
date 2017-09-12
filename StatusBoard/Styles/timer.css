@@ -1,0 +1,22 @@
+#timer {
+    position: fixed;
+    width: 400px;
+
+    left: calc(50% - 200px);
+    bottom: 10px;
+    font-family: overwatch-slant;
+    font-size: 100pt;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#date {
+    font-size: 20pt;
+}
+
+#time {
+    padding-right: 50px;
+}

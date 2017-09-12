@@ -1,42 +1,50 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;;
     font-size: 10pt;
     background-image: url('../Images/overwatch.png');
     background-color: black;
     color: white;
 }
 
+@font-face {
+    src: url('../Fonts/bignoodletoo.ttf');
+    font-family: overwatch-slant;
+}
+
+@font-face {
+    src: url('../Fonts/koverwatch.ttf');
+    font-family: overwatch;
+}
+
 .list-container {
-    width: 400px;
+    width: 350px;
     padding: 5px;
     position: absolute;
 }
 
 .list-title {
+    font-family: overwatch;
     text-align: center;
     margin: 0;
-    font-size: 16pt;
-}
-
-.nav {
-    width: 12px;
-    height: 12px;
-    position: absolute;
-    top: 6px;
-}
-
-.page-up {
-    left: 4px;
-}
-
-.page-down {
-    left: 20px;
+    font-size: 18pt;
+    background-color: rgb(255,137,32);
+    color: black;
 }
 
 .tile {
     height: 55px;
     padding: 5px;
     cursor: pointer;
+    background-color: rgba(100,100,100, .3);
+    border: 1px solid rgb(21,20,20);
+}
+
+.tile-blue {
+    color: rgb(87,203,222);
+}
+
+.tile-green {
+    color: rgb(144,186,60);
 }
 
 .tile:hover{

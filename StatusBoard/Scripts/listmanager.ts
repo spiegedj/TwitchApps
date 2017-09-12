@@ -55,7 +55,7 @@ abstract class ListManager {
     }
 
     private renderTile(item: ListItem): void {
-        var tile = this.createElement(this.__listItemsElement, "div", "tile");
+        var tile = this.createElement(this.__listItemsElement, "div", ["tile", this.getStatusClass(item)].join(" "));
         tile.addEventListener("click", function() { window.open( item.link, '_blank'); });
 
         var image = this.createElement(tile, "img", "tile-image");
@@ -67,12 +67,6 @@ abstract class ListManager {
 
     private renderTitle(): void {
         this.__titleElement = this.createElement(this.__listContainer, "h1", "list-title", this.__title);
-        
-        this.__pageUpElement = this.createElement(this.__listContainer, "img", "nav page-up");
-        this.__pageUpElement.setAttribute("src", "Images/TriangleUp.png");
-
-        this.__pageDownElement = this.createElement(this.__listContainer, "img", "nav page-down");
-        this.__pageDownElement.setAttribute("src", "Images/TriangleDown.png");
     }
 
     private createElement(container: HTMLElement, type: string, classNames: string = "", innerText: string = ""): HTMLElement {
@@ -81,6 +75,17 @@ abstract class ListManager {
         if (innerText) element.innerText = innerText;
         container.appendChild(element);
         return element;
+    }
+
+    private getStatusClass(item: ListItem) : string {
+        switch (item.status) {
+            case Status.blue:
+                return "tile-blue";
+            case Status.green:
+                return "tile-green";
+            default :
+                return "";
+        }
     }
 }
 
@@ -91,5 +96,11 @@ class ListItem {
     public details: string;
     public imageURL: string;
     public link: string;
-    public statusColor: string;
+    public status: Status;
+}
+
+enum Status {
+    normal,
+    blue,
+    green
 }
