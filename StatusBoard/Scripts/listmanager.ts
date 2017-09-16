@@ -27,6 +27,15 @@ abstract class ListManager {
         setInterval(this.refresh.bind(this), this.refreshRate);
     }
 
+    public setBackgroundColor(color: string) : void {
+        this.__listContainer.style.backgroundColor = color;
+    }
+
+    public setHeight(height: number)
+    {
+        this.__listContainer.style.height = height + "px";
+    }
+
     protected abstract retrieveItems();
 
     public refresh() : void {
@@ -55,14 +64,15 @@ abstract class ListManager {
     }
 
     private renderTile(item: ListItem): void {
-        var tile = this.createElement(this.__listItemsElement, "div", ["tile", this.getStatusClass(item)].join(" "));
+        var tileContainer = this.createElement(this.__listItemsElement, "div", "tile-container");
+        var tile = this.createElement(tileContainer, "div", ["tile", this.getStatusClass(item)].join(" "));
         tile.addEventListener("click", function() { window.open( item.link, '_blank'); });
 
         var image = this.createElement(tile, "img", "tile-image");
         image.setAttribute("src", item.imageURL);
         var titleLine = this.createElement(tile, "div", "tile-title-line", item.title);
         var line1 = this.createElement(tile, "div", "tile-line", item.line1);
-        var line2 = this.createElement(tile, "div", "tile-line", item.line2);
+        var line2 = this.createElement(tile, "div", "tile-line-2", item.line2);
     }
 
     private renderTitle(): void {

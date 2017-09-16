@@ -1,9 +1,10 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;;
-    font-size: 10pt;
-    background-image: url('../Images/overwatch.png');
-    background-color: black;
-    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    /*background-image: url('../Images/overwatch.png');*/
+    background-color: rgb(28,31,42);
+    color: rgb(240,253,255);
+    overflow: hidden;
 }
 
 @font-face {
@@ -17,26 +18,37 @@ body {
 }
 
 .list-container {
-    width: 350px;
-    padding: 5px;
+    /* Total Width is 406.6666px */
+    width: 366.66666px;
+    padding: 20px;
+
+    margin-left: 15px;
+
     position: absolute;
+    
+    background-color: rgb(34,46,83);
 }
 
 .list-title {
-    font-family: overwatch;
-    text-align: center;
+    height: 30px;
     margin: 0;
     font-size: 18pt;
-    background-color: rgb(255,137,32);
-    color: black;
+}
+
+.tile-container {
+    height: 83.9px;
 }
 
 .tile {
-    height: 55px;
-    padding: 5px;
+    height: calc(100% - 10px);
+    padding-top: 10px;
+
     cursor: pointer;
-    background-color: rgba(100,100,100, .3);
-    border: 1px solid rgb(21,20,20);
+    border-bottom: 1px solid rgb(119,187,205);
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .tile-blue {
@@ -52,14 +64,20 @@ body {
 }
 
 .tile-image { 
-    width: 50px;
+    width: 70px;
     padding-right: 5px;
     float: left;
     clear: both;
  }
 
 .tile-title-line { 
-    font-weight: bold;
+    font-size: 15pt;
 }
 
-.tile-line { }
+.tile-line {
+    font-size: 11pt;
+ }
+
+.tile-line-2 {
+    font-size: 11pt;
+ }

@@ -1,22 +1,27 @@
 #timer {
     position: fixed;
-    width: 400px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 100;
 
-    left: calc(50% - 200px);
-    bottom: 10px;
-    font-family: overwatch-slant;
-    font-size: 100pt;
+    top: 15px; 
+    left: 15px;
+    width: 406.6666px;
+    height: 489.5px;
+    background-color: rgb(37,38,46);
+}
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+#timer > div {
+    width: 99%;
+    margin: 0 auto;
+    text-align: center;
 }
 
 #date {
+    padding-top: 160px;
     font-size: 20pt;
+    color: rgb(206,59,63);
 }
 
 #time {
-    padding-right: 50px;
+    font-size: 70pt;
 }

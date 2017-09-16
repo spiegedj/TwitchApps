@@ -9,6 +9,12 @@ var ListManager = (function () {
         this.__listItemsElement = this.createElement(this.__listContainer, "div");
         setInterval(this.refresh.bind(this), this.refreshRate);
     }
+    ListManager.prototype.setBackgroundColor = function (color) {
+        this.__listContainer.style.backgroundColor = color;
+    };
+    ListManager.prototype.setHeight = function (height) {
+        this.__listContainer.style.height = height + "px";
+    };
     ListManager.prototype.refresh = function () {
         this.retrieveItems();
     };
@@ -31,13 +37,14 @@ var ListManager = (function () {
         }
     };
     ListManager.prototype.renderTile = function (item) {
-        var tile = this.createElement(this.__listItemsElement, "div", ["tile", this.getStatusClass(item)].join(" "));
+        var tileContainer = this.createElement(this.__listItemsElement, "div", "tile-container");
+        var tile = this.createElement(tileContainer, "div", ["tile", this.getStatusClass(item)].join(" "));
         tile.addEventListener("click", function () { window.open(item.link, '_blank'); });
         var image = this.createElement(tile, "img", "tile-image");
         image.setAttribute("src", item.imageURL);
         var titleLine = this.createElement(tile, "div", "tile-title-line", item.title);
         var line1 = this.createElement(tile, "div", "tile-line", item.line1);
-        var line2 = this.createElement(tile, "div", "tile-line", item.line2);
+        var line2 = this.createElement(tile, "div", "tile-line-2", item.line2);
     };
     ListManager.prototype.renderTitle = function () {
         this.__titleElement = this.createElement(this.__listContainer, "h1", "list-title", this.__title);

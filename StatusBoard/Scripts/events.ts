@@ -6,6 +6,7 @@ class Events extends ListManager {
     public constructor(container: HTMLElement, measureCount: number) {
         super(container, measureCount, "Events");
         this.retrieveItems();
+        this.setBackgroundColor("rgb(86,24,59)");
     }
 
     protected retrieveItems() : void {
@@ -56,16 +57,24 @@ class Events extends ListManager {
     }
 
     private getDateStrimg(timeMs: number): string {
+        var monthNames = [ "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December" ];
+        var dayOfWeekNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
         if (!timeMs) return "";
 
         var date = new Date(timeMs);
         var locale = "en-us";
-        var month = date.toLocaleString(locale, { month: "long" });
+        var month = monthNames[date.getMonth()];
         var day = date.getDate();
-        var dayOfWeek = date.toLocaleString(locale, { weekday: "long"});
-        var time = date.toLocaleTimeString(locale, {hour: '2-digit', minute:'2-digit'});
+        var dayOfWeek = dayOfWeekNames[date.getDay()];
+        var hour = date.getHours();
+        var minutes = date.getMinutes();
+        var minutesString = (minutes < 10) ? "0" + minutes : minutes;
+        var amPm = (hour > 12) ? "PM" : "AM";
+        hour = hour % 12;
 
-        return month + " " + day + " - " + dayOfWeek + " " + time;
+        return month + " " + day + " - " + dayOfWeek + " " + hour + ":" + minutesString + " " + amPm;
     }
 
     private getCountdownString(timeMs: number): string {

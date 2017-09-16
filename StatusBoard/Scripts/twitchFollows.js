@@ -10,6 +10,7 @@ var TwitchFollows = (function (_super) {
     function TwitchFollows(container, measureCount, title) {
         _super.call(this, container, measureCount, title);
         this.retrieveItems();
+        this.setBackgroundColor("rgb(55,78,88)");
     }
     TwitchFollows.prototype.retrieveItems = function () {
         $.get("https://api.twitch.tv/kraken/streams/followed?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k", function (json) {

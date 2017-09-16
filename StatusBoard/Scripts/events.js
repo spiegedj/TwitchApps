@@ -10,6 +10,7 @@ var Events = (function (_super) {
     function Events(container, measureCount) {
         _super.call(this, container, measureCount, "Events");
         this.retrieveItems();
+        this.setBackgroundColor("rgb(86,24,59)");
     }
     Events.prototype.retrieveItems = function () {
         $.get("http://192.168.1.105:8080/sc2events", function (json) {
@@ -53,15 +54,22 @@ var Events = (function (_super) {
         return (date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24);
     };
     Events.prototype.getDateStrimg = function (timeMs) {
+        var monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"];
+        var dayOfWeekNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         if (!timeMs)
             return "";
         var date = new Date(timeMs);
         var locale = "en-us";
-        var month = date.toLocaleString(locale, { month: "long" });
+        var month = monthNames[date.getMonth()];
         var day = date.getDate();
-        var dayOfWeek = date.toLocaleString(locale, { weekday: "long" });
-        var time = date.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
-        return month + " " + day + " - " + dayOfWeek + " " + time;
+        var dayOfWeek = dayOfWeekNames[date.getDay()];
+        var hour = date.getHours();
+        var minutes = date.getMinutes();
+        var minutesString = (minutes < 10) ? "0" + minutes : minutes;
+        var amPm = (hour > 12) ? "PM" : "AM";
+        hour = hour % 12;
+        return month + " " + day + " - " + dayOfWeek + " " + hour + ":" + minutesString + " " + amPm;
     };
     Events.prototype.getCountdownString = function (timeMs) {
         if (!timeMs) {
