@@ -1,4 +1,4 @@
-#timer {
+#weatherPanel {
     position: fixed;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 100;
@@ -10,18 +10,35 @@
     background-color: rgb(37,38,46);
 }
 
-#timer > div {
+#weatherPanel > div {
     width: 99%;
     margin: 0 auto;
     text-align: center;
 }
 
 #date {
-    padding-top: 170px;
+    padding-top: 60px;
     font-size: 20pt;
     color: rgb(206,59,63);
 }
 
 #time {
     font-size: 70pt;
+}
+
+#temp-container { 
+    position: absolute;
+}
+
+#temp-icon {
+    position: absolute;
+    left: -10px;
+    top: 100px;
+}
+
+#temp {
+    position: absolute;
+    font-size: 70pt;
+    left: 120px;
+    top: 120px;
 }

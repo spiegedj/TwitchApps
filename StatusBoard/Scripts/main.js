@@ -18,19 +18,5 @@ $(document).ready(function() {
     var overwatch = new TwitchGame(mainDiv, 5, "Overwatch");
     overwatch.setPosition("", 421.66666, "", 15);
 
-    setInterval(updateClock, 1000);
+    var weatherPanel = new WeatherPanel();
 });
-
-updateClock = function() {
-    var time = document.getElementById("time");
-    var date = document.getElementById("date");
-    var now = new Date();
-
-    date.innerHTML = now.toLocaleDateString("en-us", {weekday: "long", month: "long", day: "numeric", year: "numeric"});
-    var hours = now.getHours();
-    var minutes = now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
-    var ampm = hours > 12 ? "PM" : "AM";
-    hours = hours%12;
-    time.innerHTML = hours + ":" + minutes + " " + ampm;
-
-}

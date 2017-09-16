@@ -12,6 +12,7 @@
     "Scripts/listManager.ts",
     "Scripts/twitchFollows.ts",
     "Scripts/twitchGame.ts",
-    "Scripts/events.ts"
+    "Scripts/events.ts",
+    "Scripts/weatherPanel.ts"
   ]
 }
