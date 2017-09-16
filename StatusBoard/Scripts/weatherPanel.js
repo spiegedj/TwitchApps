@@ -9,6 +9,7 @@ var WeatherPanel = (function () {
         this.tempIconElement = document.getElementById("temp-icon");
         setInterval(this.updateClock.bind(this), 1000);
         //this.updateWeather(forecast);
+        this.retrieveCurrentConditions();
         var updateRate = 5 * 60 * 1000; // every 5 minutes
         setInterval(this.retrieveCurrentConditions.bind(this), updateRate);
     }
