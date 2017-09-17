@@ -73,6 +73,7 @@ class Events extends ListManager {
         var minutesString = (minutes < 10) ? "0" + minutes : minutes;
         var amPm = (hour > 12) ? "PM" : "AM";
         hour = hour % 12;
+        hour = hour == 0 ? hour + 12 : hour;
 
         return month + " " + day + " - " + dayOfWeek + " " + hour + ":" + minutesString + " " + amPm;
     }
