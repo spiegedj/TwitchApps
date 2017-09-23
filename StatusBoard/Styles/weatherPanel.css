@@ -40,20 +40,22 @@
 
 #conditions { 
     padding-top: 50px;
-    display: flex;
 }
 
 #conditions > .temp-icon  {
     margin-top: -25px;
+    float: left;
 }
 
 #conditions > .temp {
     font-size: 70pt;
+    float: left;
 }
 
 .condition-forecast {
     padding-top: 10px;
     padding-left: 10px;
+    float: left;
 }
 
 #conditions .high,
