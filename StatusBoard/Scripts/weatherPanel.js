@@ -39,6 +39,7 @@ var WeatherPanel = (function () {
         $(this.conditionsElements).find(".high:first").html(currentForecast.high + "&deg;");
         $(this.conditionsElements).find(".low:first").html(currentForecast.low + "&deg;");
         var count = 0;
+        this.forecastElement.innerHTML = "";
         forecasts.some(function (forecast) {
             _this.addForecastElement(forecast);
             if (++count >= 6) {

@@ -55,6 +55,7 @@ class WeatherPanel {
         $(this.conditionsElements).find(".low:first").html(currentForecast.low + "&deg;");
 
         var count = 0;
+        this.forecastElement.innerHTML = "";
         forecasts.some((forecast) => {
             this.addForecastElement(forecast);
             if (++count >= 6) { return true; }
