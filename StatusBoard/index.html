@@ -10,16 +10,20 @@
     <script src="Scripts/weatherPanel.js"></script>
     <script src="Scripts/main.js"></script>
     <link rel="stylesheet" type="text/css" href="Styles/main.css" />
-    <link rel="stylesheet" type="text/css" href="Styles/timer.css" />
+    <link rel="stylesheet" type="text/css" href="Styles/weatherPanel.css" />
 </head>
 <body>
     <div id="main-div"></div>
     <div id="weatherPanel">
         <div id="date"></div>
         <div id="time"></div>
-        <div id="temp-container">
-            <img id="temp-icon" src="" />
-            <span id="temp"></span>
+        <div id="conditions">
+            <img class="temp-icon" src="" />
+            <span class="temp"></span>
+            <div class="condition-forecast">
+                <div class="high"></div>
+                <div class="low"></div>
+            </div>
         </div>
     </div>
 </body>

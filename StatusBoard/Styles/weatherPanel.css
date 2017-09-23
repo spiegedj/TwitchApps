@@ -16,6 +16,14 @@
     text-align: center;
 }
 
+.high {
+    color: rgb(206,59,63);
+}
+
+.low {
+    color: #b0e8ff;
+}
+
 #date {
     padding-top: 60px;
     font-size: 20pt;
@@ -26,19 +34,32 @@
     font-size: 70pt;
 }
 
-#temp-container { 
-    position: absolute;
+
+
+/********* CONDITION *********/
+
+#conditions { 
+    padding-top: 50px;
+    display: flex;
 }
 
-#temp-icon {
-    position: absolute;
-    left: -10px;
-    top: 100px;
+#conditions > .temp-icon  {
+    margin-top: -25px;
 }
 
-#temp {
-    position: absolute;
+#conditions > .temp {
     font-size: 70pt;
-    left: 120px;
-    top: 120px;
 }
+
+.condition-forecast {
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+#conditions .high,
+#conditions .low {
+    font-size: 20pt;
+    padding: 5px;
+}
+
+/********* FORECAST *********/

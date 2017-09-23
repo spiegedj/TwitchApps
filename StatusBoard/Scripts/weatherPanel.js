@@ -5,13 +5,12 @@ var WeatherPanel = (function () {
         this.secret = "3662266402e4b32b77481eb7786750a8e849bdd6";
         this.timeElement = document.getElementById("time");
         this.dateElement = document.getElementById("date");
-        this.tempElement = document.getElementById("temp");
+        this.conditionsElements = document.getElementById("conditions");
         this.tempIconElement = document.getElementById("temp-icon");
         setInterval(this.updateClock.bind(this), 1000);
-        //this.updateWeather(forecast);
-        this.retrieveCurrentConditions();
+        this.retrieveWeather();
         var updateRate = 5 * 60 * 1000; // every 5 minutes
-        setInterval(this.retrieveCurrentConditions.bind(this), updateRate);
+        setInterval(this.retrieveWeather.bind(this), updateRate);
     }
     WeatherPanel.prototype.updateClock = function () {
         var now = new Date();
@@ -23,26 +22,21 @@ var WeatherPanel = (function () {
         this.dateElement.innerHTML = now.toLocaleDateString("en-us", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
         this.timeElement.innerHTML = hours + ":" + minutes + " " + ampm;
     };
-    WeatherPanel.prototype.retrieveCurrentConditions = function () {
+    WeatherPanel.prototype.retrieveWeather = function () {
         $.get("https://query.yahooapis.com/v1/public/yql?" +
-            "q=select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text='verona, wi')&format=json", function (json) {
-            this.parseCurrentCondtions(json);
-        }.bind(this));
-    };
-    WeatherPanel.prototype.parseCurrentCondtions = function (data) {
-        var condition = data.query.results.channel.item.condition;
-        this.tempElement.innerHTML = condition.temp + "&deg;";
-        this.tempIconElement.src = "./Images/Weather/" + condition.code + ".png";
-    };
-    WeatherPanel.prototype.retrieveForcast = function () {
-        $.get("https://query.yahooapis.com/v1/public/yql?" +
-            "q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text=%27verona,%20wi%27)&format=json", function (json) {
+            "q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='verona, wi')&format=json", function (json) {
             this.parseForecast(json);
         }.bind(this));
     };
     WeatherPanel.prototype.parseForecast = function (data) {
-        var forecast = data.query.results.channel.item.forecast;
-        this.tempElement.innerHTML = forecast[0].high;
+        var item = data.query.results.channel.item;
+        var condition = item.condition;
+        var forecast = item.forecast;
+        var currentForecast = forecast.shift();
+        $(this.conditionsElements).find(".temp-icon:first").attr("src", "./Images/Weather/" + condition.code + ".png");
+        $(this.conditionsElements).find(".temp:first").html(condition.temp + "&deg;");
+        $(this.conditionsElements).find(".high:first").html(currentForecast.high + "&deg;");
+        $(this.conditionsElements).find(".low:first").html(currentForecast.low + "&deg;");
     };
     return WeatherPanel;
 }());

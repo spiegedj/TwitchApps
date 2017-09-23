@@ -49,6 +49,8 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+
+    position: relative;
 }
 
 .tile-blue {
@@ -79,5 +81,12 @@ body {
  }
 
 .tile-line-2 {
-    font-size: 11pt;
+    font-size: 9pt;
+ }
+
+ .tile-details {
+     color: rgb(206,30,30);
+     position: absolute;
+     top: 15px;
+     right: 0;
  }

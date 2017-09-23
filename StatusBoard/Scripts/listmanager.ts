@@ -73,6 +73,7 @@ abstract class ListManager {
         var titleLine = this.createElement(tile, "div", "tile-title-line", item.title);
         var line1 = this.createElement(tile, "div", "tile-line", item.line1);
         var line2 = this.createElement(tile, "div", "tile-line-2", item.line2);
+        var details = this.createElement(tile, "span", "tile-details", item.details);
     }
 
     private renderTitle(): void {

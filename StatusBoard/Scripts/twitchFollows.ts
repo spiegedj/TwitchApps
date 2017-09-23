@@ -23,8 +23,8 @@ class TwitchFollows extends ListManager {
 
             listItem.title = channel.display_name;
             listItem.line1 = "Playing " + channel.game;
-            listItem.line2 = stream.viewers.toLocaleString() + " viewers";
-            listItem.details = channel.status;
+            listItem.line2 =  channel.status;
+            listItem.details = stream.viewers.toLocaleString();
             listItem.imageURL = channel.logo;
             listItem.link = "http://www.twitch.tv/" + listItem.title;
 
