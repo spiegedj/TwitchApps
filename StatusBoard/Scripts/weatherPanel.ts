@@ -5,7 +5,7 @@ class WeatherPanel {
     private timeElement : HTMLElement;
     private dateElement : HTMLElement;
     private conditionsElements : HTMLElement;
-    private tempIconElement : HTMLImageElement;
+    private forecastElement : HTMLElement;
 
     private clientID = "dj0yJmk9ZkdkYzF4ajU4a29vJmQ9WVdrOVRXRnJRbnBTTm1zbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD02YQ--";
     private secret = "3662266402e4b32b77481eb7786750a8e849bdd6";
@@ -14,7 +14,7 @@ class WeatherPanel {
         this.timeElement = document.getElementById("time");
         this.dateElement = document.getElementById("date");
         this.conditionsElements = document.getElementById("conditions");
-        this.tempIconElement = document.getElementById("temp-icon") as HTMLImageElement;
+        this.forecastElement = document.getElementById("forecast");
 
         setInterval(this.updateClock.bind(this), 1000);
         
@@ -46,13 +46,33 @@ class WeatherPanel {
     private parseForecast(data: any): void {
         var item = data.query.results.channel.item;
         var condition : Condition = item.condition;
-        var forecast: Forecast[] = item.forecast;
+        var forecasts: Forecast[] = item.forecast;
 
-        var currentForecast: Forecast = forecast.shift();
+        var currentForecast: Forecast = forecasts.shift();
         $(this.conditionsElements).find(".temp-icon:first").attr("src", "./Images/Weather/" + condition.code + ".png");
         $(this.conditionsElements).find(".temp:first").html(condition.temp + "&deg;");
         $(this.conditionsElements).find(".high:first").html(currentForecast.high + "&deg;");
         $(this.conditionsElements).find(".low:first").html(currentForecast.low + "&deg;");
+
+        var count = 0;
+        forecasts.some((forecast) => {
+            this.addForecastElement(forecast);
+            if (++count >= 6) { return true; }
+            return false;
+        });
+    }
+
+    private addForecastElement(forecast: Forecast) {
+        var tile = $("<div />", {class: "forecast-tile" });
+        var image = "./Images/Weather/" + forecast.code + ".png";
+        tile.append($("<img />" , { class: "temp-icon", src: image}));
+        var container = $("<div />", { class: "forecast-container"});
+        container.append($("<span />" , { class: "high"}).html(forecast.high + "&deg;"));
+        container.append($("<span />").html(" / "));
+        container.append($("<span />" , { class: "low"}).html(forecast.low + "&deg;"));
+        container.append($("<div />" , { class: "day"}).html(forecast.day));
+        $(tile).append(container);
+        $(this.forecastElement).append(tile);
     }
 }
 

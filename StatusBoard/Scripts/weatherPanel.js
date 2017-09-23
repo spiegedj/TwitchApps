@@ -6,7 +6,7 @@ var WeatherPanel = (function () {
         this.timeElement = document.getElementById("time");
         this.dateElement = document.getElementById("date");
         this.conditionsElements = document.getElementById("conditions");
-        this.tempIconElement = document.getElementById("temp-icon");
+        this.forecastElement = document.getElementById("forecast");
         setInterval(this.updateClock.bind(this), 1000);
         this.retrieveWeather();
         var updateRate = 5 * 60 * 1000; // every 5 minutes
@@ -29,14 +29,35 @@ var WeatherPanel = (function () {
         }.bind(this));
     };
     WeatherPanel.prototype.parseForecast = function (data) {
+        var _this = this;
         var item = data.query.results.channel.item;
         var condition = item.condition;
-        var forecast = item.forecast;
-        var currentForecast = forecast.shift();
+        var forecasts = item.forecast;
+        var currentForecast = forecasts.shift();
         $(this.conditionsElements).find(".temp-icon:first").attr("src", "./Images/Weather/" + condition.code + ".png");
         $(this.conditionsElements).find(".temp:first").html(condition.temp + "&deg;");
         $(this.conditionsElements).find(".high:first").html(currentForecast.high + "&deg;");
         $(this.conditionsElements).find(".low:first").html(currentForecast.low + "&deg;");
+        var count = 0;
+        forecasts.some(function (forecast) {
+            _this.addForecastElement(forecast);
+            if (++count >= 6) {
+                return true;
+            }
+            return false;
+        });
+    };
+    WeatherPanel.prototype.addForecastElement = function (forecast) {
+        var tile = $("<div />", { class: "forecast-tile" });
+        var image = "./Images/Weather/" + forecast.code + ".png";
+        tile.append($("<img />", { class: "temp-icon", src: image }));
+        var container = $("<div />", { class: "forecast-container" });
+        container.append($("<span />", { class: "high" }).html(forecast.high + "&deg;"));
+        container.append($("<span />").html(" / "));
+        container.append($("<span />", { class: "low" }).html(forecast.low + "&deg;"));
+        container.append($("<div />", { class: "day" }).html(forecast.day));
+        $(tile).append(container);
+        $(this.forecastElement).append(tile);
     };
     return WeatherPanel;
 }());
