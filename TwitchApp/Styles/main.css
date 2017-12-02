@@ -2,7 +2,7 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     /*background-image: url('../Images/overwatch.png');*/
     
-    background-color: white;
+    background-color: #EFEEF1;
     color: black;
     padding: 0;
     margin: 0;
@@ -61,9 +61,9 @@ body {
 }
 
 .stream-tile {
-    padding-top: 5px;
-    padding-left: 30px;
-    height: 120px;
+    padding-top: 3px;
+    padding-left: 15px;
+    height: 97px;
     border-bottom: 1px solid rgb(32,28,43);
 }
 
@@ -73,7 +73,7 @@ body {
 }
 
 .stream-logo {
-    width: 100px;
+    width: 80px;
     padding-top: 10px;
     padding-right: 10px;
     float: left;
@@ -82,7 +82,7 @@ body {
 
 .stream-line {
     color: rgb(175,175,175);
-    font-size: 18pt;
+    font-size: 15pt;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 450px;
@@ -113,6 +113,7 @@ body {
     border: 1px solid #cccccc;
     margin-bottom: 10px;
     padding: 5px;
+    white-space: nowrap;
 }
 
 .selected-top-bar span {
@@ -157,8 +158,12 @@ body {
 
 
 .selected-bar-bottom {
+    padding: 0;
     margin-top: 10px;
-    height: fit-content;
+}
+
+.selected-bar-inner {
+    padding: 12px;
 }
 
 .selected-details {
@@ -183,6 +188,18 @@ body {
     right: 0;
     bottom: 0;
     font-size: 14pt;
+}
+
+.preview-button {
+    float: right;
+    background:#fc3636;
+    height: 100%;
+    width: 100px;
+    position: relative;
+}
+
+.preview-button:hover {
+    opacity: .5;
 }
 
 /***************************** Common ***************************/
@@ -238,3 +255,15 @@ body {
 .non-english div{
     color: rgb(175,175,175) !important;
 }
+
+.arrow-right {
+    width: 0; 
+    height: 0; 
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 30px solid white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -20px 0 0 -10px;
+  }

@@ -75,22 +75,28 @@
 
         <div class="selected-preview-container" ng-mousedown="launchStream(selectedStream)">
 
-            <img ng-src="{{ selectedStream.preview }}"  class="selected-preview"/>
-            
-            <!--<iframe
-                ng-src="{{getStreamSrc(selectedStream.title)}}"
-                height="720"
-                width="1280"
-                frameborder="0"
-                scrolling="no"
-                allowfullscreen="true"
-                class="selected-preview">
-            </iframe>-->
+            <span ng-if="!previewing">
+                <img ng-src="{{ selectedStream.preview }}"  class="selected-preview"/>
+            </span>
+            <span ng-if="previewing">
+                <iframe
+                    ng-src="{{getStreamSrc(selectedStream.title)}}"
+                    height="720"
+                    width="1280"
+                    frameborder="0"
+                    scrolling="no"
+                    allowfullscreen="true"
+                    class="selected-preview">
+                </iframe>
+            </span>
         </div>
 
         <div class="selected-bar selected-bar-bottom">
-            <div class="selected-details">{{ selectedStream.details }}</div>
-            <div class="selected-text">{{ selectedStream.game }} ({{selectedStream.language}})</div>
+            <div class="preview-button" ng-click="previewing=!previewing"><div class="arrow-right"></div></div>
+            <div class="selected-bar-inner">
+                <div class="selected-details">{{ selectedStream.details }}</div>
+                <div class="selected-text">{{ selectedStream.game }} ({{selectedStream.language}})</div>
+            </div>
         </div>
 
     </div>

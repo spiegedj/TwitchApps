@@ -15,13 +15,14 @@ app.controller("mainController", ["$scope", function ($scope) {
     $scope.tabs = tabs;
     $scope.selectedTab = tabs[0];
     $scope.lastUpdated;
+    $scope.previewing = false;
 
     $scope.topGames = [];
     $scope.loadCount = 48;
     $scope.topGamesOffset = 0;
     $scope.showTopGames = false;
 
-    $scope.maxTiles = 8;
+    $scope.maxTiles = 10;
     $scope.startTile = 0;
 
     loadStreams();
@@ -61,6 +62,7 @@ app.controller("mainController", ["$scope", function ($scope) {
     function getPreviewUrl(template, width, height) {
         template = template.replace("{width}", width);
         template = template.replace("{height}", height);
+        template += "?r=" + new Date();
         return template;
     }
 
@@ -232,9 +234,9 @@ var tabs = [
         imageURL: "Images/Overwatch-Game.jpg"
     },
     {
-        title: "Super Mario Maker",
-        url: baseURL + "?oauth_token=" + oauthToken + "&game=Super Mario Maker",
-        imageURL: "Images/SuperMarioMaker-Game.jpg"
+        title: "Starcraft",
+        url: baseURL + "?oauth_token=" + oauthToken + "&game=Starcraft",
+        imageURL: "Images/StarCraft.jpg"
     },
     {
         title: "Top Games",
