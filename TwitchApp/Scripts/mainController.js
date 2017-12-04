@@ -140,7 +140,7 @@ app.controller("mainController", ["$scope", function ($scope) {
         var now = new Date();
         var secondDiff = (now.getTime() - $scope.lastUpdated.getTime()) / 1000;
 
-        if (secondDiff > (60)) {
+        if (secondDiff > (60) && !$scope.streaming) {
             loadStreams();
         }
     });
