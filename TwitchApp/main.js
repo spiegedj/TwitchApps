@@ -73,3 +73,9 @@ ipcMain.on('stop-stream', (event) => {
     exec(command);
   }
 });
+
+var fullscreen = false;
+ipcMain.on("toggle-fullscreen", (even) => {
+  fullscreen = !fullscreen;
+  win.setFullScreen(fullscreen);
+});

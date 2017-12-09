@@ -131,6 +131,8 @@ app.controller("mainController", ["$scope", function ($scope) {
         // Page Up / Down
         else if (event.keyCode === constants.key_2 || event.keyCode === constants.key_8) {
             event.keyCode === constants.key_2 ? $scope.pageUp() : $scope.pageDown();
+        } else if (event.keyCode === constants.key_0) {
+            ipcRenderer.send("toggle-fullscreen");
         }
 
         $scope.$apply();
