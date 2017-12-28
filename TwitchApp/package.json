@@ -1,5 +1,11 @@
 {
     "name": "Twitch App",
     "version": "0.1.0",
-    "main": "main.js"
+    "main": "main.js",
+    "devDependencies": {
+        "electron": "1.7.10"
+    },
+    "dependencies": {
+        "express": "^4.15.2"
+    }
 }

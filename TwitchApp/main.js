@@ -1,7 +1,6 @@
 const { app, BrowserWindow, dialog, ipcMain } = require('electron');
 const path = require('path');
 const url = require('url');
-
 const fs = require('fs');
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -75,7 +74,19 @@ ipcMain.on('stop-stream', (event) => {
 });
 
 var fullscreen = false;
-ipcMain.on("toggle-fullscreen", (even) => {
+ipcMain.on("toggle-fullscreen", (event) => {
   fullscreen = !fullscreen;
   win.setFullScreen(fullscreen);
+});
+
+const express = require('express'), webServer = express();
+var http = require('http').Server(webServer);
+
+webServer.get('/', function(req, res){
+  // https://api.twitch.tv/kraken/search/channels?query=tim&client_id=e5yp1mbb10ju6dmag1irayg4ncybz5j&limit=1
+  win.webContents.send('search' , {streamer: req.query.streamer});
+});
+
+http.listen(3000, function(){
+  console.log('listening on *:3000');
 });
