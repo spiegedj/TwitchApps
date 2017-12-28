@@ -202,6 +202,8 @@ app.controller("mainController", ["$scope", function ($scope) {
         function(json) {
             var streamTitle = json.channels[0].name;
             $scope.launchStream({ title: streamTitle });
+            $scope.$apply();
+            $('body').focus();
         });
     }
 }]);
