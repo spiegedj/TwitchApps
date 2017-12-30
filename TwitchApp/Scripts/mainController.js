@@ -97,6 +97,7 @@ app.controller("mainController", ["$scope", function ($scope) {
     $scope.launchStream = function(stream) {
         ipcRenderer.send('launch-stream', stream.title);
         $scope.streaming = true;
+        $scope.$apply();
     };
 
     $scope.stopStream = function() {
@@ -194,20 +195,15 @@ app.controller("mainController", ["$scope", function ($scope) {
     };
 
     function searchByStreamer(streamer) {
-        $.get("https://api.twitch.tv/kraken/search/channels?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&limit=8&query=" + streamer,
+        $.get("https://api.twitch.tv/kraken/search/channels?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&limit=5&query=" + streamer,
         function(json) {
-            var streamTitle = json.channels[0].name;
-            for (var channel of json.channels) {
-                var streamedGame = channel.game.toLowerCase();
-                if (matchGames.includes(streamedGame)) {
-                    streamTitle = channel.name;
-                    break;
+            var channelString = json.channels.map((channel) => channel.name).join(",");
+            $.get("https://api.twitch.tv/kraken/streams?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&channel=" + channelString, (json) => {
+                if (json.streams.length > 0) {
+                    var streamTitle = matchGames(json.streams);
+                    $scope.launchStream({ title: streamTitle });
                 }
-            }
-
-            $scope.launchStream({ title: streamTitle });
-            $scope.$apply();
-            $('body').focus();
+            });
         });
     }
 
@@ -218,9 +214,19 @@ app.controller("mainController", ["$scope", function ($scope) {
     ipcRenderer.on('stop', function(event) {
         $scope.stopStream();
     });
+
+    function matchGames(streams) {
+        for (var stream of streams) {
+            var streamedGame = stream.channel.game.toLowerCase();
+            if (followedGames.includes(streamedGame)) {
+                return stream.channel.name;
+            }
+        }
+        return streams[0].channel.name;
+    }
 }]);
 
-var matchGames = ['starcraft ii', 'super mario maker', 'starcraft', 'overwatch', 'kerbal space program'];
+var followedGames = ['starcraft ii', 'super mario maker', 'starcraft', 'overwatch', 'kerbal space program', 'super metroid'];
 
 var constants = {
     key_q: 113,
