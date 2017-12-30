@@ -193,10 +193,6 @@ app.controller("mainController", ["$scope", function ($scope) {
         $scope.$apply();
     };
 
-    ipcRenderer.on('search', function(event, data) {
-        searchByStreamer(data.streamer);
-    });
-
     function searchByStreamer(streamer) {
         $.get("https://api.twitch.tv/kraken/search/channels?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&limit=1&query=" + streamer,
         function(json) {
@@ -206,6 +202,14 @@ app.controller("mainController", ["$scope", function ($scope) {
             $('body').focus();
         });
     }
+
+    ipcRenderer.on('stream', function(event, data) {
+        searchByStreamer(data.streamer);
+    });
+
+    ipcRenderer.on('stop', function(event) {
+        $scope.stopStream();
+    });
 }]);
 
 var constants = {

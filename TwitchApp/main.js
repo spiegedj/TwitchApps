@@ -82,9 +82,12 @@ ipcMain.on("toggle-fullscreen", (event) => {
 const express = require('express'), webServer = express();
 var http = require('http').Server(webServer);
 
-webServer.get('/', function(req, res){
-  // https://api.twitch.tv/kraken/search/channels?query=tim&client_id=e5yp1mbb10ju6dmag1irayg4ncybz5j&limit=1
-  win.webContents.send('search' , {streamer: req.query.streamer});
+webServer.get('/stream', function(req, res){
+  win.webContents.send('stream' , {streamer: req.query.streamer});
+});
+
+webServer.get('/stop', function(req, res){
+  win.webContents.send('stop');
 });
 
 http.listen(3000, function(){
