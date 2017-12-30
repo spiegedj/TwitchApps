@@ -194,9 +194,17 @@ app.controller("mainController", ["$scope", function ($scope) {
     };
 
     function searchByStreamer(streamer) {
-        $.get("https://api.twitch.tv/kraken/search/channels?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&limit=1&query=" + streamer,
+        $.get("https://api.twitch.tv/kraken/search/channels?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&limit=8&query=" + streamer,
         function(json) {
             var streamTitle = json.channels[0].name;
+            for (var channel of json.channels) {
+                var streamedGame = channel.game.toLowerCase();
+                if (matchGames.includes(streamedGame)) {
+                    streamTitle = channel.name;
+                    break;
+                }
+            }
+
             $scope.launchStream({ title: streamTitle });
             $scope.$apply();
             $('body').focus();
@@ -211,6 +219,8 @@ app.controller("mainController", ["$scope", function ($scope) {
         $scope.stopStream();
     });
 }]);
+
+var matchGames = ['starcraft II', 'super mario maker', 'starcraft', 'overwatch', 'kerbal space program'];
 
 var constants = {
     key_q: 113,
