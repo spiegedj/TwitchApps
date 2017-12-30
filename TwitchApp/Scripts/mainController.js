@@ -16,6 +16,7 @@ app.controller("mainController", ["$scope", function ($scope) {
     $scope.selectedTab = tabs[0];
     $scope.lastUpdated;
     $scope.previewing = false;
+    $scope.searching = "";
 
     $scope.topGames = [];
     $scope.loadCount = 48;
@@ -195,16 +196,28 @@ app.controller("mainController", ["$scope", function ($scope) {
     };
 
     function searchByStreamer(streamer) {
+        $scope.searching = "Searching " + streamer + "...";
+        $scope.$apply();
         $.get("https://api.twitch.tv/kraken/search/channels?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&limit=20&query=" + streamer,
         function(json) {
             var channelString = json.channels.map((channel) => channel.name).join(",");
             $.get("https://api.twitch.tv/kraken/streams?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&channel=" + channelString, (json) => {
                 if (json.streams.length > 0) {
                     var streamTitle = matchGames(json.streams);
+
+                    $scope.searching = "Playing " + streamTitle + "...";
                     $scope.launchStream({ title: streamTitle });
+                } else {
+                    $scope.searching = "No live streams found for " + streamer;
                 }
+                $scope.$apply();
             });
         });
+
+        setTimeout(() => {
+            $scope.searching = "";
+            $scope.$apply();
+        }, 5000);
     }
 
     ipcRenderer.on('stream', function(event, data) {

@@ -267,3 +267,9 @@ body {
     left: 50%;
     margin: -20px 0 0 -10px;
   }
+
+  .searching {
+      font-size: 20pt;
+      width: 100%;
+      text-align: center;
+  }
