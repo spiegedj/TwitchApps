@@ -220,7 +220,7 @@ app.controller("mainController", ["$scope", function ($scope) {
     });
 }]);
 
-var matchGames = ['starcraft II', 'super mario maker', 'starcraft', 'overwatch', 'kerbal space program'];
+var matchGames = ['starcraft ii', 'super mario maker', 'starcraft', 'overwatch', 'kerbal space program'];
 
 var constants = {
     key_q: 113,
