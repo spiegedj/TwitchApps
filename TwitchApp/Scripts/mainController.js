@@ -195,7 +195,7 @@ app.controller("mainController", ["$scope", function ($scope) {
     };
 
     function searchByStreamer(streamer) {
-        $.get("https://api.twitch.tv/kraken/search/channels?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&limit=5&query=" + streamer,
+        $.get("https://api.twitch.tv/kraken/search/channels?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&limit=20&query=" + streamer,
         function(json) {
             var channelString = json.channels.map((channel) => channel.name).join(",");
             $.get("https://api.twitch.tv/kraken/streams?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&channel=" + channelString, (json) => {
