@@ -30,13 +30,17 @@ class OverwatchLeague extends VSList {
                         var listItem = new VSListItem();
 
                         listItem.competitor1 = {
-                            imageURL: competitor1.logo,
-                            name: competitor1.name
+                            imageURL: competitor1.icon,
+                            name: competitor1.name,
+                            primaryColor: competitor1.primaryColor,
+                            secondaryColor: competitor1.secondaryColor,
                         }
 
                         listItem.competitor2 = {
-                            imageURL: competitor2.logo,
-                            name: competitor2.name
+                            imageURL: competitor2.icon,
+                            name: competitor2.name,
+                            primaryColor: competitor2.primaryColor,
+                            secondaryColor: competitor2.secondaryColor,
                         }
 
                         var startDate = new Date(match.startDateTS);
