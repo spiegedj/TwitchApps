@@ -12,11 +12,9 @@ $(document).ready(function() {
     follows.setPosition(15, "", 15, "");
     follows.setHeight(954);
 
-    var starcraft = new TwitchGame(mainDiv, 5, "Starcraft II");
-    starcraft.setPosition("", 0, "", 15);
-
-    var overwatch = new TwitchGame(mainDiv, 5, "Overwatch");
-    overwatch.setPosition("", 421.66666, "", 15);
+    var overwatch = new OverwatchLeague(mainDiv, 7, "Overwatch League");
+    overwatch.setPosition("", 0, "", 15);
+    overwatch.setWidth(788.3333);
 
     var weatherPanel = new WeatherPanel();
 });

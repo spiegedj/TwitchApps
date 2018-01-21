@@ -1,0 +1,47 @@
+.vs-list-tile-container {
+    height: 40px;
+    overflow: hidden;
+}
+
+.vs-list-tile-container .tile {
+    border: none;
+    padding: 0;
+}
+
+.vs-list-tile-container span {
+    float: left;
+}
+
+.vs-tile-image { 
+    float: left;
+    width: 30px;
+    padding: 0 5px 0 5px;
+ }
+
+
+.vs-tile-time {
+    text-align: center;
+    width: 14%;
+}
+
+.vs-comp-1, .vs-comp-2 {
+    width: 43%;
+    font-size: 16pt;
+}
+
+.vs-comp-1 span, .vs-comp-1 img {
+    text-align: right;
+    float: right;
+}
+
+
+
+.vs-list-tile-date-line:not(:first-child) {
+    padding-top: 30px;
+}
+
+.vs-list-tile-date-line {
+    text-align: center;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(255,255,255,.2);
+}

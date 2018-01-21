@@ -1,5 +1,5 @@
 /// <reference path="../@types/jquery/jquery.d.ts"/>
-var WeatherPanel = (function () {
+var WeatherPanel = /** @class */ (function () {
     function WeatherPanel() {
         this.clientID = "dj0yJmk9ZkdkYzF4ajU4a29vJmQ9WVdrOVRXRnJRbnBTTm1zbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD02YQ--";
         this.secret = "3662266402e4b32b77481eb7786750a8e849bdd6";

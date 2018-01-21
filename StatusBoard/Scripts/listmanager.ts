@@ -1,8 +1,8 @@
 abstract class ListManager {
-    protected __listItems: ListItem[];
+    protected _listItems: ListItem[];
+    protected _listItemsElement: HTMLElement;
 
     private __listContainer: HTMLElement;
-    private __listItemsElement: HTMLElement;
     private __titleElement: HTMLElement;
     private __pageUpElement: HTMLElement;
     private __pageDownElement: HTMLElement;
@@ -22,13 +22,18 @@ abstract class ListManager {
         this.__startIndex = 0;
 
         this.renderTitle();
-        this.__listItemsElement = this.createElement(this.__listContainer, "div");
+        this._listItemsElement = this.createElement(this.__listContainer, "div");
 
         setInterval(this.refresh.bind(this), this.refreshRate);
     }
 
     public setBackgroundColor(color: string) : void {
         this.__listContainer.style.backgroundColor = color;
+    }
+
+    public setWidth(height: number)
+    {
+        this.__listContainer.style.width = height + "px";
     }
 
     public setHeight(height: number)
@@ -55,16 +60,16 @@ abstract class ListManager {
     }
 
     protected render() : void {
-        this.__listItemsElement.innerHTML = '';
+        this._listItemsElement.innerHTML = '';
         for (var i = this.__startIndex; i < (this.__startIndex + this.__measureCount); i++) {
-            if (this.__listItems[i]) {
-                this.renderTile(this.__listItems[i]);
+            if (this._listItems[i]) {
+                this.renderTile(this._listItems[i]);
             }
         }
     }
 
-    private renderTile(item: ListItem): void {
-        var tileContainer = this.createElement(this.__listItemsElement, "div", "tile-container");
+    protected renderTile(item: ListItem): void {
+        var tileContainer = this.createElement(this._listItemsElement, "div", "tile-container");
         var tile = this.createElement(tileContainer, "div", ["tile", this.getStatusClass(item)].join(" "));
         tile.addEventListener("click", function() { window.open( item.link, '_blank'); });
 
@@ -76,11 +81,11 @@ abstract class ListManager {
         var details = this.createElement(tile, "span", "tile-details", item.details);
     }
 
-    private renderTitle(): void {
+    protected renderTitle(): void {
         this.__titleElement = this.createElement(this.__listContainer, "h1", "list-title", this.__title);
     }
 
-    private createElement(container: HTMLElement, type: string, classNames: string = "", innerText: string = ""): HTMLElement {
+    protected createElement(container: HTMLElement, type: string, classNames: string = "", innerText: string = ""): HTMLElement {
         var element = document.createElement(type);
         element.className = classNames;
         if (innerText) element.innerText = innerText;
@@ -108,6 +113,7 @@ class ListItem {
     public imageURL: string;
     public link: string;
     public status: Status;
+    public sortKey: number;
 }
 
 enum Status {

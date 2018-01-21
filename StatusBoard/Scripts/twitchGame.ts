@@ -19,7 +19,7 @@ class TwitchGame extends ListManager {
     }
 
     private parseGame(json: any): void {
-        this.__listItems = [];
+        this._listItems = [];
         json.streams.forEach(function(stream) {
             var channel = stream.channel;
             var listItem = new ListItem();
@@ -31,7 +31,7 @@ class TwitchGame extends ListManager {
             listItem.imageURL = channel.logo;
             listItem.link = "http://www.twitch.tv/" + listItem.title;
 
-            this.__listItems.push(listItem);
+            this._listItems.push(listItem);
         }, this);
 
         this.render();

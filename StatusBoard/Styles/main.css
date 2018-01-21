@@ -33,6 +33,7 @@ body {
     height: 30px;
     margin: 0;
     font-size: 18pt;
+    text-align: center;
 }
 
 .tile-container {
@@ -44,7 +45,7 @@ body {
     padding-top: 10px;
 
     cursor: pointer;
-    border-bottom: 1px solid rgb(119,187,205);
+    border-bottom: 1px solid rgba(255,255,255,.2);
 
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -85,7 +86,7 @@ body {
  }
 
  .tile-details {
-     color: rgb(206,30,30);
+     color: white;
      position: absolute;
      top: 15px;
      right: 0;

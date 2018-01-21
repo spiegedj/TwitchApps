@@ -1,4 +1,4 @@
-var ListManager = (function () {
+var ListManager = /** @class */ (function () {
     function ListManager(container, measureCount, title) {
         this.refreshRate = 30 * 1000;
         this.__listContainer = this.createElement(container, "div", "list-container");
@@ -6,11 +6,14 @@ var ListManager = (function () {
         this.__title = title;
         this.__startIndex = 0;
         this.renderTitle();
-        this.__listItemsElement = this.createElement(this.__listContainer, "div");
+        this._listItemsElement = this.createElement(this.__listContainer, "div");
         setInterval(this.refresh.bind(this), this.refreshRate);
     }
     ListManager.prototype.setBackgroundColor = function (color) {
         this.__listContainer.style.backgroundColor = color;
+    };
+    ListManager.prototype.setWidth = function (height) {
+        this.__listContainer.style.width = height + "px";
     };
     ListManager.prototype.setHeight = function (height) {
         this.__listContainer.style.height = height + "px";
@@ -29,15 +32,15 @@ var ListManager = (function () {
         this.__listContainer.style.bottom = bottom;
     };
     ListManager.prototype.render = function () {
-        this.__listItemsElement.innerHTML = '';
+        this._listItemsElement.innerHTML = '';
         for (var i = this.__startIndex; i < (this.__startIndex + this.__measureCount); i++) {
-            if (this.__listItems[i]) {
-                this.renderTile(this.__listItems[i]);
+            if (this._listItems[i]) {
+                this.renderTile(this._listItems[i]);
             }
         }
     };
     ListManager.prototype.renderTile = function (item) {
-        var tileContainer = this.createElement(this.__listItemsElement, "div", "tile-container");
+        var tileContainer = this.createElement(this._listItemsElement, "div", "tile-container");
         var tile = this.createElement(tileContainer, "div", ["tile", this.getStatusClass(item)].join(" "));
         tile.addEventListener("click", function () { window.open(item.link, '_blank'); });
         var image = this.createElement(tile, "img", "tile-image");
@@ -72,7 +75,7 @@ var ListManager = (function () {
     };
     return ListManager;
 }());
-var ListItem = (function () {
+var ListItem = /** @class */ (function () {
     function ListItem() {
     }
     return ListItem;

@@ -1,16 +1,22 @@
 /// <reference path="../@types/jquery/jquery.d.ts"/>
 /// <reference path="listmanager.ts"/>
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Events = (function (_super) {
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var Events = /** @class */ (function (_super) {
     __extends(Events, _super);
     function Events(container, measureCount) {
-        _super.call(this, container, measureCount, "Events");
-        this.retrieveItems();
-        this.setBackgroundColor("rgb(86,24,59)");
+        var _this = _super.call(this, container, measureCount, "Events") || this;
+        _this.retrieveItems();
+        _this.setBackgroundColor("rgb(86,24,59)");
+        return _this;
     }
     Events.prototype.retrieveItems = function () {
         $.get("http://192.168.1.105:8080/sc2events", function (json) {
@@ -43,7 +49,7 @@ var Events = (function (_super) {
         events.sort(function (a, b) {
             return a.timeInMs - b.timeInMs;
         });
-        this.__listItems = events;
+        this._listItems = events;
         this.render();
     };
     Events.prototype.getDaysFrom = function (timeMs) {
@@ -86,10 +92,10 @@ var Events = (function (_super) {
     };
     return Events;
 }(ListManager));
-var EventItem = (function (_super) {
+var EventItem = /** @class */ (function (_super) {
     __extends(EventItem, _super);
     function EventItem() {
-        _super.apply(this, arguments);
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     return EventItem;
 }(ListItem));

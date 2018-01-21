@@ -16,7 +16,7 @@ class TwitchFollows extends ListManager {
     }
 
     private parseStreams(json: any) {
-        this.__listItems = [];
+        this._listItems = [];
         json.streams.forEach(function(stream) {
             var channel = stream.channel;
             var listItem = new ListItem();
@@ -28,7 +28,7 @@ class TwitchFollows extends ListManager {
             listItem.imageURL = channel.logo;
             listItem.link = "http://www.twitch.tv/" + listItem.title;
 
-            this.__listItems.push(listItem);
+            this._listItems.push(listItem);
         }, this);
 
         this.render();

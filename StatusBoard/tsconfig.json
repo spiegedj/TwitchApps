@@ -13,6 +13,8 @@
     "Scripts/twitchFollows.ts",
     "Scripts/twitchGame.ts",
     "Scripts/events.ts",
-    "Scripts/weatherPanel.ts"
+    "Scripts/weatherPanel.ts",
+    "Scripts/overwatchLeague.ts",
+    "Scripts/vsList.ts"
   ]
 }

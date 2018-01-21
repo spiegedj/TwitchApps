@@ -45,7 +45,7 @@ class Events extends ListManager {
             return a.timeInMs - b.timeInMs;
         });
 
-        this.__listItems = events;
+        this._listItems = events;
         this.render();
     }
 
