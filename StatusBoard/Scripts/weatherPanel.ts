@@ -10,6 +10,10 @@ class WeatherPanel {
     private clientID = "dj0yJmk9ZkdkYzF4ajU4a29vJmQ9WVdrOVRXRnJRbnBTTm1zbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD02YQ--";
     private secret = "3662266402e4b32b77481eb7786750a8e849bdd6";
 
+    public get element(): HTMLElement {
+        return document.getElementById("weatherPanel");
+    }
+
     public constructor() {
         this.timeElement = document.getElementById("time");
         this.dateElement = document.getElementById("date");

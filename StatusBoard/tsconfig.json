@@ -15,6 +15,9 @@
     "Scripts/events.ts",
     "Scripts/weatherPanel.ts",
     "Scripts/overwatchLeague.ts",
-    "Scripts/vsList.ts"
+    "Scripts/vsList.ts",
+    "Scripts/groupedList.ts",
+    "Scripts/twitchFollowsAndGames.ts",
+    "Scripts/gridManager.ts"
   ]
 }

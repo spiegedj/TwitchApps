@@ -37,8 +37,6 @@
     float: right;
 }
 
-
-
 .vs-list-tile-date-line:not(:first-child) {
     padding-top: 30px;
 }

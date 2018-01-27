@@ -12,6 +12,13 @@ var WeatherPanel = /** @class */ (function () {
         var updateRate = 5 * 60 * 1000; // every 5 minutes
         setInterval(this.retrieveWeather.bind(this), updateRate);
     }
+    Object.defineProperty(WeatherPanel.prototype, "element", {
+        get: function () {
+            return document.getElementById("weatherPanel");
+        },
+        enumerable: true,
+        configurable: true
+    });
     WeatherPanel.prototype.updateClock = function () {
         var now = new Date();
         var hours = now.getHours();
