@@ -153,6 +153,10 @@ body {
         padding: 0;
         height: 100%;
 
+        &.tile-green {
+            color: rgb(144,186,60);
+        }
+
         .vs-comp-1, .vs-comp-2 {
             width: 43%;
             font-size: 18pt;

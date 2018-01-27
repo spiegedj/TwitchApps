@@ -21,7 +21,7 @@ abstract class VSList extends ListManager {
             children: [
                 {
                     tag: "div",
-                    className: "tile",
+                    classNames: ["tile" , item.live ? "tile-green" : "" ],
                     children: [
                         {
                             tag: "span",
@@ -80,6 +80,7 @@ class VSListItem extends ListItem {
     public competitor2: Competitor;
     public date: string;
     public time: string;
+    public live: boolean;
 }
 
 class Competitor {

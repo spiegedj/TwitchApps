@@ -44,8 +44,18 @@ class OverwatchLeague extends VSList {
                         }
 
                         var startDate = new Date(match.startDateTS);
+                        var endDate= new Date(match.endDateTS);
+
                         listItem.date = startDate.toLocaleDateString();
-                        listItem.time = this.getTimeString(startDate); 
+
+                        var now = new Date().getTime();
+                        if (now > match.startDateTS && now < match.endDateTS) {
+                            listItem.time = match.scores[0].value + " - " + match.scores[1].value;
+                            listItem.live = true;
+                        } else {
+                            listItem.time = this.getTimeString(startDate);
+                        }
+
                         listItem.sortKey = match.startDateTS;
 
                         this._listItems.push(listItem);

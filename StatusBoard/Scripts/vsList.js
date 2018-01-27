@@ -30,7 +30,7 @@ var VSList = /** @class */ (function (_super) {
             children: [
                 {
                     tag: "div",
-                    className: "tile",
+                    classNames: ["tile", item.live ? "tile-green" : ""],
                     children: [
                         {
                             tag: "span",
