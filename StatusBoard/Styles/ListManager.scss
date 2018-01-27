@@ -97,11 +97,11 @@ body {
         width: 100%;
         display: inline-block;
         text-align: center;
-        font-size: 16pt;
+        font-size: 18pt;
     }
 
     .tile-container {
-        height: 55px;
+        height: 60px;
         border-bottom: 1px solid rgba(255,255,255,.2);
 
         .tile {
@@ -110,12 +110,12 @@ body {
             height: 100%;
 
             .tile-title-line { 
-                margin-top: -2px;
-               // font-size: 18pt;
+                margin-top: 0px;
+                font-size: 18pt;
             }
 
             .tile-image { 
-                width: 50px;
+                width: 55px;
             }
 
             .tile-details {

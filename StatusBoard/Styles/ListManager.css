@@ -62,18 +62,19 @@ body {
     width: 100%;
     display: inline-block;
     text-align: center;
-    font-size: 16pt; }
+    font-size: 18pt; }
   .list-group .tile-container {
-    height: 55px;
+    height: 60px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
     .list-group .tile-container .tile {
       border-bottom: none;
       padding-top: 0;
       height: 100%; }
       .list-group .tile-container .tile .tile-title-line {
-        margin-top: -2px; }
+        margin-top: 0px;
+        font-size: 18pt; }
       .list-group .tile-container .tile .tile-image {
-        width: 50px; }
+        width: 55px; }
       .list-group .tile-container .tile .tile-details {
         top: 5px;
         right: 5px; }
