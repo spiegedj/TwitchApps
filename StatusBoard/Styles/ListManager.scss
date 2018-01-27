@@ -23,6 +23,7 @@ body {
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
+        width: auto;
     }
 
     .list-title {
@@ -112,7 +113,7 @@ body {
 
             .tile-title-line { 
                 margin-top: -2px;
-                font-size: 18pt;
+               // font-size: 18pt;
             }
 
             .tile-image { 

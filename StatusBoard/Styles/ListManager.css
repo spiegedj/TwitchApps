@@ -15,7 +15,8 @@ body {
   .list-container span, .list-container div {
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden; }
+    overflow: hidden;
+    width: auto; }
   .list-container .list-title {
     height: 30px;
     margin: 0;
@@ -71,8 +72,7 @@ body {
       padding-top: 0;
       height: 100%; }
       .list-group .tile-container .tile .tile-title-line {
-        margin-top: -2px;
-        font-size: 18pt; }
+        margin-top: -2px; }
       .list-group .tile-container .tile .tile-image {
         width: 50px; }
       .list-group .tile-container .tile .tile-details {
