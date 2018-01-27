@@ -12,6 +12,10 @@ body {
   font-family: overwatch; }
 .list-container {
   background-color: #222e53; }
+  .list-container span, .list-container div {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; }
   .list-container .list-title {
     height: 30px;
     margin: 0;
@@ -26,9 +30,6 @@ body {
       padding-left: 5px;
       cursor: pointer;
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
       position: relative; }
       .list-container .tile-container .tile.tile-blue {
         color: #57cbde; }
@@ -53,27 +54,28 @@ body {
         top: 15px;
         right: 0; }
 
-.vs-list-group {
+.list-group {
   padding-bottom: 30px; }
-  .vs-list-group .vs-list-group-name {
+  .list-group .list-group-name {
     font-weight: bold;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     width: 100%;
     display: inline-block;
     text-align: center;
     font-size: 16pt; }
-  .vs-list-group .tile-container {
-    height: 50px; }
-    .vs-list-group .tile-container .tile {
+  .list-group .tile-container {
+    height: 55px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+    .list-group .tile-container .tile {
       border-bottom: none;
       padding-top: 0;
       height: 100%; }
-      .vs-list-group .tile-container .tile .tile-title-line {
-        margin-top: -3px;
-        font-size: 20pt; }
-      .vs-list-group .tile-container .tile .tile-image {
+      .list-group .tile-container .tile .tile-title-line {
+        margin-top: -2px;
+        font-size: 18pt; }
+      .list-group .tile-container .tile .tile-image {
         width: 50px; }
-      .vs-list-group .tile-container .tile .tile-details {
+      .list-group .tile-container .tile .tile-details {
         top: 5px;
         right: 5px; }
 

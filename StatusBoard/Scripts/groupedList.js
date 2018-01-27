@@ -26,11 +26,11 @@ var GroupedList = /** @class */ (function (_super) {
         if (!group) {
             group = this._listItemsElement.appendChild(this.createMarkup({
                 tag: "div",
-                className: "vs-list-group",
+                className: "list-group",
                 children: [
                     {
                         tag: "span",
-                        className: "vs-list-group-name",
+                        className: "list-group-name",
                         innerText: item.groupName,
                     }
                 ]

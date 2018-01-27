@@ -19,6 +19,12 @@ body {
 .list-container {
     background-color: rgb(34,46,83);
 
+    span, div {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
     .list-title {
         height: 30px;
         margin: 0;
@@ -37,10 +43,6 @@ body {
         
             cursor: pointer;
             border-bottom: 1px solid rgba(255,255,255,.2);
-        
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
         
             position: relative;
 
@@ -85,10 +87,10 @@ body {
     }
 }
 
-.vs-list-group {
+.list-group {
     padding-bottom: 30px;
 
-    .vs-list-group-name {
+    .list-group-name {
         //text-align: center;
         //color: #FF8A00;
         font-weight: bold;
@@ -96,12 +98,12 @@ body {
         width: 100%;
         display: inline-block;
         text-align: center;
-        //-left: 10px;
         font-size: 16pt;
     }
 
     .tile-container {
-        height: 50px;
+        height: 55px;
+        border-bottom: 1px solid rgba(255,255,255,.2);
 
         .tile {
             border-bottom: none;
@@ -109,8 +111,8 @@ body {
             height: 100%;
 
             .tile-title-line { 
-                margin-top: -3px;
-                font-size: 20pt;
+                margin-top: -2px;
+                font-size: 18pt;
             }
 
             .tile-image { 
