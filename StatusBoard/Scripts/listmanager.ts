@@ -112,7 +112,7 @@ abstract class ListManager {
         }));
     }
 
-    private getStatusClass(item: ListItem) : string {
+    protected getStatusClass(item: ListItem) : string {
         switch (item.status) {
             case Status.blue:
                 return "tile-blue";

@@ -1,10 +1,10 @@
 /// <reference path="../@types/jquery/jquery.d.ts"/>
-/// <reference path="listmanager.ts"/>
+/// <reference path="GroupedList.ts"/>
 
-class Events extends ListManager {
+class Events extends GroupedList {
 
     public constructor(container: HTMLElement, measureCount: number) {
-        super(container, measureCount, "Events");
+        super(container, measureCount, "");
         this.retrieveItems();
         this.setBackgroundColor("rgb(86,24,59)");
     }
@@ -25,10 +25,10 @@ class Events extends ListManager {
             var eventTime = this.getCountdownString(timeInMs);
             listItem.timeInMs = timeInMs;
 
-            listItem.title = event.name + ": " + event.details;
-            listItem.line1 = eventTime;
+            listItem.groupName = event.name;
+            listItem.title = event.details;
+            listItem.details = eventTime;
             listItem.line2 = this.getDateStrimg(timeInMs);
-            listItem.details = "";
             listItem.imageURL = event.image;
 
             if (daysFrom < 3) {
@@ -92,6 +92,6 @@ class Events extends ListManager {
     }
 }
 
-class EventItem extends ListItem {
+class EventItem extends GroupedListItem {
     timeInMs: number;
 }

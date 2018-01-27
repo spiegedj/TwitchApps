@@ -33,7 +33,7 @@ abstract class GroupedList extends ListManager {
             children: [
                 {
                     tag:"div",
-                    classNames: ["tile"],
+                    classNames: ["tile", this.getStatusClass(item)],
                     events: [{ 
                         name: "click", 
                         callback: function() { window.open( item.link, '_blank'); }

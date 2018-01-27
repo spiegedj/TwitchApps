@@ -1,5 +1,5 @@
 /// <reference path="../@types/jquery/jquery.d.ts"/>
-/// <reference path="listmanager.ts"/>
+/// <reference path="GroupedList.ts"/>
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
 var Events = /** @class */ (function (_super) {
     __extends(Events, _super);
     function Events(container, measureCount) {
-        var _this = _super.call(this, container, measureCount, "Events") || this;
+        var _this = _super.call(this, container, measureCount, "") || this;
         _this.retrieveItems();
         _this.setBackgroundColor("rgb(86,24,59)");
         return _this;
@@ -33,10 +33,10 @@ var Events = /** @class */ (function (_super) {
                 return;
             var eventTime = this.getCountdownString(timeInMs);
             listItem.timeInMs = timeInMs;
-            listItem.title = event.name + ": " + event.details;
-            listItem.line1 = eventTime;
+            listItem.groupName = event.name;
+            listItem.title = event.details;
+            listItem.details = eventTime;
             listItem.line2 = this.getDateStrimg(timeInMs);
-            listItem.details = "";
             listItem.imageURL = event.image;
             if (daysFrom < 3) {
                 listItem.status = Status.blue;
@@ -91,11 +91,11 @@ var Events = /** @class */ (function (_super) {
         return "Live in " + days + "d " + hours + "h " + minutes + "m";
     };
     return Events;
-}(ListManager));
+}(GroupedList));
 var EventItem = /** @class */ (function (_super) {
     __extends(EventItem, _super);
     function EventItem() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     return EventItem;
-}(ListItem));
+}(GroupedListItem));
