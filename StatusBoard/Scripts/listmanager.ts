@@ -1,6 +1,7 @@
 abstract class ListManager {
     protected _listItems: ListItem[];
     protected _listItemsElement: HTMLElement;
+    protected _measureCount: number;
 
     private __listContainer: HTMLElement;
     private __titleElement: HTMLElement;
@@ -9,7 +10,6 @@ abstract class ListManager {
 
     private __expandedIndex: number;
     private __pageNumber: number;
-    private __measureCount: number;
     private __title: string;
     private __startIndex: number;
 
@@ -20,7 +20,7 @@ abstract class ListManager {
     }
 
     public constructor(container: HTMLElement, measureCount: number, title: string) {
-        this.__measureCount = measureCount;
+        this._measureCount = measureCount;
         this.__title = title;
         this.__startIndex = 0;
 
@@ -61,7 +61,7 @@ abstract class ListManager {
 
     protected render() : void {
         this._listItemsElement.innerHTML = '';
-        for (var i = this.__startIndex; i < (this.__startIndex + this.__measureCount); i++) {
+        for (var i = this.__startIndex; i < (this.__startIndex + this._measureCount); i++) {
             if (this._listItems[i]) {
                 this.renderTile(this._listItems[i]);
             }

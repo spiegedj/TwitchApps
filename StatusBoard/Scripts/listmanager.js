@@ -1,7 +1,7 @@
 var ListManager = /** @class */ (function () {
     function ListManager(container, measureCount, title) {
         this.refreshRate = 30 * 1000;
-        this.__measureCount = measureCount;
+        this._measureCount = measureCount;
         this.__title = title;
         this.__startIndex = 0;
         this.__listContainer = this.createMarkup({
@@ -41,7 +41,7 @@ var ListManager = /** @class */ (function () {
     };
     ListManager.prototype.render = function () {
         this._listItemsElement.innerHTML = '';
-        for (var i = this.__startIndex; i < (this.__startIndex + this.__measureCount); i++) {
+        for (var i = this.__startIndex; i < (this.__startIndex + this._measureCount); i++) {
             if (this._listItems[i]) {
                 this.renderTile(this._listItems[i]);
             }

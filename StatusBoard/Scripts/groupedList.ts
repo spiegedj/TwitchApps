@@ -33,7 +33,11 @@ abstract class GroupedList extends ListManager {
             children: [
                 {
                     tag:"div",
-                    classNames: ["tile", this.getStatusClass(item)],
+                    classNames: [
+                        "tile", 
+                        this.getStatusClass(item),
+                        item.highlight ? "tile-highlight" : ""
+                    ],
                     events: [{ 
                         name: "click", 
                         callback: function() { window.open( item.link, '_blank'); }
@@ -64,11 +68,10 @@ abstract class GroupedList extends ListManager {
             ]
         }));
     }
-
-    protected renderTitle(): void { }
 }
 
 
 class GroupedListItem extends ListItem {
     public groupName: string;
+    public highlight: boolean;
 }

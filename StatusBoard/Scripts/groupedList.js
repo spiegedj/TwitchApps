@@ -44,7 +44,11 @@ var GroupedList = /** @class */ (function (_super) {
             children: [
                 {
                     tag: "div",
-                    classNames: ["tile", this.getStatusClass(item)],
+                    classNames: [
+                        "tile",
+                        this.getStatusClass(item),
+                        item.highlight ? "tile-highlight" : ""
+                    ],
                     events: [{
                             name: "click",
                             callback: function () { window.open(item.link, '_blank'); }
@@ -75,7 +79,6 @@ var GroupedList = /** @class */ (function (_super) {
             ]
         }));
     };
-    GroupedList.prototype.renderTitle = function () { };
     return GroupedList;
 }(ListManager));
 var GroupedListItem = /** @class */ (function (_super) {

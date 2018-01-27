@@ -37,6 +37,8 @@ body {
         color: #90ba3c; }
       .list-container .tile-container .tile.tile:hover {
         background-color: #969696; }
+      .list-container .tile-container .tile.tile-highlight {
+        border-left: 10px solid #90ba3c; }
       .list-container .tile-container .tile .tile-image {
         width: 70px;
         padding-right: 5px;
@@ -67,13 +69,14 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
     .list-group .tile-container .tile {
       border-bottom: none;
-      padding-top: 0;
+      padding: 0;
+      border-left: 10px solid transparent;
       height: 100%; }
       .list-group .tile-container .tile .tile-title-line {
         margin-top: 0px;
         font-size: 18pt; }
       .list-group .tile-container .tile .tile-image {
-        width: 55px; }
+        width: 60px; }
       .list-group .tile-container .tile .tile-details {
         top: 5px;
         right: 5px; }
