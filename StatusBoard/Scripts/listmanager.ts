@@ -31,7 +31,8 @@ abstract class ListManager {
                 {
                     tag:"h1",
                     className: "list-title",
-                    innerText: this.__title
+                    innerText: this.__title,
+                    key: "__titleElement"
                 }, 
                 {
                     tag: "div",
@@ -40,6 +41,10 @@ abstract class ListManager {
             ]
         }, this);
         container.appendChild(this.__listContainer);
+
+        if (!this.__title) {
+            this.__titleElement.style.display = "none";
+        }
 
         setInterval(this.refresh.bind(this), this.refreshRate);
     }
@@ -105,14 +110,6 @@ abstract class ListManager {
                 }
             ]
         }));
-    }
-
-    protected renderTitle(): void {
-        this.__titleElement = this.createMarkup({
-            tag:"h1",
-            className: "list-title",
-            innerText: this.__title
-        });            
     }
 
     private getStatusClass(item: ListItem) : string {

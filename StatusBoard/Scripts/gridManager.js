@@ -27,6 +27,6 @@ var GridManager = /** @class */ (function () {
         element.style.left = x + "px";
         element.style.top = y + "px";
     };
-    GridManager.PADDING = 20;
+    GridManager.PADDING = 15;
     return GridManager;
 }());

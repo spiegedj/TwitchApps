@@ -1,6 +1,6 @@
 class GridManager {
 
-    private static readonly PADDING : number = 20;
+    private static readonly PADDING : number = 15;
 
     private __width: number;
     private __height: number;

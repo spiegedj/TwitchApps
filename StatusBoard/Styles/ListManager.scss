@@ -86,13 +86,18 @@ body {
 }
 
 .vs-list-group {
+    padding-bottom: 30px;
 
     .vs-list-group-name {
-        text-align: center;
+        //text-align: center;
+        //color: #FF8A00;
+        font-weight: bold;
         border-bottom: 1px solid rgba(255,255,255,.2);
         width: 100%;
         display: inline-block;
-        padding-top: 30px;
+        text-align: center;
+        //-left: 10px;
+        font-size: 16pt;
     }
 
     .tile-container {
@@ -114,6 +119,7 @@ body {
 
             .tile-details {
                 top: 5px;
+                right: 5px;
             }
         }
     }

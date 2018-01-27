@@ -11,7 +11,8 @@ var ListManager = /** @class */ (function () {
                 {
                     tag: "h1",
                     className: "list-title",
-                    innerText: this.__title
+                    innerText: this.__title,
+                    key: "__titleElement"
                 },
                 {
                     tag: "div",
@@ -20,6 +21,9 @@ var ListManager = /** @class */ (function () {
             ]
         }, this);
         container.appendChild(this.__listContainer);
+        if (!this.__title) {
+            this.__titleElement.style.display = "none";
+        }
         setInterval(this.refresh.bind(this), this.refreshRate);
     }
     Object.defineProperty(ListManager.prototype, "element", {
@@ -85,13 +89,6 @@ var ListManager = /** @class */ (function () {
                 }
             ]
         }));
-    };
-    ListManager.prototype.renderTitle = function () {
-        this.__titleElement = this.createMarkup({
-            tag: "h1",
-            className: "list-title",
-            innerText: this.__title
-        });
     };
     ListManager.prototype.getStatusClass = function (item) {
         switch (item.status) {

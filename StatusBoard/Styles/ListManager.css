@@ -53,25 +53,29 @@ body {
         top: 15px;
         right: 0; }
 
-.vs-list-group .vs-list-group-name {
-  text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  width: 100%;
-  display: inline-block;
-  padding-top: 30px; }
-.vs-list-group .tile-container {
-  height: 50px; }
-  .vs-list-group .tile-container .tile {
-    border-bottom: none;
-    padding-top: 0;
-    height: 100%; }
-    .vs-list-group .tile-container .tile .tile-title-line {
-      margin-top: -3px;
-      font-size: 20pt; }
-    .vs-list-group .tile-container .tile .tile-image {
-      width: 50px; }
-    .vs-list-group .tile-container .tile .tile-details {
-      top: 5px; }
+.vs-list-group {
+  padding-bottom: 30px; }
+  .vs-list-group .vs-list-group-name {
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    font-size: 16pt; }
+  .vs-list-group .tile-container {
+    height: 50px; }
+    .vs-list-group .tile-container .tile {
+      border-bottom: none;
+      padding-top: 0;
+      height: 100%; }
+      .vs-list-group .tile-container .tile .tile-title-line {
+        margin-top: -3px;
+        font-size: 20pt; }
+      .vs-list-group .tile-container .tile .tile-image {
+        width: 50px; }
+      .vs-list-group .tile-container .tile .tile-details {
+        top: 5px;
+        right: 5px; }
 
 .vs-list-tile-date-line {
   text-align: center;

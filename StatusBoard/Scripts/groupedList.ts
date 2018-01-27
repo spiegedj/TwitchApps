@@ -64,6 +64,8 @@ abstract class GroupedList extends ListManager {
             ]
         }));
     }
+
+    protected renderTitle(): void { }
 }
 
 

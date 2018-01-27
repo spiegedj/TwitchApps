@@ -75,6 +75,7 @@ var GroupedList = /** @class */ (function (_super) {
             ]
         }));
     };
+    GroupedList.prototype.renderTitle = function () { };
     return GroupedList;
 }(ListManager));
 var GroupedListItem = /** @class */ (function (_super) {
