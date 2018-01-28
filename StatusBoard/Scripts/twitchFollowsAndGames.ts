@@ -57,7 +57,7 @@ class TwitchFollowsAndGames extends GroupedList {
             listItem.groupName = channel.game;
             listItem.line1 = "Playing " + channel.game;
             listItem.line2 =  channel.status;
-            listItem.details = stream.viewers.toLocaleString();
+            listItem.details = this.__addCommas(stream.viewers);
             listItem.imageURL = channel.logo;
             listItem.link = "http://www.twitch.tv/" + listItem.title;
             listItem.highlight = followed;
@@ -78,6 +78,17 @@ class TwitchFollowsAndGames extends GroupedList {
 
             this.render();
         }
+    }
+
+    private __addCommas(num: number) {
+        var numString = num.toString();
+        var commaString = "";
+
+        for (var i = numString.length; i > 3 ; i -= 3) {
+            commaString = "," + numString.substr(Math.max(0, i-3), i) + commaString;
+        }
+        commaString = numString.substr(0, i) + commaString;
+        return commaString;
     }
 }
 
