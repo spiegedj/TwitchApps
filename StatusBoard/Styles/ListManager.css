@@ -11,7 +11,8 @@ body {
   src: url("../Fonts/koverwatch.ttf");
   font-family: overwatch; }
 .list-container {
-  background-color: #222e53; }
+  background-color: #222e53;
+  overflow: hidden; }
   .list-container .list-title {
     height: 30px;
     margin: 0;

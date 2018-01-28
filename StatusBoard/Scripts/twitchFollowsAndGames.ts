@@ -5,6 +5,7 @@ class TwitchFollowsAndGames extends GroupedList {
 
     private __inQueue: number;
     private __duplicates: {[key: string]: TwitchItem};
+    private __gameList: string[];
 
     public constructor(container: HTMLElement, measureCount: number, title: string) {
         super(container, measureCount, title);
@@ -13,21 +14,28 @@ class TwitchFollowsAndGames extends GroupedList {
     }
 
     protected retrieveItems() {
-        this.__inQueue = 3;
+        this.__inQueue = 1;
         this._listItems = [];
         this.__duplicates = {};
+
+        this.__gameList = [
+            "Overwatch",
+            "Starcraft II",
+            "Super Smash Bros. for Wii U",
+            "Super Smash Bros. Melee",
+            "Starcraft",
+        ];
 
         $.get("https://api.twitch.tv/kraken/streams/followed?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k", function(json) {
             this.parseStreams(json, true);
         }.bind(this));
 
-        $.get("https://api.twitch.tv/kraken/streams/?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&game=Overwatch", function(json) {
-            this.parseStreams(json, false);
-        }.bind(this));
-
-        $.get("https://api.twitch.tv/kraken/streams/?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&game=Starcraft II", function(json) {
-            this.parseStreams(json, false);
-        }.bind(this));
+        this.__gameList.forEach((game: string) => {
+            this.__inQueue++;
+            $.get("https://api.twitch.tv/kraken/streams/?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&game=" + game, function(json) {
+                this.parseStreams(json, false);
+            }.bind(this));
+        });
     }
 
     private parseStreams(json: any, followed: boolean) {

@@ -19,18 +19,26 @@ var TwitchFollowsAndGames = /** @class */ (function (_super) {
         return _this;
     }
     TwitchFollowsAndGames.prototype.retrieveItems = function () {
-        this.__inQueue = 3;
+        var _this = this;
+        this.__inQueue = 1;
         this._listItems = [];
         this.__duplicates = {};
+        this.__gameList = [
+            "Overwatch",
+            "Starcraft II",
+            "Super Smash Bros. for Wii U",
+            "Super Smash Bros. Melee",
+            "Starcraft",
+        ];
         $.get("https://api.twitch.tv/kraken/streams/followed?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k", function (json) {
             this.parseStreams(json, true);
         }.bind(this));
-        $.get("https://api.twitch.tv/kraken/streams/?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&game=Overwatch", function (json) {
-            this.parseStreams(json, false);
-        }.bind(this));
-        $.get("https://api.twitch.tv/kraken/streams/?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&game=Starcraft II", function (json) {
-            this.parseStreams(json, false);
-        }.bind(this));
+        this.__gameList.forEach(function (game) {
+            _this.__inQueue++;
+            $.get("https://api.twitch.tv/kraken/streams/?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&game=" + game, function (json) {
+                this.parseStreams(json, false);
+            }.bind(_this));
+        });
     };
     TwitchFollowsAndGames.prototype.parseStreams = function (json, followed) {
         this.__inQueue--;
