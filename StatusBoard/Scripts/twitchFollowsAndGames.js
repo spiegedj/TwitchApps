@@ -29,6 +29,8 @@ var TwitchFollowsAndGames = /** @class */ (function (_super) {
             "Super Smash Bros. for Wii U",
             "Super Smash Bros. Melee",
             "Starcraft",
+            "Super Mario Maker",
+            "Super Mario Odyssey"
         ];
         $.get("https://api.twitch.tv/kraken/streams/followed?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k", function (json) {
             this.parseStreams(json, true);
