@@ -7,8 +7,8 @@ $(document).ready(function() {
     var gridManager = new GridManager({ width: 3, height: 2 });
 
     var weatherPanel = new WeatherPanel();
-    var events = new Events(mainDiv, 6);
-    var follows = new TwitchFollowsAndGames(mainDiv, 15, "");
+    var events = new Events(mainDiv, 30);
+    var follows = new TwitchFollowsAndGames(mainDiv, 30, "");
     var overwatch = new OverwatchLeague(mainDiv, 7, "Overwatch League");
 
     gridManager.addBlock({ element: weatherPanel.element, x: 0, y: 0, w: 1, h: 1});

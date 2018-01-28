@@ -42,6 +42,9 @@ var ListManager = /** @class */ (function () {
     ListManager.prototype.render = function () {
         this._listItemsElement.innerHTML = '';
         for (var i = this.__startIndex; i < (this.__startIndex + this._measureCount); i++) {
+            if (this._listItemsElement.offsetHeight + 60 > this.__listContainer.offsetHeight) {
+                return;
+            }
             if (this._listItems[i]) {
                 this.renderTile(this._listItems[i]);
             }
