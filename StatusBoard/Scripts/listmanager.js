@@ -24,7 +24,7 @@ var ListManager = /** @class */ (function () {
         if (!this.__title) {
             this.__titleElement.style.display = "none";
         }
-        //setInterval(this.refresh.bind(this), this.refreshRate);
+        setInterval(this.refresh.bind(this), this.refreshRate);
     }
     Object.defineProperty(ListManager.prototype, "element", {
         get: function () {

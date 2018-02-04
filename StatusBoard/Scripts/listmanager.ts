@@ -46,7 +46,7 @@ abstract class ListManager {
             this.__titleElement.style.display = "none";
         }
 
-        //setInterval(this.refresh.bind(this), this.refreshRate);
+        setInterval(this.refresh.bind(this), this.refreshRate);
     }
 
     public setBackgroundColor(color: string) : void {
