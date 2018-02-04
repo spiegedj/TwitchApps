@@ -14,6 +14,8 @@ var Events = /** @class */ (function (_super) {
     __extends(Events, _super);
     function Events(container, measureCount) {
         var _this = _super.call(this, container, measureCount, "") || this;
+        _this.refreshRate = 5 * 60 * 1000;
+        _this.noHighlight = true;
         _this.retrieveItems();
         _this.setBackgroundColor("rgb(86,24,59)");
         return _this;
@@ -37,7 +39,7 @@ var Events = /** @class */ (function (_super) {
             listItem.title = event.details;
             listItem.details = eventTime;
             listItem.line2 = this.getDateStrimg(timeInMs);
-            listItem.imageURL = event.image;
+            listItem.groupIcon = event.image;
             if (daysFrom < 3) {
                 listItem.status = Status.blue;
                 if (daysFrom < .1) {

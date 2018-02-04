@@ -28,7 +28,7 @@ body {
     }
 
     .tile-container {
-        height: 83.9px;
+        //height: 83.9px;
 
         .tile {
             height: calc(100% - 10px);
@@ -57,13 +57,9 @@ body {
             &.tile:hover{
                 background-color: rgb(150,150,150);
             }
-        
-            &.tile-highlight {
-                border-left: 10px solid rgb(144,186,60);
-            }
 
             .tile-image { 
-                width: 70px;
+                height: 70px;
                 padding-right: 5px;
                 float: left;
                 clear: both;
@@ -91,28 +87,44 @@ body {
 }
 
 .list-group {
-    padding-bottom: 30px;
+    margin-bottom: 30px;
 
-    .list-group-name {
-        //text-align: center;
-        //color: #FF8A00;
-        font-weight: bold;
-        border-bottom: 1px solid rgba(255,255,255,.2);
+    .list-group-container {
         width: 100%;
         display: inline-block;
-        text-align: center;
-        font-size: 18pt;
+        border-bottom: 1px solid rgba(255,255,255,.2);
+
+        .group-image {
+            height: 36px;
+            margin-right:  10px;
+            float: left;
+        }
+
+        .list-group-name {
+            display: block;
+            font-weight: bold;
+            font-size: 18pt;
+            margin-left: 10px;
+        }
     }
 
     .tile-container {
-        height: 60px;
-        border-bottom: 1px solid rgba(255,255,255,.2);
-        
+        padding-right: 10px;
+        //border-bottom: 1px solid rgba(255,255,255,.2);
+
         .tile {
             border-bottom: none;
             padding: 0;
-            border-left: 10px solid transparent;
             height: 100%;
+
+            border-left: 10px solid transparent;
+            &:not(.no-highlight) {
+                border-left: 10px solid #D8D6D5;
+            }
+
+            &.tile-highlight {
+                border-left: 10px solid rgb(144,186,60) !important;
+            }
 
             .tile-title-line { 
                 margin-top: 0px;
@@ -120,7 +132,7 @@ body {
             }
 
             .tile-image { 
-                width: 60px;
+                height: 60px;
             }
 
             .tile-details {
@@ -161,6 +173,7 @@ body {
         .vs-comp-1, .vs-comp-2 {
             width: 43%;
             font-size: 18pt;
+            box-sizing: border-box;
 
             .vs-tile-image { 
                 float: left;
@@ -185,12 +198,6 @@ body {
     }
 }
 
-
-
-
-
-
-
-
-
-
+.no-disp {
+    display: none;
+}

@@ -14,6 +14,7 @@ var GroupedList = /** @class */ (function (_super) {
     __extends(GroupedList, _super);
     function GroupedList() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.noHighlight = false;
         _this.__groups = {};
         return _this;
     }
@@ -22,7 +23,7 @@ var GroupedList = /** @class */ (function (_super) {
         _super.prototype.render.call(this);
     };
     GroupedList.prototype.renderTile = function (item) {
-        var group = this.__groups[item.groupName];
+        var group = this.__groups[item.groupName.toLowerCase()];
         if (!group) {
             group = this._listItemsElement.appendChild(this.createMarkup({
                 tag: "div",
@@ -30,12 +31,22 @@ var GroupedList = /** @class */ (function (_super) {
                 children: [
                     {
                         tag: "span",
-                        className: "list-group-name",
-                        innerText: item.groupName,
+                        className: "list-group-container",
+                        children: [
+                            {
+                                tag: "img",
+                                classNames: ["group-image", item.groupIcon ? "" : "no-disp"],
+                                attributes: [{ name: "src", value: item.groupIcon }]
+                            }, {
+                                tag: "span",
+                                className: "list-group-name",
+                                innerText: item.groupName,
+                            }
+                        ]
                     }
                 ]
             }));
-            this.__groups[item.groupName] = group;
+            this.__groups[item.groupName.toLowerCase()] = group;
             this._listItemsElement.appendChild(group);
         }
         group.appendChild(this.createMarkup({
@@ -47,7 +58,8 @@ var GroupedList = /** @class */ (function (_super) {
                     classNames: [
                         "tile",
                         this.getStatusClass(item),
-                        item.highlight ? "tile-highlight" : ""
+                        item.highlight ? "tile-highlight" : "",
+                        this.noHighlight ? "no-highlight" : ""
                     ],
                     events: [{
                             name: "click",
@@ -56,7 +68,7 @@ var GroupedList = /** @class */ (function (_super) {
                     children: [
                         {
                             tag: "img",
-                            className: "tile-image",
+                            classNames: ["tile-image", item.imageURL ? "" : "no-disp"],
                             attributes: [{ name: "src", value: item.imageURL }]
                         },
                         {

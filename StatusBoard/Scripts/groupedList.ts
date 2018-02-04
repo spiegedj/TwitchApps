@@ -3,6 +3,7 @@
 
 abstract class GroupedList extends ListManager {
 
+    protected noHighlight: boolean = false;
     private __groups: { [key: string]: HTMLElement} = {};
 
     protected render() {
@@ -11,7 +12,7 @@ abstract class GroupedList extends ListManager {
     }
 
     protected renderTile(item: GroupedListItem): void {
-        let group: HTMLElement = this.__groups[item.groupName];
+        let group: HTMLElement = this.__groups[item.groupName.toLowerCase()];
         if (!group) {
             group = this._listItemsElement.appendChild(this.createMarkup({
                 tag: "div",
@@ -19,11 +20,20 @@ abstract class GroupedList extends ListManager {
                 children: [
                     {
                         tag: "span",
-                        className: "list-group-name",
-                        innerText: item.groupName,
+                        className: "list-group-container",
+                        children: [
+                            {
+                                tag: "img",
+                                classNames: ["group-image", item.groupIcon ? "" : "no-disp"],
+                                attributes: [{ name: "src", value: item.groupIcon}]
+                            }, {
+                                tag: "span",
+                                className: "list-group-name",
+                                innerText: item.groupName,
+                        }]
                     }]
             }));
-            this.__groups[item.groupName] = group;
+            this.__groups[item.groupName.toLowerCase()] = group;
             this._listItemsElement.appendChild(group);
         }
 
@@ -36,7 +46,8 @@ abstract class GroupedList extends ListManager {
                     classNames: [
                         "tile", 
                         this.getStatusClass(item),
-                        item.highlight ? "tile-highlight" : ""
+                        item.highlight ? "tile-highlight" : "",
+                        this.noHighlight ? "no-highlight" : ""
                     ],
                     events: [{ 
                         name: "click", 
@@ -45,7 +56,7 @@ abstract class GroupedList extends ListManager {
                     children: [
                         {
                             tag: "img",
-                            className: "tile-image",
+                            classNames: ["tile-image", item.imageURL ? "" : "no-disp"],
                             attributes: [{ name: "src", value: item.imageURL}]
                         },
                         {
@@ -73,5 +84,6 @@ abstract class GroupedList extends ListManager {
 
 class GroupedListItem extends ListItem {
     public groupName: string;
+    public groupIcon: string;
     public highlight: boolean;
 }

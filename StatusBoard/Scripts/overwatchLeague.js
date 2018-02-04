@@ -17,6 +17,7 @@ var OverwatchLeague = /** @class */ (function (_super) {
         _this.retrieveItems();
         _this.setBackgroundColor("#333333");
         return _this;
+        //this.element.style.color = "black";
     }
     OverwatchLeague.prototype.retrieveItems = function () {
         $.get("https://api.overwatchleague.com/schedule?locale=en_US", function (json) {

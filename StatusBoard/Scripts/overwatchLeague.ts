@@ -7,6 +7,7 @@ class OverwatchLeague extends VSList {
         super(container, measureCount, title);
         this.retrieveItems();
         this.setBackgroundColor("#333333");
+        //this.element.style.color = "black";
     }
 
     protected retrieveItems() {

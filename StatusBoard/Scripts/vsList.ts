@@ -4,6 +4,8 @@
 abstract class VSList extends ListManager {
 
     private __renderedDate: string;
+    private __comp1: HTMLElement;
+    private __comp2: HTMLElement;
 
     protected renderTile(item: VSListItem): void {
         if (this.__renderedDate !== item.date) {
@@ -26,6 +28,7 @@ abstract class VSList extends ListManager {
                         {
                             tag: "span",
                             className: "vs-comp-1",
+                            key: "__comp1",
                             children: [
                                 {
                                     tag: "img",
@@ -47,6 +50,7 @@ abstract class VSList extends ListManager {
                         {
                             tag: "span",
                             className: "vs-comp-2",
+                            key: "__comp2",
                             children: [
                                 {
                                     tag: "img",
@@ -63,9 +67,16 @@ abstract class VSList extends ListManager {
                     ]
                 }
             ]
-        }));
+        }, this));
 
         // Comp 1
+        //this.__comp1.style.borderLeft = "10px solid #" + item.competitor1.primaryColor;
+        //this.__comp2.style.borderRight = "10px solid #" + item.competitor2.primaryColor;
+
+        this.__comp1.style.background = 
+            "linear-gradient(to right, #" + item.competitor1.primaryColor +", transparent)";
+        this.__comp2.style.background = "linear-gradient(to right, transparent, #" + item.competitor2.primaryColor + ")";
+
         //comp1.style.backgroundColor = "#" + item.competitor1.primaryColor;
         //comp1.style.color = "#" + item.competitor1.secondaryColor;
 

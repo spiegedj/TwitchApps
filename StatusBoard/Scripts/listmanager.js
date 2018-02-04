@@ -24,7 +24,7 @@ var ListManager = /** @class */ (function () {
         if (!this.__title) {
             this.__titleElement.style.display = "none";
         }
-        setInterval(this.refresh.bind(this), this.refreshRate);
+        //setInterval(this.refresh.bind(this), this.refreshRate);
     }
     Object.defineProperty(ListManager.prototype, "element", {
         get: function () {
@@ -42,7 +42,10 @@ var ListManager = /** @class */ (function () {
     ListManager.prototype.render = function () {
         this._listItemsElement.innerHTML = '';
         for (var i = this.__startIndex; i < (this.__startIndex + this._measureCount); i++) {
-            if (this._listItemsElement.offsetHeight + 60 > this.__listContainer.offsetHeight) {
+            var tiles = this._listItemsElement.getElementsByClassName("tile-container");
+            var lastChild = tiles[tiles.length - 1];
+            var lastHeight = lastChild ? lastChild.offsetHeight : 0;
+            if (this._listItemsElement.offsetHeight + lastHeight > this.__listContainer.offsetHeight) {
                 return;
             }
             if (this._listItems[i]) {

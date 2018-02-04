@@ -18,66 +18,71 @@ body {
     margin: 0;
     font-size: 18pt;
     text-align: center; }
-  .list-container .tile-container {
-    height: 83.9px; }
-    .list-container .tile-container .tile {
-      height: calc(100% - 10px);
-      padding-top: 10px;
+  .list-container .tile-container .tile {
+    height: calc(100% - 10px);
+    padding-top: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: auto;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative; }
+    .list-container .tile-container .tile.tile-blue {
+      color: #57cbde; }
+    .list-container .tile-container .tile.tile-green {
+      color: #90ba3c; }
+    .list-container .tile-container .tile.tile:hover {
+      background-color: #969696; }
+    .list-container .tile-container .tile .tile-image {
+      height: 70px;
       padding-right: 5px;
-      padding-left: 5px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-      width: auto;
-      cursor: pointer;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      position: relative; }
-      .list-container .tile-container .tile.tile-blue {
-        color: #57cbde; }
-      .list-container .tile-container .tile.tile-green {
-        color: #90ba3c; }
-      .list-container .tile-container .tile.tile:hover {
-        background-color: #969696; }
-      .list-container .tile-container .tile.tile-highlight {
-        border-left: 10px solid #90ba3c; }
-      .list-container .tile-container .tile .tile-image {
-        width: 70px;
-        padding-right: 5px;
-        float: left;
-        clear: both; }
-      .list-container .tile-container .tile .tile-title-line {
-        font-size: 15pt; }
-      .list-container .tile-container .tile .tile-line {
-        font-size: 11pt; }
-      .list-container .tile-container .tile .tile-line-2 {
-        font-size: 9pt; }
-      .list-container .tile-container .tile .tile-details {
-        position: absolute;
-        top: 15px;
-        right: 0; }
+      float: left;
+      clear: both; }
+    .list-container .tile-container .tile .tile-title-line {
+      font-size: 15pt; }
+    .list-container .tile-container .tile .tile-line {
+      font-size: 11pt; }
+    .list-container .tile-container .tile .tile-line-2 {
+      font-size: 9pt; }
+    .list-container .tile-container .tile .tile-details {
+      position: absolute;
+      top: 15px;
+      right: 0; }
 
 .list-group {
-  padding-bottom: 30px; }
-  .list-group .list-group-name {
-    font-weight: bold;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 30px; }
+  .list-group .list-group-container {
     width: 100%;
     display: inline-block;
-    text-align: center;
-    font-size: 18pt; }
-  .list-group .tile-container {
-    height: 60px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+    .list-group .list-group-container .group-image {
+      height: 36px;
+      margin-right: 10px;
+      float: left; }
+    .list-group .list-group-container .list-group-name {
+      display: block;
+      font-weight: bold;
+      font-size: 18pt;
+      margin-left: 10px; }
+  .list-group .tile-container {
+    padding-right: 10px; }
     .list-group .tile-container .tile {
       border-bottom: none;
       padding: 0;
-      border-left: 10px solid transparent;
-      height: 100%; }
+      height: 100%;
+      border-left: 10px solid transparent; }
+      .list-group .tile-container .tile:not(.no-highlight) {
+        border-left: 10px solid #D8D6D5; }
+      .list-group .tile-container .tile.tile-highlight {
+        border-left: 10px solid #90ba3c !important; }
       .list-group .tile-container .tile .tile-title-line {
         margin-top: 0px;
         font-size: 18pt; }
       .list-group .tile-container .tile .tile-image {
-        width: 60px; }
+        height: 60px; }
       .list-group .tile-container .tile .tile-details {
         top: 5px;
         right: 5px; }
@@ -103,7 +108,8 @@ body {
       color: #90ba3c; }
     .vs-list-tile-container .tile .vs-comp-1, .vs-list-tile-container .tile .vs-comp-2 {
       width: 43%;
-      font-size: 18pt; }
+      font-size: 18pt;
+      box-sizing: border-box; }
       .vs-list-tile-container .tile .vs-comp-1 .vs-tile-image, .vs-list-tile-container .tile .vs-comp-2 .vs-tile-image {
         float: left;
         width: 40px;
@@ -116,5 +122,8 @@ body {
       width: 14%;
       font-size: 14pt;
       padding-top: 4px; }
+
+.no-disp {
+  display: none; }
 
 /*# sourceMappingURL=ListManager.css.map */
