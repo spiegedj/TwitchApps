@@ -9,7 +9,7 @@ class Events extends GroupedList {
         super(container, measureCount, "");
         this.noHighlight = true;
         this.retrieveItems();
-        this.setBackgroundColor("rgb(86,24,59)");
+        this.setBackgroundColor("#bbbbbb");
     }
 
     protected retrieveItems() : void {

@@ -1,8 +1,9 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #1c1f2a;
-  color: #f0fdff;
-  overflow: hidden; }
+  overflow: hidden;
+  font-family: 'Cabin', sans-serif;
+  font-weight: 700; }
 
 @font-face {
   src: url("../Fonts/bignoodletoo.ttf");
@@ -68,7 +69,8 @@ body {
       font-size: 18pt;
       margin-left: 10px; }
   .list-group .tile-container {
-    padding-right: 10px; }
+    padding-right: 10px;
+    background-color: #D6D6D6; }
     .list-group .tile-container .tile {
       padding: 0;
       height: 100%;
@@ -100,7 +102,6 @@ body {
   font-family: 'Cabin', sans-serif;
   background-color: #D6D6D6;
   font-weight: 700;
-  color: #333333;
   height: 40px;
   overflow: hidden; }
   .list-container .vs-list-tile-container span {
@@ -125,7 +126,6 @@ body {
       text-align: right;
       float: right; }
     .list-container .vs-list-tile-container .tile .vs-tile-time {
-      background-color: #eeeeee;
       text-align: center;
       width: 14%;
       font-size: 1.25rem;

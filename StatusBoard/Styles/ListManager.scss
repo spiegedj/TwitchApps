@@ -1,8 +1,10 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: rgb(28,31,42);
-    color: rgb(240,253,255);
     overflow: hidden;
+
+    font-family: 'Cabin', sans-serif;
+    font-weight: 700;
 }
 
 @font-face {
@@ -109,6 +111,7 @@ body {
 
     .tile-container {
         padding-right: 10px;
+        background-color: #D6D6D6;
         
         .tile {
             padding: 0;
@@ -157,7 +160,6 @@ body {
         font-family: 'Cabin', sans-serif;
         background-color: #D6D6D6;
         font-weight: 700;
-        color: #333333;
 
         height: 40px;
         overflow: hidden;
@@ -199,7 +201,6 @@ body {
             }
 
             .vs-tile-time {
-                background-color: #eeeeee;
                 text-align: center;
                 width: 14%;
                 font-size: 1.25rem;
