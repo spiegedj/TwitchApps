@@ -99,13 +99,10 @@ body {
   font-size: 25pt;
   height: auto;
   background-color: #FF8820;
-  font-family: overwatch-slant;
-  border-bottom: 1px solid black; }
+  font-family: overwatch-slant; }
 .list-container .vs-list-tile-date-line {
-  border-bottom: 1px solid black;
-  font-size: 14pt;
-  background-color: #333333;
-  color: white; }
+  border-top: 2px solid black;
+  font-size: 14pt; }
 .list-container .vs-list-tile-container {
   font-family: 'Cabin', sans-serif;
   background-color: #D6D6D6;
