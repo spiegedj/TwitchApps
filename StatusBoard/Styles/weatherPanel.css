@@ -1,14 +1,12 @@
 #weatherPanel {
     position: fixed;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 100;
 
     top: 15px; 
     left: 15px;
     width: 406.6666px;
     height: 489.5px;
-    background-color: rgb(37,38,46);
-    color: white;
+    background-color: #D6D6D6;
+    color: black;
 }
 
 #weatherPanel > div {
@@ -19,17 +17,17 @@
 }
 
 .high {
-    color: rgb(206,59,63);
+    color: #C9283E;
 }
 
 .low {
-    color: #b0e8ff;
+    color: #126872;
 }
 
 #date {
     padding-top: 20px;
     font-size: 20pt;
-    color: rgb(206,59,63);
+    color: #C9283E;
 }
 
 #time {
@@ -69,7 +67,7 @@
 /********* FORECAST *********/
 
 #forecast {
-    font-size: 12pt;
+    font-size: 14pt;
 }
 
 .forecast-tile {

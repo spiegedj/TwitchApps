@@ -13,7 +13,7 @@ body {
   font-family: overwatch; }
 .list-container {
   overflow: hidden;
-  background-color: #D6D6D6 !important; }
+  background-color: #D6D6D6; }
   .list-container .list-title {
     height: 30px;
     width: 100%;
