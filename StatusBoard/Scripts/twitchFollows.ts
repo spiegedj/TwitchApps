@@ -6,7 +6,7 @@ class TwitchFollows extends ListManager {
     public constructor(container: HTMLElement, measureCount: number, title: string) {
         super(container, measureCount, title);
         this.retrieveItems();
-        this.setBackgroundColor("rgb(55,78,88)");
+        this.setColor("rgb(55,78,88)");
     }
 
     protected retrieveItems() {

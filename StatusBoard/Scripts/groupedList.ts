@@ -5,10 +5,15 @@ abstract class GroupedList extends ListManager {
 
     protected noHighlight: boolean = false;
     private __groups: { [key: string]: HTMLElement} = {};
+    private __groupColor: string;
 
     protected render() {
         this.__groups = {};
         super.render();
+    }
+
+    public setColor(color: string) : void {
+        this.__groupColor = color;
     }
 
     protected renderTile(item: GroupedListItem): void {
@@ -21,6 +26,7 @@ abstract class GroupedList extends ListManager {
                     {
                         tag: "span",
                         className: "list-group-container",
+                        attributes: [{ name: "style", value: "background-color: " + this.__groupColor}],
                         children: [
                             {
                                 tag: "img",

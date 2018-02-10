@@ -18,11 +18,12 @@ body {
 }
 
 .list-container {
-    background-color: rgb(34,46,83);
     overflow: hidden;
+    background-color: #D6D6D6 !important;
 
     .list-title {
         height: 30px;
+        width: 100%;
         margin: 0;
         font-size: 18pt;
         text-align: center;
@@ -43,7 +44,7 @@ body {
             width: auto;
 
             cursor: pointer;
-            border-bottom: 1px solid rgba(255,255,255,.2);
+            border-bottom: 1px solid black;
         
             position: relative;
 
@@ -88,17 +89,18 @@ body {
 }
 
 .list-group {
-    margin-bottom: 30px;
 
     .list-group-container {
         width: 100%;
         display: inline-block;
-        border-bottom: 1px solid rgba(255,255,255,.2);
+        color: white;
+        border-bottom: 1px solid black;
 
         .group-image {
             height: 36px;
             margin-right:  10px;
             float: left;
+            display: none;
         }
 
         .list-group-name {
@@ -106,11 +108,11 @@ body {
             font-weight: bold;
             font-size: 18pt;
             margin-left: 10px;
+            text-align: center;
         }
     }
 
     .tile-container {
-        padding-right: 10px;
         background-color: #D6D6D6;
         
         .tile {
@@ -118,7 +120,6 @@ body {
             height: 100%;
             
             box-sizing: border-box;
-            border-bottom: 1px solid rgba(255,255,255,.2);
             border-left: 10px solid transparent;
 
             &.tile-highlight {
@@ -151,10 +152,24 @@ body {
 }
 
 .vs-list-tile-date-line:not(:first-child) {
-    margin-top: 30px;
 }
 
 .list-container {
+
+    .list-title {
+        font-size: 25pt;
+        height: auto;
+        background-color: #FF8820;
+        font-family: overwatch-slant;
+        border-bottom: 1px solid black;
+    } 
+
+    .vs-list-tile-date-line {
+        border-bottom: 1px solid black;
+        font-size: 14pt;
+        background-color: #333333;
+        color: white;
+    }
 
     .vs-list-tile-container {
         font-family: 'Cabin', sans-serif;
@@ -169,7 +184,7 @@ body {
         }
 
         .tile {
-            border: 1px solid gray;
+            border-bottom: 2px solid black;
             padding: 0;
             height: 100%;
 

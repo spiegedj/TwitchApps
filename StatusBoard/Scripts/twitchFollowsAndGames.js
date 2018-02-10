@@ -15,7 +15,7 @@ var TwitchFollowsAndGames = /** @class */ (function (_super) {
     function TwitchFollowsAndGames(container, measureCount, title) {
         var _this = _super.call(this, container, measureCount, title) || this;
         _this.retrieveItems();
-        _this.setBackgroundColor("#bbbbbb");
+        _this.setColor("#323E1C");
         return _this;
     }
     TwitchFollowsAndGames.prototype.retrieveItems = function () {

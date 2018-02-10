@@ -15,6 +15,9 @@ var VSList = /** @class */ (function (_super) {
     function VSList() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    VSList.prototype.setColor = function (color) {
+        this.__groupColor = color;
+    };
     VSList.prototype.renderTile = function (item) {
         if (this.__renderedDate !== item.date) {
             this._listItemsElement.appendChild(this.createMarkup({

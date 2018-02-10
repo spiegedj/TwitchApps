@@ -17,7 +17,7 @@ var Events = /** @class */ (function (_super) {
         _this.refreshRate = 5 * 60 * 1000;
         _this.noHighlight = true;
         _this.retrieveItems();
-        _this.setBackgroundColor("#bbbbbb");
+        _this.setColor("#031727");
         return _this;
     }
     Events.prototype.retrieveItems = function () {

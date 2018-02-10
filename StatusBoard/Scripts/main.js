@@ -9,7 +9,7 @@ $(document).ready(function() {
     var weatherPanel = new WeatherPanel();
     var events = new Events(mainDiv, 30);
     var follows = new TwitchFollowsAndGames(mainDiv, 30, "");
-    var overwatch = new OverwatchLeague(mainDiv, 7, "Overwatch League");
+    var overwatch = new OverwatchLeague(mainDiv, 8, "Overwatch League");
 
     gridManager.addBlock({ element: weatherPanel.element, x: 0, y: 0, w: 1, h: 1});
     gridManager.addBlock({ element: events.element, x: 1, y: 0, w: 1, h: 1});

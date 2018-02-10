@@ -22,6 +22,9 @@ var GroupedList = /** @class */ (function (_super) {
         this.__groups = {};
         _super.prototype.render.call(this);
     };
+    GroupedList.prototype.setColor = function (color) {
+        this.__groupColor = color;
+    };
     GroupedList.prototype.renderTile = function (item) {
         var group = this.__groups[item.groupName.toLowerCase()];
         if (!group) {
@@ -32,6 +35,7 @@ var GroupedList = /** @class */ (function (_super) {
                     {
                         tag: "span",
                         className: "list-group-container",
+                        attributes: [{ name: "style", value: "background-color: " + this.__groupColor }],
                         children: [
                             {
                                 tag: "img",

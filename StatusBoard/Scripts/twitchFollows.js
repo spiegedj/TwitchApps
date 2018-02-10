@@ -15,7 +15,7 @@ var TwitchFollows = /** @class */ (function (_super) {
     function TwitchFollows(container, measureCount, title) {
         var _this = _super.call(this, container, measureCount, title) || this;
         _this.retrieveItems();
-        _this.setBackgroundColor("rgb(55,78,88)");
+        _this.setColor("rgb(55,78,88)");
         return _this;
     }
     TwitchFollows.prototype.retrieveItems = function () {

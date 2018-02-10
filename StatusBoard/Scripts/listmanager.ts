@@ -49,7 +49,7 @@ abstract class ListManager {
         setInterval(this.refresh.bind(this), this.refreshRate);
     }
 
-    public setBackgroundColor(color: string) : void {
+    public setColor(color: string) : void {
         this.__listContainer.style.backgroundColor = color;
     }
 

@@ -33,7 +33,7 @@ var ListManager = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    ListManager.prototype.setBackgroundColor = function (color) {
+    ListManager.prototype.setColor = function (color) {
         this.__listContainer.style.backgroundColor = color;
     };
     ListManager.prototype.refresh = function () {

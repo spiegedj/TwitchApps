@@ -9,6 +9,10 @@ abstract class VSList extends ListManager {
     private __img1: HTMLElement;
     private __img2: HTMLElement;
 
+    public setColor(color: string) : void {
+        this.__groupColor = color;
+    }
+
     protected renderTile(item: VSListItem): void {
         if (this.__renderedDate !== item.date) {
             this._listItemsElement.appendChild(this.createMarkup({
