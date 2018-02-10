@@ -3,11 +3,24 @@
 
 class OverwatchLeague extends VSList {
 
+    private __flipColorsList = [
+        "BOSTON UPRISING",
+        "SAN FRANCISCO SHOCK",
+        "HOUSTON OUTLAWS"
+    ];
+    private __flipColors(competitor: Competitor): void {
+        if (this.__flipColorsList.indexOf(competitor.name.toUpperCase()) > -1) {
+            var swap = competitor.primaryColor;
+            competitor.primaryColor = competitor.secondaryColor;
+            competitor.secondaryColor = swap;
+        }
+    }
+
     public constructor(container: HTMLElement, measureCount: number, title: string) {
         super(container, measureCount, title);
         this.retrieveItems();
-        this.setBackgroundColor("#333333");
-        //this.element.style.color = "black";
+        this.setBackgroundColor("#999999");
+        this.element.style.color = "#333333";
     }
 
     protected retrieveItems() {
@@ -32,17 +45,20 @@ class OverwatchLeague extends VSList {
 
                         listItem.competitor1 = {
                             imageURL: competitor1.icon,
-                            name: competitor1.name,
+                            name: competitor1.name.toUpperCase(),
                             primaryColor: competitor1.primaryColor,
                             secondaryColor: competitor1.secondaryColor,
                         }
 
                         listItem.competitor2 = {
                             imageURL: competitor2.icon,
-                            name: competitor2.name,
+                            name: competitor2.name.toUpperCase(),
                             primaryColor: competitor2.primaryColor,
                             secondaryColor: competitor2.secondaryColor,
                         }
+
+                        this.__flipColors(listItem.competitor1);
+                        this.__flipColors(listItem.competitor2);
 
                         var startDate = new Date(match.startDateTS);
                         var endDate= new Date(match.endDateTS);

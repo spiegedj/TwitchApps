@@ -1,6 +1,5 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
     background-color: rgb(28,31,42);
     color: rgb(240,253,255);
     overflow: hidden;
@@ -110,17 +109,14 @@ body {
 
     .tile-container {
         padding-right: 10px;
-        //border-bottom: 1px solid rgba(255,255,255,.2);
-
+        
         .tile {
-            border-bottom: none;
             padding: 0;
             height: 100%;
-
+            
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(255,255,255,.2);
             border-left: 10px solid transparent;
-            &:not(.no-highlight) {
-                border-left: 10px solid #D8D6D5;
-            }
 
             &.tile-highlight {
                 border-left: 10px solid rgb(144,186,60) !important;
@@ -147,53 +143,70 @@ body {
     text-align: center;
     padding-bottom: 5px;
     border-bottom: 1px solid rgba(255,255,255,.2);
+    font-family: 'Cabin', sans-serif;
+    font-weight: 700;
 }
 
 .vs-list-tile-date-line:not(:first-child) {
-    padding-top: 30px;
+    margin-top: 30px;
 }
 
-.vs-list-tile-container {
-    height: 40px;
-    overflow: hidden;
+.list-container {
 
-    span {
-        float: left;
-    }
+    .vs-list-tile-container {
+        font-family: 'Cabin', sans-serif;
+        background-color: #D6D6D6;
+        font-weight: 700;
+        color: #333333;
 
-    .tile {
-        border: none;
-        padding: 0;
-        height: 100%;
+        height: 40px;
+        overflow: hidden;
 
-        &.tile-green {
-            color: rgb(144,186,60);
+        span {
+            float: left;
         }
 
-        .vs-comp-1, .vs-comp-2 {
-            width: 43%;
-            font-size: 18pt;
-            box-sizing: border-box;
+        .tile {
+            border: 1px solid gray;
+            padding: 0;
+            height: 100%;
 
-            .vs-tile-image { 
-                float: left;
-                width: 40px;
-                padding: 0 5px 0 5px;
-             }
-        }
-
-        .vs-comp-1 {
-            span, .vs-tile-image {
-                text-align: right;
-                float: right;
+            &.tile-green {
+                background-color: rgb(144,186,60);
             }
-        }
 
-        .vs-tile-time {
-            text-align: center;
-            width: 14%;
-            font-size: 14pt;
-            padding-top: 4px;
+            .vs-comp-1, .vs-comp-2 {
+                width: 43%;
+                box-sizing: border-box;
+
+                .tile-tile-line {
+                    font-size: 1.25rem;
+                    line-height: 2;
+                    padding: 0 5px 0 5px;
+                }
+
+                .vs-tile-image { 
+                    float: left;
+                    width: 40px;
+                }
+            }
+
+            .vs-comp-1 {
+                span, .vs-tile-image {
+                    text-align: right;
+                    float: right;
+                }
+            }
+
+            .vs-tile-time {
+                background-color: #eeeeee;
+                text-align: center;
+                width: 14%;
+                font-size: 1.25rem;
+                line-height: 1.5;
+                padding-top: 4px;
+                height: 100%;
+            }
         }
     }
 }

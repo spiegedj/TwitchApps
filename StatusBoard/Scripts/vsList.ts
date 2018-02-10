@@ -6,6 +6,8 @@ abstract class VSList extends ListManager {
     private __renderedDate: string;
     private __comp1: HTMLElement;
     private __comp2: HTMLElement;
+    private __img1: HTMLElement;
+    private __img2: HTMLElement;
 
     protected renderTile(item: VSListItem): void {
         if (this.__renderedDate !== item.date) {
@@ -33,6 +35,7 @@ abstract class VSList extends ListManager {
                                 {
                                     tag: "img",
                                     className: "vs-tile-image",
+                                    key: "__img1",
                                     attributes: [{ name: "src", value: item.competitor1.imageURL}]
                                 },
                                 {
@@ -54,6 +57,7 @@ abstract class VSList extends ListManager {
                             children: [
                                 {
                                     tag: "img",
+                                    key: "__img2",
                                     className: "vs-tile-image",
                                     attributes: [{ name: "src", value: item.competitor2.imageURL}]
                                 },
@@ -70,12 +74,15 @@ abstract class VSList extends ListManager {
         }, this));
 
         // Comp 1
-        //this.__comp1.style.borderLeft = "10px solid #" + item.competitor1.primaryColor;
-        //this.__comp2.style.borderRight = "10px solid #" + item.competitor2.primaryColor;
+        this.__comp1.style.borderLeft = "15px solid #" + item.competitor1.primaryColor;
+        this.__comp2.style.borderRight = "15px solid #" + item.competitor2.primaryColor;
 
-        this.__comp1.style.background = 
-            "linear-gradient(to right, #" + item.competitor1.primaryColor +", transparent)";
-        this.__comp2.style.background = "linear-gradient(to right, transparent, #" + item.competitor2.primaryColor + ")";
+        this.__img1.style.backgroundColor = "#" + item.competitor1.primaryColor;
+        this.__img2.style.backgroundColor = "#" + item.competitor2.primaryColor;
+
+        // this.__comp1.style.background = 
+        //     "linear-gradient(to right, #" + item.competitor1.primaryColor +", transparent)";
+        // this.__comp2.style.background = "linear-gradient(to right, transparent, #" + item.competitor2.primaryColor + ")";
 
         //comp1.style.backgroundColor = "#" + item.competitor1.primaryColor;
         //comp1.style.color = "#" + item.competitor1.secondaryColor;

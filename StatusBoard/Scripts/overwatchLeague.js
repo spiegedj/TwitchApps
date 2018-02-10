@@ -14,11 +14,23 @@ var OverwatchLeague = /** @class */ (function (_super) {
     __extends(OverwatchLeague, _super);
     function OverwatchLeague(container, measureCount, title) {
         var _this = _super.call(this, container, measureCount, title) || this;
+        _this.__flipColorsList = [
+            "BOSTON UPRISING",
+            "SAN FRANCISCO SHOCK",
+            "HOUSTON OUTLAWS"
+        ];
         _this.retrieveItems();
-        _this.setBackgroundColor("#333333");
+        _this.setBackgroundColor("#999999");
+        _this.element.style.color = "#333333";
         return _this;
-        //this.element.style.color = "black";
     }
+    OverwatchLeague.prototype.__flipColors = function (competitor) {
+        if (this.__flipColorsList.indexOf(competitor.name.toUpperCase()) > -1) {
+            var swap = competitor.primaryColor;
+            competitor.primaryColor = competitor.secondaryColor;
+            competitor.secondaryColor = swap;
+        }
+    };
     OverwatchLeague.prototype.retrieveItems = function () {
         $.get("https://api.overwatchleague.com/schedule?locale=en_US", function (json) {
             this.parseMatches(json);
@@ -39,16 +51,18 @@ var OverwatchLeague = /** @class */ (function (_super) {
                         var listItem = new VSListItem();
                         listItem.competitor1 = {
                             imageURL: competitor1.icon,
-                            name: competitor1.name,
+                            name: competitor1.name.toUpperCase(),
                             primaryColor: competitor1.primaryColor,
                             secondaryColor: competitor1.secondaryColor,
                         };
                         listItem.competitor2 = {
                             imageURL: competitor2.icon,
-                            name: competitor2.name,
+                            name: competitor2.name.toUpperCase(),
                             primaryColor: competitor2.primaryColor,
                             secondaryColor: competitor2.secondaryColor,
                         };
+                        _this.__flipColors(listItem.competitor1);
+                        _this.__flipColors(listItem.competitor2);
                         var startDate = new Date(match.startDateTS);
                         var endDate = new Date(match.endDateTS);
                         listItem.date = startDate.toLocaleDateString();
