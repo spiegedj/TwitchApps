@@ -81,12 +81,16 @@ body {
       border-left: 10px solid #90ba3c !important; }
     .list-group .tile-container .tile .tile-title-line {
       margin-top: 0px;
-      font-size: 18pt; }
+      font-size: 20pt; }
+    .list-group .tile-container .tile .tile-line-1 {
+      font-size: 11pt; }
     .list-group .tile-container .tile .tile-image {
       height: 60px; }
     .list-group .tile-container .tile .tile-details {
       top: 5px;
-      right: 5px; }
+      right: 10px;
+      font-size: 13pt;
+      color: #C9283E; }
 
 .vs-list-tile-date-line {
   text-align: center;
