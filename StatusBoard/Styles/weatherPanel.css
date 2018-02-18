@@ -29,12 +29,16 @@
     padding-top: 20px;
     font-size: 20pt;
     color: #C9283E;
+
+    background-color: #031727;
 }
 
 #time {
+    padding-bottom: 10px;
     font-size: 70pt;
     border-bottom: 2px solid black;
-
+    background-color: #031727;
+    color: white;
 }
 
 
