@@ -53,7 +53,7 @@ class WeatherPanel {
         var forecasts: Forecast[] = item.forecast;
 
         var currentForecast: Forecast = forecasts.shift();
-        $(this.conditionsElements).find(".temp-icon:first").attr("src", "./Images/Weather/" + condition.code + ".png");
+        $(this.conditionsElements).find(".temp-icon:first").attr("src", "./Images/Weather_Black/" + condition.code + ".png");
         $(this.conditionsElements).find(".temp:first").html(condition.temp + "&deg;");
         $(this.conditionsElements).find(".high:first").html(currentForecast.high + "&deg;");
         $(this.conditionsElements).find(".low:first").html(currentForecast.low + "&deg;");
@@ -69,7 +69,7 @@ class WeatherPanel {
 
     private addForecastElement(forecast: Forecast) {
         var tile = $("<div />", {class: "forecast-tile" });
-        var image = "./Images/Weather/" + forecast.code + ".png";
+        var image = "./Images/Weather_Black/" + forecast.code + ".png";
         tile.append($("<img />" , { class: "temp-icon", src: image}));
         var container = $("<div />", { class: "forecast-container"});
         container.append($("<span />" , { class: "high"}).html(forecast.high + "&deg;"));

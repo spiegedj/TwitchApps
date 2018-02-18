@@ -33,9 +33,9 @@ body {
     border-bottom: 1px solid black;
     position: relative; }
     .list-container .tile-container .tile.tile-blue {
-      color: #57cbde; }
+      background-color: #57cbde; }
     .list-container .tile-container .tile.tile-green {
-      color: #90ba3c; }
+      background-color: #90ba3c; }
     .list-container .tile-container .tile.tile:hover {
       background-color: #969696; }
     .list-container .tile-container .tile .tile-image {
@@ -78,7 +78,8 @@ body {
     box-sizing: border-box;
     border-left: 10px solid transparent; }
     .list-group .tile-container .tile.tile-highlight {
-      border-left: 10px solid #90ba3c !important; }
+      border-left: 10px solid #90ba3c !important;
+      background-color: rgba(144, 186, 60, 0.4); }
     .list-group .tile-container .tile .tile-title-line {
       margin-top: 0px;
       font-size: 20pt; }

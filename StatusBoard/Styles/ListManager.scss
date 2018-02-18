@@ -49,11 +49,11 @@ body {
             position: relative;
 
             &.tile-blue {
-                color: rgb(87,203,222);
+                background-color: rgb(87,203,222);
             }
 
             &.tile-green {
-                color: rgb(144,186,60);
+                background-color: rgb(144,186,60);
             }
 
             &.tile:hover{
@@ -123,7 +123,8 @@ body {
             border-left: 10px solid transparent;
 
             &.tile-highlight {
-                border-left: 10px solid rgb(144,186,60) !important;
+               border-left: 10px solid rgb(144,186,60) !important;
+               background-color: rgba(144,186,60, .4);
             }
 
             .tile-title-line { 

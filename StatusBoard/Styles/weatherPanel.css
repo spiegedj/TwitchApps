@@ -5,12 +5,13 @@
     left: 15px;
     width: 406.6666px;
     height: 489.5px;
-    background-color: #05243D;
-    color: white;
+    /**background-color: #05243D;
+    color: white;**/
+    background-color: #D6D6D6;
+    color: black;
 }
 
 #weatherPanel > div {
-    width: 99%;
     margin: 0 auto;
     text-align: center;
     clear: both;
@@ -32,6 +33,8 @@
 
 #time {
     font-size: 70pt;
+    border-bottom: 2px solid black;
+
 }
 
 
