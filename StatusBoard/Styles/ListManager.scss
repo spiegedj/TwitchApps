@@ -1,25 +1,5 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: rgb(28,31,42);
-    overflow: hidden;
-
-    font-family: 'Cabin', sans-serif;
-    font-weight: 700;
-}
-
-@font-face {
-    src: url('../Fonts/bignoodletoo.ttf');
-    font-family: overwatch-slant;
-}
-
-@font-face {
-    src: url('../Fonts/koverwatch.ttf');
-    font-family: overwatch;
-}
-
 .list-container {
     overflow: hidden;
-    background-color: #D6D6D6;
 
     .list-title {
         height: 30px;
@@ -44,21 +24,8 @@ body {
             width: auto;
 
             cursor: pointer;
-            border-bottom: 1px solid black;
         
             position: relative;
-
-            &.tile-blue {
-                background-color: rgb(87,203,222);
-            }
-
-            &.tile-green {
-                background-color: rgb(144,186,60);
-            }
-
-            &.tile:hover{
-                background-color: rgb(150,150,150);
-            }
 
             .tile-image { 
                 height: 70px;
@@ -93,8 +60,6 @@ body {
     .list-group-container {
         width: 100%;
         display: inline-block;
-        color: white;
-        border-bottom: 1px solid black;
 
         .group-image {
             height: 36px;
@@ -113,7 +78,6 @@ body {
     }
 
     .tile-container {
-        background-color: #D6D6D6;
         
         .tile {
             padding: 0;
@@ -121,11 +85,6 @@ body {
             
             box-sizing: border-box;
             border-left: 10px solid transparent;
-
-            &.tile-highlight {
-               border-left: 10px solid rgb(144,186,60) !important;
-               background-color: rgba(144,186,60, .4);
-            }
 
             .tile-title-line { 
                 margin-top: 0px;
@@ -144,7 +103,6 @@ body {
                 top: 5px;
                 right: 10px;
                 font-size: 13pt;
-                color: #C9283E;
             }
         }
     }
@@ -153,9 +111,6 @@ body {
 .vs-list-tile-date-line {
     text-align: center;
     padding-bottom: 5px;
-    border-bottom: 1px solid rgba(255,255,255,.2);
-    font-family: 'Cabin', sans-serif;
-    font-weight: 700;
 }
 
 .vs-list-tile-date-line:not(:first-child) {
@@ -164,10 +119,7 @@ body {
 .list-container {
 
     .list-title {
-        font-size: 25pt;
         height: auto;
-        background-color: #FF8820;
-        font-family: overwatch-slant;
     } 
 
     .vs-list-tile-date-line {
@@ -176,10 +128,6 @@ body {
     }
 
     .vs-list-tile-container {
-        font-family: 'Cabin', sans-serif;
-        background-color: #D6D6D6;
-        font-weight: 700;
-
         height: 40px;
         overflow: hidden;
 
@@ -188,13 +136,8 @@ body {
         }
 
         .tile {
-            border-bottom: 2px solid black;
             padding: 0;
             height: 100%;
-
-            &.tile-green {
-                background-color: rgb(144,186,60);
-            }
 
             .vs-comp-1, .vs-comp-2 {
                 width: 43%;

@@ -7,8 +7,6 @@
     height: 489.5px;
     /**background-color: #05243D;
     color: white;**/
-    background-color: #D6D6D6;
-    color: black;
 }
 
 #weatherPanel > div {
@@ -17,28 +15,14 @@
     clear: both;
 }
 
-.high {
-    color: #C9283E;
-}
-
-.low {
-    color: #126872;
-}
-
 #date {
     padding-top: 20px;
     font-size: 20pt;
-    color: #C9283E;
-
-    background-color: #031727;
 }
 
 #time {
     padding-bottom: 10px;
     font-size: 70pt;
-    border-bottom: 2px solid black;
-    background-color: #031727;
-    color: white;
 }
 
 

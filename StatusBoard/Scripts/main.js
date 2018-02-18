@@ -21,4 +21,19 @@ $(document).ready(function() {
     $(window).resize(function() {
         gridManager.resize($(window).width(), $(window).height());
     });
+
+    setInterval(changeTheme, 10 * 60 * 1000);
 });
+
+changeTheme = function() {
+    var darkStart = 22; // 10 PM
+    var darkEnd = 5; // 5 AM
+
+    var nowHour = new Date().getHours();
+
+    if (nowHour > darkStart || nowHour < darkEnd) {
+       document.body.className = "dark";
+    } else {
+        document.body.className = "light";
+    }
+}

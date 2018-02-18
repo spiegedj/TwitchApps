@@ -1,0 +1,155 @@
+@font-face {
+    src: url('../Fonts/bignoodletoo.ttf');
+    font-family: overwatch-slant;
+}
+
+@font-face {
+    src: url('../Fonts/koverwatch.ttf');
+    font-family: overwatch;
+}
+
+.light {
+    background-color: rgb(28,31,42);
+    font-family: 'Cabin', sans-serif;
+    font-weight: 700;
+    color: black;
+
+    .list-container {
+        background-color: #D6D6D6;
+
+        .list-group-container {
+            border-bottom: 1px solid black;
+            background-color: #D6D6D6;
+
+            .list-group-name {
+                color: white;
+            }
+        }
+
+        .list-title {
+            background-color: #FF8820;
+            font-family: overwatch-slant;
+            font-size: 25pt;
+        }
+
+        .tile-container {
+            .tile {
+                border-bottom: 2px solid black;
+
+                &.tile-blue {
+                    background-color: rgb(87,203,222);
+                }
+
+                &.tile-green {
+                    background-color: rgb(144,186,60);
+                }
+
+                &.tile:hover{
+                    background-color: rgb(150,150,150);
+                }
+
+                &.tile-highlight {
+                    border-left: 10px solid rgb(144,186,60) !important;
+                    background-color: rgba(144,186,60, .4);
+                }
+
+                .tile-details {
+                    color: #C9283E;
+                }
+            }
+        }
+    }
+
+    #weatherPanel {
+        background-color: #D6D6D6;
+
+        .high {
+            color: #C9283E;
+        }
+        
+        .low {
+            color: #126872;
+        }
+
+        #date {
+            background-color: #031727;
+            color: #C9283E;
+        }
+
+        #time {
+            background-color: #031727;
+            color: white;
+        }
+    }
+}
+
+
+
+
+.dark {
+    background-color: black;
+    font-family: 'Cabin', sans-serif;
+    font-weight: 700;
+    color: white;
+
+    .list-container {
+        background-color: #0E0C13;
+
+        .list-group-container {
+            background-color: #D6D6D6;
+
+            .list-group-name {
+                color: white;
+            }
+        }
+
+        .tile-container {
+            .tile {
+                border-bottom: 2px solid black;
+
+                &.tile-blue {
+                    background-color: rgba(87,203,222, .4);
+                }
+
+                &.tile-green {
+                    background-color: rgba(144,186,60, .4);
+                }
+
+                &.tile:hover{
+                    background-color: rgb(150,150,150);
+                }
+
+                &.tile-highlight {
+                    border-left: 10px solid rgb(144,186,60) !important;
+                    background-color: rgba(144,186,60, .1);
+                }
+
+                .tile-details {
+                    color: #C9283E;
+                }
+            }
+        }
+    }
+
+    #weatherPanel {
+        background-color: #0E0C13;
+
+        .high {
+            color: #C9283E;
+        }
+        
+        .low {
+            color: #126872;
+        }
+
+        #date {
+            background-color: #031727;
+            color: #C9283E;
+        }
+
+        #time {
+            background-color: #031727;
+            color: white;
+        }
+    }
+}
