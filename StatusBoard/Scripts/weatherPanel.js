@@ -38,7 +38,7 @@ var WeatherPanel = /** @class */ (function () {
         //     text: condition.text
         // });
         var count = 0;
-        this.forecastElement.innerHTML = "";
+        $(this.forecastElement).empty();
         forecasts.some(function (forecast) {
             _this.addForecastElement(forecast);
             if (++count >= 6) {
