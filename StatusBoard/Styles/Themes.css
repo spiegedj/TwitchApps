@@ -33,16 +33,21 @@
         background-color: rgba(144, 186, 60, 0.4); }
       .light .list-container .tile-container .tile .tile-details {
         color: #C9283E; }
-  .light #weatherPanel {
+  .light #weatherPanel,
+  .light #clock {
     background-color: #D6D6D6; }
-    .light #weatherPanel .high {
+    .light #weatherPanel .high,
+    .light #clock .high {
       color: #C9283E; }
-    .light #weatherPanel .low {
+    .light #weatherPanel .low,
+    .light #clock .low {
       color: #126872; }
-    .light #weatherPanel #date {
+    .light #weatherPanel #date,
+    .light #clock #date {
       background-color: #031727;
       color: #C9283E; }
-    .light #weatherPanel #time {
+    .light #weatherPanel #time,
+    .light #clock #time {
       background-color: #031727;
       color: white; }
 
@@ -70,16 +75,21 @@
         background-color: rgba(144, 186, 60, 0.1); }
       .dark .list-container .tile-container .tile .tile-details {
         color: #C9283E; }
-  .dark #weatherPanel {
+  .dark #weatherPanel,
+  .dark #clock {
     background-color: #0E0C13; }
-    .dark #weatherPanel .high {
+    .dark #weatherPanel .high,
+    .dark #clock .high {
       color: #C9283E; }
-    .dark #weatherPanel .low {
+    .dark #weatherPanel .low,
+    .dark #clock .low {
       color: #126872; }
-    .dark #weatherPanel #date {
+    .dark #weatherPanel #date,
+    .dark #clock #date {
       background-color: #031727;
       color: #C9283E; }
-    .dark #weatherPanel #time {
+    .dark #weatherPanel #time,
+    .dark #clock #time {
       background-color: #031727;
       color: white; }
 

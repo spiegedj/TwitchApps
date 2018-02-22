@@ -4,8 +4,8 @@ class WeatherPanel {
 
     private timeElement : HTMLElement;
     private dateElement : HTMLElement;
-    private conditionsElements : HTMLElement;
-    private forecastElement : HTMLElement;
+    private conditionsElements : JQuery;
+    private forecastElement : JQuery;
 
     private clientID = "dj0yJmk9ZkdkYzF4ajU4a29vJmQ9WVdrOVRXRnJRbnBTTm1zbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD02YQ--";
     private secret = "3662266402e4b32b77481eb7786750a8e849bdd6";
@@ -15,29 +15,12 @@ class WeatherPanel {
     }
 
     public constructor() {
-        this.timeElement = document.getElementById("time");
-        this.dateElement = document.getElementById("date");
-        this.conditionsElements = document.getElementById("conditions");
-        this.forecastElement = document.getElementById("forecast");
+        this.forecastElement = $("<div />", {id: "forecast"});
+        $(this.element).append(this.forecastElement);
 
-        setInterval(this.updateClock.bind(this), 1000);
-        
         this.retrieveWeather();
         var updateRate = 5 * 60 * 1000; // every 5 minutes
         setInterval(this.retrieveWeather.bind(this), updateRate);
-    }
-
-    private updateClock() : void {
-        var now = new Date();
-
-        var hours = now.getHours();
-        var minutes = now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
-        var ampm = hours > 12 ? "PM" : "AM";
-        hours = hours % 12;
-        hours = hours == 0 ? hours + 12 : hours;
-
-        this.dateElement.innerHTML = now.toLocaleDateString("en-us", {weekday: "long", month: "long", day: "numeric", year: "numeric"});
-        this.timeElement.innerHTML = hours + ":" + minutes + " " + ampm;
     }
 
     private retrieveWeather() {
@@ -52,11 +35,17 @@ class WeatherPanel {
         var condition : Condition = item.condition;
         var forecasts: Forecast[] = item.forecast;
 
-        var currentForecast: Forecast = forecasts.shift();
-        $(this.conditionsElements).find(".temp-icon:first").attr("src", "./Images/Weather_Black/" + condition.code + ".png");
-        $(this.conditionsElements).find(".temp:first").html(condition.temp + "&deg;");
-        $(this.conditionsElements).find(".high:first").html(currentForecast.high + "&deg;");
-        $(this.conditionsElements).find(".low:first").html(currentForecast.low + "&deg;");
+        var currentForecast: Forecast = forecasts[0];
+        currentForecast.temp = condition.temp;
+
+        // forecasts.unshift({
+        //     code: condition.code,
+        //     date: "Today",
+        //     day: "today",
+        //     high: currentForecast.high,
+        //     low: currentForecast.low,
+        //     text: condition.text
+        // });
 
         var count = 0;
         this.forecastElement.innerHTML = "";
@@ -69,13 +58,20 @@ class WeatherPanel {
 
     private addForecastElement(forecast: Forecast) {
         var tile = $("<div />", {class: "forecast-tile" });
+
         var image = "./Images/Weather_Black/" + forecast.code + ".png";
+        if (forecast.temp) {
+            tile.append($("<div />" , { class: "temp"}).html(forecast.temp + "&deg;")));
+        } else {
+            tile.append($("<div />" , { class: "day"}).html(forecast.day));
+        }
         tile.append($("<img />" , { class: "temp-icon", src: image}));
-        var container = $("<div />", { class: "forecast-container"});
-        container.append($("<span />" , { class: "high"}).html(forecast.high + "&deg;"));
-        container.append($("<span />").html(" / "));
-        container.append($("<span />" , { class: "low"}).html(forecast.low + "&deg;"));
-        container.append($("<div />" , { class: "day"}).html(forecast.day));
+
+        var container = $("<span />", { class: "forecast-container"});
+            container.append($("<span />" , { class: "high"}).html(forecast.high + "&deg;"));
+            container.append($("<span />").html(" / "));
+            container.append($("<span />" , { class: "low"}).html(forecast.low + "&deg;"));
+
         $(tile).append(container);
         $(this.forecastElement).append(tile);
     }
@@ -94,5 +90,6 @@ interface Forecast {
     day: string,
     high: string,
     low: string,
+    temp: string,
     text: string
 }

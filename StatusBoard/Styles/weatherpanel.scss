@@ -1,0 +1,84 @@
+#clock {
+    top: 15px; 
+    left: 15px;
+
+    #date {
+        padding-top: 20px;
+        font-size: 16pt;
+    }
+    
+    #time {
+        padding-bottom: 10px;
+        font-size: 55pt;
+    }
+
+    div {
+        margin: 0 auto;
+        text-align: center;
+        clear: both;
+    }
+}
+
+
+
+
+
+/********* CONDITION *********/
+
+#conditions { 
+    padding-top: 80px;
+}
+
+#conditions > .temp-icon  {
+    margin-top: -25px;
+    float: left;
+}
+
+#conditions > .temp {
+    font-size: 70pt;
+    float: left;
+}
+
+.condition-forecast {
+    padding-top: 10px;
+    padding-left: 10px;
+    float: left;
+}
+
+#conditions .high,
+#conditions .low {
+    font-size: 20pt;
+    padding: 5px;
+}
+
+/********* FORECAST *********/
+
+#forecast {
+    font-size: 18pt;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .forecast-tile {
+        border-bottom: 2px solid black;
+
+        .temp {
+            text-align: center;
+            font-size: 45pt;
+        }
+
+        .day {
+            text-align: center;
+        }
+
+        .temp-icon {
+            width: 120px;
+            margin: -15px;
+        }
+
+        .forecast-container {
+            text-align: center;
+
+        }
+    }
+}

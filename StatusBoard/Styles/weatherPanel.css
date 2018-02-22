@@ -1,80 +1,56 @@
-#weatherPanel {
-    position: fixed;
-
-    top: 15px; 
-    left: 15px;
-    width: 406.6666px;
-    height: 489.5px;
-    /**background-color: #05243D;
-    color: white;**/
-}
-
-#weatherPanel > div {
+#clock {
+  top: 15px;
+  left: 15px; }
+  #clock #date {
+    padding-top: 20px;
+    font-size: 16pt; }
+  #clock #time {
+    padding-bottom: 10px;
+    font-size: 55pt; }
+  #clock div {
     margin: 0 auto;
     text-align: center;
-    clear: both;
-}
-
-#date {
-    padding-top: 20px;
-    font-size: 20pt;
-}
-
-#time {
-    padding-bottom: 10px;
-    font-size: 70pt;
-}
-
-
+    clear: both; }
 
 /********* CONDITION *********/
+#conditions {
+  padding-top: 80px; }
 
-#conditions { 
-    padding-top: 80px;
-}
-
-#conditions > .temp-icon  {
-    margin-top: -25px;
-    float: left;
-}
+#conditions > .temp-icon {
+  margin-top: -25px;
+  float: left; }
 
 #conditions > .temp {
-    font-size: 70pt;
-    float: left;
-}
+  font-size: 70pt;
+  float: left; }
 
 .condition-forecast {
-    padding-top: 10px;
-    padding-left: 10px;
-    float: left;
-}
+  padding-top: 10px;
+  padding-left: 10px;
+  float: left; }
 
 #conditions .high,
 #conditions .low {
-    font-size: 20pt;
-    padding: 5px;
-}
+  font-size: 20pt;
+  padding: 5px; }
 
 /********* FORECAST *********/
-
 #forecast {
-    font-size: 14pt;
-}
+  font-size: 18pt;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around; }
+  #forecast .forecast-tile {
+    border-bottom: 2px solid black; }
+    #forecast .forecast-tile .temp {
+      text-align: center;
+      font-size: 45pt; }
+    #forecast .forecast-tile .day {
+      text-align: center; }
+    #forecast .forecast-tile .temp-icon {
+      width: 120px;
+      margin: -15px; }
+    #forecast .forecast-tile .forecast-container {
+      text-align: center; }
 
-.forecast-tile {
-    float: left;
-    width: 132px;
-    height: 60px;
-}
-
-.forecast-container {
-    float: left;
-    text-align: left;
-}
-
-.forecast-tile .temp-icon {
-    float: left;
-    width: 75px;
-    margin: -10px;
-    margin-top: -20px;
-}
+/*# sourceMappingURL=weatherpanel.css.map */

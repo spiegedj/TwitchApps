@@ -18,6 +18,7 @@
     "Scripts/vsList.ts",
     "Scripts/groupedList.ts",
     "Scripts/twitchFollowsAndGames.ts",
-    "Scripts/gridManager.ts"
+    "Scripts/gridManager.ts",
+    "Scripts/clock.ts"
   ]
 }
