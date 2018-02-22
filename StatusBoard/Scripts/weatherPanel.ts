@@ -48,7 +48,7 @@ class WeatherPanel {
         // });
 
         var count = 0;
-        this.forecastElement.innerHTML = "";
+        $(this.forecastElement).empty();
         forecasts.some((forecast) => {
             this.addForecastElement(forecast);
             if (++count >= 6) { return true; }
