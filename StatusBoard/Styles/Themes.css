@@ -57,7 +57,7 @@
   font-weight: 700;
   color: white; }
   .dark .list-container {
-    background-color: #0E0C13; }
+    background-color: #1E1E1E; }
     .dark .list-container .list-group-container {
       background-color: #D6D6D6; }
       .dark .list-container .list-group-container .list-group-name {
@@ -77,7 +77,7 @@
         color: #C9283E; }
   .dark #weatherPanel,
   .dark #clock {
-    background-color: #0E0C13; }
+    background-color: #1E1E1E; }
     .dark #weatherPanel .high,
     .dark #clock .high {
       color: #C9283E; }
