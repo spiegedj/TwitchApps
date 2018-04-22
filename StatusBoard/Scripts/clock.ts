@@ -55,7 +55,7 @@ class Clock {
         this.dateElement.innerHTML = now.toLocaleDateString("en-us", {weekday: "long", month: "long", day: "numeric", year: "numeric"});
         this.timeElement.innerHTML = hours + ":" + minutes + " " + ampm;
 
-        this.drawClock(now);
+        //this.drawClock(now);
     }
 
     private drawClock(now: Date): void {

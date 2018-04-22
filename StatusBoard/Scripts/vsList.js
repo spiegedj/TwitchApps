@@ -79,8 +79,8 @@ var VSList = /** @class */ (function (_super) {
             ]
         }, this));
         // Comp 1
-        this.__comp1.style.borderLeft = "15px solid #" + item.competitor1.primaryColor;
-        this.__comp2.style.borderRight = "15px solid #" + item.competitor2.primaryColor;
+        //this.__comp1.style.borderLeft = "15px solid #" + item.competitor1.primaryColor;
+        //this.__comp2.style.borderRight = "15px solid #" + item.competitor2.primaryColor;
         this.__img1.style.backgroundColor = "#" + item.competitor1.primaryColor;
         this.__img2.style.backgroundColor = "#" + item.competitor2.primaryColor;
         // this.__comp1.style.background = 

@@ -38,7 +38,7 @@ var Clock = /** @class */ (function () {
         hours = hours == 0 ? hours + 12 : hours;
         this.dateElement.innerHTML = now.toLocaleDateString("en-us", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
         this.timeElement.innerHTML = hours + ":" + minutes + " " + ampm;
-        this.drawClock(now);
+        //this.drawClock(now);
     };
     Clock.prototype.drawClock = function (now) {
         this.initializeClock();
