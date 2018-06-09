@@ -4,7 +4,7 @@ var ListManager = /** @class */ (function () {
         this._measureCount = measureCount;
         this.__title = title;
         this.__startIndex = 0;
-        this.__listContainer = this.createMarkup({
+        this._listContainer = this.createMarkup({
             tag: "div",
             className: "list-container",
             children: [
@@ -20,7 +20,7 @@ var ListManager = /** @class */ (function () {
                 }
             ]
         }, this);
-        container.appendChild(this.__listContainer);
+        container.appendChild(this._listContainer);
         if (!this.__title) {
             this.__titleElement.style.display = "none";
         }
@@ -28,13 +28,13 @@ var ListManager = /** @class */ (function () {
     }
     Object.defineProperty(ListManager.prototype, "element", {
         get: function () {
-            return this.__listContainer;
+            return this._listContainer;
         },
         enumerable: true,
         configurable: true
     });
     ListManager.prototype.setColor = function (color) {
-        this.__listContainer.style.backgroundColor = color;
+        this._listContainer.style.borderLeft = "8px solid " + color;
     };
     ListManager.prototype.refresh = function () {
         this.retrieveItems();
@@ -45,7 +45,7 @@ var ListManager = /** @class */ (function () {
             var tiles = this._listItemsElement.getElementsByClassName("tile-container");
             var lastChild = tiles[tiles.length - 1];
             var lastHeight = lastChild ? lastChild.offsetHeight : 0;
-            if (this._listItemsElement.offsetHeight + lastHeight > this.__listContainer.offsetHeight) {
+            if (this._listItemsElement.offsetHeight + lastHeight > this._listContainer.offsetHeight) {
                 return;
             }
             if (this._listItems[i]) {

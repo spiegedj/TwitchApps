@@ -8,18 +8,22 @@
     font-family: overwatch;
 }
 
-.light {
-    background-color: rgb(28,31,42);
+.dark {
+    background-color: #201F23;
     font-family: 'Cabin', sans-serif;
-    font-weight: 700;
-    color: black;
-
+    color: white;
+    
     .list-container {
-        background-color: #D6D6D6;
+        background-color: #2D2D2D;
+        box-sizing: border-box;
+
+        .list-group {
+            margin-bottom: 30px;
+        }
+
 
         .list-group-container {
-            border-bottom: 1px solid black;
-            background-color: #D6D6D6;
+            border-bottom: 1px solid #4D4D4D;
 
             .list-group-name {
                 color: white;
@@ -27,21 +31,20 @@
         }
 
         .list-title {
-            background-color: #FF8820;
+            color: #FF8820;
             font-family: overwatch-slant;
             font-size: 25pt;
         }
 
         .tile-container {
             .tile {
-                border-bottom: 2px solid black;
 
                 &.tile-blue {
                     background-color: rgb(87,203,222);
                 }
 
                 &.tile-green {
-                    background-color: rgb(144,186,60);
+                    //background-color: rgb(144,186,60);
                 }
 
                 &.tile:hover{
@@ -49,8 +52,8 @@
                 }
 
                 &.tile-highlight {
-                    border-left: 10px solid rgb(144,186,60) !important;
-                    background-color: rgba(144,186,60, .4);
+                    //border-left: 10px solid rgb(144,186,60) !important;
+                    //background-color: rgba(144,186,60, .4);
                 }
 
                 .tile-details {
@@ -62,7 +65,7 @@
 
     #weatherPanel,
     #clock {
-        background-color: #D6D6D6;
+        background-color: #2D2D2D;
 
         .high {
             color: #C9283E;
@@ -85,73 +88,150 @@
 }
 
 
+// .light {
+//     background-color: rgb(28,31,42);
+//     font-family: 'Cabin', sans-serif;
+//     font-weight: 700;
+//     color: black;
 
+//     .list-container {
+//         background-color: #D6D6D6;
 
-.dark {
-    background-color: black;
-    font-family: 'Cabin', sans-serif;
-    font-weight: 700;
-    color: white;
+//         .list-group-container {
+//             border-bottom: 1px solid black;
+//             background-color: #D6D6D6;
 
-    .list-container {
-        background-color: #1E1E1E;
+//             .list-group-name {
+//                 color: white;
+//             }
+//         }
 
-        .list-group-container {
-            background-color: #D6D6D6;
+//         .list-title {
+//             background-color: #FF8820;
+//             font-family: overwatch-slant;
+//             font-size: 25pt;
+//         }
 
-            .list-group-name {
-                color: white;
-            }
-        }
+//         .tile-container {
+//             .tile {
+//                 border-bottom: 2px solid black;
 
-        .tile-container {
-            .tile {
-                border-bottom: 2px solid black;
+//                 &.tile-blue {
+//                     background-color: rgb(87,203,222);
+//                 }
 
-                &.tile-blue {
-                    background-color: rgba(87,203,222, .4);
-                }
+//                 &.tile-green {
+//                     background-color: rgb(144,186,60);
+//                 }
 
-                &.tile-green {
-                    background-color: rgba(144,186,60, .4);
-                }
+//                 &.tile:hover{
+//                     background-color: rgb(150,150,150);
+//                 }
 
-                &.tile:hover{
-                    background-color: rgb(150,150,150);
-                }
+//                 &.tile-highlight {
+//                     border-left: 10px solid rgb(144,186,60) !important;
+//                     background-color: rgba(144,186,60, .4);
+//                 }
 
-                &.tile-highlight {
-                    border-left: 10px solid rgb(144,186,60) !important;
-                    background-color: rgba(144,186,60, .1);
-                }
+//                 .tile-details {
+//                     color: #C9283E;
+//                 }
+//             }
+//         }
+//     }
 
-                .tile-details {
-                    color: #C9283E;
-                }
-            }
-        }
-    }
+//     #weatherPanel,
+//     #clock {
+//         background-color: #D6D6D6;
 
-    #weatherPanel,
-    #clock {
-        background-color: #1E1E1E;
-
-        .high {
-            color: #C9283E;
-        }
+//         .high {
+//             color: #C9283E;
+//         }
         
-        .low {
-            color: #126872;
-        }
+//         .low {
+//             color: #126872;
+//         }
 
-        #date {
-            background-color: #031727;
-            color: #C9283E;
-        }
+//         #date {
+//             background-color: #031727;
+//             color: #C9283E;
+//         }
 
-        #time {
-            background-color: #031727;
-            color: white;
-        }
-    }
-}
+//         #time {
+//             background-color: #031727;
+//             color: white;
+//         }
+//     }
+// }
+
+
+
+
+// .dark {
+//     background-color: black;
+//     font-family: 'Cabin', sans-serif;
+//     font-weight: 700;
+//     color: white;
+
+//     .list-container {
+//         background-color: #1E1E1E;
+
+//         .list-group-container {
+//             background-color: #D6D6D6;
+
+//             .list-group-name {
+//                 color: white;
+//             }
+//         }
+
+//         .tile-container {
+//             .tile {
+//                 border-bottom: 2px solid black;
+
+//                 &.tile-blue {
+//                     background-color: rgba(87,203,222, .4);
+//                 }
+
+//                 &.tile-green {
+//                     background-color: rgba(144,186,60, .4);
+//                 }
+
+//                 &.tile:hover{
+//                     background-color: rgb(150,150,150);
+//                 }
+
+//                 &.tile-highlight {
+//                     border-left: 10px solid rgb(144,186,60) !important;
+//                     background-color: rgba(144,186,60, .1);
+//                 }
+
+//                 .tile-details {
+//                     color: #C9283E;
+//                 }
+//             }
+//         }
+//     }
+
+//     #weatherPanel,
+//     #clock {
+//         background-color: #1E1E1E;
+
+//         .high {
+//             color: #C9283E;
+//         }
+        
+//         .low {
+//             color: #126872;
+//         }
+
+//         #date {
+//             background-color: #031727;
+//             color: #C9283E;
+//         }
+
+//         #time {
+//             background-color: #031727;
+//             color: white;
+//         }
+//     }
+// }

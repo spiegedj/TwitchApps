@@ -14,6 +14,7 @@ abstract class GroupedList extends ListManager {
 
     public setColor(color: string) : void {
         this.__groupColor = color;
+        super.setColor(color);
     }
 
     protected renderTile(item: GroupedListItem): void {
@@ -21,12 +22,11 @@ abstract class GroupedList extends ListManager {
         if (!group) {
             group = this._listItemsElement.appendChild(this.createMarkup({
                 tag: "div",
-                className: "list-group",
+                className: "list-group card",
                 children: [
                     {
                         tag: "span",
                         className: "list-group-container",
-                        attributes: [{ name: "style", value: "background-color: " + this.__groupColor}],
                         children: [
                             {
                                 tag: "img",
@@ -34,6 +34,7 @@ abstract class GroupedList extends ListManager {
                                 attributes: [{ name: "src", value: item.groupIcon}]
                             }, {
                                 tag: "span",
+                                attributes: [{ name: "style", value: "color: " + this.__groupColor}],
                                 className: "list-group-name",
                                 innerText: item.groupName,
                         }]

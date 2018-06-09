@@ -4,80 +4,32 @@
 @font-face {
   src: url("../Fonts/koverwatch.ttf");
   font-family: overwatch; }
-.light {
-  background-color: #1c1f2a;
-  font-family: 'Cabin', sans-serif;
-  font-weight: 700;
-  color: black; }
-  .light .list-container {
-    background-color: #D6D6D6; }
-    .light .list-container .list-group-container {
-      border-bottom: 1px solid black;
-      background-color: #D6D6D6; }
-      .light .list-container .list-group-container .list-group-name {
-        color: white; }
-    .light .list-container .list-title {
-      background-color: #FF8820;
-      font-family: overwatch-slant;
-      font-size: 25pt; }
-    .light .list-container .tile-container .tile {
-      border-bottom: 2px solid black; }
-      .light .list-container .tile-container .tile.tile-blue {
-        background-color: #57cbde; }
-      .light .list-container .tile-container .tile.tile-green {
-        background-color: #90ba3c; }
-      .light .list-container .tile-container .tile.tile:hover {
-        background-color: #969696; }
-      .light .list-container .tile-container .tile.tile-highlight {
-        border-left: 10px solid #90ba3c !important;
-        background-color: rgba(144, 186, 60, 0.4); }
-      .light .list-container .tile-container .tile .tile-details {
-        color: #C9283E; }
-  .light #weatherPanel,
-  .light #clock {
-    background-color: #D6D6D6; }
-    .light #weatherPanel .high,
-    .light #clock .high {
-      color: #C9283E; }
-    .light #weatherPanel .low,
-    .light #clock .low {
-      color: #126872; }
-    .light #weatherPanel #date,
-    .light #clock #date {
-      background-color: #031727;
-      color: #C9283E; }
-    .light #weatherPanel #time,
-    .light #clock #time {
-      background-color: #031727;
-      color: white; }
-
 .dark {
-  background-color: black;
+  background-color: #201F23;
   font-family: 'Cabin', sans-serif;
-  font-weight: 700;
   color: white; }
   .dark .list-container {
-    background-color: #1E1E1E; }
+    background-color: #2D2D2D;
+    box-sizing: border-box; }
+    .dark .list-container .list-group {
+      margin-bottom: 30px; }
     .dark .list-container .list-group-container {
-      background-color: #D6D6D6; }
+      border-bottom: 1px solid #4D4D4D; }
       .dark .list-container .list-group-container .list-group-name {
         color: white; }
-    .dark .list-container .tile-container .tile {
-      border-bottom: 2px solid black; }
-      .dark .list-container .tile-container .tile.tile-blue {
-        background-color: rgba(87, 203, 222, 0.4); }
-      .dark .list-container .tile-container .tile.tile-green {
-        background-color: rgba(144, 186, 60, 0.4); }
-      .dark .list-container .tile-container .tile.tile:hover {
-        background-color: #969696; }
-      .dark .list-container .tile-container .tile.tile-highlight {
-        border-left: 10px solid #90ba3c !important;
-        background-color: rgba(144, 186, 60, 0.1); }
-      .dark .list-container .tile-container .tile .tile-details {
-        color: #C9283E; }
+    .dark .list-container .list-title {
+      color: #FF8820;
+      font-family: overwatch-slant;
+      font-size: 25pt; }
+    .dark .list-container .tile-container .tile.tile-blue {
+      background-color: #57cbde; }
+    .dark .list-container .tile-container .tile.tile:hover {
+      background-color: #969696; }
+    .dark .list-container .tile-container .tile .tile-details {
+      color: #C9283E; }
   .dark #weatherPanel,
   .dark #clock {
-    background-color: #1E1E1E; }
+    background-color: #2D2D2D; }
     .dark #weatherPanel .high,
     .dark #clock .high {
       color: #C9283E; }

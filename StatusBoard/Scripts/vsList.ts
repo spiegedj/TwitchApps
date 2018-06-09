@@ -9,15 +9,13 @@ abstract class VSList extends ListManager {
     private __img1: HTMLElement;
     private __img2: HTMLElement;
 
-    public setColor(color: string) : void {  }
-
     protected renderTile(item: VSListItem): void {
         if (this.__renderedDate !== item.date) {
             this._listItemsElement.appendChild(this.createMarkup({
                 tag: "div",
                 className: "vs-list-tile-date-line",
                 innerText: item.date
-            }))
+            }));
             this.__renderedDate = item.date;
         }
 

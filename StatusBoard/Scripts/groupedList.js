@@ -24,18 +24,18 @@ var GroupedList = /** @class */ (function (_super) {
     };
     GroupedList.prototype.setColor = function (color) {
         this.__groupColor = color;
+        _super.prototype.setColor.call(this, color);
     };
     GroupedList.prototype.renderTile = function (item) {
         var group = this.__groups[item.groupName.toLowerCase()];
         if (!group) {
             group = this._listItemsElement.appendChild(this.createMarkup({
                 tag: "div",
-                className: "list-group",
+                className: "list-group card",
                 children: [
                     {
                         tag: "span",
                         className: "list-group-container",
-                        attributes: [{ name: "style", value: "background-color: " + this.__groupColor }],
                         children: [
                             {
                                 tag: "img",
@@ -43,6 +43,7 @@ var GroupedList = /** @class */ (function (_super) {
                                 attributes: [{ name: "src", value: item.groupIcon }]
                             }, {
                                 tag: "span",
+                                attributes: [{ name: "style", value: "color: " + this.__groupColor }],
                                 className: "list-group-name",
                                 innerText: item.groupName,
                             }

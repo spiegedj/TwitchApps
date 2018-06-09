@@ -19,7 +19,7 @@ class OverwatchLeague extends VSList {
     public constructor(container: HTMLElement, measureCount: number, title: string) {
         super(container, measureCount, title);
         this.retrieveItems();
-        this.setColor("#031727");
+        this.setColor("#FF8820");
     }
 
     protected retrieveItems() {

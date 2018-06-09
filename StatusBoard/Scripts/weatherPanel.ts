@@ -59,9 +59,9 @@ class WeatherPanel {
     private addForecastElement(forecast: Forecast) {
         var tile = $("<div />", {class: "forecast-tile" });
 
-        var image = "./Images/Weather_Black/" + forecast.code + ".png";
+        var image = "./Images/Weather/" + forecast.code + ".png";
         if (forecast.temp) {
-            tile.append($("<div />" , { class: "temp"}).html(forecast.temp + "&deg;")));
+            tile.append($("<div />" , { class: "temp"}).html(forecast.temp + "&deg;"));
         } else {
             tile.append($("<div />" , { class: "day"}).html(forecast.day));
         }

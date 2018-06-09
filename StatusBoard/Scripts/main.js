@@ -27,7 +27,7 @@ $(document).ready(function() {
         gridManager.resize($(window).width(), $(window).height());
     });
 
-    setInterval(changeTheme, 10 * 60 * 1000);
+    //setInterval(changeTheme, 10 * 60 * 1000);
 });
 
 changeTheme = function() {

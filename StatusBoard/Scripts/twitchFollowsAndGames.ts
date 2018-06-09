@@ -10,7 +10,7 @@ class TwitchFollowsAndGames extends GroupedList {
     public constructor(container: HTMLElement, measureCount: number, title: string) {
         super(container, measureCount, title);
         this.retrieveItems();
-        this.setColor("#323E1C");
+        this.setColor("#3DA49A");
     }
 
     protected retrieveItems() {

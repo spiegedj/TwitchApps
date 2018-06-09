@@ -20,7 +20,7 @@ var OverwatchLeague = /** @class */ (function (_super) {
             "HOUSTON OUTLAWS"
         ];
         _this.retrieveItems();
-        _this.setColor("#031727");
+        _this.setColor("#FF8820");
         return _this;
     }
     OverwatchLeague.prototype.__flipColors = function (competitor) {

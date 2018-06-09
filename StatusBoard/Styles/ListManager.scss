@@ -43,7 +43,7 @@
             }
 
             .tile-line-2 {
-                font-size: 9pt;
+                font-size: 10pt;
             }
 
             .tile-details {
@@ -70,21 +70,19 @@
 
         .list-group-name {
             display: block;
-            font-weight: bold;
-            font-size: 18pt;
+            font-size: 20pt;
             margin-left: 10px;
-            text-align: center;
         }
     }
 
     .tile-container {
-        
+        padding-left: 10px;
+
         .tile {
             padding: 0;
             height: 100%;
             
             box-sizing: border-box;
-            border-left: 10px solid transparent;
 
             .tile-title-line { 
                 margin-top: 0px;
@@ -92,7 +90,7 @@
             }
 
             .tile-line-1 {
-                font-size: 11pt;
+                font-size: 10pt;
             }
 
             .tile-image { 
@@ -123,7 +121,7 @@
     } 
 
     .vs-list-tile-date-line {
-        border-top: 2px solid black;
+        border-top: 1px solid #4D4D4D;
         font-size: 14pt;
     }
 

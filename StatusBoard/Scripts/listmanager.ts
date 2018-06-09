@@ -1,9 +1,9 @@
 abstract class ListManager {
+    protected _listContainer: HTMLElement;
     protected _listItems: ListItem[];
     protected _listItemsElement: HTMLElement;
     protected _measureCount: number;
 
-    private __listContainer: HTMLElement;
     private __titleElement: HTMLElement;
     private __pageUpElement: HTMLElement;
     private __pageDownElement: HTMLElement;
@@ -16,7 +16,7 @@ abstract class ListManager {
     public refreshRate: number = 30 * 1000;
 
     public get element(): HTMLElement {
-        return this.__listContainer;
+        return this._listContainer;
     }
 
     public constructor(container: HTMLElement, measureCount: number, title: string) {
@@ -24,7 +24,7 @@ abstract class ListManager {
         this.__title = title;
         this.__startIndex = 0;
 
-        this.__listContainer = this.createMarkup({
+        this._listContainer = this.createMarkup({
             tag : "div", 
             className: "list-container",
             children: [
@@ -40,7 +40,7 @@ abstract class ListManager {
                 }
             ]
         }, this);
-        container.appendChild(this.__listContainer);
+        container.appendChild(this._listContainer);
 
         if (!this.__title) {
             this.__titleElement.style.display = "none";
@@ -50,7 +50,7 @@ abstract class ListManager {
     }
 
     public setColor(color: string) : void {
-        this.__listContainer.style.backgroundColor = color;
+        this._listContainer.style.borderLeft = "8px solid " + color;
     }
 
     protected abstract retrieveItems();
@@ -66,7 +66,7 @@ abstract class ListManager {
             var lastChild = tiles[tiles.length - 1] as HTMLElement;
             var lastHeight = lastChild ? lastChild.offsetHeight : 0;
 
-            if (this._listItemsElement.offsetHeight + lastHeight > this.__listContainer.offsetHeight) {
+            if (this._listItemsElement.offsetHeight + lastHeight > this._listContainer.offsetHeight) {
                 return;
             }
 
