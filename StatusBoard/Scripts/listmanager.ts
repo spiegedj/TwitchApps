@@ -14,6 +14,8 @@ abstract class ListManager {
     private __startIndex: number;
 
     public refreshRate: number = 30 * 1000;
+    public imageHeight: number = 60;
+    public titleFontSize: number = 20;
 
     public get element(): HTMLElement {
         return this._listContainer;
@@ -92,7 +94,10 @@ abstract class ListManager {
                         {
                             tag: "img",
                             className: "tile-image",
-                            attributes: [{ name: "src", value: item.imageURL}]
+                            attributes: [
+                                { name: "src", value: item.imageURL },
+                                { name: "height", value: this.imageHeight + "" }
+                            ]
                         },
                         {
                             tag: "div",
@@ -186,7 +191,7 @@ class ListItem {
     public line1: string;
     public line2: string;
     public details: string;
-    public imageURL: string;
+    public imageURL: string = "Images/blank.png";
     public link: string;
     public status: Status;
     public sortKey: number;

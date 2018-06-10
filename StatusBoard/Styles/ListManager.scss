@@ -27,8 +27,8 @@
         
             position: relative;
 
-            .tile-image { 
-                height: 70px;
+            .tile-image {
+                min-height: 24px;
                 padding-right: 5px;
                 float: left;
                 clear: both;
@@ -49,13 +49,14 @@
             .tile-details {
                 position: absolute;
                 top: 15px;
-                right: 0;
+                right: 5px;
             }
         }
     }
 }
 
 .list-group {
+    margin-bottom: 15px;
 
     .list-group-container {
         width: 100%;
@@ -86,15 +87,10 @@
 
             .tile-title-line { 
                 margin-top: 0px;
-                font-size: 20pt;
             }
 
             .tile-line-1 {
                 font-size: 10pt;
-            }
-
-            .tile-image { 
-                height: 60px;
             }
 
             .tile-details {

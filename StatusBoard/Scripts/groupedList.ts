@@ -64,12 +64,18 @@ abstract class GroupedList extends ListManager {
                         {
                             tag: "img",
                             classNames: ["tile-image", item.imageURL ? "" : "no-disp"],
-                            attributes: [{ name: "src", value: item.imageURL}]
+                            attributes: [
+                                { name: "src", value: item.imageURL},
+                                { name: "height", value: this.imageHeight + "" }
+                            ]
                         },
                         {
                             tag: "div",
                             className: "tile-title-line",
-                            innerText: item.title
+                            innerText: item.title,
+                            attributes: [
+                                { name: "style", value: "font-size: " + this.titleFontSize + "pt" }
+                            ]
                         },
                         {
                             tag: "div",

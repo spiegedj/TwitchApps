@@ -11,10 +11,8 @@
   .dark .list-container {
     background-color: #2D2D2D;
     box-sizing: border-box; }
-    .dark .list-container .list-group {
-      margin-bottom: 30px; }
     .dark .list-container .list-group-container {
-      border-bottom: 1px solid #4D4D4D; }
+      border-top: 1px solid #4D4D4D; }
       .dark .list-container .list-group-container .list-group-name {
         color: white; }
     .dark .list-container .list-title {

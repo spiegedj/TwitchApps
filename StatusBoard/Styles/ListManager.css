@@ -18,7 +18,7 @@
     cursor: pointer;
     position: relative; }
     .list-container .tile-container .tile .tile-image {
-      height: 70px;
+      min-height: 24px;
       padding-right: 5px;
       float: left;
       clear: both; }
@@ -31,37 +31,36 @@
     .list-container .tile-container .tile .tile-details {
       position: absolute;
       top: 15px;
-      right: 0; }
+      right: 5px; }
 
-.list-group .list-group-container {
-  width: 100%;
-  display: inline-block; }
-  .list-group .list-group-container .group-image {
-    height: 36px;
-    margin-right: 10px;
-    float: left;
-    display: none; }
-  .list-group .list-group-container .list-group-name {
-    display: block;
-    font-size: 20pt;
-    margin-left: 10px; }
-.list-group .tile-container {
-  padding-left: 10px; }
-  .list-group .tile-container .tile {
-    padding: 0;
-    height: 100%;
-    box-sizing: border-box; }
-    .list-group .tile-container .tile .tile-title-line {
-      margin-top: 0px;
-      font-size: 20pt; }
-    .list-group .tile-container .tile .tile-line-1 {
-      font-size: 10pt; }
-    .list-group .tile-container .tile .tile-image {
-      height: 60px; }
-    .list-group .tile-container .tile .tile-details {
-      top: 5px;
-      right: 10px;
-      font-size: 13pt; }
+.list-group {
+  margin-bottom: 15px; }
+  .list-group .list-group-container {
+    width: 100%;
+    display: inline-block; }
+    .list-group .list-group-container .group-image {
+      height: 36px;
+      margin-right: 10px;
+      float: left;
+      display: none; }
+    .list-group .list-group-container .list-group-name {
+      display: block;
+      font-size: 20pt;
+      margin-left: 10px; }
+  .list-group .tile-container {
+    padding-left: 10px; }
+    .list-group .tile-container .tile {
+      padding: 0;
+      height: 100%;
+      box-sizing: border-box; }
+      .list-group .tile-container .tile .tile-title-line {
+        margin-top: 0px; }
+      .list-group .tile-container .tile .tile-line-1 {
+        font-size: 10pt; }
+      .list-group .tile-container .tile .tile-details {
+        top: 5px;
+        right: 10px;
+        font-size: 13pt; }
 
 .vs-list-tile-date-line {
   text-align: center;

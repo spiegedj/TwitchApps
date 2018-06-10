@@ -19,6 +19,7 @@
     "Scripts/groupedList.ts",
     "Scripts/twitchFollowsAndGames.ts",
     "Scripts/gridManager.ts",
-    "Scripts/clock.ts"
+    "Scripts/clock.ts",
+    "Scripts/tournaments.ts"
   ]
 }

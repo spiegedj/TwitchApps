@@ -1,6 +1,8 @@
 var ListManager = /** @class */ (function () {
     function ListManager(container, measureCount, title) {
         this.refreshRate = 30 * 1000;
+        this.imageHeight = 60;
+        this.titleFontSize = 20;
         this._measureCount = measureCount;
         this.__title = title;
         this.__startIndex = 0;
@@ -69,7 +71,10 @@ var ListManager = /** @class */ (function () {
                         {
                             tag: "img",
                             className: "tile-image",
-                            attributes: [{ name: "src", value: item.imageURL }]
+                            attributes: [
+                                { name: "src", value: item.imageURL },
+                                { name: "height", value: this.imageHeight + "" }
+                            ]
                         },
                         {
                             tag: "div",
@@ -139,6 +144,7 @@ var ListManager = /** @class */ (function () {
 }());
 var ListItem = /** @class */ (function () {
     function ListItem() {
+        this.imageURL = "Images/blank.png";
     }
     return ListItem;
 }());
