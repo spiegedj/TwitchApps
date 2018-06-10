@@ -15,8 +15,8 @@ var Tournaments = /** @class */ (function (_super) {
     function Tournaments(container, measureCount) {
         var _this = _super.call(this, container, measureCount, "") || this;
         _this.refreshRate = 5 * 60 * 1000;
-        _this.imageHeight = 16;
-        _this.titleFontSize = 15;
+        _this.imageHeight = 36;
+        _this.titleFontSize = 13;
         _this.retrieveItems();
         _this.setColor("#9D2A3B");
         return _this;
@@ -51,7 +51,8 @@ var Tournaments = /** @class */ (function (_super) {
         var image = tournament.find("img").first();
         var listItem = new GroupedListItem();
         listItem.title = this.ellipsis(name, 40);
-        listItem.details = date;
+        var sp = "&nbsp;";
+        listItem.line2 = sp + sp + sp + sp + date;
         if (image && image.attr("src")) {
             var imageURL = "https://liquipedia.net" + image.attr("src");
             listItem.imageURL = imageURL;

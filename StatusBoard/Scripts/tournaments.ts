@@ -7,8 +7,8 @@ class Tournaments extends GroupedList {
 
     public constructor(container: HTMLElement, measureCount: number) {
         super(container, measureCount, "");
-        this.imageHeight = 16;
-        this.titleFontSize = 15;
+        this.imageHeight = 36;
+        this.titleFontSize = 13;
         this.retrieveItems();
         this.setColor("#9D2A3B");
     }
@@ -26,6 +26,7 @@ class Tournaments extends GroupedList {
 
         var tournaments : GroupedListItem[] = [];
         var $this = this;
+
         upcoming.find("li").each(function() {
             var listItem = $this.createListItem($(this));
             listItem.groupName = "Upcoming";
@@ -49,7 +50,8 @@ class Tournaments extends GroupedList {
 
         var listItem = new GroupedListItem();
         listItem.title = this.ellipsis(name, 40);
-        listItem.details = date;
+        const sp = "&nbsp;";
+        listItem.line2 = sp + sp + sp + sp + date;
         if (image && image.attr("src")) {
             var imageURL = "https://liquipedia.net" + image.attr("src");
             listItem.imageURL = imageURL;

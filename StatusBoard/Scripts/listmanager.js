@@ -118,7 +118,7 @@ var ListManager = /** @class */ (function () {
         classes.push(tree.className);
         element.className = classes.join(" ");
         if (tree.innerText) {
-            element.innerText = tree.innerText;
+            element.innerHTML = tree.innerText;
         }
         if (tree.key) {
             trackingObject[tree.key] = element;

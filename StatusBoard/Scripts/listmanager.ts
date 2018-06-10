@@ -144,7 +144,7 @@ abstract class ListManager {
         element.className = classes.join(" ");
 
         if (tree.innerText) {
-            element.innerText = tree.innerText;
+            element.innerHTML = tree.innerText;
         }
 
         if (tree.key) {
