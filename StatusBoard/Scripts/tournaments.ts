@@ -8,18 +8,65 @@ class Tournaments extends GroupedList {
     public constructor(container: HTMLElement, measureCount: number) {
         super(container, measureCount, "");
         this.imageHeight = 36;
-        this.titleFontSize = 13;
+        this.titleFontSize = 15;
         this.retrieveItems();
         this.setColor("#9D2A3B");
     }
 
     protected retrieveItems() : void {  
-        $.get("https://liquipedia.net/starcraft2/Main_Page", function(html) {
-            this.parseTournaments(html);
+        this.wcsEvents();
+    }
+
+    private wcsEvents(): void {
+        $.get("https://wcs.starcraft2.com/en-us/schedule/", function(html) {
+            this.parseWCSEvents(html);
         }.bind(this));
     }
 
-    private parseTournaments(html: string): void {
+    private parseWCSEvents(html: string): void {
+        var doc = $($.parseHTML(html));
+        var cards = doc.find(".eventCard-entry");
+
+        var events : GroupedListItem[] = [];
+
+        cards.each((index: number, card: Element) => {
+            var tournament = $(card).find(".metaData-hd").first().children().first().text();
+            var stage = $(card).find(".meta-Data-ft").first().children().first().text();
+            var logo = $(card).find(".eventCard-logo").first().children().first().attr("src");
+            var timestamp = $(card).find(".eventCard-time").first().children().first().attr("data-locale-time-timestamp");
+
+            var item = new GroupedListItem();
+            item.groupName = tournament;
+            item.title = stage;
+            item.imageURL = "";
+            item.line1 =  this.getDateStrimg(Number(timestamp);
+            item.line2 = " ";
+            item.details = this.getCountdownString(Number(timestamp));
+            events.push(item);
+        });
+
+        this._listItems = events;
+        this.render();
+    }
+
+    private getSpacing(before: string, offset: number): string {
+        var spacesCount = offset - before.length;
+        const sp = "&nbsp;";
+
+        let spaces = "";
+        for (var i = 0; i < spacesCount; i++) {
+            spaces += sp;
+        }
+        return spaces;
+    }
+
+    private liquidpediaTournaments(): void {
+        $.get("https://liquipedia.net/starcraft2/Main_Page", function(html) {
+            this.parseLiquipediaTournaments(html);
+        }.bind(this));
+    }
+
+    private parseLiquipediaTournaments(html: string): void {
         var doc = $($.parseHTML(html));
         var upcoming = doc.find(".tournaments-list").first().find(".tournaments-list-type-list").first();
         var ongoing = doc.find(".tournaments-list").first().find(".tournaments-list-type-list").eq(1);
@@ -78,7 +125,7 @@ class Tournaments extends GroupedList {
     private getDateStrimg(timeMs: number): string {
         var monthNames = [ "January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December" ];
-        var dayOfWeekNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var dayOfWeekNames = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
 
         if (!timeMs) return "";
 
@@ -107,6 +154,6 @@ class Tournaments extends GroupedList {
         var minutesFrom = (hoursFrom - hours) * 60;
         var minutes = Math.floor(minutesFrom);
 
-        return "Live in " + days + "d " + hours + "h " + minutes + "m";
+        return days + "d " + hours + "h " + minutes + "m";
     }
 }

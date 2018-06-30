@@ -17,6 +17,8 @@
     width: auto;
     cursor: pointer;
     position: relative; }
+    .list-container .tile-container .tile div:empty {
+      display: none; }
     .list-container .tile-container .tile .tile-image {
       min-height: 24px;
       padding-right: 5px;
@@ -25,9 +27,10 @@
     .list-container .tile-container .tile .tile-title-line {
       font-size: 15pt; }
     .list-container .tile-container .tile .tile-line {
-      font-size: 11pt; }
+      font-size: 10pt;
+      padding-left: 15px; }
     .list-container .tile-container .tile .tile-line-2 {
-      font-size: 10pt; }
+      font-size: 9pt; }
     .list-container .tile-container .tile .tile-details {
       position: absolute;
       top: 15px;
@@ -58,7 +61,7 @@
       .list-group .tile-container .tile .tile-line-1 {
         font-size: 10pt; }
       .list-group .tile-container .tile .tile-details {
-        top: 5px;
+        top: 0px;
         right: 10px;
         font-size: 13pt; }
 

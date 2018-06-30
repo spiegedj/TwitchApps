@@ -56,7 +56,7 @@ var TwitchFollowsAndGames = /** @class */ (function (_super) {
             }
             listItem.title = channel.display_name;
             listItem.groupName = channel.game;
-            listItem.line1 = "Playing " + channel.game;
+            //listItem.line1 = "Playing " + channel.game;
             listItem.line2 = channel.status;
             listItem.details = this.__addCommas(stream.viewers);
             listItem.imageURL = channel.logo;

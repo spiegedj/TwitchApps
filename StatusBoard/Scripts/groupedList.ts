@@ -79,6 +79,11 @@ abstract class GroupedList extends ListManager {
                         },
                         {
                             tag: "div",
+                            className: "tile-line",
+                            innerText: item.line1
+                        },
+                        {
+                            tag: "div",
                             className: "tile-line-2",
                             innerText: item.line2
                         },

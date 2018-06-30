@@ -89,6 +89,11 @@ var GroupedList = /** @class */ (function (_super) {
                         },
                         {
                             tag: "div",
+                            className: "tile-line",
+                            innerText: item.line1
+                        },
+                        {
+                            tag: "div",
                             className: "tile-line-2",
                             innerText: item.line2
                         },
