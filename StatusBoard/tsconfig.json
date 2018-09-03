@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs",
-    "watch": true
+    "watch": true,
+    "jsx": "react",
+    "typeRoots": [ "note_modules/@types" ],
+    "types": ["jquery", "react", "react-dom" ]
   },
   "exclude": [
     "node_modules"
@@ -20,6 +23,8 @@
     "Scripts/twitchFollowsAndGames.ts",
     "Scripts/gridManager.ts",
     "Scripts/clock.ts",
-    "Scripts/tournaments.ts"
-  ]
+    "Scripts/tournaments.ts",
+    "Scripts/DateUtils.ts",
+    "Components/Calendar.tsx"
+  ],
 }

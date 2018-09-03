@@ -1,4 +1,3 @@
-/// <reference path="../@types/jquery/jquery.d.ts"/>
 /// <reference path="listmanager.ts"/>
 
 class TwitchFollows extends ListManager {

@@ -1,5 +1,5 @@
-var ListManager = /** @class */ (function () {
-    function ListManager(container, measureCount, title) {
+class ListManager {
+    constructor(container, measureCount, title) {
         this.refreshRate = 30 * 1000;
         this.imageHeight = 60;
         this.titleFontSize = 20;
@@ -28,20 +28,16 @@ var ListManager = /** @class */ (function () {
         }
         setInterval(this.refresh.bind(this), this.refreshRate);
     }
-    Object.defineProperty(ListManager.prototype, "element", {
-        get: function () {
-            return this._listContainer;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ListManager.prototype.setColor = function (color) {
+    get element() {
+        return this._listContainer;
+    }
+    setColor(color) {
         this._listContainer.style.borderLeft = "8px solid " + color;
-    };
-    ListManager.prototype.refresh = function () {
+    }
+    refresh() {
         this.retrieveItems();
-    };
-    ListManager.prototype.render = function () {
+    }
+    render() {
         this._listItemsElement.innerHTML = '';
         for (var i = this.__startIndex; i < (this.__startIndex + this._measureCount); i++) {
             var tiles = this._listItemsElement.getElementsByClassName("tile-container");
@@ -54,8 +50,8 @@ var ListManager = /** @class */ (function () {
                 this.renderTile(this._listItems[i]);
             }
         }
-    };
-    ListManager.prototype.renderTile = function (item) {
+    }
+    renderTile(item) {
         this._listItemsElement.appendChild(this.createMarkup({
             tag: "div",
             className: "tile-container",
@@ -100,8 +96,8 @@ var ListManager = /** @class */ (function () {
                 }
             ]
         }));
-    };
-    ListManager.prototype.getStatusClass = function (item) {
+    }
+    getStatusClass(item) {
         switch (item.status) {
             case Status.blue:
                 return "tile-blue";
@@ -110,9 +106,8 @@ var ListManager = /** @class */ (function () {
             default:
                 return "";
         }
-    };
-    ListManager.prototype.createMarkup = function (tree, trackingObject) {
-        var _this = this;
+    }
+    createMarkup(tree, trackingObject) {
         var element = document.createElement(tree.tag);
         var classes = tree.classNames || [];
         classes.push(tree.className);
@@ -124,30 +119,26 @@ var ListManager = /** @class */ (function () {
             trackingObject[tree.key] = element;
         }
         if (tree.attributes) {
-            tree.attributes.forEach(function (_a) {
-                var name = _a.name, value = _a.value;
+            tree.attributes.forEach(({ name, value }) => {
                 element.setAttribute(name, value);
             });
         }
         if (tree.events) {
-            tree.events.forEach(function (_a) {
-                var name = _a.name, callback = _a.callback;
+            tree.events.forEach(({ name, callback }) => {
                 element.addEventListener(name, callback);
             });
         }
-        tree.children && tree.children.forEach(function (child) {
-            element.appendChild(_this.createMarkup(child, trackingObject));
+        tree.children && tree.children.forEach((child) => {
+            element.appendChild(this.createMarkup(child, trackingObject));
         });
         return element;
-    };
-    return ListManager;
-}());
-var ListItem = /** @class */ (function () {
-    function ListItem() {
+    }
+}
+class ListItem {
+    constructor() {
         this.imageURL = "Images/blank.png";
     }
-    return ListItem;
-}());
+}
 var Status;
 (function (Status) {
     Status[Status["normal"] = 0] = "normal";

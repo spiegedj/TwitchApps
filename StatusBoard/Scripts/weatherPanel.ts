@@ -1,4 +1,3 @@
-/// <reference path="../@types/jquery/jquery.d.ts"/>
 
 class WeatherPanel {
 

@@ -25,22 +25,17 @@
       background-color: #969696; }
     .dark .list-container .tile-container .tile .tile-details {
       color: #C9283E; }
-  .dark #weatherPanel,
   .dark #clock {
-    background-color: #2D2D2D; }
-    .dark #weatherPanel .high,
-    .dark #clock .high {
-      color: #C9283E; }
-    .dark #weatherPanel .low,
-    .dark #clock .low {
-      color: #126872; }
-    .dark #weatherPanel #date,
+    background-color: #031727; }
     .dark #clock #date {
-      background-color: #031727;
       color: #C9283E; }
-    .dark #weatherPanel #time,
     .dark #clock #time {
-      background-color: #031727;
       color: white; }
+  .dark #weatherPanel {
+    background-color: #2D2D2D; }
+    .dark #weatherPanel .high {
+      color: #C9283E; }
+    .dark #weatherPanel .low {
+      color: #126872; }
 
 /*# sourceMappingURL=Themes.css.map */

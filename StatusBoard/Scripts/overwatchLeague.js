@@ -1,51 +1,37 @@
-/// <reference path="../@types/jquery/jquery.d.ts"/>
 /// <reference path="vsList.ts"/>
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var OverwatchLeague = /** @class */ (function (_super) {
-    __extends(OverwatchLeague, _super);
-    function OverwatchLeague(container, measureCount, title) {
-        var _this = _super.call(this, container, measureCount, title) || this;
-        _this.__flipColorsList = [
+class OverwatchLeague extends VSList {
+    constructor(container, measureCount, title) {
+        super(container, measureCount, title);
+        this.__flipColorsList = [
             "BOSTON UPRISING",
             "SAN FRANCISCO SHOCK",
             "HOUSTON OUTLAWS"
         ];
-        _this.retrieveItems();
-        _this.setColor("#FF8820");
-        return _this;
+        this.retrieveItems();
+        this.setColor("#FF8820");
     }
-    OverwatchLeague.prototype.__flipColors = function (competitor) {
+    __flipColors(competitor) {
         if (this.__flipColorsList.indexOf(competitor.name.toUpperCase()) > -1) {
             var swap = competitor.primaryColor;
             competitor.primaryColor = competitor.secondaryColor;
             competitor.secondaryColor = swap;
         }
-    };
-    OverwatchLeague.prototype.retrieveItems = function () {
+    }
+    retrieveItems() {
         $.get("https://api.overwatchleague.com/schedule?locale=en_US", function (json) {
             this.parseMatches(json);
         }.bind(this));
-    };
-    OverwatchLeague.prototype.parseMatches = function (json) {
-        var _this = this;
+    }
+    parseMatches(json) {
         this._listItems = [];
-        var stages = json.data.stages;
-        stages.forEach(function (stage) {
-            var matches = stage.matches;
-            matches.forEach(function (match) {
-                var matchState = match.state;
+        let stages = json.data.stages;
+        stages.forEach((stage) => {
+            let matches = stage.matches;
+            matches.forEach((match) => {
+                let matchState = match.state;
                 if (matchState.toUpperCase() !== "CONCLUDED" && match.competitors.length === 2) {
-                    var competitor1 = match.competitors[0];
-                    var competitor2 = match.competitors[1];
+                    let competitor1 = match.competitors[0];
+                    let competitor2 = match.competitors[1];
                     if (competitor1 && competitor2) {
                         var listItem = new VSListItem();
                         listItem.competitor1 = {
@@ -60,8 +46,8 @@ var OverwatchLeague = /** @class */ (function (_super) {
                             primaryColor: competitor2.primaryColor,
                             secondaryColor: competitor2.secondaryColor,
                         };
-                        _this.__flipColors(listItem.competitor1);
-                        _this.__flipColors(listItem.competitor2);
+                        this.__flipColors(listItem.competitor1);
+                        this.__flipColors(listItem.competitor2);
                         var startDate = new Date(match.startDateTS);
                         var endDate = new Date(match.endDateTS);
                         listItem.date = startDate.toLocaleDateString();
@@ -71,20 +57,20 @@ var OverwatchLeague = /** @class */ (function (_super) {
                             listItem.live = true;
                         }
                         else {
-                            listItem.time = _this.getTimeString(startDate);
+                            listItem.time = this.getTimeString(startDate);
                         }
                         listItem.sortKey = match.startDateTS;
-                        _this._listItems.push(listItem);
+                        this._listItems.push(listItem);
                     }
                 }
             });
         });
-        this._listItems.sort(function (a, b) {
+        this._listItems.sort((a, b) => {
             return a.sortKey - b.sortKey;
         });
         this.render();
-    };
-    OverwatchLeague.prototype.getTimeString = function (date) {
+    }
+    getTimeString(date) {
         var hour = date.getHours();
         var minutes = date.getMinutes();
         var minutesString = (minutes < 10) ? "0" + minutes : minutes;
@@ -92,6 +78,5 @@ var OverwatchLeague = /** @class */ (function (_super) {
         hour = hour % 12;
         hour = hour == 0 ? hour + 12 : hour;
         return hour + ":" + minutesString + " " + amPm;
-    };
-    return OverwatchLeague;
-}(VSList));
+    }
+}

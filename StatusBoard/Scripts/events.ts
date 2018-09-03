@@ -1,4 +1,3 @@
-/// <reference path="../@types/jquery/jquery.d.ts"/>
 /// <reference path="GroupedList.ts"/>
 
 class Events extends GroupedList {

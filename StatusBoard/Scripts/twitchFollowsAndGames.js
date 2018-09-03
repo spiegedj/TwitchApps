@@ -1,25 +1,11 @@
-/// <reference path="../@types/jquery/jquery.d.ts"/>
 /// <reference path="groupedList.ts"/>
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var TwitchFollowsAndGames = /** @class */ (function (_super) {
-    __extends(TwitchFollowsAndGames, _super);
-    function TwitchFollowsAndGames(container, measureCount, title) {
-        var _this = _super.call(this, container, measureCount, title) || this;
-        _this.retrieveItems();
-        _this.setColor("#3DA49A");
-        return _this;
+class TwitchFollowsAndGames extends GroupedList {
+    constructor(container, measureCount, title) {
+        super(container, measureCount, title);
+        this.retrieveItems();
+        this.setColor("#3DA49A");
     }
-    TwitchFollowsAndGames.prototype.retrieveItems = function () {
-        var _this = this;
+    retrieveItems() {
         this.__inQueue = 1;
         this._listItems = [];
         this.__duplicates = {};
@@ -35,19 +21,19 @@ var TwitchFollowsAndGames = /** @class */ (function (_super) {
         $.get("https://api.twitch.tv/kraken/streams/followed?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k", function (json) {
             this.parseStreams(json, true);
         }.bind(this));
-        this.__gameList.forEach(function (game) {
-            _this.__inQueue++;
+        this.__gameList.forEach((game) => {
+            this.__inQueue++;
             $.get("https://api.twitch.tv/kraken/streams/?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k&game=" + game, function (json) {
                 this.parseStreams(json, false);
-            }.bind(_this));
+            }.bind(this));
         });
-    };
-    TwitchFollowsAndGames.prototype.parseStreams = function (json, followed) {
+    }
+    parseStreams(json, followed) {
         this.__inQueue--;
         json.streams.forEach(function (stream) {
             var channel = stream.channel;
             var listItem = new TwitchItem();
-            var dup = this.__duplicates[channel.display_name];
+            let dup = this.__duplicates[channel.display_name];
             if (dup) {
                 if (followed) {
                     dup.highlight = true;
@@ -67,7 +53,7 @@ var TwitchFollowsAndGames = /** @class */ (function (_super) {
             this.__duplicates[channel.display_name] = listItem;
         }, this);
         if (this.__inQueue === 0) {
-            this._listItems.sort(function (a, b) {
+            this._listItems.sort((a, b) => {
                 if (a.highlight && !b.highlight) {
                     return -1;
                 }
@@ -78,8 +64,8 @@ var TwitchFollowsAndGames = /** @class */ (function (_super) {
             });
             this.render();
         }
-    };
-    TwitchFollowsAndGames.prototype.__addCommas = function (num) {
+    }
+    __addCommas(num) {
         var numString = num.toString();
         var commaString = "";
         for (var i = numString.length; i > 3; i -= 3) {
@@ -87,13 +73,7 @@ var TwitchFollowsAndGames = /** @class */ (function (_super) {
         }
         commaString = numString.substr(0, i) + commaString;
         return commaString;
-    };
-    return TwitchFollowsAndGames;
-}(GroupedList));
-var TwitchItem = /** @class */ (function (_super) {
-    __extends(TwitchItem, _super);
-    function TwitchItem() {
-        return _super !== null && _super.apply(this, arguments) || this;
     }
-    return TwitchItem;
-}(GroupedListItem));
+}
+class TwitchItem extends GroupedListItem {
+}

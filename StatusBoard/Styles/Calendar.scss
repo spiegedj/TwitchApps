@@ -1,0 +1,33 @@
+$logo-width: 150px;
+$tile-width: 260px;
+
+.calendar {
+    background-color: #2D2D2D;
+    display: flex;
+    flex-wrap: wrap;
+
+    font-size: 14pt;
+
+    .eventTile {
+        background-color: #1E2E4B;
+        border: 1px solid #6ACDED;
+
+        flex: 1 1 auto;
+        text-align: center;
+        min-width: $tile-width;
+        margin: 5px;
+
+        * {
+            padding: 5px;
+        }
+
+        .eventName {
+            background-color: #01061A;
+            font-size: 17pt;
+        }
+
+        .eventLogo {
+            height: $logo-width;
+        }
+    }
+}

@@ -1,33 +1,20 @@
-/// <reference path="../@types/jquery/jquery.d.ts"/>
 /// <reference path="listmanager.ts"/>
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var GroupedList = /** @class */ (function (_super) {
-    __extends(GroupedList, _super);
-    function GroupedList() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.noHighlight = false;
-        _this.__groups = {};
-        return _this;
-    }
-    GroupedList.prototype.render = function () {
+class GroupedList extends ListManager {
+    constructor() {
+        super(...arguments);
+        this.noHighlight = false;
         this.__groups = {};
-        _super.prototype.render.call(this);
-    };
-    GroupedList.prototype.setColor = function (color) {
+    }
+    render() {
+        this.__groups = {};
+        super.render();
+    }
+    setColor(color) {
         this.__groupColor = color;
-        _super.prototype.setColor.call(this, color);
-    };
-    GroupedList.prototype.renderTile = function (item) {
-        var group = this.__groups[item.groupName.toLowerCase()];
+        super.setColor(color);
+    }
+    renderTile(item) {
+        let group = this.__groups[item.groupName.toLowerCase()];
         if (!group) {
             group = this._listItemsElement.appendChild(this.createMarkup({
                 tag: "div",
@@ -106,13 +93,7 @@ var GroupedList = /** @class */ (function (_super) {
                 }
             ]
         }));
-    };
-    return GroupedList;
-}(ListManager));
-var GroupedListItem = /** @class */ (function (_super) {
-    __extends(GroupedListItem, _super);
-    function GroupedListItem() {
-        return _super !== null && _super.apply(this, arguments) || this;
     }
-    return GroupedListItem;
-}(ListItem));
+}
+class GroupedListItem extends ListItem {
+}

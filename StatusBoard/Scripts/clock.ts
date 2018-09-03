@@ -1,5 +1,3 @@
-/// <reference path="../@types/jquery/jquery.d.ts"/>
-
 class Clock {
     private container: HTMLElement;
     private timeElement : HTMLElement;

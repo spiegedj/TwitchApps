@@ -122,7 +122,7 @@ abstract class ListManager {
                     ]
                 }
             ]
-        }));
+        } as any));
     }
 
     protected getStatusClass(item: ListItem) : string {

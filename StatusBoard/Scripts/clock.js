@@ -1,6 +1,5 @@
-/// <reference path="../@types/jquery/jquery.d.ts"/>
-var Clock = /** @class */ (function () {
-    function Clock() {
+class Clock {
+    constructor() {
         this.width = 300;
         this.height = 300;
         this.padding = 10;
@@ -22,14 +21,10 @@ var Clock = /** @class */ (function () {
         document.body.appendChild(this.container);
         setInterval(this.updateClock.bind(this), 1000);
     }
-    Object.defineProperty(Clock.prototype, "element", {
-        get: function () {
-            return this.container;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Clock.prototype.updateClock = function () {
+    get element() {
+        return this.container;
+    }
+    updateClock() {
         var now = new Date();
         var hours = now.getHours();
         var minutes = now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
@@ -39,8 +34,8 @@ var Clock = /** @class */ (function () {
         this.dateElement.innerHTML = now.toLocaleDateString("en-us", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
         this.timeElement.innerHTML = hours + ":" + minutes + " " + ampm;
         //this.drawClock(now);
-    };
-    Clock.prototype.drawClock = function (now) {
+    }
+    drawClock(now) {
         this.initializeClock();
         this.ctx.clearRect(0, 0, this.width, this.height);
         this.ctx.beginPath();
@@ -62,8 +57,8 @@ var Clock = /** @class */ (function () {
         var angle = (minutes / 60) * 2 * Math.PI;
         this.ctx.lineWidth = 6;
         this.drawHand(angle, this.minuteHandLength);
-    };
-    Clock.prototype.initializeClock = function () {
+    }
+    initializeClock() {
         this.width = this.element.offsetWidth;
         this.canvas.width = this.width;
         this.canvas.height = this.height;
@@ -73,19 +68,19 @@ var Clock = /** @class */ (function () {
         };
         this.radius = ((this.width > this.height) ? this.height : this.width) / 2;
         this.radius -= this.padding;
-    };
-    Clock.prototype.drawHand = function (angle, length) {
+    }
+    drawHand(angle, length) {
         angle -= Math.PI / 2;
-        var x = this.center.x + (length * Math.cos(angle));
-        var y = this.center.y + (length * Math.sin(angle));
+        let x = this.center.x + (length * Math.cos(angle));
+        let y = this.center.y + (length * Math.sin(angle));
         this.ctx.beginPath();
         this.ctx.lineCap = "square";
         this.ctx.moveTo(this.center.x, this.center.y);
         this.ctx.lineTo(x, y);
         this.ctx.stroke();
-    };
-    Clock.prototype.drawFace = function () {
-        var length = this.radius - 25;
+    }
+    drawFace() {
+        let length = this.radius - 25;
         this.ctx.font = "25pt calibri";
         this.ctx.textAlign = "center";
         this.ctx.textBaseline = "middle";
@@ -94,15 +89,14 @@ var Clock = /** @class */ (function () {
         this.ctx.arc(this.center.x, this.center.y, 3, 0, 2 * Math.PI);
         this.ctx.fill();
         for (var i = 1; i < 13; i++) {
-            var angle = (i / 12) * 2 * Math.PI;
+            let angle = (i / 12) * 2 * Math.PI;
             this.writeAtAngle(angle, i + "", length);
         }
-    };
-    Clock.prototype.writeAtAngle = function (angle, text, length) {
+    }
+    writeAtAngle(angle, text, length) {
         angle -= Math.PI / 2;
-        var x = this.center.x + (length * Math.cos(angle));
-        var y = this.center.y + (length * Math.sin(angle));
+        let x = this.center.x + (length * Math.cos(angle));
+        let y = this.center.y + (length * Math.sin(angle));
         this.ctx.fillText(text, x, y);
-    };
-    return Clock;
-}());
+    }
+}

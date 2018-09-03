@@ -58,8 +58,19 @@
         }
     }
 
-    #weatherPanel,
     #clock {
+        background-color: #031727;
+
+        #date {
+            color: #C9283E;
+        }
+
+        #time {
+            color: white;
+        }
+    }
+
+    #weatherPanel {
         background-color: #2D2D2D;
 
         .high {
@@ -68,16 +79,6 @@
         
         .low {
             color: #126872;
-        }
-
-        #date {
-            background-color: #031727;
-            color: #C9283E;
-        }
-
-        #time {
-            background-color: #031727;
-            color: white;
         }
     }
 }

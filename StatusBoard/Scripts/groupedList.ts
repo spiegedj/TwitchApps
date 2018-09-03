@@ -1,4 +1,3 @@
-/// <reference path="../@types/jquery/jquery.d.ts"/>
 /// <reference path="listmanager.ts"/>
 
 abstract class GroupedList extends ListManager {
@@ -95,7 +94,7 @@ abstract class GroupedList extends ListManager {
                     ]
                 }
             ]
-        }));
+        } as any));
     }
 }
 

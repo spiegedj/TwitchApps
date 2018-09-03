@@ -1,29 +1,16 @@
-/// <reference path="../@types/jquery/jquery.d.ts"/>
 /// <reference path="listmanager.ts"/>
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var TwitchFollows = /** @class */ (function (_super) {
-    __extends(TwitchFollows, _super);
-    function TwitchFollows(container, measureCount, title) {
-        var _this = _super.call(this, container, measureCount, title) || this;
-        _this.retrieveItems();
-        _this.setColor("rgb(55,78,88)");
-        return _this;
+class TwitchFollows extends ListManager {
+    constructor(container, measureCount, title) {
+        super(container, measureCount, title);
+        this.retrieveItems();
+        this.setColor("rgb(55,78,88)");
     }
-    TwitchFollows.prototype.retrieveItems = function () {
+    retrieveItems() {
         $.get("https://api.twitch.tv/kraken/streams/followed?oauth_token=a7vx7pwxfhiidyn7zmup202fuxgr3k", function (json) {
             this.parseStreams(json);
         }.bind(this));
-    };
-    TwitchFollows.prototype.parseStreams = function (json) {
+    }
+    parseStreams(json) {
         this._listItems = [];
         json.streams.forEach(function (stream) {
             var channel = stream.channel;
@@ -37,6 +24,5 @@ var TwitchFollows = /** @class */ (function (_super) {
             this._listItems.push(listItem);
         }, this);
         this.render();
-    };
-    return TwitchFollows;
-}(ListManager));
+    }
+}

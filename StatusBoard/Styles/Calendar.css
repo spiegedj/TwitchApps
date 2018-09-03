@@ -1,0 +1,21 @@
+.calendar {
+  background-color: #2D2D2D;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14pt; }
+  .calendar .eventTile {
+    background-color: #1E2E4B;
+    border: 1px solid #6ACDED;
+    flex: 1 1 auto;
+    text-align: center;
+    min-width: 260px;
+    margin: 5px; }
+    .calendar .eventTile * {
+      padding: 5px; }
+    .calendar .eventTile .eventName {
+      background-color: #01061A;
+      font-size: 17pt; }
+    .calendar .eventTile .eventLogo {
+      height: 150px; }
+
+/*# sourceMappingURL=Calendar.css.map */

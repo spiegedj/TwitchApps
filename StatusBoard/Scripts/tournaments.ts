@@ -1,4 +1,3 @@
-/// <reference path="../@types/jquery/jquery.d.ts"/>
 /// <reference path="groupedList.ts"/>
 
 class Tournaments extends GroupedList {
@@ -29,7 +28,7 @@ class Tournaments extends GroupedList {
 
         var events : GroupedListItem[] = [];
 
-        cards.each((index: number, card: Element) => {
+        cards.each((index: number, card: Node[]) => {
             var tournament = $(card).find(".metaData-hd").first().children().first().text();
             var stage = $(card).find(".meta-Data-ft").first().children().first().text();
             var logo = $(card).find(".eventCard-logo").first().children().first().attr("src");
@@ -39,7 +38,7 @@ class Tournaments extends GroupedList {
             item.groupName = tournament;
             item.title = stage;
             item.imageURL = "";
-            item.line1 =  this.getDateStrimg(Number(timestamp);
+            item.line1 =  this.getDateStrimg(Number(timestamp));
             item.line2 = " ";
             item.details = this.getCountdownString(Number(timestamp));
             events.push(item);
@@ -90,7 +89,7 @@ class Tournaments extends GroupedList {
         this.render();
     }
 
-    private createListItem(tournament: JQuery): GroupedListItem {
+    private createListItem(tournament: JQuery<Node[]>): GroupedListItem {
         var name = tournament.find(".tournaments-list-name").first().text();
         var date = tournament.find(".tournaments-list-dates").first().text();
         var image = tournament.find("img").first();
