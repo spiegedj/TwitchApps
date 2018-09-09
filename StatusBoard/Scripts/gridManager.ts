@@ -15,6 +15,7 @@ class GridManager {
     public addBlock(block: Block): void {
         this.__grid.push(block);
 
+        block.element.style.overflow = "hidden";
         block.element.style.position = "absolute";
     }
 

@@ -9,6 +9,7 @@ $tile-width: 260px;
     
     .eventTile {
         flex: 1 1 auto;
+        min-height: 200px;
         min-width: $tile-width;
         margin: 0 20px 20px 0;
         background-color: #2D2D2D;
@@ -27,18 +28,60 @@ $tile-width: 260px;
 
             .tournament-name {
                 //background-color: #01061A;
-                padding-top: 10px;
                 font-size: 20pt;
                 border-bottom: 1px solid #4D4D4D;
+            }
+        }
+
+        .match-date {
+            border-top: 1px solid #4D4D4D;
+            font-size: 14pt;
+            text-align: center;
+        }
+
+        .matchTile {
+            span {
+                float: left;
+            }
+
+            .comp-1, .comp-2 {
+                width: 43%;
+                box-sizing: border-box;
+
+                .comp-name {
+                    font-size: 1.25rem;
+                    line-height: 2;
+                    padding: 0 5px 0 5px;
+                }
+
+                .comp-image { 
+                    float: left;
+                    width: 40px;
+                }
+            }
+
+            .comp-1 {
+                span, .comp-image {
+                    text-align: right;
+                    float: right;
+                }
+            }
+
+            .match-time {
+                text-align: center;
+                width: 14%;
+                font-size: 1.25rem;
+                line-height: 1.5;
+                padding-top: 4px;
+                height: 100%;
             }
         }
     }
 
     .wcs {
         border-left: 8px solid #0677BD;
-        //background-color: #1E2E4B;
         background-image: url("../Images/wcs.png");
-        background-position: center; /* Center the image */
+        background-position: center;
         background-repeat: no-repeat; /* Do not repeat the image */
 
         .tournament-name {
@@ -48,13 +91,25 @@ $tile-width: 260px;
 
     .gsl {
         border-left: 8px solid #F0CF5B;
-        //background-color: #1E2E4B;
         background-image: url("../Images/gsl.png");
-        background-position: center; /* Center the image */
+        background-position: center;
         background-repeat: no-repeat; /* Do not repeat the image */
+        background-size: 200px;
 
         .tournament-name {
             color: #F0CF5B;
+        }
+    }
+
+    .ow {
+        border-left: 8px solid #FF8820;
+        background-image: url("../Images/ow.png");
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: 700px;
+
+        .match-date {
+            color: #FF8820;
         }
     }
 }

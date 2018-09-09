@@ -4,6 +4,7 @@
   font-size: 14pt; }
   .calendar .eventTile {
     flex: 1 1 auto;
+    min-height: 200px;
     min-width: 260px;
     margin: 0 20px 20px 0;
     background-color: #2D2D2D;
@@ -15,14 +16,38 @@
     .calendar .eventTile table {
       width: 100%; }
       .calendar .eventTile table .tournament-name {
-        padding-top: 10px;
         font-size: 20pt;
         border-bottom: 1px solid #4D4D4D; }
+    .calendar .eventTile .match-date {
+      border-top: 1px solid #4D4D4D;
+      font-size: 14pt;
+      text-align: center; }
+    .calendar .eventTile .matchTile span {
+      float: left; }
+    .calendar .eventTile .matchTile .comp-1, .calendar .eventTile .matchTile .comp-2 {
+      width: 43%;
+      box-sizing: border-box; }
+      .calendar .eventTile .matchTile .comp-1 .comp-name, .calendar .eventTile .matchTile .comp-2 .comp-name {
+        font-size: 1.25rem;
+        line-height: 2;
+        padding: 0 5px 0 5px; }
+      .calendar .eventTile .matchTile .comp-1 .comp-image, .calendar .eventTile .matchTile .comp-2 .comp-image {
+        float: left;
+        width: 40px; }
+    .calendar .eventTile .matchTile .comp-1 span, .calendar .eventTile .matchTile .comp-1 .comp-image {
+      text-align: right;
+      float: right; }
+    .calendar .eventTile .matchTile .match-time {
+      text-align: center;
+      width: 14%;
+      font-size: 1.25rem;
+      line-height: 1.5;
+      padding-top: 4px;
+      height: 100%; }
   .calendar .wcs {
     border-left: 8px solid #0677BD;
     background-image: url("../Images/wcs.png");
     background-position: center;
-    /* Center the image */
     background-repeat: no-repeat;
     /* Do not repeat the image */ }
     .calendar .wcs .tournament-name {
@@ -31,10 +56,18 @@
     border-left: 8px solid #F0CF5B;
     background-image: url("../Images/gsl.png");
     background-position: center;
-    /* Center the image */
     background-repeat: no-repeat;
-    /* Do not repeat the image */ }
+    /* Do not repeat the image */
+    background-size: 200px; }
     .calendar .gsl .tournament-name {
       color: #F0CF5B; }
+  .calendar .ow {
+    border-left: 8px solid #FF8820;
+    background-image: url("../Images/ow.png");
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: 700px; }
+    .calendar .ow .match-date {
+      color: #FF8820; }
 
 /*# sourceMappingURL=Calendar.css.map */

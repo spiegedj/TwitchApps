@@ -1,4 +1,5 @@
 /// <reference path="StarCraftEvents.tsx"/>
+/// <reference path="OverwatchEvents.tsx"/>
 class EventTile extends React.Component {
     constructor(props) {
         super(props);
@@ -7,16 +8,10 @@ class EventTile extends React.Component {
     }
 }
 class Calendar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            events: []
-        };
-    }
     render() {
         return (React.createElement("div", { className: "calendar card" },
             React.createElement(WCSEvents, null),
             React.createElement(GSLEvents, null),
-            React.createElement(StarCraftEvents, null)));
+            React.createElement(OverwatchEvents, null)));
     }
 }

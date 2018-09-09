@@ -20,6 +20,20 @@ class DateUtils {
         var month = monthNames[date.getMonth()];
         var day = date.getDate();
         var dayOfWeek = dayOfWeekNames[date.getDay()];
+        var timeString = this.getTimeString(date);
+
+        if (this.getDaysFrom(date) < 7) {
+            return `${dayOfWeek} - ${timeString}`;
+        } 
+        else {
+            return `${month} ${day} - ${timeString}`;
+        }
+
+        return `${month} ${day} - ${dayOfWeek} ${timeString}`;
+    }
+
+    public static getTimeString(date: Date): string 
+    {
         var hour = date.getHours();
         var minutes = date.getMinutes();
         var minutesString = (minutes < 10) ? "0" + minutes : minutes;
@@ -27,14 +41,7 @@ class DateUtils {
         hour = hour % 12;
         hour = hour == 0 ? hour + 12 : hour;
 
-        if (this.getDaysFrom(date) < 7) {
-            return `${dayOfWeek} - ${hour}:${minutesString} ${amPm}`;
-        } 
-        else {
-            return `${month} ${day} - ${hour}:${minutesString} ${amPm}`
-        }
-
-        return month + " " + day + " - " + dayOfWeek + " " + hour + ":" + minutesString + " " + amPm;
+        return `${hour}:${minutesString} ${amPm}`
     }
 
     public static getCountdownString(date: Date): string {

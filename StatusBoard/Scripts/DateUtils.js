@@ -18,19 +18,23 @@ class DateUtils {
         var month = monthNames[date.getMonth()];
         var day = date.getDate();
         var dayOfWeek = dayOfWeekNames[date.getDay()];
+        var timeString = this.getTimeString(date);
+        if (this.getDaysFrom(date) < 7) {
+            return `${dayOfWeek} - ${timeString}`;
+        }
+        else {
+            return `${month} ${day} - ${timeString}`;
+        }
+        return `${month} ${day} - ${dayOfWeek} ${timeString}`;
+    }
+    static getTimeString(date) {
         var hour = date.getHours();
         var minutes = date.getMinutes();
         var minutesString = (minutes < 10) ? "0" + minutes : minutes;
         var amPm = (hour > 12) ? "PM" : "AM";
         hour = hour % 12;
         hour = hour == 0 ? hour + 12 : hour;
-        if (this.getDaysFrom(date) < 7) {
-            return `${dayOfWeek} - ${hour}:${minutesString} ${amPm}`;
-        }
-        else {
-            return `${month} ${day} - ${hour}:${minutesString} ${amPm}`;
-        }
-        return month + " " + day + " - " + dayOfWeek + " " + hour + ":" + minutesString + " " + amPm;
+        return `${hour}:${minutesString} ${amPm}`;
     }
     static getCountdownString(date) {
         if (!date) {

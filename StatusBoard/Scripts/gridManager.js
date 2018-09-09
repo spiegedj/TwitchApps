@@ -6,6 +6,7 @@ class GridManager {
     }
     addBlock(block) {
         this.__grid.push(block);
+        block.element.style.overflow = "hidden";
         block.element.style.position = "absolute";
     }
     resize(screenWidth, screenHeight) {
