@@ -25,6 +25,7 @@
     "Scripts/clock.ts",
     "Scripts/tournaments.ts",
     "Scripts/DateUtils.ts",
-    "Components/Calendar.tsx"
+    "Components/Calendar.tsx",
+    "Components/StarCraftEvents.tsx"
   ],
 }

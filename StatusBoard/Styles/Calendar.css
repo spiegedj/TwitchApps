@@ -1,21 +1,40 @@
 .calendar {
-  background-color: #2D2D2D;
   display: flex;
   flex-wrap: wrap;
   font-size: 14pt; }
   .calendar .eventTile {
-    background-color: #1E2E4B;
-    border: 1px solid #6ACDED;
     flex: 1 1 auto;
-    text-align: center;
     min-width: 260px;
-    margin: 5px; }
-    .calendar .eventTile * {
-      padding: 5px; }
+    margin: 0 20px 20px 0;
+    background-color: #2D2D2D;
+    padding-left: 5px; }
     .calendar .eventTile .eventName {
-      background-color: #01061A;
-      font-size: 17pt; }
+      text-align: center; }
     .calendar .eventTile .eventLogo {
       height: 150px; }
+    .calendar .eventTile table {
+      width: 100%; }
+      .calendar .eventTile table .tournament-name {
+        padding-top: 10px;
+        font-size: 20pt;
+        border-bottom: 1px solid #4D4D4D; }
+  .calendar .wcs {
+    border-left: 8px solid #0677BD;
+    background-image: url("../Images/wcs.png");
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */ }
+    .calendar .wcs .tournament-name {
+      color: #0677BD; }
+  .calendar .gsl {
+    border-left: 8px solid #F0CF5B;
+    background-image: url("../Images/gsl.png");
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */ }
+    .calendar .gsl .tournament-name {
+      color: #F0CF5B; }
 
 /*# sourceMappingURL=Calendar.css.map */

@@ -21,8 +21,8 @@ $(document).ready(function() {
 
     gridManager.addBlock({ element: weather.element, x: 0, y: 0, w: .5, h: 6});
 
-    gridManager.addBlock({ element: clock.element, x: .5, y: 0, w: 3.5, h: 2});
-    gridManager.addBlock({ element: calendarEl, x: .5, y: 2, w: 3.5, h: 4 });
+    gridManager.addBlock({ element: clock.element, x: .5, y: 0, w: 3.5, h: 1});
+    gridManager.addBlock({ element: calendarEl, x: .5, y: 1, w: 3.5, h: 5 });
 
     //gridManager.addBlock({ element: tournaments.element, x: 2, y: 0, w: 2, h: 1});
 

@@ -6,11 +6,15 @@ class DateUtils {
     }
 
     public static getDateString(date: Date): string {
-        var monthNames = [ "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December" ];
+        var monthNames = [ "Jan", "Feb", "Mar", "April", "May", "June",
+            "July", "Aug", "Sept", "Oct", "Nov", "Dec" ];
         var dayOfWeekNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
         if (!date) return "";
+
+        if (isNaN(date.getTime())) {
+            return "Live";
+        }
 
         var locale = "en-us";
         var month = monthNames[date.getMonth()];
@@ -29,8 +33,6 @@ class DateUtils {
         else {
             return `${month} ${day} - ${hour}:${minutesString} ${amPm}`
         }
-
-
 
         return month + " " + day + " - " + dayOfWeek + " " + hour + ":" + minutesString + " " + amPm;
     }

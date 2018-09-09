@@ -2,32 +2,59 @@ $logo-width: 150px;
 $tile-width: 260px;
 
 .calendar {
-    background-color: #2D2D2D;
     display: flex;
     flex-wrap: wrap;
-
+    
     font-size: 14pt;
-
+    
     .eventTile {
-        background-color: #1E2E4B;
-        border: 1px solid #6ACDED;
-
         flex: 1 1 auto;
-        text-align: center;
         min-width: $tile-width;
-        margin: 5px;
-
-        * {
-            padding: 5px;
-        }
-
+        margin: 0 20px 20px 0;
+        background-color: #2D2D2D;
+        padding-left: 5px;
+        
         .eventName {
-            background-color: #01061A;
-            font-size: 17pt;
+            text-align: center;
         }
-
+        
         .eventLogo {
             height: $logo-width;
+        }
+
+        table {
+            width: 100%;
+
+            .tournament-name {
+                //background-color: #01061A;
+                padding-top: 10px;
+                font-size: 20pt;
+                border-bottom: 1px solid #4D4D4D;
+            }
+        }
+    }
+
+    .wcs {
+        border-left: 8px solid #0677BD;
+        //background-color: #1E2E4B;
+        background-image: url("../Images/wcs.png");
+        background-position: center; /* Center the image */
+        background-repeat: no-repeat; /* Do not repeat the image */
+
+        .tournament-name {
+            color: #0677BD;
+        }
+    }
+
+    .gsl {
+        border-left: 8px solid #F0CF5B;
+        //background-color: #1E2E4B;
+        background-image: url("../Images/gsl.png");
+        background-position: center; /* Center the image */
+        background-repeat: no-repeat; /* Do not repeat the image */
+
+        .tournament-name {
+            color: #F0CF5B;
         }
     }
 }
