@@ -7,6 +7,7 @@ interface MatchDetails
     competitor2: CompetitorDetails
     date: Date;
     isLive: boolean;
+    score: string;
 }
 
 interface CompetitorDetails {
@@ -62,13 +63,19 @@ class OverwatchEvents extends EventTile
 
                     const startDate = new Date(match.startDate.timestamp);
                     const now = new Date().getTime();
-                    const isLive: boolean = startDate.getTime() > now;
+                    const isLive: boolean = startDate.getTime() < now;
+                    let score = "";
+                    if (isLive) {
+                        score = match.scores[0].value + " - " + match.scores[1].value;
+                    }
+
 
                     this.matches.push({
                         competitor1: comp1,
                         competitor2: comp2,
                         date: new Date(match.startDate.timestamp),
                         isLive: isLive,
+                        score: score
                     });
                 }
             })
@@ -101,13 +108,14 @@ class OverwatchEvents extends EventTile
                 lastDate = match.date.getDate();
             }
 
+            const matchStatus = match.isLive ? match.score : DateUtils.getTimeString(match.date);
             const matches = 
                 <div className="matchTile">
                     <span className="comp-1">
                         <img src={match.competitor1.imageURL} className="comp-image" />
                         <span className="comp-name">{match.competitor1.name}</span>
                     </span>
-                    <span className="match-time">{DateUtils.getTimeString(match.date)}</span>
+                    <span className="match-time">{matchStatus}</span>
                     <span className="comp-2">
                         <img src={match.competitor2.imageURL} className="comp-image" />
                         <span className="comp-name">{match.competitor2.name}</span>

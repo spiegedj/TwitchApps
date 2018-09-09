@@ -35,12 +35,17 @@ class OverwatchEvents extends EventTile {
                     };
                     const startDate = new Date(match.startDate.timestamp);
                     const now = new Date().getTime();
-                    const isLive = startDate.getTime() > now;
+                    const isLive = startDate.getTime() < now;
+                    let score = "";
+                    if (isLive) {
+                        score = match.scores[0].value + " - " + match.scores[1].value;
+                    }
                     this.matches.push({
                         competitor1: comp1,
                         competitor2: comp2,
                         date: new Date(match.startDate.timestamp),
                         isLive: isLive,
+                        score: score
                     });
                 }
             });
@@ -63,11 +68,12 @@ class OverwatchEvents extends EventTile {
                 dateLine = React.createElement("div", { className: "match-date" }, DateUtils.getDayString(match.date));
                 lastDate = match.date.getDate();
             }
+            const matchStatus = match.isLive ? match.score : DateUtils.getTimeString(match.date);
             const matches = React.createElement("div", { className: "matchTile" },
                 React.createElement("span", { className: "comp-1" },
                     React.createElement("img", { src: match.competitor1.imageURL, className: "comp-image" }),
                     React.createElement("span", { className: "comp-name" }, match.competitor1.name)),
-                React.createElement("span", { className: "match-time" }, DateUtils.getTimeString(match.date)),
+                React.createElement("span", { className: "match-time" }, matchStatus),
                 React.createElement("span", { className: "comp-2" },
                     React.createElement("img", { src: match.competitor2.imageURL, className: "comp-image" }),
                     React.createElement("span", { className: "comp-name" }, match.competitor2.name)));
