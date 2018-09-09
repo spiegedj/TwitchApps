@@ -91,12 +91,15 @@ class StarCraftEvents extends EventTile
 
     protected getClasses(): string { return "eventTile"; }
     
-    public render(): React.ReactNode {
+    public render(): React.ReactNode 
+    {
+        
         const events = this.state.tournaments.map((tournament: Tournament) => {
             const tournamentRow = <tr><td colSpan={2} className="tournament-name" >{tournament.name}</td></tr>;
             const events = tournament.events.map(event => {
+                const isLive = isNaN(event.eventDate.getTime());
                 return (
-                <tr> 
+                <tr className={isLive ? "live" : ""}>
                     <td>{event.eventDetails}</td>
                     <td>{DateUtils.getDateString(event.eventDate)}</td>
                 </tr>);

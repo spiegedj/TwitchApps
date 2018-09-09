@@ -11,7 +11,6 @@ $tile-width: 260px;
         flex: 1 1 auto;
         min-height: 200px;
         min-width: $tile-width;
-        margin: 0 20px 20px 0;
         background-color: #2D2D2D;
         padding-left: 5px;
         
@@ -23,8 +22,14 @@ $tile-width: 260px;
             height: $logo-width;
         }
 
+        .live {
+            //border-bottom: 3px solid #00923F;
+            background-image: linear-gradient(to right, rgba(0,146,43, .5), transparent);
+        }
+
         table {
             width: 100%;
+            border-collapse: collapse;
 
             .tournament-name {
                 //background-color: #01061A;
@@ -83,6 +88,8 @@ $tile-width: 260px;
         background-image: url("../Images/wcs.png");
         background-position: center;
         background-repeat: no-repeat; /* Do not repeat the image */
+        margin-right: 15px;
+        margin-bottom: 15px;
 
         .tournament-name {
             color: #0677BD;
@@ -95,6 +102,7 @@ $tile-width: 260px;
         background-position: center;
         background-repeat: no-repeat; /* Do not repeat the image */
         background-size: 200px;
+        margin-bottom: 15px;
 
         .tournament-name {
             color: #F0CF5B;
@@ -103,10 +111,10 @@ $tile-width: 260px;
 
     .ow {
         border-left: 8px solid #FF8820;
-        background-image: url("../Images/ow.png");
-        background-position: top;
+        background-image: url("../Images/owwc.png");
+        background-position-x: center;
+        background-position-y: 100px;
         background-repeat: no-repeat;
-        background-size: 700px;
 
         .match-date {
             color: #FF8820;

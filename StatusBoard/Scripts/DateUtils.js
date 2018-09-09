@@ -6,26 +6,33 @@ class DateUtils {
         return (date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24);
     }
     static getDateString(date) {
-        var monthNames = ["Jan", "Feb", "Mar", "April", "May", "June",
-            "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
-        var dayOfWeekNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         if (!date)
             return "";
         if (isNaN(date.getTime())) {
             return "Live";
         }
-        var locale = "en-us";
-        var month = monthNames[date.getMonth()];
-        var day = date.getDate();
-        var dayOfWeek = dayOfWeekNames[date.getDay()];
-        var timeString = this.getTimeString(date);
-        if (this.getDaysFrom(date) < 7) {
-            return `${dayOfWeek} - ${timeString}`;
+        return `${this.getDayString(date)} ${this.getTimeString(date)}`;
+    }
+    static getDayString(date) {
+        if (!date)
+            return "";
+        const daysFrom = this.getDaysFrom(date);
+        if (daysFrom < 1) {
+            return "Today";
+        }
+        const monthNames = ["Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+        const dayOfWeekNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const locale = "en-us";
+        const month = monthNames[date.getMonth()];
+        const day = date.getDate();
+        const dayOfWeek = dayOfWeekNames[date.getDay()];
+        if (daysFrom < 6) {
+            return `${dayOfWeek}`;
         }
         else {
-            return `${month} ${day} - ${timeString}`;
+            return `${month} ${day}`;
         }
-        return `${month} ${day} - ${dayOfWeek} ${timeString}`;
+        return `${month} ${day} - ${dayOfWeek}`;
     }
     static getTimeString(date) {
         var hour = date.getHours();

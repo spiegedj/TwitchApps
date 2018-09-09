@@ -97,7 +97,7 @@ class OverwatchEvents extends EventTile
             let dateLine: JSX.Element;
             if (lastDate != match.date.getDate()) 
             {
-                dateLine = <div className="match-date">{DateUtils.getDateString(match.date)}</div>;
+                dateLine = <div className="match-date">{DateUtils.getDayString(match.date)}</div>;
                 lastDate = match.date.getDate();
             }
 

@@ -60,7 +60,7 @@ class OverwatchEvents extends EventTile {
         const matches = this.state.matches.map((match) => {
             let dateLine;
             if (lastDate != match.date.getDate()) {
-                dateLine = React.createElement("div", { className: "match-date" }, DateUtils.getDateString(match.date));
+                dateLine = React.createElement("div", { className: "match-date" }, DateUtils.getDayString(match.date));
                 lastDate = match.date.getDate();
             }
             const matches = React.createElement("div", { className: "matchTile" },

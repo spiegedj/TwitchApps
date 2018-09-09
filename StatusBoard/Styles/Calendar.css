@@ -6,15 +6,17 @@
     flex: 1 1 auto;
     min-height: 200px;
     min-width: 260px;
-    margin: 0 20px 20px 0;
     background-color: #2D2D2D;
     padding-left: 5px; }
     .calendar .eventTile .eventName {
       text-align: center; }
     .calendar .eventTile .eventLogo {
       height: 150px; }
+    .calendar .eventTile .live {
+      background-image: linear-gradient(to right, rgba(0, 146, 43, 0.5), transparent); }
     .calendar .eventTile table {
-      width: 100%; }
+      width: 100%;
+      border-collapse: collapse; }
       .calendar .eventTile table .tournament-name {
         font-size: 20pt;
         border-bottom: 1px solid #4D4D4D; }
@@ -49,7 +51,9 @@
     background-image: url("../Images/wcs.png");
     background-position: center;
     background-repeat: no-repeat;
-    /* Do not repeat the image */ }
+    /* Do not repeat the image */
+    margin-right: 15px;
+    margin-bottom: 15px; }
     .calendar .wcs .tournament-name {
       color: #0677BD; }
   .calendar .gsl {
@@ -58,15 +62,16 @@
     background-position: center;
     background-repeat: no-repeat;
     /* Do not repeat the image */
-    background-size: 200px; }
+    background-size: 200px;
+    margin-bottom: 15px; }
     .calendar .gsl .tournament-name {
       color: #F0CF5B; }
   .calendar .ow {
     border-left: 8px solid #FF8820;
-    background-image: url("../Images/ow.png");
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: 700px; }
+    background-image: url("../Images/owwc.png");
+    background-position-x: center;
+    background-position-y: 100px;
+    background-repeat: no-repeat; }
     .calendar .ow .match-date {
       color: #FF8820; }
 

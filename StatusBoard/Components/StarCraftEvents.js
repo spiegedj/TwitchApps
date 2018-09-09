@@ -65,7 +65,8 @@ class StarCraftEvents extends EventTile {
             const tournamentRow = React.createElement("tr", null,
                 React.createElement("td", { colSpan: 2, className: "tournament-name" }, tournament.name));
             const events = tournament.events.map(event => {
-                return (React.createElement("tr", null,
+                const isLive = isNaN(event.eventDate.getTime());
+                return (React.createElement("tr", { className: isLive ? "live" : "" },
                     React.createElement("td", null, event.eventDetails),
                     React.createElement("td", null, DateUtils.getDateString(event.eventDate))));
             });
