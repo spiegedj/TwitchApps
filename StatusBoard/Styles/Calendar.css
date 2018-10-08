@@ -1,7 +1,10 @@
 .calendar {
   display: flex;
   flex-wrap: wrap;
-  font-size: 14pt; }
+  font-size: 14pt;
+  position: absolute;
+  top: 0;
+  bottom: 0; }
   .calendar .eventTile {
     flex: 1 1 auto;
     min-height: 200px;

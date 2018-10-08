@@ -6,6 +6,10 @@ $tile-width: 260px;
     flex-wrap: wrap;
     
     font-size: 14pt;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
     
     .eventTile {
         flex: 1 1 auto;
