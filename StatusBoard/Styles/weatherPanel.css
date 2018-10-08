@@ -14,10 +14,10 @@
       font-size: 16pt; }
     .weatherPanel .clock .clock-time {
       color: white;
-      font-size: 55pt; }
+      font-size: 50pt; }
   .weatherPanel .temp {
     flex-grow: 0;
-    font-size: 60pt; }
+    font-size: 45pt; }
   .weatherPanel .forecast-day {
     flex-grow: 1;
     display: flex;
@@ -27,7 +27,7 @@
     .weatherPanel .forecast-day .day {
       text-align: center; }
     .weatherPanel .forecast-day .temp-icon {
-      width: 110px;
+      width: 100px;
       margin-top: -25px;
       margin-bottom: -25px;
       margin-left: -15px;

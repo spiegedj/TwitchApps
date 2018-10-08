@@ -20,13 +20,13 @@
         
         .clock-time {
             color: white;
-            font-size: 55pt;
+            font-size: 50pt;
         }
     }
 
     .temp {
         flex-grow: 0;
-        font-size: 60pt;
+        font-size: 45pt;
     }
     
     .forecast-day {
@@ -42,7 +42,7 @@
         }
 
         .temp-icon {
-            width: 110px;
+            width: 100px;
             margin-top: -25px;
             margin-bottom: -25px;
             margin-left: -15px;
