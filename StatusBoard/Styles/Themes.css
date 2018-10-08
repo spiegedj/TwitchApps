@@ -25,17 +25,5 @@
       background-color: #969696; }
     .dark .list-container .tile-container .tile .tile-details {
       color: #C9283E; }
-  .dark #clock {
-    background-color: #031727; }
-    .dark #clock #date {
-      color: #C9283E; }
-    .dark #clock #time {
-      color: white; }
-  .dark #weatherPanel {
-    background-color: #2D2D2D; }
-    .dark #weatherPanel .high {
-      color: #C9283E; }
-    .dark #weatherPanel .low {
-      color: #126872; }
 
 /*# sourceMappingURL=Themes.css.map */

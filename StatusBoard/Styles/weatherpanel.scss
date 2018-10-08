@@ -1,88 +1,65 @@
-#clock {
-    top: 15px; 
-    left: 15px;
+.weatherPanel {
+    background-color: #2D2D2D;
 
-    #date {
-        padding-top: 20px;
-        font-size: 16pt;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    .clock {
+        flex-grow: 0;
+
+        background-color: #031727;
+        padding-top: 15px;
+        padding-left: 15px;
+        padding-right: 15px;
+    
+        .clock-date {
+            color: #C9283E;
+            font-size: 16pt;
+        }
+        
+        .clock-time {
+            color: white;
+            font-size: 55pt;
+        }
+    }
+
+    .temp {
+        flex-grow: 0;
+        font-size: 60pt;
     }
     
-    #time {
-        padding-bottom: 10px;
-        font-size: 55pt;
-    }
+    .forecast-day {
+        flex-grow: 1;
 
-    div {
-        margin: 0 auto;
-        text-align: center;
-        clear: both;
-    }
-
-    #analog {
-
-    }
-}
-
-
-
-
-
-/********* CONDITION *********/
-
-#conditions { 
-    padding-top: 80px;
-}
-
-#conditions > .temp-icon  {
-    margin-top: -25px;
-    float: left;
-}
-
-#conditions > .temp {
-    font-size: 70pt;
-    float: left;
-}
-
-.condition-forecast {
-    padding-top: 10px;
-    padding-left: 10px;
-    float: left;
-}
-
-#conditions .high,
-#conditions .low {
-    font-size: 20pt;
-    padding: 5px;
-}
-
-/********* FORECAST *********/
-
-#forecast {
-    font-size: 16pt;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-
-    .forecast-tile {
-        border-bottom: 2px solid black;
-
-        .temp {
-            text-align: center;
-            font-size: 45pt;
-        }
+        display: flex;
+        flex-direction: column;
+        font-size: 18pt;
+        border-left: 1px solid #4D4D4D;
 
         .day {
             text-align: center;
         }
 
         .temp-icon {
-            width: 120px;
-            margin: -15px;
+            width: 110px;
+            margin-top: -25px;
+            margin-bottom: -25px;
+            margin-left: -15px;
+            margin-right: -25px;
         }
 
         .forecast-container {
             text-align: center;
+        }
 
+        .high {
+            color: #C9283E;
+            padding-right: 4px;
+        }
+        
+        .low {
+            color: #126872;
         }
     }
 }

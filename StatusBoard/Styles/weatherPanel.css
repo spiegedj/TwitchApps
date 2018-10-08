@@ -1,56 +1,43 @@
-#clock {
-  top: 15px;
-  left: 15px; }
-  #clock #date {
-    padding-top: 20px;
-    font-size: 16pt; }
-  #clock #time {
-    padding-bottom: 10px;
-    font-size: 55pt; }
-  #clock div {
-    margin: 0 auto;
-    text-align: center;
-    clear: both; }
-
-/********* CONDITION *********/
-#conditions {
-  padding-top: 80px; }
-
-#conditions > .temp-icon {
-  margin-top: -25px;
-  float: left; }
-
-#conditions > .temp {
-  font-size: 70pt;
-  float: left; }
-
-.condition-forecast {
-  padding-top: 10px;
-  padding-left: 10px;
-  float: left; }
-
-#conditions .high,
-#conditions .low {
-  font-size: 20pt;
-  padding: 5px; }
-
-/********* FORECAST *********/
-#forecast {
-  font-size: 16pt;
+.weatherPanel {
+  background-color: #2D2D2D;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around; }
-  #forecast .forecast-tile {
-    border-bottom: 2px solid black; }
-    #forecast .forecast-tile .temp {
-      text-align: center;
-      font-size: 45pt; }
-    #forecast .forecast-tile .day {
+  flex-direction: row;
+  align-items: center; }
+  .weatherPanel .clock {
+    flex-grow: 0;
+    background-color: #031727;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px; }
+    .weatherPanel .clock .clock-date {
+      color: #C9283E;
+      font-size: 16pt; }
+    .weatherPanel .clock .clock-time {
+      color: white;
+      font-size: 55pt; }
+  .weatherPanel .temp {
+    flex-grow: 0;
+    font-size: 60pt; }
+  .weatherPanel .forecast-day {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 18pt;
+    border-left: 1px solid #4D4D4D; }
+    .weatherPanel .forecast-day .day {
       text-align: center; }
-    #forecast .forecast-tile .temp-icon {
-      width: 120px;
-      margin: -15px; }
-    #forecast .forecast-tile .forecast-container {
+    .weatherPanel .forecast-day .temp-icon {
+      width: 110px;
+      margin-top: -25px;
+      margin-bottom: -25px;
+      margin-left: -15px;
+      margin-right: -25px; }
+    .weatherPanel .forecast-day .forecast-container {
       text-align: center; }
+    .weatherPanel .forecast-day .high {
+      color: #C9283E;
+      padding-right: 4px; }
+    .weatherPanel .forecast-day .low {
+      color: #126872; }
 
 /*# sourceMappingURL=weatherpanel.css.map */
