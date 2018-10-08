@@ -5,8 +5,11 @@
     flex-direction: row;
     align-items: center;
     
+    height: 100%;
+
     .clock {
         flex-grow: 0;
+        height: 100%;
 
         background-color: #031727;
         padding-top: 15px;

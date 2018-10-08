@@ -2,9 +2,11 @@
   background-color: #2D2D2D;
   display: flex;
   flex-direction: row;
-  align-items: center; }
+  align-items: center;
+  height: 100%; }
   .weatherPanel .clock {
     flex-grow: 0;
+    height: 100%;
     background-color: #031727;
     padding-top: 15px;
     padding-left: 15px;
