@@ -1,29 +1,35 @@
-class DateUtils {
-    public static getDaysFrom(date: Date): number {
+class DateUtils
+{
+    public static getDaysFrom(date: Date): number
+    {
         if (!date) return 0;
         var now = new Date();
-        return (date.getTime() - now.getTime()) / (1000 * 60  * 60 * 24);
+        return (date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24);
     }
 
-    public static getDateString(date: Date): string {
+    public static getDateString(date: Date): string
+    {
         if (!date) return "";
 
-        if (isNaN(date.getTime())) {
+        if (isNaN(date.getTime()))
+        {
             return "Live";
         }
 
         return `${this.getDayString(date)} ${this.getTimeString(date)}`;
     }
 
-    public static getDayString(date: Date): string {
+    public static getDayString(date: Date): string
+    {
         if (!date) return "";
 
         const daysFrom = this.getDaysFrom(date);
-        if (daysFrom < 1) {
+        if (daysFrom < 1)
+        {
             return "Today";
         }
 
-        const monthNames = [ "Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec" ];
+        const monthNames = ["Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
         const dayOfWeekNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
         const locale = "en-us";
@@ -31,14 +37,14 @@ class DateUtils {
         const day = date.getDate();
         const dayOfWeek = dayOfWeekNames[date.getDay()];
 
-        if (daysFrom < 6) {
+        if (daysFrom < 6)
+        {
             return `${dayOfWeek}`;
-        } 
-        else {
+        }
+        else
+        {
             return `${month} ${day}`;
         }
-
-        return `${month} ${day} - ${dayOfWeek}`;
     }
 
     public static getTimeString(date: Date): string 
@@ -53,7 +59,8 @@ class DateUtils {
         return `${hour}:${minutesString} ${amPm}`
     }
 
-    public static getCountdownString(date: Date): string {
+    public static getCountdownString(date: Date): string
+    {
         if (!date) { return "Live now"; }
 
         var daysFrom = this.getDaysFrom(date);
@@ -64,5 +71,13 @@ class DateUtils {
         var minutes = Math.floor(minutesFrom);
 
         return days + "d " + hours + "h " + minutes + "m";
+    }
+
+    public static isLive(startDate: Date, endDate: Date)
+    {
+        if (!startDate || !endDate) { return false; }
+
+        const now = new Date().valueOf();
+        return startDate.valueOf() <= now && now <= endDate.valueOf();
     }
 }

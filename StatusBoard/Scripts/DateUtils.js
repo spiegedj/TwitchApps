@@ -32,7 +32,6 @@ class DateUtils {
         else {
             return `${month} ${day}`;
         }
-        return `${month} ${day} - ${dayOfWeek}`;
     }
     static getTimeString(date) {
         var hour = date.getHours();
@@ -54,5 +53,12 @@ class DateUtils {
         var minutesFrom = (hoursFrom - hours) * 60;
         var minutes = Math.floor(minutesFrom);
         return days + "d " + hours + "h " + minutes + "m";
+    }
+    static isLive(startDate, endDate) {
+        if (!startDate || !endDate) {
+            return false;
+        }
+        const now = new Date().valueOf();
+        return startDate.valueOf() <= now && now <= endDate.valueOf();
     }
 }

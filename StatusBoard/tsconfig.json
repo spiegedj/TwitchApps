@@ -4,8 +4,14 @@
     "module": "commonjs",
     "watch": true,
     "jsx": "react",
-    "typeRoots": [ "note_modules/@types" ],
-    "types": ["jquery", "react", "react-dom" ]
+    "typeRoots": [
+      "note_modules/@types"
+    ],
+    "types": [
+      "jquery",
+      "react",
+      "react-dom"
+    ]
   },
   "exclude": [
     "node_modules"
@@ -27,6 +33,7 @@
     "Components/Calendar.tsx",
     "Components/StarCraftEvents.tsx",
     "Components/OverwatchEvents.tsx",
+    "Components/GDQEvents.tsx",
     "Components/Weather.tsx"
   ],
 }

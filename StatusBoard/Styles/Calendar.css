@@ -4,7 +4,15 @@
   font-size: 14pt;
   position: absolute;
   top: 0;
-  bottom: 0; }
+  bottom: 0;
+  width: 100%; }
+  .calendar .underline {
+    border-bottom: 1px solid #4D4D4D; }
+  .calendar .lighten {
+    font-size: 10pt; }
+  .calendar .rightAlign {
+    text-align: right;
+    padding-right: 15px; }
   .calendar .eventTile {
     flex: 1 1 auto;
     min-height: 200px;
@@ -27,28 +35,19 @@
       border-top: 1px solid #4D4D4D;
       font-size: 14pt;
       text-align: center; }
-    .calendar .eventTile .matchTile span {
-      float: left; }
-    .calendar .eventTile .matchTile .comp-1, .calendar .eventTile .matchTile .comp-2 {
-      width: 43%;
-      box-sizing: border-box; }
-      .calendar .eventTile .matchTile .comp-1 .comp-name, .calendar .eventTile .matchTile .comp-2 .comp-name {
-        font-size: 1.25rem;
-        line-height: 2;
+    .calendar .eventTile .matchTile {
+      display: flex;
+      align-items: center; }
+      .calendar .eventTile .matchTile .comp-name {
+        flex: 1 1 43%;
         padding: 0 5px 0 5px; }
-      .calendar .eventTile .matchTile .comp-1 .comp-image, .calendar .eventTile .matchTile .comp-2 .comp-image {
-        float: left;
-        width: 40px; }
-    .calendar .eventTile .matchTile .comp-1 span, .calendar .eventTile .matchTile .comp-1 .comp-image {
-      text-align: right;
-      float: right; }
-    .calendar .eventTile .matchTile .match-time {
-      text-align: center;
-      width: 14%;
-      font-size: 1.25rem;
-      line-height: 1.5;
-      padding-top: 4px;
-      height: 100%; }
+      .calendar .eventTile .matchTile .comp-1 {
+        text-align: right; }
+      .calendar .eventTile .matchTile .comp-image {
+        width: 35px; }
+      .calendar .eventTile .matchTile .match-time {
+        flex: 0 0 115px;
+        text-align: center; }
   .calendar .wcs {
     border-left: 8px solid #0677BD;
     background-image: url("../Images/wcs.png");
@@ -71,11 +70,24 @@
       color: #F0CF5B; }
   .calendar .ow {
     border-left: 8px solid #FF8820;
-    background-image: url("../Images/owwc.png");
+    background-image: url("../Images/ow.png");
+    background-size: 400px;
     background-position-x: center;
     background-position-y: 100px;
     background-repeat: no-repeat; }
     .calendar .ow .match-date {
       color: #FF8820; }
+  .calendar .gdq {
+    border-left: 8px solid #476D9B;
+    margin-bottom: 15px;
+    background-image: url("../Images/gdq.png");
+    background-size: 300px;
+    background-position-x: center;
+    background-position-y: 100px;
+    background-repeat: no-repeat; }
+    .calendar .gdq .run-date {
+      color: #476D9B; }
+    .calendar .gdq .game-image {
+      height: 45px; }
 
 /*# sourceMappingURL=Calendar.css.map */

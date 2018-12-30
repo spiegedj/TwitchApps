@@ -1,16 +1,33 @@
 $logo-width: 150px;
 $tile-width: 260px;
+$font-size: 14pt;
+$small-font-size: 10pt;
+$large-font-size: 16pt;
 
 .calendar {
     display: flex;
     flex-wrap: wrap;
     
-    font-size: 14pt;
+    font-size: $font-size;
 
     position: absolute;
     top: 0;
     bottom: 0;
+    width: 100%;
     
+    .underline {
+        border-bottom: 1px solid #4D4D4D;
+    }
+
+    .lighten {
+        font-size: $small-font-size;
+    }
+
+    .rightAlign {
+        text-align: right;
+        padding-right: 15px;
+    }
+
     .eventTile {
         flex: 1 1 auto;
         min-height: 200px;
@@ -49,40 +66,25 @@ $tile-width: 260px;
         }
 
         .matchTile {
-            span {
-                float: left;
-            }
+            display: flex;
+            align-items: center;
 
-            .comp-1, .comp-2 {
-                width: 43%;
-                box-sizing: border-box;
-
-                .comp-name {
-                    font-size: 1.25rem;
-                    line-height: 2;
-                    padding: 0 5px 0 5px;
-                }
-
-                .comp-image { 
-                    float: left;
-                    width: 40px;
-                }
+            .comp-name {
+                flex: 1 1 43%;
+                padding: 0 5px 0 5px;
             }
 
             .comp-1 {
-                span, .comp-image {
-                    text-align: right;
-                    float: right;
-                }
+                text-align: right;
+            }
+
+            .comp-image { 
+                width: 35px;
             }
 
             .match-time {
+                flex: 0 0 115px;
                 text-align: center;
-                width: 14%;
-                font-size: 1.25rem;
-                line-height: 1.5;
-                padding-top: 4px;
-                height: 100%;
             }
         }
     }
@@ -115,13 +117,32 @@ $tile-width: 260px;
 
     .ow {
         border-left: 8px solid #FF8820;
-        background-image: url("../Images/owwc.png");
+        background-image: url("../Images/ow.png");
+        background-size: 400px;
         background-position-x: center;
         background-position-y: 100px;
         background-repeat: no-repeat;
 
         .match-date {
             color: #FF8820;
+        }
+    }
+
+    .gdq {
+        border-left: 8px solid #476D9B;
+        margin-bottom: 15px;
+        background-image: url("../Images/gdq.png");
+        background-size: 300px;
+        background-position-x: center;
+        background-position-y: 100px;
+        background-repeat: no-repeat;
+
+        .run-date {
+            color: #476D9B;
+        }
+
+        .game-image {
+            height: 45px;
         }
     }
 }

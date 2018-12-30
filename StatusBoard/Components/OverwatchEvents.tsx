@@ -39,7 +39,7 @@ interface APICompetitor
     secondaryColor: string;
 }
 
-class OverwatchEvents extends EventTile 
+abstract class OverwatchEvents extends EventTile 
 {
     public matches: MatchDetails[];
     public state: { matches: MatchDetails[] } = { matches: [] };
@@ -54,17 +54,21 @@ class OverwatchEvents extends EventTile
         {
             return a.date.getTime() - b.date.getTime();
         });
-        
+
         this.setState({
             matches: this.matches
         });
     }
 
+    protected abstract toDetails(competitor: APICompetitor): CompetitorDetails;
+
     private parseOWLEvents(stages: APIStage[]) 
     {
-        this.matches = [];    
-        stages.forEach(stage => {
-            stage.matches.forEach(match => {
+        this.matches = [];
+        stages.forEach(stage =>
+        {
+            stage.matches.forEach(match =>
+            {
                 if (match.state !== "CONCLUDED" && match.competitors.length === 2) 
                 {
                     const isLive: boolean = this.isLive(match);
@@ -87,77 +91,10 @@ class OverwatchEvents extends EventTile
     }
 
     private isLive(match: APIMatch): boolean 
-    { 
+    {
         const now = new Date();
         const startDate = new Date(match.startDateTS);
         return startDate.getTime() < now.getTime();
-    }
-
-    private toDetails(competitor: APICompetitor): CompetitorDetails {
-        return {
-            name: competitor.name,
-            imageURL: competitor.icon,
-            primaryColor: competitor.primaryColor,
-            secondaryColor: competitor.secondaryColor,
-        };
-    }
-
-    private parseWorldCupEvents(json: any): void 
-    {
-        let brackets: any[] = json.brackets;
-
-        this.matches = [];
-        brackets.forEach(bracket => 
-        {
-            let matches: any[] = bracket.matches;
-
-            matches.forEach(match => 
-            {
-                if (match.state != "CONCLUDED") 
-                {
-                    const comp1Name = match.competitors[0].name;
-                    const comp2Name = match.competitors[1].name;
-
-                    const comp1: CompetitorDetails = 
-                    {
-                        name: comp1Name,
-                        imageURL: this.getCompImage(comp1Name),
-                        primaryColor: "",
-                        secondaryColor: "",
-                    }
-
-                    const comp2: CompetitorDetails = 
-                    {
-                        name: comp2Name,
-                        imageURL: this.getCompImage(comp2Name),
-                        primaryColor: "",
-                        secondaryColor: "",
-                    }
-
-                    const startDate = new Date(match.startDate.timestamp);
-                    const now = new Date().getTime();
-                    const isLive: boolean = startDate.getTime() < now;
-                    let score = "";
-                    if (isLive) 
-                    {
-                        score = match.scores[0].value + " - " + match.scores[1].value;
-                    }
-
-                    this.matches.push({
-                        competitor1: comp1,
-                        competitor2: comp2,
-                        date: new Date(match.startDate.timestamp),
-                        isLive: isLive,
-                        score: score
-                    });
-                }
-            })
-        });
-    }
-    
-    private getCompImage(name: string)
-    {
-        return `https://static-wcs.starcraft2.com/flags/${name}.png`;
     }
 
     public render(): React.ReactNode 
@@ -173,17 +110,15 @@ class OverwatchEvents extends EventTile
             }
 
             const matchStatus = match.isLive ? match.score : DateUtils.getTimeString(match.date);
-            const matches = 
+            const matches =
                 <div className="matchTile">
-                    <span className="comp-1">
-                        <img src={match.competitor1.imageURL} className="comp-image" />
-                        <span className="comp-name">{match.competitor1.name}</span>
-                    </span>
+                    <span className="comp-name comp-1">{match.competitor1.name}</span>
+                    <img src={match.competitor1.imageURL} className="comp-image" />
+
                     <span className="match-time">{matchStatus}</span>
-                    <span className="comp-2">
-                        <img src={match.competitor2.imageURL} className="comp-image" />
-                        <span className="comp-name">{match.competitor2.name}</span>
-                    </span>
+
+                    <img src={match.competitor2.imageURL} className="comp-image" />
+                    <span className="comp-name comp-2">{match.competitor2.name}</span>
                 </div>
 
             return [dateLine, matches];
@@ -191,8 +126,39 @@ class OverwatchEvents extends EventTile
 
         return (
             <div className="eventTile ow">
-                { matches }
+                {matches}
             </div>
         );
+    }
+}
+
+class OWLEvents extends OverwatchEvents
+{
+    protected toDetails(competitor: APICompetitor): CompetitorDetails
+    {
+        return {
+            name: competitor.name,
+            imageURL: competitor.icon,
+            primaryColor: competitor.primaryColor,
+            secondaryColor: competitor.secondaryColor,
+        };
+    }
+}
+
+class WorldCupEvents extends OverwatchEvents
+{
+    protected toDetails(competitor: APICompetitor): CompetitorDetails
+    {
+        return {
+            name: competitor.name,
+            imageURL: this.getCompImage(competitor.name),
+            primaryColor: "",
+            secondaryColor: "",
+        };
+    }
+
+    private getCompImage(name: string)
+    {
+        return `https://static-wcs.starcraft2.com/flags/${name}.png`;
     }
 }
