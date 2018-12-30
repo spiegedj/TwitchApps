@@ -10,25 +10,96 @@ interface MatchDetails
     score: string;
 }
 
-interface CompetitorDetails {
+interface CompetitorDetails 
+{
     name: string;
     imageURL?: string;
     primaryColor?: string;
     secondaryColor?: string;
 }
 
+interface APIStage 
+{
+    matches: APIMatch[];
+}
+
+interface APIMatch 
+{
+    state: "PENDING" | "CONCLUDED";
+    competitors: APICompetitor[];
+    startDateTS: number;
+    scores: { value: string }[];
+}
+
+interface APICompetitor 
+{
+    name: string;
+    icon: string;
+    primaryColor: string;
+    secondaryColor: string;
+}
+
 class OverwatchEvents extends EventTile 
 {
     public matches: MatchDetails[];
-    public state: { matches: MatchDetails[] } = { 
-        matches: [] 
-    };
+    public state: { matches: MatchDetails[] } = { matches: [] };
 
-    public load(): void 
+    public async load(): Promise<void> 
     {
-        $.get("https://worldcup.playoverwatch.com/en-us/ajax/round-robin?year=2018", function(html) {
-            this.parseWorldCupEvents(html);
-        }.bind(this));
+        const json = await this.get("https://api.overwatchleague.com/schedule?locale=en_US");
+
+        this.parseOWLEvents(json.data.stages);
+
+        this.matches.sort((a: MatchDetails, b: MatchDetails) => 
+        {
+            return a.date.getTime() - b.date.getTime();
+        });
+        
+        this.setState({
+            matches: this.matches
+        });
+    }
+
+    private parseOWLEvents(stages: APIStage[]) 
+    {
+        this.matches = [];    
+        stages.forEach(stage => {
+            stage.matches.forEach(match => {
+                if (match.state !== "CONCLUDED" && match.competitors.length === 2) 
+                {
+                    const isLive: boolean = this.isLive(match);
+                    let score = "";
+                    if (isLive) 
+                    {
+                        score = match.scores[0].value + " - " + match.scores[1].value;
+                    }
+
+                    this.matches.push({
+                        competitor1: this.toDetails(match.competitors[0]),
+                        competitor2: this.toDetails(match.competitors[1]),
+                        date: new Date(match.startDateTS),
+                        isLive: isLive,
+                        score: score
+                    });
+                }
+            });
+        });
+    }
+
+    private isLive(match: APIMatch): boolean 
+    { 
+        const now = new Date();
+        const startDate = new Date(match.startDateTS);
+        return startDate.getTime() < now.getTime();
+    }
+
+    private toDetails(competitor: APICompetitor): CompetitorDetails {
+        return {
+            name: competitor.name,
+            imageURL: competitor.icon,
+            primaryColor: competitor.primaryColor,
+            secondaryColor: competitor.secondaryColor,
+        };
     }
 
     private parseWorldCupEvents(json: any): void 
@@ -36,12 +107,14 @@ class OverwatchEvents extends EventTile
         let brackets: any[] = json.brackets;
 
         this.matches = [];
-        brackets.forEach(bracket => {
+        brackets.forEach(bracket => 
+        {
             let matches: any[] = bracket.matches;
 
-            matches.forEach(match => {
-                if (match.state != "CONCLUDED") {
-
+            matches.forEach(match => 
+            {
+                if (match.state != "CONCLUDED") 
+                {
                     const comp1Name = match.competitors[0].name;
                     const comp2Name = match.competitors[1].name;
 
@@ -65,10 +138,10 @@ class OverwatchEvents extends EventTile
                     const now = new Date().getTime();
                     const isLive: boolean = startDate.getTime() < now;
                     let score = "";
-                    if (isLive) {
+                    if (isLive) 
+                    {
                         score = match.scores[0].value + " - " + match.scores[1].value;
                     }
-
 
                     this.matches.push({
                         competitor1: comp1,
@@ -79,15 +152,6 @@ class OverwatchEvents extends EventTile
                     });
                 }
             })
-        });
-
-        this.matches.sort((a: MatchDetails, b: MatchDetails) => 
-        {
-            return a.date.getTime() - b.date.getTime();
-        });
-        
-        this.setState({
-            matches: this.matches
         });
     }
     

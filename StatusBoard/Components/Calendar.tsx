@@ -10,6 +10,12 @@ abstract class EventTile extends React.Component {
         this.load();
     }
 
+    protected get(url: string): Promise<any> {
+        return new Promise(resolve => {
+            $.get(url, result => resolve(result));
+        });
+    }
+
     public abstract load(): void;
 }
 

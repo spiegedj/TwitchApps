@@ -15,18 +15,20 @@ interface Tournament
     events: EventDetails[]
 }
 
-
 class StarCraftEvents extends EventTile 
 {
+    private readonly MAX_COUNT: number = 10;
+
     public events: EventDetails[];
     public state: { tournaments: Tournament[] } = { 
-        tournaments: [] 
+        tournaments: []
     };
 
-    public load(): void {
-        $.get("https://wcs.starcraft2.com/en-us/schedule/", function(html) {
-            this.parseWCSEvents(html);
-        }.bind(this));
+    public async load(): Promise<void> 
+    {
+        const html = await this.get("https://wcs.starcraft2.com/en-us/schedule/");
+
+        this.parseWCSEvents(html);
     }
 
     private parseWCSEvents(html: string): void 
@@ -35,7 +37,7 @@ class StarCraftEvents extends EventTile
         const cards = doc.find(".eventCard-entry");
 
         this.events = [];
-        cards.each((index: number, card: Node[]) => {
+        cards.each((_index: number, card: Node[]) => {
             const tournament = $(card).find(".metaData-hd").first().children().first().text();
             const stage = $(card).find(".meta-Data-ft").first().children().first().text();
             const logo = $(card).find(".eventCard-logo").first().children().first().attr("src");
@@ -53,9 +55,10 @@ class StarCraftEvents extends EventTile
         this.events.sort((a: EventDetails, b: EventDetails) => {
             return a.eventDate.getTime() - b.eventDate.getTime();
         });
+        this.events = this.events.slice(0, this.MAX_COUNT);
         
         this.setState({
-            tournaments: this.createTouraments(this.events)
+            tournaments: this.createTournaments(this.events)
         });
     }
 
@@ -68,7 +71,7 @@ class StarCraftEvents extends EventTile
         return true;
     }
 
-    private createTouraments(events: EventDetails[]): Tournament[] 
+    private createTournaments(events: EventDetails[]): Tournament[] 
     {
         const tournaments: { [key: string]: Tournament} = {};
         const tournamentArray: Tournament[] = [];

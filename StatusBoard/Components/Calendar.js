@@ -6,6 +6,11 @@ class EventTile extends React.Component {
         setInterval(() => this.load(), 60 * 1000);
         this.load();
     }
+    get(url) {
+        return new Promise(resolve => {
+            $.get(url, result => resolve(result));
+        });
+    }
 }
 class Calendar extends React.Component {
     render() {

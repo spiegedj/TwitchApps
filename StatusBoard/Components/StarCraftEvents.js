@@ -1,22 +1,32 @@
 /// <reference path="Calendar.tsx"/>
 /// <reference path="../Scripts/DateUtils.ts"/>
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 class StarCraftEvents extends EventTile {
     constructor() {
         super(...arguments);
+        this.MAX_COUNT = 10;
         this.state = {
             tournaments: []
         };
     }
     load() {
-        $.get("https://wcs.starcraft2.com/en-us/schedule/", function (html) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const html = yield this.get("https://wcs.starcraft2.com/en-us/schedule/");
             this.parseWCSEvents(html);
-        }.bind(this));
+        });
     }
     parseWCSEvents(html) {
         const doc = $($.parseHTML(html));
         const cards = doc.find(".eventCard-entry");
         this.events = [];
-        cards.each((index, card) => {
+        cards.each((_index, card) => {
             const tournament = $(card).find(".metaData-hd").first().children().first().text();
             const stage = $(card).find(".meta-Data-ft").first().children().first().text();
             const logo = $(card).find(".eventCard-logo").first().children().first().attr("src");
@@ -32,8 +42,9 @@ class StarCraftEvents extends EventTile {
         this.events.sort((a, b) => {
             return a.eventDate.getTime() - b.eventDate.getTime();
         });
+        this.events = this.events.slice(0, this.MAX_COUNT);
         this.setState({
-            tournaments: this.createTouraments(this.events)
+            tournaments: this.createTournaments(this.events)
         });
     }
     onFilterEvents(event) {
@@ -43,7 +54,7 @@ class StarCraftEvents extends EventTile {
         }
         return true;
     }
-    createTouraments(events) {
+    createTournaments(events) {
         const tournaments = {};
         const tournamentArray = [];
         for (let event of events) {
