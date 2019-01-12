@@ -74,7 +74,7 @@ webServer.get('/searchStream', (req, _res) =>
 
 webServer.get('/stream', (req, _res) =>
 {
-    var streamName = req.query.streamer;
+    var streamName = req.query.streamName;
     playStream(streamName);
 });
 
@@ -90,9 +90,9 @@ http.listen(3000, () =>
 
 var playStream = (streamName) =>
 {
-    var turnOnTVCommand = "echo on 0 | cec-client -s -d 1";
+    //var turnOnTVCommand = "echo on 0 | cec-client -s -d 1";
     var playStreamCommand = "livestreamer --twitch-oauth-token sgy4q0csvrylr2g2xyyi7hfc55ymvw twitch.tv/" + streamName + " 1080p60,720p60,best -np 'omxplayer -o hdmi'";
 
-    command = "lxterminal -e \"" + turnOnTVCommand + " && " + playStreamCommand + "\"";
+    var command = "lxterminal -e \"" + playStreamCommand + "\"";
     process = exec(command);
 }
