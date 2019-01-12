@@ -66,24 +66,24 @@ ipcMain.on("toggle-fullscreen", (_event) =>
 
 const express = require('express'), webServer = express();
 var http = require('http').Server(webServer);
-webServer.get('/searchStream', function (req, res)
+
+webServer.get('/searchStream', (req, _res) =>
 {
-    turnTVOn();
     win.webContents.send('stream', { streamer: req.query.streamer });
 });
 
-webServer.get('/stream', () =>
+webServer.get('/stream', (req, _res) =>
 {
     var streamName = req.query.streamer;
     playStream(streamName);
 });
 
-webServer.get('/stop', function (req, res)
+webServer.get('/stop', (_req, _res) =>
 {
     win.webContents.send('stop');
 });
 
-http.listen(3000, function ()
+http.listen(3000, () =>
 {
     console.log('listening on *:3000');
 });
