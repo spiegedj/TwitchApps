@@ -32,9 +32,7 @@ class GDQEvents extends EventTile
         const doc = $($.parseHTML(html));
         let days = this.parse(doc);
 
-        this.setState({
-            days: days
-        });
+        this.setState({ days: days });
     }
 
     private parse(document: JQuery<JQuery.Node[]>): EventDay[] 
@@ -62,23 +60,23 @@ class GDQEvents extends EventTile
 
     public render(): React.ReactNode 
     {
-        const tableRows = this.state.days.map((eventDay: EventDay) =>
+        let tableRows: JSX.Element[] = [];
+        this.state.days.forEach((eventDay: EventDay) =>
         {
-            const dayRow =
-                <tr>
-                    <td></td>
-                    <td className="run-date rightAlign" >
-                        {eventDay.dayString}
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>;
+            // const dayRow =
+            //     <tr>
+            //         <td></td>
+            //         <td className="run-date rightAlign" >
+            //             {eventDay.dayString}
+            //         </td>
+            //         <td></td>
+            //         <td></td>
+            //     </tr>;
 
-            const runs: JSX.Element[] = [];
-            eventDay.runs.forEach(run =>
+            const runs = eventDay.runs.map(run =>
             {
                 const isLive = DateUtils.isLive(run.date, run.endDate);
-                runs.push(
+                return (
                     <tr className={isLive ? "live underline" : "underline"}>
                         <td>
                             <img src={run.gameImage} className="game-image" />
@@ -90,23 +88,29 @@ class GDQEvents extends EventTile
                         <td>
                             <div>{run.game}</div>
                             <div className="lighten">{run.category}</div>
-                        </td>
-                        <td>
-                            <div>{run.runner}</div>
-                            <div className="lighten">{run.commentator}</div>
+                            <div className="lighten">{run.runner}</div>
                         </td>
                     </tr>
                 );
             });
 
-            return [dayRow, ...runs];
-        })
+            tableRows = tableRows.concat([...runs]);
+        });
+
+        const table1Rows = tableRows.slice(0, tableRows.length / 2);
+        const table2Rows = tableRows.slice((tableRows.length / 2) - 1, tableRows.length - 1);
 
         return (
             <div className="eventTile gdq">
-                <table>
+                <table style={{ width: "50%", float: "left" }}>
                     <tbody>
-                        {tableRows}
+                        {table1Rows}
+                    </tbody>
+                </table>
+
+                <table style={{ width: "50%", float: "right" }}>
+                    <tbody>
+                        {table2Rows}
                     </tbody>
                 </table>
             </div>
