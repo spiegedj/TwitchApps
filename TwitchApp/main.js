@@ -43,15 +43,12 @@ app.on('activate', () =>
 
 const exec = require('child_process').exec;
 var process;
-ipcMain.on('launch-stream', (event, streamName) =>
+ipcMain.on('launch-stream', (_event, streamName) =>
 {
-    var command = "\"livestreamer --twitch-oauth-token sgy4q0csvrylr2g2xyyi7hfc55ymvw twitch.tv/"
-        + streamName + " 1080p60,720p60,best -np 'omxplayer -o hdmi'\"";
-    command = "lxterminal -e " + command;
-    process = exec(command, (error, stdout, stderr) => { });
+    playStream(streamName);
 });
 
-ipcMain.on('stop-stream', (event) =>
+ipcMain.on('stop-stream', (_event) =>
 {
     if (process)
     {
@@ -61,7 +58,7 @@ ipcMain.on('stop-stream', (event) =>
 });
 
 var fullscreen = false;
-ipcMain.on("toggle-fullscreen", (event) =>
+ipcMain.on("toggle-fullscreen", (_event) =>
 {
     fullscreen = !fullscreen;
     win.setFullScreen(fullscreen);
@@ -69,11 +66,16 @@ ipcMain.on("toggle-fullscreen", (event) =>
 
 const express = require('express'), webServer = express();
 var http = require('http').Server(webServer);
-
-webServer.get('/stream', function (req, res)
+webServer.get('/searchStream', function (req, res)
 {
     turnTVOn();
     win.webContents.send('stream', { streamer: req.query.streamer });
+});
+
+webServer.get('/stream', () =>
+{
+    var streamName = req.query.streamer;
+    playStream(streamName);
 });
 
 webServer.get('/stop', function (req, res)
@@ -86,8 +88,11 @@ http.listen(3000, function ()
     console.log('listening on *:3000');
 });
 
-var turnTVOn = () =>
+var playStream = (streamName) =>
 {
-    var command = "echo on 0 | cec-client -s -d 1";
+    var turnOnTVCommand = "echo on 0 | cec-client -s -d 1";
+    var playStreamCommand = "livestreamer --twitch-oauth-token sgy4q0csvrylr2g2xyyi7hfc55ymvw twitch.tv/" + streamName + " 1080p60,720p60,best -np 'omxplayer -o hdmi'";
+
+    command = "lxterminal -e \"" + turnOnTVCommand + " && " + playStreamCommand + "\"";
     process = exec(command);
 }
