@@ -15,7 +15,8 @@ class EventTile extends React.Component {
 class Calendar extends React.Component {
     render() {
         return (React.createElement("div", { className: "calendar card" },
-            React.createElement(GDQEvents, null),
+            React.createElement(WCSEvents, null),
+            React.createElement(GSLEvents, null),
             React.createElement(OWLEvents, null)));
     }
 }

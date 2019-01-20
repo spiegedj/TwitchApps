@@ -28,7 +28,8 @@ class Calendar extends React.Component
     {
         return (
             <div className="calendar card">
-                <GDQEvents />
+                <WCSEvents />
+                <GSLEvents />
                 <OWLEvents />
             </div>
         );

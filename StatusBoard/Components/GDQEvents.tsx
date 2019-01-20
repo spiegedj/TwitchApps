@@ -60,18 +60,17 @@ class GDQEvents extends EventTile
 
     public render(): React.ReactNode 
     {
-        let tableRows: JSX.Element[] = [];
-        this.state.days.forEach((eventDay: EventDay) =>
+        let tableRows = this.state.days.map((eventDay: EventDay) =>
         {
-            // const dayRow =
-            //     <tr>
-            //         <td></td>
-            //         <td className="run-date rightAlign" >
-            //             {eventDay.dayString}
-            //         </td>
-            //         <td></td>
-            //         <td></td>
-            //     </tr>;
+            const dayRow =
+                <tr>
+                    <td></td>
+                    <td className="run-date rightAlign" >
+                        {eventDay.dayString}
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>;
 
             const runs = eventDay.runs.map(run =>
             {
@@ -88,29 +87,23 @@ class GDQEvents extends EventTile
                         <td>
                             <div>{run.game}</div>
                             <div className="lighten">{run.category}</div>
-                            <div className="lighten">{run.runner}</div>
+                        </td>
+                        <td>
+                            <div>{run.runner}</div>
+                            <div className="lighten">{run.commentator}</div>
                         </td>
                     </tr>
                 );
             });
 
-            tableRows = tableRows.concat([...runs]);
+            return [dayRow, ...runs];
         });
-
-        const table1Rows = tableRows.slice(0, tableRows.length / 2);
-        const table2Rows = tableRows.slice((tableRows.length / 2) - 1, tableRows.length - 1);
 
         return (
             <div className="eventTile gdq">
-                <table style={{ width: "50%", float: "left" }}>
+                <table>
                     <tbody>
-                        {table1Rows}
-                    </tbody>
-                </table>
-
-                <table style={{ width: "50%", float: "right" }}>
-                    <tbody>
-                        {table2Rows}
+                        {tableRows}
                     </tbody>
                 </table>
             </div>

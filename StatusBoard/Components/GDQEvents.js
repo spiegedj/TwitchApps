@@ -19,9 +19,7 @@ class GDQEvents extends EventTile {
             const html = yield this.get("https://gamesdonequick.com/schedule");
             const doc = $($.parseHTML(html));
             let days = this.parse(doc);
-            this.setState({
-                days: days
-            });
+            this.setState({ days: days });
         });
     }
     parse(document) {
@@ -41,17 +39,12 @@ class GDQEvents extends EventTile {
         return this.builder.get();
     }
     render() {
-        let tableRows = [];
-        this.state.days.forEach((eventDay) => {
-            // const dayRow =
-            //     <tr>
-            //         <td></td>
-            //         <td className="run-date rightAlign" >
-            //             {eventDay.dayString}
-            //         </td>
-            //         <td></td>
-            //         <td></td>
-            //     </tr>;
+        let tableRows = this.state.days.map((eventDay) => {
+            const dayRow = React.createElement("tr", null,
+                React.createElement("td", null),
+                React.createElement("td", { className: "run-date rightAlign" }, eventDay.dayString),
+                React.createElement("td", null),
+                React.createElement("td", null));
             const runs = eventDay.runs.map(run => {
                 const isLive = DateUtils.isLive(run.date, run.endDate);
                 return (React.createElement("tr", { className: isLive ? "live underline" : "underline" },
@@ -62,18 +55,16 @@ class GDQEvents extends EventTile {
                         React.createElement("div", { className: "lighten" }, run.timeEstimate)),
                     React.createElement("td", null,
                         React.createElement("div", null, run.game),
-                        React.createElement("div", { className: "lighten" }, run.category),
-                        React.createElement("div", { className: "lighten" }, run.runner))));
+                        React.createElement("div", { className: "lighten" }, run.category)),
+                    React.createElement("td", null,
+                        React.createElement("div", null, run.runner),
+                        React.createElement("div", { className: "lighten" }, run.commentator))));
             });
-            tableRows = tableRows.concat([...runs]);
+            return [dayRow, ...runs];
         });
-        const table1Rows = tableRows.slice(0, tableRows.length / 2);
-        const table2Rows = tableRows.slice((tableRows.length / 2) - 1, tableRows.length - 1);
         return (React.createElement("div", { className: "eventTile gdq" },
-            React.createElement("table", { style: { width: "50%", float: "left" } },
-                React.createElement("tbody", null, table1Rows)),
-            React.createElement("table", { style: { width: "50%", float: "right" } },
-                React.createElement("tbody", null, table2Rows))));
+            React.createElement("table", null,
+                React.createElement("tbody", null, tableRows))));
     }
 }
 class EventDayBuilder {
