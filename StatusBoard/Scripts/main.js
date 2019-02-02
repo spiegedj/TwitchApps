@@ -14,7 +14,7 @@ $(document).ready(function ()
 
     var follows = new TwitchFollowsAndGames(mainDiv, 30, "");
 
-    gridManager.addBlock({ element: calendarEl, x: 0, y: 0, w: 4, h: 5 });
+    gridManager.addBlock({ element: calendarEl, x: 0, y: 0, w: 4, h: 6 });
 
     gridManager.addBlock({ element: follows.element, x: 4, y: 0, w: 2, h: 6 });
 
