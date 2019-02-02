@@ -1,75 +1,47 @@
-interface Condition {
-    code: string,
-    date: string,
-    temp: string,
-    text: string
-}
+type weatherProps = Partial<{
+    weather: Response.Weather
+}>;
 
-interface Forecast {
-    code: string,
-    date: string,
-    day: string,
-    high: string,
-    low: string,
-    text: string
-}
-
-class WeatherPanel extends React.Component
+class WeatherPanel extends React.Component<weatherProps>
 {
-    public state: { temp: string, forecast: Forecast[] } = 
-    {
-        temp: "",
-        forecast: []
-    }
-
-    public constructor(props: any) 
-    {
-        super(props);
-
-        this.retrieveWeather();
-        var updateRate = 5 * 60 * 1000; // every 5 minutes
-        setInterval(this.retrieveWeather.bind(this), updateRate);
-    }
-
-    private retrieveWeather() 
-    {
-        const url = "https://query.yahooapis.com/v1/public/yql?";
-        const query = "q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='verona, wi')&format=json";
-        $.get(url + query, json => this.parseForecast(json));
-    }
-
-    private parseForecast(data: any): void 
-    {
-        const item = data.query.results.channel.item;
-        const condition : Condition = item.condition;
-        const forecasts: Forecast[] = item.forecast;
-        this.setState({
-            temp: condition.temp,
-            forecast: forecasts.slice(0, 6)
-        });
-    }
-
     public render(): React.ReactNode 
     {
-        const weatherForecast = this.state.forecast.map(forecast => {
-            const imageURL = "./Images/Weather/" + forecast.code + ".png";
-            return <div className="forecast-day">
-                <div className="day">{forecast.day}</div>
-                <img className="temp-icon" src={imageURL}></img>
-                <span className="forecast-container">
-                    <span className="high">{forecast.high}&deg;</span>
-                    <span className="low">{forecast.low}&deg;</span>
-                </span>
+        const condition = this.props.weather.Condition;
+        const conditionElement = <div className="condition">
+            <div>Now</div>
+            <div className="temp-icon" dangerouslySetInnerHTML={{ __html: condition.Icon }}></div>
+            <div>{condition.Phrase}</div>
+            <div className="temp">{condition.Temp}</div>
+            <div>{condition.FeelsLike}</div>
+        </div>;
+
+        const forecast = this.props.weather.Forecast.slice(0, 4);
+        const weatherForecast = forecast.map((forecast, i) =>
+        {
+            const classes = "f" + i + " forecast-day";
+            return <div className={classes}>
+                <div className="day">{forecast.Date}</div>
+                <div className="temp-icon" dangerouslySetInnerHTML={{ __html: forecast.Icon }}></div>
+                <div>{forecast.Description}</div>
+                <div className="temp">
+                    <span>{forecast.High}</span>
+                    <span className="slash"></span>
+                    <span>{forecast.Low}</span>
+                </div>
+                <div>
+                    <svg className="icon-drop" viewBox="0 0 200 200" transform="scale(4) translate(3, -3)">
+                        <use className="svg-drop" href="#svg-symbol-drop"></use>
+                    </svg>
+                    <span>{forecast.Precipitation}</span>
+                </div>
             </div>;
         });
 
         return (
             <div className="weatherPanel">
                 <ClockPanel />
-                <div className="temp">
-                    {this.state.temp}&deg;
-                </div>
-                { weatherForecast }
+                {conditionElement}
+                {weatherForecast}
             </div>
         );
     }
@@ -86,17 +58,13 @@ class ClockPanel extends React.Component
         this.updateClock();
     }
 
-    private updateClock() : void {
+    private updateClock(): void
+    {
         var now = new Date();
-
-        var hours = now.getHours();
-        var minutes = now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
-        var ampm = hours > 12 ? "PM" : "AM";
-        hours = hours % 12;
-        hours = hours == 0 ? hours + 12 : hours;
-
-        const date = now.toLocaleDateString("en-us", {weekday: "long", month: "long", day: "numeric", year: "numeric"});
-        const time = hours + ":" + minutes + " " + ampm;
+        const date = now.toLocaleDateString("en-us",
+            { weekday: "long", month: "long", day: "numeric", year: "numeric" }
+        );
+        const time = DateUtils.getTimeString(now);
 
         this.setState({
             date: date,
@@ -108,8 +76,10 @@ class ClockPanel extends React.Component
     {
         return (
             <div className="clock">
-                <div className="clock-date">{this.state.date}</div>
-                <div className="clock-time">{this.state.time}</div>
+                <div>
+                    <div className="clock-date">{this.state.date}</div>
+                    <div className="clock-time">{this.state.time}</div>
+                </div>
             </div>
         );
     }

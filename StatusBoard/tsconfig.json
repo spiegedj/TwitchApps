@@ -1,39 +1,25 @@
 {
-  "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "watch": true,
-    "jsx": "react",
-    "typeRoots": [
-      "note_modules/@types"
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "watch": true,
+        "jsx": "react",
+        "typeRoots": [
+            "note_modules/@types",
+            "Typings"
+        ],
+        "types": [
+            "jquery",
+            "react",
+            "react-dom"
+        ]
+    },
+    "exclude": [
+        "node_modules"
     ],
-    "types": [
-      "jquery",
-      "react",
-      "react-dom"
+    "compileOnSave": true,
+    "include": [
+        "Scripts/**/*.ts",
+        "Components/**/*.tsx",
     ]
-  },
-  "exclude": [
-    "node_modules"
-  ],
-  "compileOnSave": true,
-  "files": [
-    "Scripts/listManager.ts",
-    "Scripts/twitchFollows.ts",
-    "Scripts/twitchGame.ts",
-    "Scripts/events.ts",
-    "Scripts/overwatchLeague.ts",
-    "Scripts/vsList.ts",
-    "Scripts/groupedList.ts",
-    "Scripts/twitchFollowsAndGames.ts",
-    "Scripts/gridManager.ts",
-    "Scripts/clock.ts",
-    "Scripts/tournaments.ts",
-    "Scripts/DateUtils.ts",
-    "Components/Calendar.tsx",
-    "Components/StarCraftEvents.tsx",
-    "Components/OverwatchEvents.tsx",
-    "Components/GDQEvents.tsx",
-    "Components/Weather.tsx"
-  ],
 }
