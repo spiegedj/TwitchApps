@@ -6,21 +6,6 @@
   .weatherPanel > div {
     flex: 1 0 auto;
     height: 100%; }
-  .weatherPanel .clock {
-    background-color: #031727;
-    margin-top: auto;
-    margin-bottom: auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column; }
-    .weatherPanel .clock > div .clock-date {
-      text-align: center;
-      color: #C9283E;
-      font-size: 16pt; }
-    .weatherPanel .clock > div .clock-time {
-      text-align: center;
-      color: white;
-      font-size: 50pt; }
   .weatherPanel .temp-icon {
     width: 70px; }
   .weatherPanel .condition {
@@ -60,6 +45,22 @@
   height: 30px;
   position: relative;
   bottom: -2px; }
+
+.clock {
+  background-color: #031727;
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column; }
+  .clock > div .clock-date {
+    text-align: center;
+    color: #C9283E;
+    font-size: 16pt; }
+  .clock > div .clock-time {
+    text-align: center;
+    color: white;
+    font-size: 50pt; }
 
 .svg-cloud, .svg-star, .svg-wind {
   fill: #fff; }

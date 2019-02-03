@@ -28,4 +28,4 @@ class GridManager {
         element.style.top = y + "px";
     }
 }
-GridManager.PADDING = 15;
+GridManager.PADDING = 10;
