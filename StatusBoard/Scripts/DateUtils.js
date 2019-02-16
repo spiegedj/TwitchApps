@@ -16,16 +16,19 @@ class DateUtils {
     static getDayString(date) {
         if (!date)
             return "";
-        const daysFrom = this.getDaysFrom(date);
-        if (daysFrom < 1) {
+        const now = new Date();
+        if (now.getDate() === date.getDate()) {
             return "Today";
+        }
+        if (now.getDate() === (date.getDate() - 1)) {
+            return "Tomorrow";
         }
         const monthNames = ["Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
         const dayOfWeekNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        const locale = "en-us";
         const month = monthNames[date.getMonth()];
         const day = date.getDate();
         const dayOfWeek = dayOfWeekNames[date.getDay()];
+        const daysFrom = this.getDaysFrom(date);
         if (daysFrom < 6) {
             return `${dayOfWeek}`;
         }
