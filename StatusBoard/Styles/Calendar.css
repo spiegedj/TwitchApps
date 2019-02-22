@@ -93,9 +93,7 @@
   border-collapse: collapse;
   font-size: 18pt; }
   .dateHeader td {
-    text-align: center;
-    border-right: 1px solid black;
-    width: 25%; }
+    text-align: center; }
 
 .ow {
   font-family: overwatch;
