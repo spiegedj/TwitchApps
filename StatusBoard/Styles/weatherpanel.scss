@@ -1,5 +1,5 @@
 .weatherPanel {
-    background-color: #2D2D2D;
+    //background-color: #2D2D2D;
 
     display: flex;
     
@@ -9,6 +9,10 @@
     > div {
         flex: 1 0 auto;
         height: 100%;
+    }
+
+    > div + div {
+        margin-left: 10px;
     }
     
     .temp-icon { width: 70px; }

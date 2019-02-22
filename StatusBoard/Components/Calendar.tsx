@@ -43,9 +43,11 @@ class Calendar extends React.Component
         return (
             <div className="calendar card">
                 <WeatherPanel weather={this.state.data.Weather} />
-                <WCSEvents tournaments={this.state.data.Starcraft.WCS} />
-                <GSLEvents tournaments={this.state.data.Starcraft.GSL} />
                 <OverwatchEvents matches={this.state.data.Overwatch} />
+                <span style={{ width: "50%" }}>
+                    <GSLEvents tournaments={this.state.data.Starcraft.GSL} />
+                    <WCSEvents tournaments={this.state.data.Starcraft.WCS} />
+                </span>
             </div>
         );
     }

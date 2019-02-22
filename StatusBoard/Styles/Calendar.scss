@@ -4,6 +4,11 @@ $font-size: 14pt;
 $small-font-size: 10pt;
 $large-font-size: 16pt;
 
+@font-face {
+    src: url('../Fonts/koverwatch.ttf');
+    font-family: overwatch;
+}
+
 .calendar {
     display: flex;
     flex-wrap: wrap;
@@ -94,8 +99,9 @@ $large-font-size: 16pt;
         background-image: url("../Images/wcs.png");
         background-position: center;
         background-repeat: no-repeat; /* Do not repeat the image */
-        margin-right: 15px;
+        margin-left: 15px;
         margin-bottom: 15px;
+        width: 100%;
 
         .tournament-name {
             color: #0677BD;
@@ -108,23 +114,11 @@ $large-font-size: 16pt;
         background-position: center;
         background-repeat: no-repeat; /* Do not repeat the image */
         background-size: 200px;
+        margin-left: 15px;
         margin-bottom: 15px;
 
         .tournament-name {
             color: #F0CF5B;
-        }
-    }
-
-    .ow {
-        border-left: 8px solid #FF8820;
-        background-image: url("../Images/ow.png");
-        background-size: 400px;
-        background-position-x: center;
-        background-position-y: 100px;
-        background-repeat: no-repeat;
-
-        .match-date {
-            color: #FF8820;
         }
     }
 
@@ -143,6 +137,135 @@ $large-font-size: 16pt;
 
         .game-image {
             height: 45px;
+        }
+    }
+}
+
+$panel-width: 320px;
+$panel-height: 195px;
+
+.dateHeader {
+    width: 100%;
+    background-color: #eeeeee;
+    color: black;
+    border-collapse: collapse;
+    font-size: 18pt;
+
+    td {
+        text-align: center;
+        border-right: 1px solid black;
+        width: 25%;
+    }
+}
+
+.ow {
+    font-family: overwatch;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    width: 50%;
+
+    .group {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+    }
+
+    .largeTile {
+        position: relative;
+        border-bottom: 6px solid #eeeeee;
+        width: $panel-width;
+        height: $panel-height;
+
+        .comp {
+            width: $panel-width / 2;
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            float:left;
+
+            .image {
+                width: 110px;
+            }
+
+            .comp-name-1 {
+                font-size: 15pt;
+                letter-spacing: 3px;
+            }
+
+            .comp-name-2 {
+                font-size: 28pt;
+                font-weight: 800;
+                letter-spacing: 3px;
+            }
+        }
+    }
+
+    .status {
+        position: absolute;
+        background-color: #eeeeee;
+        color: black;
+
+        text-align: center;
+        height: 22px;
+        line-height: 25px;
+        font-size: 18pt;
+        z-index: 10;
+        
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+
+        bottom: 0;
+        width: 80px;
+        left: 50%;
+        margin-left: -40px;
+    }
+
+    .tile {
+        display: flex;
+        width: $panel-width;
+        position: relative;
+        border-bottom: 2px solid #eeeeee;
+
+        .comp {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            padding: 6px;
+            position: relative;
+        }
+
+        .comp-2 {
+            text-align: right;
+        }
+
+        .comp-name-1 {
+            font-size: 12pt;
+        }
+
+        .comp-name-2 {
+            font-size: 22pt;
+        }
+
+        .image {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+        }
+
+        .comp-1 .image {
+            right: 10px;
+            top: 0;
+        }
+
+        .comp-2 .image {
+            left: 10px;
+            top: 0;
         }
     }
 }

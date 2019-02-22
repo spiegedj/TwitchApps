@@ -4,7 +4,14 @@ class DateUtils
     {
         if (!date) return 0;
         var now = new Date();
-        return (date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24);
+        return Math.ceil((date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+    }
+
+    public static onSameDay(date: Date, other: Date): boolean
+    {
+        return date.getDate() === other.getDate() &&
+            date.getMonth() === other.getMonth() &&
+            date.getFullYear() === other.getFullYear();
     }
 
     public static getDateString(date: Date): string
@@ -23,13 +30,13 @@ class DateUtils
     {
         if (!date) return "";
 
-        const now = new Date();
-        if (now.getDate() === date.getDate())
+        const daysFrom = this.getDaysFrom(date);
+        if (daysFrom === 0)
         {
             return "Today";
         }
 
-        if (now.getDate() === (date.getDate() - 1))
+        if (daysFrom === 1)
         {
             return "Tomorrow";
         }
@@ -41,7 +48,6 @@ class DateUtils
         const day = date.getDate();
         const dayOfWeek = dayOfWeekNames[date.getDay()];
 
-        const daysFrom = this.getDaysFrom(date);
         if (daysFrom < 6)
         {
             return `${dayOfWeek}`;

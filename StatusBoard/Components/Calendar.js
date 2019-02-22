@@ -38,8 +38,9 @@ class Calendar extends React.Component {
     render() {
         return (React.createElement("div", { className: "calendar card" },
             React.createElement(WeatherPanel, { weather: this.state.data.Weather }),
-            React.createElement(WCSEvents, { tournaments: this.state.data.Starcraft.WCS }),
-            React.createElement(GSLEvents, { tournaments: this.state.data.Starcraft.GSL }),
-            React.createElement(OverwatchEvents, { matches: this.state.data.Overwatch })));
+            React.createElement(OverwatchEvents, { matches: this.state.data.Overwatch }),
+            React.createElement("span", { style: { width: "50%" } },
+                React.createElement(GSLEvents, { tournaments: this.state.data.Starcraft.GSL }),
+                React.createElement(WCSEvents, { tournaments: this.state.data.Starcraft.WCS }))));
     }
 }

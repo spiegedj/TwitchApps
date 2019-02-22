@@ -9,7 +9,7 @@ class WeatherPanel extends React.Component {
             React.createElement("div", null, condition.FeelsLike));
         const forecast = this.props.weather.Forecast.slice(0, 4);
         const weatherForecast = forecast.map((forecast, i) => {
-            const classes = "f0 forecast-day";
+            const classes = "f" + i + " forecast-day";
             return React.createElement("div", { className: classes },
                 React.createElement("div", { className: "day" }, forecast.Date),
                 React.createElement("div", { className: "temp-icon", dangerouslySetInnerHTML: { __html: forecast.Icon } }),

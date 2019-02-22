@@ -5,7 +5,7 @@ $(document).ready(function ()
     // ReactDOM.render(e(EventTile), mainDiv);
 
     // Top Left Right Bottom
-    var gridManager = new GridManager({ width: 6, height: 6 });
+    var gridManager = new GridManager({ width: 10, height: 1 });
 
 
     var calendarEl = document.createElement("div");
@@ -14,9 +14,9 @@ $(document).ready(function ()
 
     var follows = new TwitchFollowsAndGames(mainDiv, 30, "");
 
-    gridManager.addBlock({ element: calendarEl, x: 0, y: 0, w: 4, h: 6 });
+    gridManager.addBlock({ element: calendarEl, x: 0, y: 0, w: 7, h: 1 });
 
-    gridManager.addBlock({ element: follows.element, x: 4, y: 0, w: 2, h: 6 });
+    gridManager.addBlock({ element: follows.element, x: 7, y: 0, w: 3, h: 1 });
 
     gridManager.resize($(window).width(), $(window).height());
 
