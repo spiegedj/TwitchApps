@@ -15,7 +15,7 @@ class WeatherPanel extends React.Component<weatherProps>
             <div>{condition.FeelsLike}</div>
         </div>;
 
-        const forecast = this.props.weather.Forecast.slice(0, 4);
+        const forecast = this.props.weather.Forecast.slice(0, 5);
         const weatherForecast = forecast.map((forecast, i) =>
         {
             const classes = "f" + i + " forecast-day";

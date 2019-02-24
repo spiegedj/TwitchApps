@@ -3,9 +3,17 @@
 const swapColors = [
     "hangzhou spark",
     "boston uprising",
-    "houston outlaws",
     "toronto defiant"
 ];
+const blackText = [
+    "boston uprising",
+    "florida mayhem",
+    "chengdu hunters"
+];
+const imageOverrides = {
+    "philadelphia fusion": "Images/OWLOverrides/Fusion.svg",
+    "houston outlaws": "Images/OWLOverrides/Outlaws.svg"
+};
 class OverwatchEvents extends React.Component {
     splitByDay(matches) {
         const days = [];
@@ -31,14 +39,20 @@ class OverwatchEvents extends React.Component {
         const compNamePieces1 = this.splitName(match.Competitor1.Name);
         const compNamePieces2 = this.splitName(match.Competitor2.Name);
         const status = match.IsLive ? match.Score : DateUtils.getTimeString(new Date(match.Date));
+        const comp1ClassNames = ["comp", "comp-1"];
+        if (this.useBlackText(match.Competitor1))
+            comp1ClassNames.push("blackText");
+        const comp2ClassNames = ["comp", "comp-2"];
+        if (this.useBlackText(match.Competitor2))
+            comp2ClassNames.push("blackText");
         return React.createElement("div", { className: "largeTile" },
-            React.createElement("div", { className: "comp", style: { backgroundColor: this.getColor(match.Competitor1) } },
-                React.createElement("img", { src: match.Competitor1.ImageURL, className: "image" }),
+            React.createElement("div", { className: comp1ClassNames.join(" "), style: { backgroundColor: this.getColor(match.Competitor1) } },
+                React.createElement("img", { src: this.getImage(match.Competitor1), className: "image" }),
                 React.createElement("div", { className: "comp-name-1" }, compNamePieces1.piece1),
                 React.createElement("div", { className: "comp-name-2" }, compNamePieces1.piece2)),
             React.createElement("span", { className: "status" }, status),
-            React.createElement("div", { className: "comp", style: { backgroundColor: this.getColor(match.Competitor2) } },
-                React.createElement("img", { src: match.Competitor2.ImageURL, className: "image" }),
+            React.createElement("div", { className: comp2ClassNames.join(" "), style: { backgroundColor: this.getColor(match.Competitor2) } },
+                React.createElement("img", { src: this.getImage(match.Competitor2), className: "image" }),
                 React.createElement("div", { className: "comp-name-1" }, compNamePieces2.piece1),
                 React.createElement("div", { className: "comp-name-2" }, compNamePieces2.piece2)));
     }
@@ -46,16 +60,22 @@ class OverwatchEvents extends React.Component {
         const compNamePieces1 = this.splitName(match.Competitor1.Name);
         const compNamePieces2 = this.splitName(match.Competitor2.Name);
         const status = match.IsLive ? match.Score : DateUtils.getTimeString(new Date(match.Date));
+        const comp1ClassNames = ["comp", "comp-1"];
+        if (this.useBlackText(match.Competitor1))
+            comp1ClassNames.push("blackText");
+        const comp2ClassNames = ["comp", "comp-2"];
+        if (this.useBlackText(match.Competitor2))
+            comp2ClassNames.push("blackText");
         return React.createElement("div", { className: "tile" },
-            React.createElement("div", { className: "comp comp-1", style: { backgroundColor: this.getColor(match.Competitor1) } },
+            React.createElement("div", { className: comp1ClassNames.join(" "), style: { backgroundColor: this.getColor(match.Competitor1) } },
+                React.createElement("img", { src: this.getImage(match.Competitor1), className: "image" }),
                 React.createElement("div", { className: "comp-name-1" }, compNamePieces1.piece1),
-                React.createElement("div", { className: "comp-name-2" }, compNamePieces1.piece2),
-                React.createElement("img", { src: match.Competitor1.ImageURL, className: "image" })),
+                React.createElement("div", { className: "comp-name-2" }, compNamePieces1.piece2)),
             React.createElement("span", { className: "status" }, status),
-            React.createElement("div", { className: "comp comp-2", style: { backgroundColor: this.getColor(match.Competitor2) } },
+            React.createElement("div", { className: comp2ClassNames.join(" "), style: { backgroundColor: this.getColor(match.Competitor2) } },
+                React.createElement("img", { src: this.getImage(match.Competitor2), className: "image" }),
                 React.createElement("div", { className: "comp-name-1" }, compNamePieces2.piece1),
-                React.createElement("span", { className: "comp-name-2" }, compNamePieces2.piece2),
-                React.createElement("img", { src: match.Competitor2.ImageURL, className: "image" })));
+                React.createElement("span", { className: "comp-name-2" }, compNamePieces2.piece2)));
     }
     render() {
         const panels = [];
@@ -74,11 +94,23 @@ class OverwatchEvents extends React.Component {
             day.matches.map(m => this.getSmallPanel(m))))));
         return (React.createElement("div", { className: "ow" }, panels));
     }
+    getImage(competitor) {
+        if (imageOverrides[competitor.Name.toLowerCase()]) {
+            return imageOverrides[competitor.Name.toLowerCase()];
+        }
+        return competitor.ImageURL;
+    }
     getColor(competitor) {
         if (swapColors.indexOf(competitor.Name.toLowerCase()) >= 0) {
             return "#" + competitor.SecondaryColor;
         }
         return "#" + competitor.PrimaryColor;
+    }
+    useBlackText(competitor) {
+        if (blackText.indexOf(competitor.Name.toLowerCase()) >= 0) {
+            return true;
+        }
+        return false;
     }
     splitName(name) {
         const pieces = name.split(" ");

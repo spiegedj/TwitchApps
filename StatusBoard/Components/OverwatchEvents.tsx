@@ -8,9 +8,19 @@ type owProps = Partial<{
 const swapColors = [
     "hangzhou spark",
     "boston uprising",
-    "houston outlaws",
     "toronto defiant"
 ];
+
+const blackText = [
+    "boston uprising",
+    "florida mayhem",
+    "chengdu hunters"
+];
+
+const imageOverrides = {
+    "philadelphia fusion": "Images/OWLOverrides/Fusion.svg",
+    "houston outlaws": "Images/OWLOverrides/Outlaws.svg"
+};
 
 interface MatchDay
 {
@@ -54,15 +64,21 @@ class OverwatchEvents extends React.Component<owProps>
 
         const status = match.IsLive ? match.Score : DateUtils.getTimeString(new Date(match.Date));
 
+        const comp1ClassNames = ["comp", "comp-1"];
+        if (this.useBlackText(match.Competitor1)) comp1ClassNames.push("blackText");
+
+        const comp2ClassNames = ["comp", "comp-2"];
+        if (this.useBlackText(match.Competitor2)) comp2ClassNames.push("blackText");
+
         return <div className="largeTile">
-            <div className="comp" style={{ backgroundColor: this.getColor(match.Competitor1) }}>
-                <img src={match.Competitor1.ImageURL} className="image" />
+            <div className={comp1ClassNames.join(" ")} style={{ backgroundColor: this.getColor(match.Competitor1) }}>
+                <img src={this.getImage(match.Competitor1)} className="image" />
                 <div className="comp-name-1">{compNamePieces1.piece1}</div>
                 <div className="comp-name-2">{compNamePieces1.piece2}</div>
             </div>
             <span className="status">{status}</span>
-            <div className="comp" style={{ backgroundColor: this.getColor(match.Competitor2) }}>
-                <img src={match.Competitor2.ImageURL} className="image" />
+            <div className={comp2ClassNames.join(" ")} style={{ backgroundColor: this.getColor(match.Competitor2) }}>
+                <img src={this.getImage(match.Competitor2)} className="image" />
                 <div className="comp-name-1">{compNamePieces2.piece1}</div>
                 <div className="comp-name-2">{compNamePieces2.piece2}</div>
             </div>
@@ -76,17 +92,23 @@ class OverwatchEvents extends React.Component<owProps>
 
         const status = match.IsLive ? match.Score : DateUtils.getTimeString(new Date(match.Date));
 
+        const comp1ClassNames = ["comp", "comp-1"];
+        if (this.useBlackText(match.Competitor1)) comp1ClassNames.push("blackText");
+
+        const comp2ClassNames = ["comp", "comp-2"];
+        if (this.useBlackText(match.Competitor2)) comp2ClassNames.push("blackText");
+
         return <div className="tile">
-            <div className="comp comp-1" style={{ backgroundColor: this.getColor(match.Competitor1) }}>
+            <div className={comp1ClassNames.join(" ")} style={{ backgroundColor: this.getColor(match.Competitor1) }}>
+                <img src={this.getImage(match.Competitor1)} className="image" />
                 <div className="comp-name-1">{compNamePieces1.piece1}</div>
                 <div className="comp-name-2">{compNamePieces1.piece2}</div>
-                <img src={match.Competitor1.ImageURL} className="image" />
             </div>
             <span className="status">{status}</span>
-            <div className="comp comp-2" style={{ backgroundColor: this.getColor(match.Competitor2) }}>
+            <div className={comp2ClassNames.join(" ")} style={{ backgroundColor: this.getColor(match.Competitor2) }}>
+                <img src={this.getImage(match.Competitor2)} className="image" />
                 <div className="comp-name-1">{compNamePieces2.piece1}</div>
                 <span className="comp-name-2">{compNamePieces2.piece2}</span>
-                <img src={match.Competitor2.ImageURL} className="image" />
             </div>
         </div>
     }
@@ -125,6 +147,15 @@ class OverwatchEvents extends React.Component<owProps>
         );
     }
 
+    private getImage(competitor: Response.CompetitorDetails): string
+    {
+        if (imageOverrides[competitor.Name.toLowerCase()])
+        {
+            return imageOverrides[competitor.Name.toLowerCase()];
+        }
+        return competitor.ImageURL;
+    }
+
     private getColor(competitor: Response.CompetitorDetails): string
     {
         if (swapColors.indexOf(competitor.Name.toLowerCase()) >= 0)
@@ -132,6 +163,15 @@ class OverwatchEvents extends React.Component<owProps>
             return "#" + competitor.SecondaryColor;
         }
         return "#" + competitor.PrimaryColor;
+    }
+
+    private useBlackText(competitor: Response.CompetitorDetails): boolean
+    {
+        if (blackText.indexOf(competitor.Name.toLowerCase()) >= 0)
+        {
+            return true;
+        }
+        return false;
     }
 
     private splitName(name: string): { piece1: string, piece2: string }

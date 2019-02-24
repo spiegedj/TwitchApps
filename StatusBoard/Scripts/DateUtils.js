@@ -3,12 +3,20 @@ class DateUtils {
         if (!date)
             return 0;
         var now = new Date();
-        return Math.ceil((date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+        return (date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24);
     }
     static onSameDay(date, other) {
         return date.getDate() === other.getDate() &&
             date.getMonth() === other.getMonth() &&
             date.getFullYear() === other.getFullYear();
+    }
+    static isToday(date) {
+        return this.onSameDay(date, new Date());
+    }
+    static isTomorrow(date) {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        return this.onSameDay(date, tomorrow);
     }
     static getDateString(date) {
         if (!date)
@@ -21,11 +29,10 @@ class DateUtils {
     static getDayString(date) {
         if (!date)
             return "";
-        const daysFrom = this.getDaysFrom(date);
-        if (daysFrom === 0) {
+        if (this.isToday(date)) {
             return "Today";
         }
-        if (daysFrom === 1) {
+        if (this.isTomorrow(date)) {
             return "Tomorrow";
         }
         const monthNames = ["Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
@@ -33,6 +40,7 @@ class DateUtils {
         const month = monthNames[date.getMonth()];
         const day = date.getDate();
         const dayOfWeek = dayOfWeekNames[date.getDay()];
+        const daysFrom = this.getDaysFrom(date);
         if (daysFrom < 6) {
             return `${dayOfWeek}`;
         }

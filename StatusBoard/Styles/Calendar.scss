@@ -141,7 +141,7 @@ $large-font-size: 16pt;
     }
 }
 
-$panel-width: 320px;
+$panel-width: 350px;
 $panel-height: 195px;
 
 .dateHeader {
@@ -154,6 +154,10 @@ $panel-height: 195px;
     td {
         text-align: center;
     }
+}
+
+.blackText {
+    color: black !important;
 }
 
 .ow {
@@ -219,9 +223,9 @@ $panel-height: 195px;
         border-top-right-radius: 5px;
 
         bottom: 0;
-        width: 80px;
+        width: 70px;
         left: 50%;
-        margin-left: -40px;
+        margin-left: -35px;
     }
 
     .tile {
@@ -236,6 +240,8 @@ $panel-height: 195px;
             flex-direction: column;
             padding: 6px;
             position: relative;
+            padding-left: 35px;
+            padding-right: 35px;
         }
 
         .comp-2 {
@@ -253,16 +259,16 @@ $panel-height: 195px;
         .image {
             position: absolute;
             width: 35px;
-            height: 35px;
+            height: 57px;
         }
 
         .comp-1 .image {
-            right: 10px;
+            left: 0px;
             top: 0;
         }
 
         .comp-2 .image {
-            left: 10px;
+            right: 0px;
             top: 0;
         }
     }

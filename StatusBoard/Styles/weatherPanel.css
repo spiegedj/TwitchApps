@@ -25,12 +25,14 @@
       height: 67px;
       line-height: 67px; }
     .weatherPanel .forecast-day.f0 {
-      background-color: #2962a9; }
+      background-color: #1f4371; }
     .weatherPanel .forecast-day.f1 {
-      background-color: #347bd5; }
+      background-color: #2962a9; }
     .weatherPanel .forecast-day.f2 {
-      background-color: #609ae1; }
+      background-color: #347bd5; }
     .weatherPanel .forecast-day.f3 {
+      background-color: #609ae1; }
+    .weatherPanel .forecast-day.f4 {
       background-color: #76a7e3; }
   .weatherPanel .icon-drop {
     width: 20px; }

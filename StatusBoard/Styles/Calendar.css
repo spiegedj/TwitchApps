@@ -95,6 +95,9 @@
   .dateHeader td {
     text-align: center; }
 
+.blackText {
+  color: black !important; }
+
 .ow {
   font-family: overwatch;
   display: flex;
@@ -108,10 +111,10 @@
   .ow .largeTile {
     position: relative;
     border-bottom: 6px solid #eeeeee;
-    width: 320px;
+    width: 350px;
     height: 195px; }
     .ow .largeTile .comp {
-      width: 160px;
+      width: 175px;
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -138,12 +141,12 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     bottom: 0;
-    width: 80px;
+    width: 70px;
     left: 50%;
-    margin-left: -40px; }
+    margin-left: -35px; }
   .ow .tile {
     display: flex;
-    width: 320px;
+    width: 350px;
     position: relative;
     border-bottom: 2px solid #eeeeee; }
     .ow .tile .comp {
@@ -151,7 +154,9 @@
       display: flex;
       flex-direction: column;
       padding: 6px;
-      position: relative; }
+      position: relative;
+      padding-left: 35px;
+      padding-right: 35px; }
     .ow .tile .comp-2 {
       text-align: right; }
     .ow .tile .comp-name-1 {
@@ -161,12 +166,12 @@
     .ow .tile .image {
       position: absolute;
       width: 35px;
-      height: 35px; }
+      height: 57px; }
     .ow .tile .comp-1 .image {
-      right: 10px;
+      left: 0px;
       top: 0; }
     .ow .tile .comp-2 .image {
-      left: 10px;
+      right: 0px;
       top: 0; }
 
 /*# sourceMappingURL=Calendar.css.map */
