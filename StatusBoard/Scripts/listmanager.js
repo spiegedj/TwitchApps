@@ -32,7 +32,7 @@ class ListManager {
         return this._listContainer;
     }
     setColor(color) {
-        this._listContainer.style.borderLeft = "8px solid " + color;
+        //this._listContainer.style.borderLeft = "8px solid " + color;
     }
     refresh() {
         this.retrieveItems();

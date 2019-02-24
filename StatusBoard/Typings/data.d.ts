@@ -6,6 +6,7 @@ declare namespace Response
         Overwatch: MatchDetails[];
         GDQ: EventRun[];
         Weather: Weather;
+        StarcraftGroups: Group[];
     }
 
     // SC2
@@ -27,6 +28,19 @@ declare namespace Response
     {
         WCS: Tournament[];
         GSL: Tournament[];
+    }
+
+    interface Group
+    {
+        Name: string;
+        Date: number;
+        Players: GroupPlayer[];
+    }
+
+    interface GroupPlayer
+    {
+        Name: string;
+        Race: string;
     }
 
     // OWL

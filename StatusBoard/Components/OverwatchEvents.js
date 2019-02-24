@@ -8,7 +8,8 @@ const swapColors = [
 const blackText = [
     "boston uprising",
     "florida mayhem",
-    "chengdu hunters"
+    "chengdu hunters",
+    "atlanta reign"
 ];
 const imageOverrides = {
     "philadelphia fusion": "Images/OWLOverrides/Fusion.svg",
@@ -83,16 +84,16 @@ class OverwatchEvents extends React.Component {
         const firstMatch = matchDays.shift();
         if (firstMatch) {
             let matchPanels = firstMatch.matches.map(m => this.getLargePanel(m));
-            panels.push(React.createElement("span", { className: "group" },
-                React.createElement("span", null,
+            panels.push(React.createElement("span", { className: "ow col" },
+                React.createElement("span", { className: "group" },
                     React.createElement(DateHeader, { dates: [firstMatch.date], showTimeCells: false }),
                     matchPanels)));
         }
         let nextMatches = matchDays.slice(0, 3);
-        panels.push(React.createElement("span", { className: "group" }, nextMatches.map(day => React.createElement("span", null,
+        panels.push(React.createElement("span", { className: "ow col" }, nextMatches.map(day => React.createElement("span", { className: "group" },
             React.createElement(DateHeader, { dates: [day.date], showTimeCells: false }),
             day.matches.map(m => this.getSmallPanel(m))))));
-        return (React.createElement("div", { className: "ow" }, panels));
+        return panels;
     }
     getImage(competitor) {
         if (imageOverrides[competitor.Name.toLowerCase()]) {

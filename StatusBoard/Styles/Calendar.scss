@@ -1,3 +1,5 @@
+@import "variables";
+
 $logo-width: 150px;
 $tile-width: 260px;
 $font-size: 14pt;
@@ -7,6 +9,13 @@ $large-font-size: 16pt;
 @font-face {
     src: url('../Fonts/koverwatch.ttf');
     font-family: overwatch;
+}
+
+@font-face {
+    font-family: 'Industry';
+    src: url('../Fonts/industry-medium-webfont.woff2');
+    font-weight: 400;
+    font-style: normal;
 }
 
 .calendar {
@@ -141,13 +150,15 @@ $large-font-size: 16pt;
     }
 }
 
-$panel-width: 350px;
 $panel-height: 195px;
+$panel-min-width: 250px;
+$spaceBetween: 10px;
 
 .dateHeader {
+    font-family: overwatch;
     width: 100%;
-    background-color: #eeeeee;
-    color: black;
+    background-color: $cardBackColor;
+    color: $textColor;
     border-collapse: collapse;
     font-size: 18pt;
 
@@ -156,35 +167,50 @@ $panel-height: 195px;
     }
 }
 
-.blackText {
-    color: black !important;
+.blackText { color: black !important; }
+
+.columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    
+    .col {
+        display: flex;
+        flex-direction: column;
+        min-width: $panel-min-width;
+        height: 100%;
+        flex: 1 1 auto;
+        
+        .group {
+            border: $cardBorder;
+        }
+
+        .group + .group {
+            margin-top: $spaceBetween;
+        }
+    }
+
+    .col + .col {
+        margin-left: $spaceBetween;
+    }
 }
 
 .ow {
     font-family: overwatch;
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-
-    width: 50%;
-
-    .group {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-
-    }
+    color: white;
 
     .largeTile {
         position: relative;
-        border-bottom: 6px solid #eeeeee;
-        width: $panel-width;
         height: $panel-height;
 
+        &:not(:last-child) {
+            border-bottom: 2px solid white;
+        }
+
         .comp {
-            width: $panel-width / 2;
             height: 100%;
+            width: 50%;
 
             display: flex;
             flex-direction: column;
@@ -210,12 +236,12 @@ $panel-height: 195px;
 
     .status {
         position: absolute;
-        background-color: #eeeeee;
-        color: black;
+        background-color: $cardBackColor;
+        color: $textColor;
 
         text-align: center;
         height: 22px;
-        line-height: 25px;
+        line-height: 23px;
         font-size: 18pt;
         z-index: 10;
         
@@ -230,10 +256,11 @@ $panel-height: 195px;
 
     .tile {
         display: flex;
-        width: $panel-width;
         position: relative;
-        border-bottom: 2px solid #eeeeee;
-
+        
+        &:not(:last-child) {
+            border-bottom: 2px solid white;
+        }
         .comp {
             width: 50%;
             display: flex;
@@ -270,6 +297,102 @@ $panel-height: 195px;
         .comp-2 .image {
             right: 0px;
             top: 0;
+        }
+    }
+}
+
+$iconWidth: 25px;
+
+.sc2 {
+    color: $textColor;
+    font-size: 20pt;
+    font-family: overwatch;
+
+
+    .group {
+        background-color: $cardBackColor;
+    }
+    
+    .groupName {
+        text-align: center;
+    }
+
+    .date {
+        text-align: center;
+        font-family: "Industry";
+        font-size: 15pt;
+        letter-spacing: -1px;
+    }
+    
+    .playerTable {
+        width: 100%;
+        background-color: $cardBackColor;
+        border-collapse: collapse;
+        
+        tr:not(:last-child) {
+            border-bottom: 3px solid $cardBackColor;
+        }
+        td + td {
+            border-left: 3px solid $cardBackColor;
+        }
+
+        td {
+            width: 50%;
+            position: relative;
+            color: white;
+            padding: 4px;
+            font-family: "Industry";
+            font-size: 16pt;
+            background-color: gray;
+        }
+
+        .playerLeft {
+            text-align: right;
+            padding-right: $iconWidth + 10;
+
+            .icon {
+                right: 5px;
+            }
+        }
+
+        .playerRight {
+            text-align: left;
+            padding-left: $iconWidth + 10;
+
+            .icon {
+                left: 5px;
+            }
+        }
+
+        .icon {
+            display: inline-block;
+            position: absolute;
+
+            width: $iconWidth;
+            height: $iconWidth;
+            background-position: center;
+            background-size: cover;
+        }
+        
+        .zerg {
+            background-color: purple;
+            .icon {
+                background-image: url("../Images/zerg.png");
+            }
+        }
+
+        .protoss {
+            background-color: #DC9D2C;
+            .icon {
+                background-image: url("../Images/protoss.png");
+            }
+        }
+
+        .terran {
+            background-color: #2C517B;
+            .icon {
+                background-image: url("../Images/terran.png");
+            }
         }
     }
 }

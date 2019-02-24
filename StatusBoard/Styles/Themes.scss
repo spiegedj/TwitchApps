@@ -2,26 +2,40 @@
     src: url('../Fonts/bignoodletoo.ttf');
     font-family: overwatch-slant;
 }
-
 @font-face {
     src: url('../Fonts/koverwatch.ttf');
     font-family: overwatch;
 }
 
+@font-face {
+    font-family: 'Industry';
+    src: url('../Fonts/industry-medium-webfont.woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@import "variables";
+
+
 .dark {
-    background-color: #201F23;
+    background-color: $backColor;
+    color: $textColor;
     font-family: 'Cabin', sans-serif;
-    color: white;
-    
+
     .list-container {
-        background-color: #2D2D2D;
         box-sizing: border-box;
+        font-family: industry;
+        
+        .card {
+            border: $cardBorder;
+            background-color: $cardBackColor;
+            padding-bottom: 6px;
+        }
 
         .list-group-container {
-            border-top: 1px solid #4D4D4D;
-
             .list-group-name {
-                color: white;
+                font-family: overwatch;
+                text-align: center;
             }
         }
 

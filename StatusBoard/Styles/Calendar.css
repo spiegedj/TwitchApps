@@ -1,6 +1,11 @@
 @font-face {
   src: url("../Fonts/koverwatch.ttf");
   font-family: overwatch; }
+@font-face {
+  font-family: 'Industry';
+  src: url("../Fonts/industry-medium-webfont.woff2");
+  font-weight: 400;
+  font-style: normal; }
 .calendar {
   display: flex;
   flex-wrap: wrap;
@@ -87,8 +92,9 @@
       height: 45px; }
 
 .dateHeader {
+  font-family: overwatch;
   width: 100%;
-  background-color: #eeeeee;
+  background-color: white;
   color: black;
   border-collapse: collapse;
   font-size: 18pt; }
@@ -98,24 +104,35 @@
 .blackText {
   color: black !important; }
 
-.ow {
-  font-family: overwatch;
+.columns {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 50%; }
-  .ow .group {
+  width: 100%; }
+  .columns .col {
     display: flex;
     flex-direction: column;
-    justify-content: space-around; }
+    min-width: 250px;
+    height: 100%;
+    flex: 1 1 auto; }
+    .columns .col .group {
+      border: 2px solid black; }
+    .columns .col .group + .group {
+      margin-top: 10px; }
+  .columns .col + .col {
+    margin-left: 10px; }
+
+.ow {
+  font-family: overwatch;
+  color: white; }
   .ow .largeTile {
     position: relative;
-    border-bottom: 6px solid #eeeeee;
-    width: 350px;
     height: 195px; }
+    .ow .largeTile:not(:last-child) {
+      border-bottom: 2px solid white; }
     .ow .largeTile .comp {
-      width: 175px;
       height: 100%;
+      width: 50%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -131,11 +148,11 @@
         letter-spacing: 3px; }
   .ow .status {
     position: absolute;
-    background-color: #eeeeee;
+    background-color: white;
     color: black;
     text-align: center;
     height: 22px;
-    line-height: 25px;
+    line-height: 23px;
     font-size: 18pt;
     z-index: 10;
     border-top-left-radius: 5px;
@@ -146,9 +163,9 @@
     margin-left: -35px; }
   .ow .tile {
     display: flex;
-    width: 350px;
-    position: relative;
-    border-bottom: 2px solid #eeeeee; }
+    position: relative; }
+    .ow .tile:not(:last-child) {
+      border-bottom: 2px solid white; }
     .ow .tile .comp {
       width: 50%;
       display: flex;
@@ -173,5 +190,64 @@
     .ow .tile .comp-2 .image {
       right: 0px;
       top: 0; }
+
+.sc2 {
+  color: black;
+  font-size: 20pt;
+  font-family: overwatch; }
+  .sc2 .group {
+    background-color: white; }
+  .sc2 .groupName {
+    text-align: center; }
+  .sc2 .date {
+    text-align: center;
+    font-family: "Industry";
+    font-size: 15pt;
+    letter-spacing: -1px; }
+  .sc2 .playerTable {
+    width: 100%;
+    background-color: white;
+    border-collapse: collapse; }
+    .sc2 .playerTable tr:not(:last-child) {
+      border-bottom: 3px solid white; }
+    .sc2 .playerTable td + td {
+      border-left: 3px solid white; }
+    .sc2 .playerTable td {
+      width: 50%;
+      position: relative;
+      color: white;
+      padding: 4px;
+      font-family: "Industry";
+      font-size: 16pt;
+      background-color: gray; }
+    .sc2 .playerTable .playerLeft {
+      text-align: right;
+      padding-right: 35px; }
+      .sc2 .playerTable .playerLeft .icon {
+        right: 5px; }
+    .sc2 .playerTable .playerRight {
+      text-align: left;
+      padding-left: 35px; }
+      .sc2 .playerTable .playerRight .icon {
+        left: 5px; }
+    .sc2 .playerTable .icon {
+      display: inline-block;
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background-position: center;
+      background-size: cover; }
+    .sc2 .playerTable .zerg {
+      background-color: purple; }
+      .sc2 .playerTable .zerg .icon {
+        background-image: url("../Images/zerg.png"); }
+    .sc2 .playerTable .protoss {
+      background-color: #DC9D2C; }
+      .sc2 .playerTable .protoss .icon {
+        background-image: url("../Images/protoss.png"); }
+    .sc2 .playerTable .terran {
+      background-color: #2C517B; }
+      .sc2 .playerTable .terran .icon {
+        background-image: url("../Images/terran.png"); }
 
 /*# sourceMappingURL=Calendar.css.map */

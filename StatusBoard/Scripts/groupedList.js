@@ -10,7 +10,7 @@ class GroupedList extends ListManager {
         super.render();
     }
     setColor(color) {
-        this.__groupColor = color;
+        //this.__groupColor = color;
         super.setColor(color);
     }
     renderTile(item) {

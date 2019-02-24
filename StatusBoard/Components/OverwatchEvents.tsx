@@ -14,7 +14,8 @@ const swapColors = [
 const blackText = [
     "boston uprising",
     "florida mayhem",
-    "chengdu hunters"
+    "chengdu hunters",
+    "atlanta reign"
 ];
 
 const imageOverrides = {
@@ -122,8 +123,8 @@ class OverwatchEvents extends React.Component<owProps>
         if (firstMatch)
         {
             let matchPanels = firstMatch.matches.map(m => this.getLargePanel(m));
-            panels.push(<span className="group">
-                <span>
+            panels.push(<span className="ow col">
+                <span className="group">
                     <DateHeader dates={[firstMatch.date]} showTimeCells={false}></DateHeader>
                     {matchPanels}
                 </span>
@@ -131,20 +132,15 @@ class OverwatchEvents extends React.Component<owProps>
         }
 
         let nextMatches = matchDays.slice(0, 3);
-        panels.push(<span className="group">
+        panels.push(<span className="ow col">
             {nextMatches.map(day =>
-                <span>
+                <span className="group">
                     <DateHeader dates={[day.date]} showTimeCells={false}></DateHeader>
                     {day.matches.map(m => this.getSmallPanel(m))}
                 </span>)}
         </span>);
 
-
-        return (
-            <div className="ow">
-                {panels}
-            </div>
-        );
+        return panels;
     }
 
     private getImage(competitor: Response.CompetitorDetails): string

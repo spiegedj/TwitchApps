@@ -18,7 +18,8 @@ class Calendar extends React.Component {
                 Starcraft: { WCS: [], GSL: [] },
                 Overwatch: [],
                 GDQ: [],
-                Weather: { Condition: {}, Forecast: [] }
+                Weather: { Condition: {}, Forecast: [] },
+                StarcraftGroups: []
             }
         };
     }
@@ -38,9 +39,8 @@ class Calendar extends React.Component {
     render() {
         return (React.createElement("div", { className: "calendar card" },
             React.createElement(WeatherPanel, { weather: this.state.data.Weather }),
-            React.createElement(OverwatchEvents, { matches: this.state.data.Overwatch }),
-            React.createElement("span", { style: { width: "50%" } },
-                React.createElement(GSLEvents, { tournaments: this.state.data.Starcraft.GSL }),
-                React.createElement(WCSEvents, { tournaments: this.state.data.Starcraft.WCS }))));
+            React.createElement("div", { className: "columns" },
+                React.createElement(OverwatchEvents, { matches: this.state.data.Overwatch }),
+                React.createElement(StarCraftMatches, { groups: this.state.data.StarcraftGroups }))));
     }
 }

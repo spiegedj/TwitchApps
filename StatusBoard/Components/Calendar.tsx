@@ -17,7 +17,8 @@ class Calendar extends React.Component
                 Starcraft: { WCS: [], GSL: [] },
                 Overwatch: [],
                 GDQ: [],
-                Weather: { Condition: {} as any, Forecast: [] }
+                Weather: { Condition: {} as any, Forecast: [] },
+                StarcraftGroups: []
             }
         };
     }
@@ -43,11 +44,10 @@ class Calendar extends React.Component
         return (
             <div className="calendar card">
                 <WeatherPanel weather={this.state.data.Weather} />
-                <OverwatchEvents matches={this.state.data.Overwatch} />
-                <span style={{ width: "50%" }}>
-                    <GSLEvents tournaments={this.state.data.Starcraft.GSL} />
-                    <WCSEvents tournaments={this.state.data.Starcraft.WCS} />
-                </span>
+                <div className="columns">
+                    <OverwatchEvents matches={this.state.data.Overwatch} />
+                    <StarCraftMatches groups={this.state.data.StarcraftGroups} />
+                </div>
             </div>
         );
     }
