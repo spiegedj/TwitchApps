@@ -16,7 +16,7 @@ const imageOverrides = {
     "philadelphia fusion": "Images/OWLOverrides/Fusion.svg",
     "houston outlaws": "Images/OWLOverrides/Outlaws.svg",
     "boston uprising": "Images/OWLOverrides/Uprising.svg",
-    "hangzhou spark": "Images/OWLOverrides/spark.svg",
+    "hangzhou spark": "Images/OWLOverrides/Spark.svg",
 };
 
 interface MatchDay
