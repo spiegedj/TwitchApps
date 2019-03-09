@@ -5,7 +5,7 @@
         "watch": true,
         "jsx": "react",
         "typeRoots": [
-            "note_modules/@types",
+            "./node_modules/@types",
             "Typings"
         ],
         "types": [
@@ -20,6 +20,7 @@
     "compileOnSave": true,
     "include": [
         "Scripts/**/*.ts",
-        "Components/**/*.tsx",
+        "src/**/*.tsx",
+        "src/**/*.ts",
     ]
 }

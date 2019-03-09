@@ -6,28 +6,10 @@ $font-size: 14pt;
 $small-font-size: 10pt;
 $large-font-size: 16pt;
 
-@font-face {
-    src: url('../Fonts/koverwatch.ttf');
-    font-family: overwatch;
-}
-
-@font-face {
-    font-family: 'Industry';
-    src: url('../Fonts/industry-medium-webfont.woff2');
-    font-weight: 400;
-    font-style: normal;
-}
-
 .calendar {
     display: flex;
     flex-wrap: wrap;
-    
     font-size: $font-size;
-
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
     
     .underline {
         border-bottom: 1px solid #4D4D4D;
@@ -343,7 +325,7 @@ $iconWidth: 25px;
             padding: 4px;
             font-family: "Industry";
             font-size: 16pt;
-            background-color: gray;
+            background-color: #bbbbbb;
         }
 
         .playerLeft {

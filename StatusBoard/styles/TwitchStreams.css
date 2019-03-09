@@ -1,0 +1,36 @@
+.list-container {
+  overflow: hidden;
+  font-family: industry; }
+  .list-container .list-group {
+    margin-bottom: 10px;
+    padding: 5px; }
+  .list-container .list-group-name {
+    font-family: overwatch;
+    text-align: center;
+    font-size: 20pt;
+    margin-left: 10px; }
+  .list-container .tile {
+    height: calc(100% - 10px);
+    padding-top: 3px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative; }
+    .list-container .tile div:empty {
+      display: none; }
+    .list-container .tile .tile-image {
+      height: 50px;
+      margin-right: 5px;
+      float: left; }
+    .list-container .tile .tile-title {
+      font-size: 17pt; }
+    .list-container .tile .tile-details {
+      font-size: 9pt; }
+    .list-container .tile .tile-viewers {
+      color: #C9283E;
+      font-size: 14pt;
+      position: absolute;
+      top: 0px;
+      right: 5px; }
+
+/*# sourceMappingURL=TwitchStreams.css.map */

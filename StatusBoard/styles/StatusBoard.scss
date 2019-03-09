@@ -1,0 +1,50 @@
+@font-face {
+    src: url('../Fonts/bignoodletoo.ttf');
+    font-family: overwatch-slant;
+}
+@font-face {
+    src: url('../Fonts/koverwatch.ttf');
+    font-family: overwatch;
+}
+
+@font-face {
+    font-family: 'Industry';
+    src: url('../Fonts/industry-medium-webfont.woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@import "variables";
+
+body {
+    font-family: 'Cabin', sans-serif;
+    background-color: $backColor;
+    color: $textColor;
+    overflow: hidden;
+}
+
+.calendar {
+    width: calc(100% - #{$leftPanelWidth});
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box; 
+    padding: $spacing;
+    padding-right: 0;
+}
+
+.streams {
+    width: $leftPanelWidth;
+    float: right;
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-sizing: border-box; 
+    padding: $spacing;
+}
+
+.card {
+    border: $cardBorder;
+    background-color: $cardBackColor;
+    padding-bottom: 6px;
+}

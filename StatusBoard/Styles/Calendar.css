@@ -1,19 +1,7 @@
-@font-face {
-  src: url("../Fonts/koverwatch.ttf");
-  font-family: overwatch; }
-@font-face {
-  font-family: 'Industry';
-  src: url("../Fonts/industry-medium-webfont.woff2");
-  font-weight: 400;
-  font-style: normal; }
 .calendar {
   display: flex;
   flex-wrap: wrap;
-  font-size: 14pt;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%; }
+  font-size: 14pt; }
   .calendar .underline {
     border-bottom: 1px solid #4D4D4D; }
   .calendar .lighten {
@@ -219,7 +207,7 @@
       padding: 4px;
       font-family: "Industry";
       font-size: 16pt;
-      background-color: gray; }
+      background-color: #bbbbbb; }
     .sc2 .playerTable .playerLeft {
       text-align: right;
       padding-right: 35px; }
