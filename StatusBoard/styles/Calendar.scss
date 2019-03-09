@@ -1,0 +1,380 @@
+@import "variables";
+
+$logo-width: 150px;
+$tile-width: 260px;
+$font-size: 14pt;
+$small-font-size: 10pt;
+$large-font-size: 16pt;
+
+.calendar {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: $font-size;
+    
+    .underline {
+        border-bottom: 1px solid #4D4D4D;
+    }
+
+    .lighten {
+        font-size: $small-font-size;
+    }
+
+    .rightAlign {
+        text-align: right;
+        padding-right: 15px;
+    }
+
+    .eventTile {
+        flex: 1 1 auto;
+        min-height: 200px;
+        min-width: $tile-width;
+        background-color: #2D2D2D;
+        padding-left: 5px;
+        
+        .eventName {
+            text-align: center;
+        }
+        
+        .eventLogo {
+            height: $logo-width;
+        }
+
+        .live {
+            //border-bottom: 3px solid #00923F;
+            background-image: linear-gradient(to right, rgba(0,146,43, .5), transparent);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+
+            .tournament-name {
+                //background-color: #01061A;
+                font-size: 20pt;
+                border-bottom: 1px solid #4D4D4D;
+            }
+        }
+
+        .match-date {
+            border-top: 1px solid #4D4D4D;
+            font-size: 14pt;
+            text-align: center;
+        }
+
+        .matchTile {
+            display: flex;
+            align-items: center;
+
+            .comp-name {
+                flex: 1 1 43%;
+                padding: 0 5px 0 5px;
+            }
+
+            .comp-1 {
+                text-align: right;
+            }
+
+            .comp-image { 
+                width: 35px;
+            }
+
+            .match-time {
+                flex: 0 0 115px;
+                text-align: center;
+            }
+        }
+    }
+
+    .wcs {
+        border-left: 8px solid #0677BD;
+        background-image: url("../Images/wcs.png");
+        background-position: center;
+        background-repeat: no-repeat; /* Do not repeat the image */
+        margin-left: 15px;
+        margin-bottom: 15px;
+        width: 100%;
+
+        .tournament-name {
+            color: #0677BD;
+        }
+    }
+
+    .gsl {
+        border-left: 8px solid #F0CF5B;
+        background-image: url("../Images/gsl.png");
+        background-position: center;
+        background-repeat: no-repeat; /* Do not repeat the image */
+        background-size: 200px;
+        margin-left: 15px;
+        margin-bottom: 15px;
+
+        .tournament-name {
+            color: #F0CF5B;
+        }
+    }
+
+    .gdq {
+        border-left: 8px solid #476D9B;
+        margin-bottom: 15px;
+        background-image: url("../Images/gdq.png");
+        background-size: 300px;
+        background-position-x: center;
+        background-position-y: 100px;
+        background-repeat: no-repeat;
+
+        .run-date {
+            color: #476D9B;
+        }
+
+        .game-image {
+            height: 45px;
+        }
+    }
+}
+
+$panel-height: 195px;
+$panel-min-width: 250px;
+$spaceBetween: 10px;
+
+.dateHeader {
+    font-family: overwatch;
+    width: 100%;
+    background-color: $cardBackColor;
+    color: $textColor;
+    border-collapse: collapse;
+    font-size: 18pt;
+
+    td {
+        text-align: center;
+    }
+}
+
+.blackText { color: black !important; }
+
+.columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    
+    .col {
+        display: flex;
+        flex-direction: column;
+        min-width: $panel-min-width;
+        height: 100%;
+        flex: 1 1 auto;
+        
+        .group {
+            border: $cardBorder;
+        }
+
+        .group + .group {
+            margin-top: $spaceBetween;
+        }
+    }
+
+    .col + .col {
+        margin-left: $spaceBetween;
+    }
+}
+
+.ow {
+    font-family: overwatch;
+    color: white;
+
+    .largeTile {
+        position: relative;
+        height: $panel-height;
+
+        &:not(:last-child) {
+            border-bottom: 2px solid white;
+        }
+
+        .comp {
+            height: 100%;
+            width: 50%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            float:left;
+
+            .image {
+                width: 110px;
+            }
+
+            .comp-name-1 {
+                font-size: 15pt;
+                letter-spacing: 3px;
+            }
+
+            .comp-name-2 {
+                font-size: 28pt;
+                font-weight: 800;
+                letter-spacing: 3px;
+            }
+        }
+    }
+
+    .status {
+        position: absolute;
+        background-color: $cardBackColor;
+        color: $textColor;
+
+        text-align: center;
+        height: 22px;
+        line-height: 23px;
+        font-size: 18pt;
+        z-index: 10;
+        
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+
+        bottom: 0;
+        width: 70px;
+        left: 50%;
+        margin-left: -35px;
+    }
+
+    .tile {
+        display: flex;
+        position: relative;
+        
+        &:not(:last-child) {
+            border-bottom: 2px solid white;
+        }
+        .comp {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            padding: 6px;
+            position: relative;
+            padding-left: 35px;
+            padding-right: 35px;
+        }
+
+        .comp-2 {
+            text-align: right;
+        }
+
+        .comp-name-1 {
+            font-size: 12pt;
+        }
+
+        .comp-name-2 {
+            font-size: 22pt;
+        }
+
+        .image {
+            position: absolute;
+            width: 35px;
+            height: 57px;
+        }
+
+        .comp-1 .image {
+            left: 0px;
+            top: 0;
+        }
+
+        .comp-2 .image {
+            right: 0px;
+            top: 0;
+        }
+    }
+}
+
+$iconWidth: 25px;
+
+.sc2 {
+    color: $textColor;
+    font-size: 20pt;
+    font-family: overwatch;
+
+
+    .group {
+        background-color: $cardBackColor;
+    }
+    
+    .groupName {
+        text-align: center;
+    }
+
+    .date {
+        text-align: center;
+        font-family: "Industry";
+        font-size: 15pt;
+        letter-spacing: -1px;
+    }
+    
+    .playerTable {
+        width: 100%;
+        background-color: $cardBackColor;
+        border-collapse: collapse;
+        
+        tr:not(:last-child) {
+            border-bottom: 3px solid $cardBackColor;
+        }
+        td + td {
+            border-left: 3px solid $cardBackColor;
+        }
+
+        td {
+            width: 50%;
+            position: relative;
+            color: white;
+            padding: 4px;
+            font-family: "Industry";
+            font-size: 16pt;
+            background-color: #bbbbbb;
+        }
+
+        .playerLeft {
+            text-align: right;
+            padding-right: $iconWidth + 10;
+
+            .icon {
+                right: 5px;
+            }
+        }
+
+        .playerRight {
+            text-align: left;
+            padding-left: $iconWidth + 10;
+
+            .icon {
+                left: 5px;
+            }
+        }
+
+        .icon {
+            display: inline-block;
+            position: absolute;
+
+            width: $iconWidth;
+            height: $iconWidth;
+            background-position: center;
+            background-size: cover;
+        }
+        
+        .zerg {
+            background-color: purple;
+            .icon {
+                background-image: url("../Images/zerg.png");
+            }
+        }
+
+        .protoss {
+            background-color: #DC9D2C;
+            .icon {
+                background-image: url("../Images/protoss.png");
+            }
+        }
+
+        .terran {
+            background-color: #2C517B;
+            .icon {
+                background-image: url("../Images/terran.png");
+            }
+        }
+    }
+}

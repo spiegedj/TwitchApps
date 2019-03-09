@@ -1,0 +1,101 @@
+.weatherPanel {
+  display: flex;
+  color: white;
+  width: 100%;
+  margin-bottom: 10px; }
+  .weatherPanel > div {
+    flex: 1 0 auto; }
+  .weatherPanel > div + div {
+    margin-left: 10px; }
+  .weatherPanel .temp-icon {
+    width: 70px; }
+  .weatherPanel .condition {
+    background-color: #1f4371;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid black; }
+    .weatherPanel .condition .temp {
+      font-size: 55px; }
+  .weatherPanel .forecast-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid black; }
+    .weatherPanel .forecast-day .temp {
+      font-size: 40px;
+      height: 67px;
+      line-height: 67px; }
+    .weatherPanel .forecast-day.f0 {
+      background-color: #1f4371; }
+    .weatherPanel .forecast-day.f1 {
+      background-color: #2962a9; }
+    .weatherPanel .forecast-day.f2 {
+      background-color: #347bd5; }
+    .weatherPanel .forecast-day.f3 {
+      background-color: #609ae1; }
+    .weatherPanel .forecast-day.f4 {
+      background-color: #76a7e3; }
+  .weatherPanel .icon-drop {
+    width: 20px; }
+
+.slash {
+  margin-left: 0px;
+  margin-right: 7px;
+  border-right: 1px solid white;
+  -webkit-transform: skewX(-30deg);
+  -ms-transform: skewX(-30deg);
+  transform: skewX(-30deg);
+  display: inline-block;
+  height: 30px;
+  position: relative;
+  bottom: -2px; }
+
+.clock {
+  background-color: #031727;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column; }
+  .clock > div .clock-date {
+    text-align: center;
+    color: #C9283E;
+    font-size: 16pt; }
+  .clock > div .clock-time {
+    text-align: center;
+    color: white;
+    font-size: 50pt; }
+
+.svg-cloud, .svg-star, .svg-wind {
+  fill: #fff; }
+
+.svg-drop {
+  fill: #6ec4e9; }
+
+.svg-sun {
+  fill: #f9ed32; }
+
+.svg-hail, .svg-snowflake {
+  fill: #fff;
+  stroke: #fff; }
+
+.svg-moon {
+  fill: #e6e6e6; }
+
+.svg-fog-wave {
+  stroke: #fff;
+  fill: #fff; }
+
+.svg-lightning {
+  fill: #f2df00; }
+
+.svg-bg-circle {
+  fill: #aaa;
+  stroke: #fff; }
+
+.svg-rt-lightning .svg-lightning {
+  fill: #fff; }
+
+/*# sourceMappingURL=weatherpanel.css.map */
