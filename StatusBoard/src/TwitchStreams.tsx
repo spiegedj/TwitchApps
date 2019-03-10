@@ -1,6 +1,7 @@
 /// <reference path="../@types/data.d.ts"/>
 
 import * as React from "react";
+import { IGroupedList, IGroup } from "./GroupedList";
 
 type twitchProps = {
     streams: Response.TwitchStream[]
@@ -13,15 +14,33 @@ interface IGameGroup extends IGroup<Response.TwitchStream>
 
 export class TwitchStreams extends React.Component<twitchProps>
 {
+    private createGroup = (item: Response.TwitchStream) =>
+    {
+        return { name: item.Game, items: [], key: item.Game }
+    }
+
+    private isGrouped = (a: Response.TwitchStream, b: Response.TwitchStream) =>
+    {
+        return a.Game === b.Game;
+    }
+
+    private getSize = (groups: IGameGroup[]) =>
+    {
+        var items = groups.reduce((items, group) => items.concat(...group.items), [] as Response.TwitchStream[]);
+        return items.length * 53 + groups.length * 50;
+    }
+
     public render(): React.ReactNode 
     {
         const streams = this.props.streams;
         const groupedStreams = new IGroupedList<IGameGroup, Response.TwitchStream>();
-        groupedStreams.createGroup = item => { return { name: item.Game, items: [] } };
-        groupedStreams.isGrouped = (a, b) => a.Game === b.Game;
+        groupedStreams.createGroup = this.createGroup;
+        groupedStreams.isGrouped = this.isGrouped;
+        groupedStreams.getSize = this.getSize;
+
         groupedStreams.populate(streams);
 
-        const games = groupedStreams.getGroups(14);
+        const games = groupedStreams.getGroups(1068);
 
         const tiles = games.map((game) =>
         {
@@ -52,48 +71,5 @@ export class TwitchStreams extends React.Component<twitchProps>
         }
         commaString = numString.substr(0, i) + commaString;
         return commaString;
-    }
-}
-
-interface IGroup<Item>
-{
-    items: Item[];
-}
-
-class IGroupedList<Group extends IGroup<Item>, Item>
-{
-    private items: Item[];
-
-    public createGroup: (item: Item) => Group;
-    public isGrouped: (a: Item, b: Item) => boolean;
-
-    public populate(items: Item[])
-    {
-        this.items = items;
-    }
-
-    public getGroups(count: number): Group[]
-    {
-        const groups: Group[] = [];
-        let items = this.items.slice(0, count);
-        while (items.length > 0)
-        {
-            const item = items.shift();
-            const group = this.createGroup(item);
-            group.items = [item];
-            for (var i = 0; i < items.length; i++)
-            {
-                const iItem = items[i];
-                if (this.isGrouped(item, iItem))
-                {
-                    items.splice(i, 1);
-                    group.items.push(iItem);
-                    i--;
-                }
-            }
-            groups.push(group);
-        }
-
-        return groups;
     }
 }

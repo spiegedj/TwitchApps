@@ -241,7 +241,7 @@ $spaceBetween: 10px;
         position: relative;
         
         &:not(:last-child) {
-            border-bottom: 2px solid white;
+            //border-bottom: 2px solid white;
         }
         .comp {
             width: 50%;
@@ -249,8 +249,14 @@ $spaceBetween: 10px;
             flex-direction: column;
             padding: 6px;
             position: relative;
-            padding-left: 35px;
-            padding-right: 35px;
+            padding-left: 45px;
+            padding-right: 45px;
+        }
+
+        .status {
+            background-color: #F3F3F3;
+            bottom: 17px;
+            border-radius: 3px;
         }
 
         .comp-2 {
@@ -272,12 +278,12 @@ $spaceBetween: 10px;
         }
 
         .comp-1 .image {
-            left: 0px;
+            left: 5px;
             top: 0;
         }
 
         .comp-2 .image {
-            right: 0px;
+            right: 5px;
             top: 0;
         }
     }

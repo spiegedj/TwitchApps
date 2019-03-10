@@ -152,16 +152,18 @@
   .ow .tile {
     display: flex;
     position: relative; }
-    .ow .tile:not(:last-child) {
-      border-bottom: 2px solid white; }
     .ow .tile .comp {
       width: 50%;
       display: flex;
       flex-direction: column;
       padding: 6px;
       position: relative;
-      padding-left: 35px;
-      padding-right: 35px; }
+      padding-left: 45px;
+      padding-right: 45px; }
+    .ow .tile .status {
+      background-color: #F3F3F3;
+      bottom: 17px;
+      border-radius: 3px; }
     .ow .tile .comp-2 {
       text-align: right; }
     .ow .tile .comp-name-1 {
@@ -173,10 +175,10 @@
       width: 35px;
       height: 57px; }
     .ow .tile .comp-1 .image {
-      left: 0px;
+      left: 5px;
       top: 0; }
     .ow .tile .comp-2 .image {
-      right: 0px;
+      right: 5px;
       top: 0; }
 
 .sc2 {
