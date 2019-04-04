@@ -52,8 +52,12 @@ class OverwatchEvents extends React.Component {
             React.createElement("span", { className: "status" }, status),
             React.createElement("div", { className: comp2ClassNames.join(" "), style: { backgroundColor: this.getColor(match.Competitor2) } },
                 React.createElement("img", { src: this.getImage(match.Competitor2), className: "image" }),
-                React.createElement("div", { className: "comp-name-1" }, compNamePieces2.piece1),
-                React.createElement("div", { className: "comp-name-2" }, compNamePieces2.piece2)));
+                React.createElement("div", { className: "comp-name-1" },
+                    " ",
+                    compNamePieces2.piece1),
+                React.createElement("div", { className: "comp-name-2" },
+                    " ",
+                    compNamePieces2.piece2)));
     }
     getSmallPanel(match) {
         const compNamePieces1 = this.splitName(match.Competitor1.Name);
@@ -68,13 +72,15 @@ class OverwatchEvents extends React.Component {
         return React.createElement("div", { className: "tile" },
             React.createElement("div", { className: comp1ClassNames.join(" "), style: { backgroundColor: this.getColor(match.Competitor1) } },
                 React.createElement("img", { src: this.getImage(match.Competitor1), className: "image" }),
-                React.createElement("div", { className: "comp-name-1" }, compNamePieces1.piece1),
-                React.createElement("div", { className: "comp-name-2" }, compNamePieces1.piece2)),
-            React.createElement("span", { className: "status" }, status),
+                React.createElement("div", { className: "comp-name" },
+                    React.createElement("span", { className: "comp-name-1" }, compNamePieces1.piece1),
+                    compNamePieces1.piece2)),
             React.createElement("div", { className: comp2ClassNames.join(" "), style: { backgroundColor: this.getColor(match.Competitor2) } },
                 React.createElement("img", { src: this.getImage(match.Competitor2), className: "image" }),
-                React.createElement("div", { className: "comp-name-1" }, compNamePieces2.piece1),
-                React.createElement("span", { className: "comp-name-2" }, compNamePieces2.piece2)));
+                React.createElement("div", { className: "comp-name" },
+                    React.createElement("span", { className: "comp-name-1" }, compNamePieces2.piece1),
+                    compNamePieces2.piece2)),
+            React.createElement("span", { className: "status" }, status));
     }
     render() {
         const panels = [];
@@ -87,7 +93,11 @@ class OverwatchEvents extends React.Component {
                     React.createElement(DateHeader_1.DateHeader, { dates: [firstMatch.date], showTimeCells: false }),
                     matchPanels)));
         }
-        let nextMatches = matchDays.slice(0, 3);
+        let nextMatches = matchDays.slice(0, 4);
+        panels.push(React.createElement("span", { className: "ow col" }, nextMatches.map(day => React.createElement("span", { className: "group" },
+            React.createElement(DateHeader_1.DateHeader, { dates: [day.date], showTimeCells: false }),
+            day.matches.map(m => this.getSmallPanel(m))))));
+        nextMatches = matchDays.slice(4, 8);
         panels.push(React.createElement("span", { className: "ow col" }, nextMatches.map(day => React.createElement("span", { className: "group" },
             React.createElement(DateHeader_1.DateHeader, { dates: [day.date], showTimeCells: false }),
             day.matches.map(m => this.getSmallPanel(m))))));

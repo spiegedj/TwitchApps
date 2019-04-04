@@ -76,8 +76,8 @@ export class OverwatchEvents extends React.Component<owProps>
             <span className="status">{status}</span>
             <div className={comp2ClassNames.join(" ")} style={{ backgroundColor: this.getColor(match.Competitor2) }}>
                 <img src={this.getImage(match.Competitor2)} className="image" />
-                <div className="comp-name-1">{compNamePieces2.piece1}</div>
-                <div className="comp-name-2">{compNamePieces2.piece2}</div>
+                <div className="comp-name-1"> {compNamePieces2.piece1}</div>
+                <div className="comp-name-2"> {compNamePieces2.piece2}</div>
             </div>
         </div>
     }
@@ -98,15 +98,13 @@ export class OverwatchEvents extends React.Component<owProps>
         return <div className="tile">
             <div className={comp1ClassNames.join(" ")} style={{ backgroundColor: this.getColor(match.Competitor1) }}>
                 <img src={this.getImage(match.Competitor1)} className="image" />
-                <div className="comp-name-1">{compNamePieces1.piece1}</div>
-                <div className="comp-name-2">{compNamePieces1.piece2}</div>
+                <div className="comp-name"><span className="comp-name-1">{compNamePieces1.piece1}</span>{compNamePieces1.piece2}</div>
             </div>
-            <span className="status">{status}</span>
             <div className={comp2ClassNames.join(" ")} style={{ backgroundColor: this.getColor(match.Competitor2) }}>
                 <img src={this.getImage(match.Competitor2)} className="image" />
-                <div className="comp-name-1">{compNamePieces2.piece1}</div>
-                <span className="comp-name-2">{compNamePieces2.piece2}</span>
+                <div className="comp-name"><span className="comp-name-1">{compNamePieces2.piece1}</span>{compNamePieces2.piece2}</div>
             </div>
+            <span className="status">{status}</span>
         </div>
     }
 
@@ -127,7 +125,16 @@ export class OverwatchEvents extends React.Component<owProps>
             </span>);
         }
 
-        let nextMatches = matchDays.slice(0, 3);
+        let nextMatches = matchDays.slice(0, 4);
+        panels.push(<span className="ow col">
+            {nextMatches.map(day =>
+                <span className="group">
+                    <DateHeader dates={[day.date]} showTimeCells={false}></DateHeader>
+                    {day.matches.map(m => this.getSmallPanel(m))}
+                </span>)}
+        </span>);
+
+        nextMatches = matchDays.slice(4, 8);
         panels.push(<span className="ow col">
             {nextMatches.map(day =>
                 <span className="group">

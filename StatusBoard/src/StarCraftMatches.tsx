@@ -53,7 +53,7 @@ export class StarCraftMatches extends React.Component<scMatchesProps>
     public render(): React.ReactNode 
     {
         const totalRows = 23;
-        const columns = 2;
+        const columns = 1;
 
         const columnEls: JSX.Element[] = [];
         const groups = this.props.groups;

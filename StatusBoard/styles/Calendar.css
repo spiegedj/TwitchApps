@@ -151,35 +151,44 @@
     margin-left: -35px; }
   .ow .tile {
     display: flex;
-    position: relative; }
+    position: relative;
+    background-color: white;
+    font-family: "Industry"; }
     .ow .tile .comp {
       width: 50%;
       display: flex;
       flex-direction: column;
       padding: 6px;
       position: relative;
-      padding-left: 45px;
-      padding-right: 45px; }
+      padding-left: 35px; }
+    .ow .tile:not(:last-child) {
+      border-bottom: 3px solid white; }
+    .ow .tile .comp + .comp {
+      margin-left: 3px; }
     .ow .tile .status {
       background-color: #F3F3F3;
-      bottom: 17px;
-      border-radius: 3px; }
-    .ow .tile .comp-2 {
-      text-align: right; }
-    .ow .tile .comp-name-1 {
+      bottom: 8px;
+      border-radius: 3px;
       font-size: 12pt; }
-    .ow .tile .comp-name-2 {
-      font-size: 22pt; }
+    .ow .tile .comp-2 {
+      text-align: right;
+      padding-right: 35px;
+      padding-left: 0;
+      font-size: 10pt; }
+    .ow .tile .comp-name {
+      font-size: 16pt; }
+    .ow .tile .comp-name-1 {
+      font-size: 8pt;
+      vertical-align: middle;
+      display: none; }
     .ow .tile .image {
       position: absolute;
-      width: 35px;
-      height: 57px; }
+      width: 25px;
+      height: 25px; }
     .ow .tile .comp-1 .image {
-      left: 5px;
-      top: 0; }
+      left: 5px; }
     .ow .tile .comp-2 .image {
-      right: 5px;
-      top: 0; }
+      right: 5px; }
 
 .sc2 {
   color: black;
