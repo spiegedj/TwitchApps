@@ -134,15 +134,6 @@ export class OverwatchEvents extends React.Component<owProps>
                 </span>)}
         </span>);
 
-        nextMatches = matchDays.slice(4, 8);
-        panels.push(<span className="ow col">
-            {nextMatches.map(day =>
-                <span className="group">
-                    <DateHeader dates={[day.date]} showTimeCells={false}></DateHeader>
-                    {day.matches.map(m => this.getSmallPanel(m))}
-                </span>)}
-        </span>);
-
         return panels;
     }
 

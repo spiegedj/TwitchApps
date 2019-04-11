@@ -97,10 +97,6 @@ class OverwatchEvents extends React.Component {
         panels.push(React.createElement("span", { className: "ow col" }, nextMatches.map(day => React.createElement("span", { className: "group" },
             React.createElement(DateHeader_1.DateHeader, { dates: [day.date], showTimeCells: false }),
             day.matches.map(m => this.getSmallPanel(m))))));
-        nextMatches = matchDays.slice(4, 8);
-        panels.push(React.createElement("span", { className: "ow col" }, nextMatches.map(day => React.createElement("span", { className: "group" },
-            React.createElement(DateHeader_1.DateHeader, { dates: [day.date], showTimeCells: false }),
-            day.matches.map(m => this.getSmallPanel(m))))));
         return panels;
     }
     getImage(competitor) {
