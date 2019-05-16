@@ -88,6 +88,9 @@ class OverwatchEvents extends React.Component {
         const firstMatch = matchDays.shift();
         if (firstMatch) {
             let matchPanels = firstMatch.matches.map(m => this.getLargePanel(m));
+            if (firstMatch.matches.length > 4) {
+                matchPanels = firstMatch.matches.map(m => this.getSmallPanel(m));
+            }
             panels.push(React.createElement("span", { className: "ow col" },
                 React.createElement("span", { className: "group" },
                     React.createElement(DateHeader_1.DateHeader, { dates: [firstMatch.date], showTimeCells: false }),

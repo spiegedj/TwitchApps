@@ -117,6 +117,10 @@ export class OverwatchEvents extends React.Component<owProps>
         if (firstMatch)
         {
             let matchPanels = firstMatch.matches.map(m => this.getLargePanel(m));
+            if (firstMatch.matches.length > 4)
+            {
+                matchPanels = firstMatch.matches.map(m => this.getSmallPanel(m));
+            }
             panels.push(<span className="ow col">
                 <span className="group">
                     <DateHeader dates={[firstMatch.date]} showTimeCells={false}></DateHeader>
