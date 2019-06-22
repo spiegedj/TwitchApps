@@ -6,6 +6,10 @@ $font-size: 14pt;
 $small-font-size: 10pt;
 $large-font-size: 16pt;
 
+.underline {
+    border-bottom: 1px solid #4D4D4D;
+}
+
 .calendar {
     display: flex;
     flex-wrap: wrap;
@@ -110,24 +114,6 @@ $large-font-size: 16pt;
 
         .tournament-name {
             color: #F0CF5B;
-        }
-    }
-
-    .gdq {
-        border-left: 8px solid #476D9B;
-        margin-bottom: 15px;
-        background-image: url("../Images/gdq.png");
-        background-size: 300px;
-        background-position-x: center;
-        background-position-y: 100px;
-        background-repeat: no-repeat;
-
-        .run-date {
-            color: #476D9B;
-        }
-
-        .game-image {
-            height: 45px;
         }
     }
 }
@@ -391,5 +377,44 @@ $iconWidth: 25px;
                 background-image: url("../Images/terran.png");
             }
         }
+    }
+}
+
+.gdq {
+    border-left: 8px solid #476D9B;
+    margin-bottom: 15px;
+    background-size: 300px;
+    background-position-x: center;
+    background-position-y: 100px;
+    background-repeat: no-repeat;
+    width: 50%;
+
+    
+    table {
+        border-collapse: collapse;
+        background-color: $cardBackColor;
+        border: $cardBorder;
+
+        tr {
+            width: 50px;
+            border-bottom: 1px solid black; 
+        }
+    }
+
+    .runDate {
+        width: 85px;
+    }
+
+    .runGame {
+        width: 500px;
+    }
+
+    .runner {
+        width: 250px;
+    }
+
+    .game-image {
+        height: 50px;
+        display: block;
     }
 }

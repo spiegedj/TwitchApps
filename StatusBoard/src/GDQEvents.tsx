@@ -17,19 +17,19 @@ export class GDQEvents extends React.Component<gdqProps>
             const endDate = new Date(run.EndDate);
             const isLive = DateUtils.isLive(runDate, endDate);
             return (
-                <tr className={isLive ? "live underline" : "underline"}>
+                <tr className={(isLive ? "live underline" : "underline")}>
                     <td>
                         <img src={run.GameImage} className="game-image" />
                     </td>
-                    <td className="rightAlign">
+                    <td className="rightAlign runDate">
                         <div>{DateUtils.getTimeString(runDate)}</div>
                         <div className="lighten">{run.TimeEstimate}</div>
                     </td>
-                    <td>
+                    <td className="runGame">
                         <div>{run.Game}</div>
                         <div className="lighten">{run.Category}</div>
                     </td>
-                    <td>
+                    <td className="runner">
                         <div>{run.Runner}</div>
                         <div className="lighten">{run.Commentator}</div>
                     </td>
@@ -37,8 +37,10 @@ export class GDQEvents extends React.Component<gdqProps>
             );
         });
 
+        tableRows = tableRows.slice(0, 15);
+
         return (
-            <div className="eventTile gdq">
+            <div className="gdq col">
                 <table>
                     <tbody>
                         {tableRows}

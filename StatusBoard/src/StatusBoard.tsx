@@ -5,6 +5,7 @@ import { WeatherPanel } from "./Weather";
 import { StarCraftMatches } from "./StarCraftMatches";
 import { TwitchStreams } from "./TwitchStreams";
 import { OverwatchEvents } from "./OverwatchEvents";
+import { GDQEvents } from "./GDQEvents";
 
 
 export class StatusBoard extends React.Component 
@@ -48,13 +49,19 @@ export class StatusBoard extends React.Component
 
     public render(): React.ReactNode 
     {
+        let centerPanel = <StarCraftMatches groups={this.state.data.StarcraftGroups} />
+        if (this.state.data.GDQ.length > 0)
+        {
+            centerPanel = <GDQEvents runs={this.state.data.GDQ} />;
+        }
+
         return (
             <React.Fragment>
                 <div className="calendar">
                     <WeatherPanel weather={this.state.data.Weather} />
                     <div className="columns">
                         <OverwatchEvents matches={this.state.data.Overwatch} />
-                        <StarCraftMatches groups={this.state.data.StarcraftGroups} />
+                        {centerPanel}
                     </div>
                 </div>
                 <TwitchStreams streams={this.state.data.TwitchStreams}></TwitchStreams>

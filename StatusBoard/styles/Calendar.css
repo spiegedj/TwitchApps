@@ -1,3 +1,6 @@
+.underline {
+  border-bottom: 1px solid #4D4D4D; }
+
 .calendar {
   display: flex;
   flex-wrap: wrap;
@@ -66,18 +69,6 @@
     margin-bottom: 15px; }
     .calendar .gsl .tournament-name {
       color: #F0CF5B; }
-  .calendar .gdq {
-    border-left: 8px solid #476D9B;
-    margin-bottom: 15px;
-    background-image: url("../Images/gdq.png");
-    background-size: 300px;
-    background-position-x: center;
-    background-position-y: 100px;
-    background-repeat: no-repeat; }
-    .calendar .gdq .run-date {
-      color: #476D9B; }
-    .calendar .gdq .game-image {
-      height: 45px; }
 
 .dateHeader {
   font-family: overwatch;
@@ -248,5 +239,30 @@
       background-color: #2C517B; }
       .sc2 .playerTable .terran .icon {
         background-image: url("../Images/terran.png"); }
+
+.gdq {
+  border-left: 8px solid #476D9B;
+  margin-bottom: 15px;
+  background-size: 300px;
+  background-position-x: center;
+  background-position-y: 100px;
+  background-repeat: no-repeat;
+  width: 50%; }
+  .gdq table {
+    border-collapse: collapse;
+    background-color: white;
+    border: 2px solid black; }
+    .gdq table tr {
+      width: 50px;
+      border-bottom: 1px solid black; }
+  .gdq .runDate {
+    width: 85px; }
+  .gdq .runGame {
+    width: 500px; }
+  .gdq .runner {
+    width: 250px; }
+  .gdq .game-image {
+    height: 50px;
+    display: block; }
 
 /*# sourceMappingURL=Calendar.css.map */
