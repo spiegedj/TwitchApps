@@ -6,6 +6,7 @@ import { StarCraftMatches } from "./StarCraftMatches";
 import { TwitchStreams } from "./TwitchStreams";
 import { OverwatchEvents } from "./OverwatchEvents";
 import { GDQEvents } from "./GDQEvents";
+import { DateUtils } from "./DateUtils";
 
 
 export class StatusBoard extends React.Component 
@@ -49,18 +50,19 @@ export class StatusBoard extends React.Component
 
     public render(): React.ReactNode 
     {
-        let centerPanel = <StarCraftMatches groups={this.state.data.StarcraftGroups} />
-        if (this.state.data.GDQ.length > 0)
+        let { GDQ, StarcraftGroups, Weather, Overwatch } = this.state.data;
+        let centerPanel = <StarCraftMatches groups={StarcraftGroups} />
+        if (GDQ.length > 0 && DateUtils.getDaysFrom(new Date(GDQ[0].Date)) < 3)
         {
-            centerPanel = <GDQEvents runs={this.state.data.GDQ} />;
+            centerPanel = <GDQEvents runs={GDQ} />;
         }
 
         return (
             <React.Fragment>
                 <div className="calendar">
-                    <WeatherPanel weather={this.state.data.Weather} />
+                    <WeatherPanel weather={Weather} />
                     <div className="columns">
-                        <OverwatchEvents matches={this.state.data.Overwatch} />
+                        <OverwatchEvents matches={Overwatch} />
                         {centerPanel}
                     </div>
                 </div>

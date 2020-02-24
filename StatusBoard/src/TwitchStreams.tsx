@@ -49,7 +49,7 @@ export class TwitchStreams extends React.Component<twitchProps>
                 {game.items.map(stream =>
                 {
                     return <div className="tile">
-                        <img className="tile-image" src={stream.ImageURL}></img>
+                        <img className="tile-image" crossOrigin="anonymous" src={stream.ImageURL}></img>
                         <div className="tile-title">{stream.Streamer}</div>
                         <div className="tile-details">{stream.Status}</div>
                         <div className="tile-viewers">{this.__addCommas(stream.Viewers)}</div>

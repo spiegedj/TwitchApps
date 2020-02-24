@@ -154,9 +154,9 @@ export class OverwatchEvents extends React.Component<owProps>
     {
         if (swapColors.indexOf(competitor.Name.toLowerCase()) >= 0)
         {
-            return "#" + competitor.SecondaryColor;
+            return competitor.SecondaryColor;
         }
-        return "#" + competitor.PrimaryColor;
+        return competitor.PrimaryColor;
     }
 
     private useBlackText(competitor: Response.CompetitorDetails): boolean

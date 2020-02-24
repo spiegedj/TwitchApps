@@ -110,9 +110,9 @@ class OverwatchEvents extends React.Component {
     }
     getColor(competitor) {
         if (swapColors.indexOf(competitor.Name.toLowerCase()) >= 0) {
-            return "#" + competitor.SecondaryColor;
+            return competitor.SecondaryColor;
         }
-        return "#" + competitor.PrimaryColor;
+        return competitor.PrimaryColor;
     }
     useBlackText(competitor) {
         const { r, g, b } = this.getRGBComponents(this.getColor(competitor));

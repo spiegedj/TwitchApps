@@ -30,7 +30,7 @@ class TwitchStreams extends React.Component {
                 React.createElement("div", { className: "list-group-name" }, game.name),
                 game.items.map(stream => {
                     return React.createElement("div", { className: "tile" },
-                        React.createElement("img", { className: "tile-image", src: stream.ImageURL }),
+                        React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: stream.ImageURL }),
                         React.createElement("div", { className: "tile-title" }, stream.Streamer),
                         React.createElement("div", { className: "tile-details" }, stream.Status),
                         React.createElement("div", { className: "tile-viewers" }, this.__addCommas(stream.Viewers)));

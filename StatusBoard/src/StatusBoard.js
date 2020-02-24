@@ -15,6 +15,7 @@ const StarCraftMatches_1 = require("./StarCraftMatches");
 const TwitchStreams_1 = require("./TwitchStreams");
 const OverwatchEvents_1 = require("./OverwatchEvents");
 const GDQEvents_1 = require("./GDQEvents");
+const DateUtils_1 = require("./DateUtils");
 class StatusBoard extends React.Component {
     constructor(props) {
         super(props);
@@ -45,15 +46,16 @@ class StatusBoard extends React.Component {
         });
     }
     render() {
-        let centerPanel = React.createElement(StarCraftMatches_1.StarCraftMatches, { groups: this.state.data.StarcraftGroups });
-        if (this.state.data.GDQ.length > 0) {
-            centerPanel = React.createElement(GDQEvents_1.GDQEvents, { runs: this.state.data.GDQ });
+        let { GDQ, StarcraftGroups, Weather, Overwatch } = this.state.data;
+        let centerPanel = React.createElement(StarCraftMatches_1.StarCraftMatches, { groups: StarcraftGroups });
+        if (GDQ.length > 0 && DateUtils_1.DateUtils.getDaysFrom(new Date(GDQ[0].Date)) < 3) {
+            centerPanel = React.createElement(GDQEvents_1.GDQEvents, { runs: GDQ });
         }
         return (React.createElement(React.Fragment, null,
             React.createElement("div", { className: "calendar" },
-                React.createElement(Weather_1.WeatherPanel, { weather: this.state.data.Weather }),
+                React.createElement(Weather_1.WeatherPanel, { weather: Weather }),
                 React.createElement("div", { className: "columns" },
-                    React.createElement(OverwatchEvents_1.OverwatchEvents, { matches: this.state.data.Overwatch }),
+                    React.createElement(OverwatchEvents_1.OverwatchEvents, { matches: Overwatch }),
                     centerPanel)),
             React.createElement(TwitchStreams_1.TwitchStreams, { streams: this.state.data.TwitchStreams })));
     }
