@@ -1,6 +1,7 @@
 "use strict";
 /// <reference path="../@types/data.d.ts"/>
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OverwatchEvents = void 0;
 const React = require("react");
 const DateHeader_1 = require("./DateHeader");
 const DateUtils_1 = require("./DateUtils");

@@ -1,6 +1,7 @@
 "use strict";
 /// <reference path="../@types/data.d.ts"/>
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.TwitchStreams = void 0;
 const React = require("react");
 const GroupedList_1 = require("./GroupedList");
 class TwitchStreams extends React.Component {

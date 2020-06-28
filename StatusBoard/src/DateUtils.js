@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DateUtils = void 0;
 class DateUtils {
     static getDaysFrom(date) {
         if (!date)

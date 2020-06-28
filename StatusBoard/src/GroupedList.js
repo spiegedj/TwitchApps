@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.IGroupedList = void 0;
 class IGroupedList {
     populate(items) {
         this.items = items;

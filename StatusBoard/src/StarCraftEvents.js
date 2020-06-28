@@ -1,6 +1,7 @@
 "use strict";
 /// <reference path="../@types/data.d.ts"/>
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.StarCraftEvents = void 0;
 const React = require("react");
 const DateUtils_1 = require("./DateUtils");
 class StarCraftEvents extends React.Component {
