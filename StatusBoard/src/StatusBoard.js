@@ -41,7 +41,7 @@ class StatusBoard extends React.Component {
     }
     load() {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield this.get("http://192.168.1.120:3000/StatusBoard");
+            const data = yield this.get("http://192.168.1.19:3000/StatusBoard");
             this.setState({
                 data: data
             });
