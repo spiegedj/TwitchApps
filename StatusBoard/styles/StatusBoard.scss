@@ -24,6 +24,11 @@ body {
     cursor: none;
 }
 
+.dark {
+    background-color: $backColorDark;
+    color: $textColorDark;
+}
+
 .calendar {
     width: calc(100% - #{$leftPanelWidth});
     position: absolute;
@@ -48,4 +53,9 @@ body {
     border: $cardBorder;
     background-color: $cardBackColor;
     padding-bottom: 6px;
+}
+
+.dark .card {
+    border: $cardBorderDark;
+    background-color: $cardBackColorDark;
 }

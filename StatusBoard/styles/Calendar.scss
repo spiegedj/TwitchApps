@@ -135,6 +135,11 @@ $spaceBetween: 10px;
     }
 }
 
+.dark .dateHeader {
+    background-color: $cardBackColorDark;
+    color: $textColorDark;
+}
+
 .blackText { color: black !important; }
 
 .columns {
@@ -164,16 +169,48 @@ $spaceBetween: 10px;
     }
 }
 
+.dark .col .group {
+    border: $cardBorderDark;
+}
+
+.light .ow {
+    color: $textColor;
+
+    .tile, .largeTile {
+        background-color: $cardBackColor;
+        border-color: white;
+    }
+
+    .status {
+        background-color: $cardBackColor;
+        color: $textColor;
+    }
+}
+
+.dark .ow {
+    color: $textColorDark;
+
+    .tile, .largeTile {
+        background-color: $cardBackColorDark;
+        border-color: black;
+    }
+
+    .status {
+        background-color: $cardBackColorDark;
+        color: $textColorDark;
+    }
+}
+
 .ow {
     font-family: overwatch;
-    color: white;
 
     .largeTile {
         position: relative;
         height: $panel-height;
 
         &:not(:last-child) {
-            border-bottom: 2px solid white;
+            border-bottom-width: 2px;
+            border-bottom-style: solid;
         }
 
         .comp {
@@ -204,8 +241,6 @@ $spaceBetween: 10px;
 
     .status {
         position: absolute;
-        background-color: $cardBackColor;
-        color: $textColor;
 
         text-align: center;
         height: 22px;
@@ -238,14 +273,14 @@ $spaceBetween: 10px;
         }
 
         &:not(:last-child) {
-            border-bottom: 3px solid $cardBackColor;
+            border-bottom-width: 3px;
+            border-bottom-style: solid;
         }
         .comp + .comp {
             margin-left: 3px;
         }
 
         .status {
-            background-color: #F3F3F3;
             bottom: 8px;
             border-radius: 3px;
             font-size: 12pt;
@@ -380,6 +415,20 @@ $iconWidth: 25px;
     }
 }
 
+.light .gdq {
+    table {
+        background-color: $cardBackColor;
+        border: $cardBorder;
+    }
+}
+
+.dark .gdq {
+    table {
+        background-color: $cardBackColorDark;
+        border: $cardBorderDark;
+    }
+}
+
 .gdq {
     margin-bottom: 15px;
     background-size: 300px;
@@ -388,11 +437,8 @@ $iconWidth: 25px;
     background-repeat: no-repeat;
     width: 50%;
 
-    
     table {
         border-collapse: collapse;
-        background-color: $cardBackColor;
-        border: $cardBorder;
 
         tr {
             width: 50px;

@@ -80,6 +80,10 @@
   .dateHeader td {
     text-align: center; }
 
+.dark .dateHeader {
+  background-color: #0A0A0A;
+  color: white; }
+
 .blackText {
   color: black !important; }
 
@@ -101,14 +105,35 @@
   .columns .col + .col {
     margin-left: 10px; }
 
-.ow {
-  font-family: overwatch;
+.dark .col .group {
+  border: 1px solid white; }
+
+.light .ow {
+  color: black; }
+  .light .ow .tile, .light .ow .largeTile {
+    background-color: white;
+    border-color: white; }
+  .light .ow .status {
+    background-color: white;
+    color: black; }
+
+.dark .ow {
   color: white; }
+  .dark .ow .tile, .dark .ow .largeTile {
+    background-color: #0A0A0A;
+    border-color: black; }
+  .dark .ow .status {
+    background-color: #0A0A0A;
+    color: white; }
+
+.ow {
+  font-family: overwatch; }
   .ow .largeTile {
     position: relative;
     height: 195px; }
     .ow .largeTile:not(:last-child) {
-      border-bottom: 2px solid white; }
+      border-bottom-width: 2px;
+      border-bottom-style: solid; }
     .ow .largeTile .comp {
       height: 100%;
       width: 50%;
@@ -127,8 +152,6 @@
         letter-spacing: 3px; }
   .ow .status {
     position: absolute;
-    background-color: white;
-    color: black;
     text-align: center;
     height: 22px;
     line-height: 23px;
@@ -153,11 +176,11 @@
       position: relative;
       padding-left: 35px; }
     .ow .tile:not(:last-child) {
-      border-bottom: 3px solid white; }
+      border-bottom-width: 3px;
+      border-bottom-style: solid; }
     .ow .tile .comp + .comp {
       margin-left: 3px; }
     .ow .tile .status {
-      background-color: #F3F3F3;
       bottom: 8px;
       border-radius: 3px;
       font-size: 12pt; }
@@ -240,6 +263,14 @@
       .sc2 .playerTable .terran .icon {
         background-image: url("../Images/terran.png"); }
 
+.light .gdq table {
+  background-color: white;
+  border: 2px solid black; }
+
+.dark .gdq table {
+  background-color: #0A0A0A;
+  border: 1px solid white; }
+
 .gdq {
   margin-bottom: 15px;
   background-size: 300px;
@@ -248,9 +279,7 @@
   background-repeat: no-repeat;
   width: 50%; }
   .gdq table {
-    border-collapse: collapse;
-    background-color: white;
-    border: 2px solid black; }
+    border-collapse: collapse; }
     .gdq table tr {
       width: 50px;
       border-bottom: 1px solid black; }

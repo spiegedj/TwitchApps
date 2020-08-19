@@ -1,5 +1,17 @@
 @import "variables";
 
+.light .condition,
+.light .forecast-day,
+.clock {
+    border: $cardBorder;
+}
+
+.dark .condition,
+.dark .forecast-day,
+.clock {
+    border: $cardBorderDark;
+}
+
 .weatherPanel {
     display: flex;
     color: white;
@@ -23,7 +35,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        border: $cardBorder;
 
         .temp {
             font-size: 55px;
@@ -34,7 +45,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        border: $cardBorder;
 
         .temp {
             font-size: 40px;

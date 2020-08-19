@@ -16,6 +16,10 @@ body {
   overflow: hidden;
   cursor: none; }
 
+.dark {
+  background-color: black;
+  color: white; }
+
 .calendar {
   width: calc(100% - 400px);
   position: absolute;
@@ -38,5 +42,9 @@ body {
   border: 2px solid black;
   background-color: white;
   padding-bottom: 6px; }
+
+.dark .card {
+  border: 1px solid white;
+  background-color: #0A0A0A; }
 
 /*# sourceMappingURL=StatusBoard.css.map */
