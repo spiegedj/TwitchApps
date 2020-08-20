@@ -22,6 +22,9 @@ body {
     color: $textColor;
     overflow: hidden;
     cursor: none;
+
+    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url(../Images/background.jpg);
+    opacity: .9;
 }
 
 .dark {
