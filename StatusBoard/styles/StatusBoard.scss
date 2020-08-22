@@ -23,7 +23,10 @@ body {
     overflow: hidden;
     cursor: none;
 
-    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url(../Images/background.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../Images/back1.jpg);
+    //background:  url(../Images/back7.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     opacity: .9;
 }
 
@@ -62,3 +65,42 @@ body {
     border: $cardBorderDark;
     background-color: $cardBackColorDark;
 }
+
+.marquee {
+    width: 100%;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 5px;
+    font-size: 16px;
+    border-top: $cardBorderDark;
+
+    background-color: $cardBackColorDark;
+  }
+  
+  .marquee > div {
+    display: inline-block;
+    padding-left: 100%;
+    /* show the marquee just outside the paragraph */
+    will-change: transform;
+    animation: marquee 800s linear infinite;
+  }
+  
+  .headline {
+      margin: 0 20px 0 40px;
+  }
+
+  .marquee span:hover {
+    animation-play-state: paused
+  }
+  
+  
+  @keyframes marquee {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+  }

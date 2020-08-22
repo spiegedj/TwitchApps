@@ -8,6 +8,7 @@ declare namespace Response
         Weather: Weather;
         StarcraftGroups: Group[];
         TwitchStreams: TwitchStream[];
+        Headlines: Headline[];
     }
 
     // Twitch
@@ -115,5 +116,11 @@ declare namespace Response
         Wind: string;
         Humidity: string;
         Icon: string;
+    }
+
+    interface Headline
+    {
+        Title: string;
+        Date: number;
     }
 }

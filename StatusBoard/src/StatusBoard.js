@@ -18,6 +18,7 @@ const TwitchStreams_1 = require("./TwitchStreams");
 const OverwatchEvents_1 = require("./OverwatchEvents");
 const GDQEvents_1 = require("./GDQEvents");
 const DateUtils_1 = require("./DateUtils");
+const Headlines_1 = require("./Headlines");
 class StatusBoard extends React.Component {
     constructor(props) {
         super(props);
@@ -30,7 +31,8 @@ class StatusBoard extends React.Component {
                 GDQ: [],
                 Weather: { Condition: {}, Forecast: [] },
                 StarcraftGroups: [],
-                TwitchStreams: []
+                TwitchStreams: [],
+                Headlines: [],
             }
         };
     }
@@ -59,7 +61,8 @@ class StatusBoard extends React.Component {
                 React.createElement("div", { className: "columns" },
                     React.createElement(OverwatchEvents_1.OverwatchEvents, { matches: Overwatch }),
                     centerPanel)),
-            React.createElement(TwitchStreams_1.TwitchStreams, { streams: this.state.data.TwitchStreams })));
+            React.createElement(TwitchStreams_1.TwitchStreams, { streams: this.state.data.TwitchStreams }),
+            React.createElement(Headlines_1.Headlines, { headlines: this.state.data.Headlines })));
     }
 }
 exports.StatusBoard = StatusBoard;

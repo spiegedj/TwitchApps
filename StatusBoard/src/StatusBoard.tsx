@@ -7,6 +7,7 @@ import { TwitchStreams } from "./TwitchStreams";
 import { OverwatchEvents } from "./OverwatchEvents";
 import { GDQEvents } from "./GDQEvents";
 import { DateUtils } from "./DateUtils";
+import { Headlines } from "./Headlines";
 
 
 export class StatusBoard extends React.Component 
@@ -27,7 +28,8 @@ export class StatusBoard extends React.Component
                 GDQ: [],
                 Weather: { Condition: {} as any, Forecast: [] },
                 StarcraftGroups: [],
-                TwitchStreams: []
+                TwitchStreams: [],
+                Headlines: [],
             }
         };
     }
@@ -67,6 +69,7 @@ export class StatusBoard extends React.Component
                     </div>
                 </div>
                 <TwitchStreams streams={this.state.data.TwitchStreams}></TwitchStreams>
+                <Headlines headlines={this.state.data.Headlines} />
             </React.Fragment>
         );
     }
