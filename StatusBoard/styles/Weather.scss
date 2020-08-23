@@ -2,12 +2,14 @@
 
 .light .condition,
 .light .forecast-day,
+.light .hourly,
 .clock {
     border: $cardBorder;
 }
 
 .dark .condition,
 .dark .forecast-day,
+.dark .hourly,
 .clock {
     border: $cardBorderDark;
 }
@@ -61,6 +63,45 @@
 
     .icon-drop {
         width: 20px;
+    }
+}
+
+.hourly-forcast {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.hourly {
+    background-color: #1f4371;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 5px 0 5px;
+    
+    .temp-icon { 
+        width: 35px;
+        height: 35px;
+    }
+
+    .icon-drop {
+        width: 20px;
+    }
+
+    .temp {
+        font-size: 35px;
+        padding: 0 2px 0 8px;
+    }
+
+    .details {
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+    }
+
+    .precip {
+        font-size: 14px;
     }
 }
 

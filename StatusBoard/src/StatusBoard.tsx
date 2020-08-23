@@ -26,7 +26,7 @@ export class StatusBoard extends React.Component
                 Starcraft: { WCS: [], GSL: [] },
                 Overwatch: [],
                 GDQ: [],
-                Weather: { Condition: {} as any, Forecast: [] },
+                Weather: { Condition: {} as any, Forecast: [], Hourly: [] },
                 StarcraftGroups: [],
                 TwitchStreams: [],
                 Headlines: [],

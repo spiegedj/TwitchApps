@@ -321,11 +321,31 @@ $spaceBetween: 10px;
 
 $iconWidth: 25px;
 
+.dark {
+    .sc2 {
+        color: $textColorDark;
+
+        .group {
+            background-color: $cardBackColorDark;
+        }
+
+        .playerTable {
+            background-color: $cardBackColorDark;
+
+            tr:not(:last-child) {
+                border-bottom: 3px solid $cardBackColorDark;
+            }
+            td + td {
+                border-left: 3px solid $cardBackColorDark;
+            }
+        }
+    }
+}
+
 .sc2 {
     color: $textColor;
     font-size: 20pt;
     font-family: overwatch;
-
 
     .group {
         background-color: $cardBackColor;

@@ -63,6 +63,7 @@ declare namespace Response
         Competitor1: CompetitorDetails
         Competitor2: CompetitorDetails
         Date: number;
+        IsConcluded: boolean;
         IsLive: boolean;
         Score: string;
     }
@@ -95,6 +96,7 @@ declare namespace Response
     {
         Condition: Condition;
         Forecast: Forecast[];
+        Hourly: Hourly[];
     }
 
     interface Condition
@@ -115,6 +117,16 @@ declare namespace Response
         Precipitation: string;
         Wind: string;
         Humidity: string;
+        Icon: string;
+    }
+
+    interface Hourly
+    {
+        Temp: string;
+        Hour: string;
+        Description: string;
+        Precipitation: string;
+        Wind: string;
         Icon: string;
     }
 

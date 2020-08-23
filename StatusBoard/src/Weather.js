@@ -29,10 +29,25 @@ class WeatherPanel extends React.Component {
                         React.createElement("use", { className: "svg-drop", href: "#svg-symbol-drop" })),
                     React.createElement("span", null, forecast.Precipitation)));
         });
-        return (React.createElement("div", { className: "weatherPanel" },
-            React.createElement(ClockPanel, null),
-            conditionElement,
-            weatherForecast));
+        const hourly = this.props.weather.Hourly.slice(0, 9);
+        const hourlyForcast = hourly.map((forecast, i) => {
+            const classes = "f" + i + " forecast-day";
+            return React.createElement("div", { className: "hourly" },
+                React.createElement("div", { className: "temp-icon", dangerouslySetInnerHTML: { __html: forecast.Icon } }),
+                React.createElement("div", { className: "details" },
+                    React.createElement("div", { className: "hour" }, forecast.Hour),
+                    React.createElement("div", { className: "precip" },
+                        React.createElement("svg", { className: "icon-drop", viewBox: "0 0 200 200", transform: "scale(4) translate(3, -3)" },
+                            React.createElement("use", { className: "svg-drop", href: "#svg-symbol-drop" })),
+                        React.createElement("span", null, forecast.Precipitation))),
+                React.createElement("div", { className: "temp" }, forecast.Temp));
+        });
+        return (React.createElement(React.Fragment, null,
+            React.createElement("div", { className: "weatherPanel" },
+                React.createElement(ClockPanel, null),
+                conditionElement,
+                weatherForecast),
+            React.createElement("div", { className: "hourly-forcast" }, hourlyForcast)));
     }
 }
 exports.WeatherPanel = WeatherPanel;

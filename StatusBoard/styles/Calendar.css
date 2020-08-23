@@ -204,6 +204,17 @@
     .ow .tile .comp-2 .image {
       right: 5px; }
 
+.dark .sc2 {
+  color: white; }
+  .dark .sc2 .group {
+    background-color: #0A0A0A; }
+  .dark .sc2 .playerTable {
+    background-color: #0A0A0A; }
+    .dark .sc2 .playerTable tr:not(:last-child) {
+      border-bottom: 3px solid #0A0A0A; }
+    .dark .sc2 .playerTable td + td {
+      border-left: 3px solid #0A0A0A; }
+
 .sc2 {
   color: black;
   font-size: 20pt;

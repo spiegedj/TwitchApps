@@ -86,15 +86,15 @@ class OverwatchEvents extends React.Component {
     render() {
         const panels = [];
         const matchDays = this.splitByDay(this.props.matches || []);
-        const firstMatch = matchDays.shift();
-        if (firstMatch) {
-            let matchPanels = firstMatch.matches.map(m => this.getLargePanel(m));
-            if (firstMatch.matches.length > 4) {
-                matchPanels = firstMatch.matches.map(m => this.getSmallPanel(m));
-            }
+        const nextDay = matchDays.shift();
+        if (nextDay) {
+            const nextMatch = nextDay.matches.find(m => !m.IsConcluded);
+            const matchPanels = nextDay.matches.map((m) => {
+                return m === nextMatch ? this.getLargePanel(m) : this.getSmallPanel(m);
+            });
             panels.push(React.createElement("span", { className: "ow col" },
                 React.createElement("span", { className: "group" },
-                    React.createElement(DateHeader_1.DateHeader, { dates: [firstMatch.date], showTimeCells: false }),
+                    React.createElement(DateHeader_1.DateHeader, { dates: [nextDay.date], showTimeCells: false }),
                     matchPanels)));
         }
         let nextMatches = matchDays.slice(0, 4);

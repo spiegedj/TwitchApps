@@ -42,12 +42,36 @@ export class WeatherPanel extends React.Component<weatherProps>
             </div>;
         });
 
+        const hourly = this.props.weather.Hourly.slice(0, 9);
+        const hourlyForcast = hourly.map((forecast, i) =>
+        {
+            const classes = "f" + i + " forecast-day";
+            return <div className="hourly">
+                <div className="temp-icon" dangerouslySetInnerHTML={{ __html: forecast.Icon }}></div>
+                <div className="details">
+                    <div className="hour">{forecast.Hour}</div>
+                    <div className="precip">
+                        <svg className="icon-drop" viewBox="0 0 200 200" transform="scale(4) translate(3, -3)">
+                            <use className="svg-drop" href="#svg-symbol-drop"></use>
+                        </svg>
+                        <span>{forecast.Precipitation}</span>
+                    </div>
+                </div>
+                <div className="temp">{forecast.Temp}</div>
+            </div>;
+        });
+
         return (
-            <div className="weatherPanel">
-                <ClockPanel />
-                {conditionElement}
-                {weatherForecast}
-            </div>
+            <>
+                <div className="weatherPanel">
+                    <ClockPanel />
+                    {conditionElement}
+                    {weatherForecast}
+                </div>
+                <div className="hourly-forcast">
+                    {hourlyForcast}
+                </div>
+            </>
         );
     }
 }

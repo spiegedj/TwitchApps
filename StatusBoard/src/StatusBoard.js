@@ -29,7 +29,7 @@ class StatusBoard extends React.Component {
                 Starcraft: { WCS: [], GSL: [] },
                 Overwatch: [],
                 GDQ: [],
-                Weather: { Condition: {}, Forecast: [] },
+                Weather: { Condition: {}, Forecast: [], Hourly: [] },
                 StarcraftGroups: [],
                 TwitchStreams: [],
                 Headlines: [],
