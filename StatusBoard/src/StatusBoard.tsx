@@ -9,6 +9,7 @@ import { GDQEvents } from "./GDQEvents";
 import { DateUtils } from "./DateUtils";
 import { Headlines } from "./Headlines";
 
+let sessionId: number | null = null;
 
 export class StatusBoard extends React.Component 
 {
@@ -30,6 +31,7 @@ export class StatusBoard extends React.Component
                 StarcraftGroups: [],
                 TwitchStreams: [],
                 Headlines: [],
+                SessionId: null,
             }
         };
     }
@@ -45,9 +47,15 @@ export class StatusBoard extends React.Component
     public async load(): Promise<void>
     {
         const data = await this.get("http://192.168.1.19:3000/StatusBoard") as Response.Data;
-        this.setState({
-            data: data
-        });
+
+        if (typeof data.SessionId === "number" && typeof sessionId === "number" && data.SessionId !== sessionId)
+        {
+            location.reload();
+            return;
+        }
+        sessionId = data.SessionId;
+
+        this.setState({ data });
     }
 
     public render(): React.ReactNode 

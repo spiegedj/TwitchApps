@@ -9,6 +9,7 @@ declare namespace Response
         StarcraftGroups: Group[];
         TwitchStreams: TwitchStream[];
         Headlines: Headline[];
+        SessionId: number;
     }
 
     // Twitch

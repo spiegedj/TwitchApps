@@ -19,6 +19,7 @@ const OverwatchEvents_1 = require("./OverwatchEvents");
 const GDQEvents_1 = require("./GDQEvents");
 const DateUtils_1 = require("./DateUtils");
 const Headlines_1 = require("./Headlines");
+let sessionId = null;
 class StatusBoard extends React.Component {
     constructor(props) {
         super(props);
@@ -33,6 +34,7 @@ class StatusBoard extends React.Component {
                 StarcraftGroups: [],
                 TwitchStreams: [],
                 Headlines: [],
+                SessionId: null,
             }
         };
     }
@@ -44,9 +46,12 @@ class StatusBoard extends React.Component {
     load() {
         return __awaiter(this, void 0, void 0, function* () {
             const data = yield this.get("http://192.168.1.19:3000/StatusBoard");
-            this.setState({
-                data: data
-            });
+            if (typeof data.SessionId === "number" && typeof sessionId === "number" && data.SessionId !== sessionId) {
+                location.reload();
+                return;
+            }
+            sessionId = data.SessionId;
+            this.setState({ data });
         });
     }
     render() {
