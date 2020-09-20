@@ -15,7 +15,7 @@ body {
   color: black;
   overflow: hidden;
   cursor: none;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../Images/back1.jpg);
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../Images/back5.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   opacity: .9; }
