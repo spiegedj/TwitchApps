@@ -25,22 +25,19 @@ body {
   color: white; }
 
 .calendar {
-  width: calc(100% - 400px);
   position: absolute;
   top: 0;
   left: 0;
   box-sizing: border-box;
   padding: 10px;
   padding-right: 0; }
+  .calendar > :last-child {
+    padding-right: 10px; }
 
 .streams {
-  width: 400px;
-  float: right;
-  position: absolute;
-  top: 0;
-  right: 0;
+  width: 375px;
   box-sizing: border-box;
-  padding: 10px; }
+  padding-left: 10px; }
 
 .card {
   border: 2px solid black;

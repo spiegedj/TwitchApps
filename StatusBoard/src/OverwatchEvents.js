@@ -5,6 +5,7 @@ exports.OverwatchEvents = void 0;
 const React = require("react");
 const DateHeader_1 = require("./DateHeader");
 const DateUtils_1 = require("./DateUtils");
+;
 const swapColors = [
     "toronto defiant"
 ];
@@ -98,9 +99,12 @@ class OverwatchEvents extends React.Component {
                     matchPanels)));
         }
         let nextMatches = matchDays.slice(0, 4);
-        panels.push(React.createElement("span", { className: "ow col" }, nextMatches.map(day => React.createElement("span", { className: "group" },
-            React.createElement(DateHeader_1.DateHeader, { dates: [day.date], showTimeCells: false }),
-            day.matches.map(m => this.getSmallPanel(m))))));
+        if (nextMatches.length > 0) {
+            panels.push(React.createElement("span", { className: "ow col" }, nextMatches.map(day => React.createElement("span", { className: "group" },
+                React.createElement(DateHeader_1.DateHeader, { dates: [day.date], showTimeCells: false }),
+                day.matches.map(m => this.getSmallPanel(m))))));
+        }
+        this.props.adjustColumns(panels.length);
         return panels;
     }
     getImage(competitor) {

@@ -36,23 +36,22 @@ body {
 }
 
 .calendar {
-    width: calc(100% - #{$leftPanelWidth});
     position: absolute;
     top: 0;
     left: 0;
     box-sizing: border-box; 
     padding: $spacing;
     padding-right: 0;
+
+    > :last-child{
+        padding-right: $spacing;
+    }
 }
 
 .streams {
     width: $leftPanelWidth;
-    float: right;
-    position: absolute;
-    top: 0;
-    right: 0;
     box-sizing: border-box; 
-    padding: $spacing;
+    padding-left: $spacing;
 }
 
 .card {

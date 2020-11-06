@@ -3,11 +3,13 @@
 import * as React from "react";
 import { DateUtils } from "./DateUtils";
 
-type scMatchesProps = {
-    groups: Response.Group[]
+interface IStarCraftMatchesProps
+{
+    groups: Response.Group[];
+    adjustColumns: (cols: number) => void;
 };
 
-export class StarCraftMatches extends React.Component<scMatchesProps>
+export class StarCraftMatches extends React.Component<IStarCraftMatchesProps>
 {
     private getColumn(groups: Response.Group[]): JSX.Element
     {
@@ -56,7 +58,8 @@ export class StarCraftMatches extends React.Component<scMatchesProps>
         const columns = 2;
 
         const columnEls: JSX.Element[] = [];
-        const groups = this.props.groups;
+        const groups = this.props.groups.slice();
+
         for (var i = 0; i < columns; i++)
         {
             const columnGroup: Response.Group[] = [];
@@ -69,8 +72,13 @@ export class StarCraftMatches extends React.Component<scMatchesProps>
                 columnGroup.push(groups.shift());
             }
 
-            columnEls.push(this.getColumn(columnGroup));
+            if (columnGroup.length > 0)
+            {
+                columnEls.push(this.getColumn(columnGroup));
+            }
         }
+
+        this.props.adjustColumns(columnEls.length);
 
         return columnEls;
     }

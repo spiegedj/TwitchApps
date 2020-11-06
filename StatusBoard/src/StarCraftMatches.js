@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.StarCraftMatches = void 0;
 const React = require("react");
 const DateUtils_1 = require("./DateUtils");
+;
 class StarCraftMatches extends React.Component {
     getColumn(groups) {
         const groupElements = groups.map(group => {
@@ -33,7 +34,7 @@ class StarCraftMatches extends React.Component {
         const totalRows = 23;
         const columns = 2;
         const columnEls = [];
-        const groups = this.props.groups;
+        const groups = this.props.groups.slice();
         for (var i = 0; i < columns; i++) {
             const columnGroup = [];
             let j = 0;
@@ -44,8 +45,11 @@ class StarCraftMatches extends React.Component {
                     break;
                 columnGroup.push(groups.shift());
             }
-            columnEls.push(this.getColumn(columnGroup));
+            if (columnGroup.length > 0) {
+                columnEls.push(this.getColumn(columnGroup));
+            }
         }
+        this.props.adjustColumns(columnEls.length);
         return columnEls;
     }
 }

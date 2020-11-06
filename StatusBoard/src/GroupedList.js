@@ -22,15 +22,16 @@ class IGroupedList {
                 groupMap.set(group.key, group);
                 if (this.getSize(groups) > maxSize) {
                     groups.pop();
-                    return groups;
+                    items.unshift(item);
+                    return { groups, remainingItems: items };
                 }
             }
             if (this.getSize(groups) > maxSize) {
-                group.items.pop();
-                return groups;
+                items.unshift(group.items.pop());
+                return { groups, remainingItems: items };
             }
         }
-        return groups;
+        return { groups, remainingItems: [] };
     }
 }
 exports.IGroupedList = IGroupedList;

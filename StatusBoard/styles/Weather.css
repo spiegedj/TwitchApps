@@ -1,12 +1,10 @@
 .light .condition,
 .light .forecast-day,
-.light .hourly,
 .clock {
   border: 2px solid black; }
 
 .dark .condition,
 .dark .forecast-day,
-.dark .hourly,
 .clock {
   border: 1px solid white; }
 
@@ -19,15 +17,27 @@
     flex: 1 0 auto; }
   .weatherPanel > div + div {
     margin-left: 10px; }
+  .weatherPanel > :last-child {
+    margin-right: 10px; }
   .weatherPanel .temp-icon {
     width: 70px; }
   .weatherPanel .condition {
     background-color: #1f4371;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center; }
-    .weatherPanel .condition .temp {
-      font-size: 55px; }
+    .weatherPanel .condition .now-condition {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-grow: 1; }
+      .weatherPanel .condition .now-condition .temp {
+        font-size: 55px; }
+    .weatherPanel .condition .hourly-forcast {
+      display: flex;
+      flex-wrap: wrap;
+      width: 350px;
+      height: 100%; }
   .weatherPanel .forecast-day {
     display: flex;
     flex-direction: column;
@@ -49,18 +59,14 @@
   .weatherPanel .icon-drop {
     width: 20px; }
 
-.hourly-forcast {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 10px; }
-
 .hourly {
-  background-color: #1f4371;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0 5px 0 5px; }
+  padding: 0 5px 0 5px;
+  width: 175px;
+  box-sizing: border-box;
+  border-bottom: 1px solid white; }
   .hourly .temp-icon {
     width: 35px;
     height: 35px; }

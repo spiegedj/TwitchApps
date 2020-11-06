@@ -2,14 +2,12 @@
 
 .light .condition,
 .light .forecast-day,
-.light .hourly,
 .clock {
     border: $cardBorder;
 }
 
 .dark .condition,
 .dark .forecast-day,
-.dark .hourly,
 .clock {
     border: $cardBorderDark;
 }
@@ -28,6 +26,11 @@
     > div + div {
         margin-left: 10px;
     }
+
+    > :last-child
+    {
+        margin-right: 10px;
+    }
     
     .temp-icon { width: 70px; }
 
@@ -35,11 +38,26 @@
         background-color: #1f4371;
 
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
 
-        .temp {
-            font-size: 55px;
+        .now-condition {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-grow: 1;
+
+            .temp {
+                font-size: 55px;
+            }
+        }
+
+        .hourly-forcast {
+            display: flex;
+            flex-wrap: wrap;
+            width: 350px;
+            height: 100%;
+
         }
     }
 
@@ -66,19 +84,14 @@
     }
 }
 
-.hourly-forcast {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 10px;
-}
-
 .hourly {
-    background-color: #1f4371;
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 0 5px 0 5px;
+    width: 175px;
+    box-sizing: border-box;
+    border-bottom: $cardBorderDark;
     
     .temp-icon { 
         width: 35px;

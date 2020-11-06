@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TwitchStreams = void 0;
 const React = require("react");
 const GroupedList_1 = require("./GroupedList");
+;
 class TwitchStreams extends React.Component {
     constructor() {
         super(...arguments);
@@ -19,25 +20,31 @@ class TwitchStreams extends React.Component {
         };
     }
     render() {
-        const streams = this.props.streams;
         const groupedStreams = new GroupedList_1.IGroupedList();
         groupedStreams.createGroup = this.createGroup;
         groupedStreams.isGrouped = this.isGrouped;
         groupedStreams.getSize = this.getSize;
-        groupedStreams.populate(streams);
-        const games = groupedStreams.getGroups(1068);
-        const tiles = games.map((game) => {
-            return React.createElement("div", { className: "list-group card" },
-                React.createElement("div", { className: "list-group-name" }, game.name),
-                game.items.map(stream => {
-                    return React.createElement("div", { className: "tile" },
-                        React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: stream.ImageURL }),
-                        React.createElement("div", { className: "tile-title" }, stream.Streamer),
-                        React.createElement("div", { className: "tile-details" }, stream.Status),
-                        React.createElement("div", { className: "tile-viewers" }, this.__addCommas(stream.Viewers)));
-                }));
-        });
-        return React.createElement("div", { className: "streams list-container" }, tiles);
+        const colCount = this.props.columns;
+        const columns = [];
+        let remainingItems = this.props.streams;
+        for (let i = 0; (i < colCount && remainingItems.length > 0); i++) {
+            groupedStreams.populate(remainingItems);
+            const groupResponse = groupedStreams.getGroups(800);
+            remainingItems = groupResponse.remainingItems;
+            const tiles = groupResponse.groups.map((game) => {
+                return React.createElement("div", { className: "list-group card" },
+                    React.createElement("div", { className: "list-group-name" }, game.name),
+                    game.items.map(stream => {
+                        return React.createElement("div", { className: "tile" },
+                            React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: stream.ImageURL }),
+                            React.createElement("div", { className: "tile-title" }, stream.Streamer),
+                            React.createElement("div", { className: "tile-details" }, stream.Status),
+                            React.createElement("div", { className: "tile-viewers" }, this.__addCommas(stream.Viewers)));
+                    }));
+            });
+            columns.push(React.createElement("div", { className: "streams list-container" }, tiles));
+        }
+        return columns;
     }
     __addCommas(num) {
         var numString = num.toString();

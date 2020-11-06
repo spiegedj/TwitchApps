@@ -4,9 +4,11 @@ import * as React from "react";
 import { DateHeader } from "./DateHeader";
 import { DateUtils } from "./DateUtils";
 
-type owProps = Partial<{
-    matches: Response.MatchDetails[]
-}>;
+interface owProps
+{
+    matches: Response.MatchDetails[];
+    adjustColumns: (cols: number) => void;
+};
 
 const swapColors = [
     "toronto defiant"
@@ -130,13 +132,18 @@ export class OverwatchEvents extends React.Component<owProps>
         }
 
         let nextMatches = matchDays.slice(0, 4);
-        panels.push(<span className="ow col">
-            {nextMatches.map(day =>
-                <span className="group">
-                    <DateHeader dates={[day.date]} showTimeCells={false}></DateHeader>
-                    {day.matches.map(m => this.getSmallPanel(m))}
-                </span>)}
-        </span>);
+        if (nextMatches.length > 0)
+        {
+            panels.push(<span className="ow col">
+                {nextMatches.map(day =>
+                    <span className="group">
+                        <DateHeader dates={[day.date]} showTimeCells={false}></DateHeader>
+                        {day.matches.map(m => this.getSmallPanel(m))}
+                    </span>)}
+            </span>);
+        }
+
+        this.props.adjustColumns(panels.length);
 
         return panels;
     }

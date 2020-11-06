@@ -13,7 +13,12 @@ let sessionId: number | null = null;
 
 export class StatusBoard extends React.Component 
 {
-    public state: { data: Response.Data };
+    public state: {
+        data: Response.Data,
+        owColumns: number,
+        scColumns: number,
+        gdqColumns: number,
+    };
 
     constructor(props: any)
     {
@@ -32,7 +37,10 @@ export class StatusBoard extends React.Component
                 TwitchStreams: [],
                 Headlines: [],
                 SessionId: null,
-            }
+            },
+            gdqColumns: 0,
+            owColumns: 0,
+            scColumns: 0,
         };
     }
 
@@ -60,23 +68,35 @@ export class StatusBoard extends React.Component
 
     public render(): React.ReactNode 
     {
+        const maxColumns = 5;
         let { GDQ, StarcraftGroups, Weather, Overwatch } = this.state.data;
-        let centerPanel = <StarCraftMatches groups={StarcraftGroups} />
+        let { owColumns, scColumns, gdqColumns } = this.state;
+
+
+        let centerPanel = <StarCraftMatches groups={StarcraftGroups} adjustColumns={cols =>
+        {
+            if (scColumns != cols)
+            {
+                this.setState({ scColumns: cols })
+            }
+        }} />
         if (GDQ.length > 0 && DateUtils.getDaysFrom(new Date(GDQ[0].Date)) < 3)
         {
             centerPanel = <GDQEvents runs={GDQ} />;
         }
+
+        const twichColumns = maxColumns - (owColumns + scColumns + gdqColumns);
 
         return (
             <React.Fragment>
                 <div className="calendar">
                     <WeatherPanel weather={Weather} />
                     <div className="columns">
-                        <OverwatchEvents matches={Overwatch} />
+                        <OverwatchEvents matches={Overwatch} adjustColumns={cols => cols !== owColumns && this.setState({ owColumns: cols })} />
                         {centerPanel}
+                        <TwitchStreams streams={this.state.data.TwitchStreams} columns={twichColumns}></TwitchStreams>
                     </div>
                 </div>
-                <TwitchStreams streams={this.state.data.TwitchStreams}></TwitchStreams>
                 <Headlines headlines={this.state.data.Headlines} />
             </React.Fragment>
         );

@@ -35,7 +35,10 @@ class StatusBoard extends React.Component {
                 TwitchStreams: [],
                 Headlines: [],
                 SessionId: null,
-            }
+            },
+            gdqColumns: 0,
+            owColumns: 0,
+            scColumns: 0,
         };
     }
     get(url) {
@@ -55,18 +58,25 @@ class StatusBoard extends React.Component {
         });
     }
     render() {
+        const maxColumns = 5;
         let { GDQ, StarcraftGroups, Weather, Overwatch } = this.state.data;
-        let centerPanel = React.createElement(StarCraftMatches_1.StarCraftMatches, { groups: StarcraftGroups });
+        let { owColumns, scColumns, gdqColumns } = this.state;
+        let centerPanel = React.createElement(StarCraftMatches_1.StarCraftMatches, { groups: StarcraftGroups, adjustColumns: cols => {
+                if (scColumns != cols) {
+                    this.setState({ scColumns: cols });
+                }
+            } });
         if (GDQ.length > 0 && DateUtils_1.DateUtils.getDaysFrom(new Date(GDQ[0].Date)) < 3) {
             centerPanel = React.createElement(GDQEvents_1.GDQEvents, { runs: GDQ });
         }
+        const twichColumns = maxColumns - (owColumns + scColumns + gdqColumns);
         return (React.createElement(React.Fragment, null,
             React.createElement("div", { className: "calendar" },
                 React.createElement(Weather_1.WeatherPanel, { weather: Weather }),
                 React.createElement("div", { className: "columns" },
-                    React.createElement(OverwatchEvents_1.OverwatchEvents, { matches: Overwatch }),
-                    centerPanel)),
-            React.createElement(TwitchStreams_1.TwitchStreams, { streams: this.state.data.TwitchStreams }),
+                    React.createElement(OverwatchEvents_1.OverwatchEvents, { matches: Overwatch, adjustColumns: cols => cols !== owColumns && this.setState({ owColumns: cols }) }),
+                    centerPanel,
+                    React.createElement(TwitchStreams_1.TwitchStreams, { streams: this.state.data.TwitchStreams, columns: twichColumns }))),
             React.createElement(Headlines_1.Headlines, { headlines: this.state.data.Headlines })));
     }
 }

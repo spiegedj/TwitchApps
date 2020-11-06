@@ -3,8 +3,10 @@
 import * as React from "react";
 import { IGroupedList, IGroup } from "./GroupedList";
 
-type twitchProps = {
-    streams: Response.TwitchStream[]
+interface TwitchProps
+{
+    streams: Response.TwitchStream[];
+    columns: number;
 };
 
 interface IGameGroup extends IGroup<Response.TwitchStream>
@@ -12,7 +14,7 @@ interface IGameGroup extends IGroup<Response.TwitchStream>
     name: string;
 }
 
-export class TwitchStreams extends React.Component<twitchProps>
+export class TwitchStreams extends React.Component<TwitchProps>
 {
     private createGroup = (item: Response.TwitchStream) =>
     {
@@ -32,32 +34,40 @@ export class TwitchStreams extends React.Component<twitchProps>
 
     public render(): React.ReactNode 
     {
-        const streams = this.props.streams;
         const groupedStreams = new IGroupedList<IGameGroup, Response.TwitchStream>();
         groupedStreams.createGroup = this.createGroup;
         groupedStreams.isGrouped = this.isGrouped;
         groupedStreams.getSize = this.getSize;
 
-        groupedStreams.populate(streams);
 
-        const games = groupedStreams.getGroups(1068);
+        const colCount = this.props.columns;
 
-        const tiles = games.map((game) =>
+        const columns: JSX.Element[] = [];
+        let remainingItems = this.props.streams;
+        for (let i = 0; (i < colCount && remainingItems.length > 0); i++)
         {
-            return <div className="list-group card">
-                <div className="list-group-name">{game.name}</div>
-                {game.items.map(stream =>
-                {
-                    return <div className="tile">
-                        <img className="tile-image" crossOrigin="anonymous" src={stream.ImageURL}></img>
-                        <div className="tile-title">{stream.Streamer}</div>
-                        <div className="tile-details">{stream.Status}</div>
-                        <div className="tile-viewers">{this.__addCommas(stream.Viewers)}</div>
-                    </div>
-                })}
-            </div>
-        });
-        return <div className="streams list-container">{tiles}</div>
+            groupedStreams.populate(remainingItems);
+            const groupResponse = groupedStreams.getGroups(800);
+            remainingItems = groupResponse.remainingItems;
+
+            const tiles = groupResponse.groups.map((game) =>
+            {
+                return <div className="list-group card">
+                    <div className="list-group-name">{game.name}</div>
+                    {game.items.map(stream =>
+                    {
+                        return <div className="tile">
+                            <img className="tile-image" crossOrigin="anonymous" src={stream.ImageURL}></img>
+                            <div className="tile-title">{stream.Streamer}</div>
+                            <div className="tile-details">{stream.Status}</div>
+                            <div className="tile-viewers">{this.__addCommas(stream.Viewers)}</div>
+                        </div>
+                    })}
+                </div>
+            });
+            columns.push(<div className="streams list-container">{tiles}</div>);
+        }
+        return columns;
     }
 
     private __addCommas(num: number)
