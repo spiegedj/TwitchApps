@@ -67,7 +67,7 @@ export class TwitchStreams extends React.Component<TwitchProps>
             });
             columns.push(<div className="streams list-container">{tiles}</div>);
         }
-        return columns;
+        return columns.reverse();
     }
 
     private __addCommas(num: number)

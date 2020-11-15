@@ -44,7 +44,7 @@ class TwitchStreams extends React.Component {
             });
             columns.push(React.createElement("div", { className: "streams list-container" }, tiles));
         }
-        return columns;
+        return columns.reverse();
     }
     __addCommas(num) {
         var numString = num.toString();

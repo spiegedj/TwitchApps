@@ -10,6 +10,7 @@ declare namespace Response
         TwitchStreams: TwitchStream[];
         Headlines: Headline[];
         SessionId: number;
+        SteamFriends: SteamFriend[];
     }
 
     // Twitch
@@ -135,5 +136,14 @@ declare namespace Response
     {
         Title: string;
         Date: number;
+    }
+
+    interface SteamFriend
+    {
+        Name: string;
+        State: number;
+        Image: string;
+        Game: string;
+        LastLogOff: number;
     }
 }

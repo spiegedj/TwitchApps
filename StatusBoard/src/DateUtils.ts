@@ -75,7 +75,7 @@ export class DateUtils
         var hour = date.getHours();
         var minutes = date.getMinutes();
         var minutesString = (minutes < 10) ? "0" + minutes : minutes;
-        var amPm = (hour > 12) ? "PM" : "AM";
+        var amPm = (hour > 12) ? "AM" : "PM";
         hour = hour % 12;
         hour = hour == 0 ? hour + 12 : hour;
 
@@ -94,6 +94,55 @@ export class DateUtils
         var minutes = Math.floor(minutesFrom);
 
         return days + "d " + hours + "h " + minutes + "m";
+    }
+
+    public static getAgoString(date: Date): string
+    {
+        const daysAgo = -this.getDaysFrom(date);
+        const yearsAgo = Math.floor(daysAgo / 365);
+        if (yearsAgo > 1)
+        {
+            return `${yearsAgo} years ago`;
+        }
+
+        const monthsAgo = Math.floor(daysAgo / 28);
+        if (monthsAgo >= 2)
+        {
+            return `${monthsAgo} months ago`;
+        }
+
+        const weeksAgo = Math.floor(daysAgo / 7);
+        if (weeksAgo > 1) return `${weeksAgo} weeks ago`;
+        if (weeksAgo == 1) return `1 week ago`;
+
+        const days = Math.floor(daysAgo);
+        var hoursFrom = (daysAgo - days) * 24;
+        var hours = Math.floor(hoursFrom);
+        if (days >= 1)
+        {
+            let agoString = `${days > 1 ? `${days} days` : "1 day"}`;
+            if (days < 2 && hours > 0)
+            {
+                agoString += ` ${hours > 1 ? `${hours} hours` : "1 hour"}`;
+            }
+            return agoString + " ago";
+        }
+
+        if (hours > 2) return `${hours} hours ago`;
+
+        var minutesFrom = (hoursFrom - hours) * 60;
+        var minutes = Math.floor(minutesFrom);
+        if (hours >= 1)
+        {
+            let agoString = `${hours > 1 ? `${hours} hours` : "1 hour"}`;
+            if (minutes > 0)
+            {
+                agoString += ` ${minutes > 1 ? `${minutes} minutes` : "1 minute"}`;
+            }
+            return agoString + " ago";
+        }
+
+        return `${minutes} minutes ago`;
     }
 
     public static isLive(startDate: Date, endDate: Date)

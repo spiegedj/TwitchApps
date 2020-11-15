@@ -32,5 +32,27 @@
       position: absolute;
       top: 0px;
       right: 5px; }
+    .list-container .tile .alt-line1 {
+      font-size: 14pt; }
+    .list-container .tile .alt-line2 {
+      font-size: 9pt; }
+
+.online {
+  color: #57cbde; }
+  .online .alt-line2 {
+    color: #46829B; }
+
+.inGame {
+  color: #90ba3c; }
+  .inGame .alt-line1 {
+    color: #D6F0B7; }
+  .inGame .alt-line2 {
+    font-size: 12pt !important; }
+
+.offline {
+  color: #666666; }
+
+.away {
+  color: #437287; }
 
 /*# sourceMappingURL=TwitchStreams.css.map */

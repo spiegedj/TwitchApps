@@ -8,6 +8,7 @@ import { OverwatchEvents } from "./OverwatchEvents";
 import { GDQEvents } from "./GDQEvents";
 import { DateUtils } from "./DateUtils";
 import { Headlines } from "./Headlines";
+import { SteamFriendList } from "./SteamFriendList";
 
 let sessionId: number | null = null;
 
@@ -36,6 +37,7 @@ export class StatusBoard extends React.Component
                 StarcraftGroups: [],
                 TwitchStreams: [],
                 Headlines: [],
+                SteamFriends: [],
                 SessionId: null,
             },
             gdqColumns: 0,
@@ -69,9 +71,8 @@ export class StatusBoard extends React.Component
     public render(): React.ReactNode 
     {
         const maxColumns = 5;
-        let { GDQ, StarcraftGroups, Weather, Overwatch } = this.state.data;
+        let { GDQ, StarcraftGroups, Weather, Overwatch, SteamFriends } = this.state.data;
         let { owColumns, scColumns, gdqColumns } = this.state;
-
 
         let centerPanel = <StarCraftMatches groups={StarcraftGroups} adjustColumns={cols =>
         {
@@ -85,13 +86,20 @@ export class StatusBoard extends React.Component
             centerPanel = <GDQEvents runs={GDQ} />;
         }
 
-        const twichColumns = maxColumns - (owColumns + scColumns + gdqColumns);
+        let twichColumns = maxColumns - (owColumns + scColumns + gdqColumns);
+        let showSteam = false;
+        if (twichColumns > 2)
+        {
+            twichColumns--;
+            showSteam = true;
+        }
 
         return (
             <React.Fragment>
                 <div className="calendar">
                     <WeatherPanel weather={Weather} />
                     <div className="columns">
+                        {showSteam && <SteamFriendList friends={SteamFriends} />}
                         <OverwatchEvents matches={Overwatch} adjustColumns={cols => cols !== owColumns && this.setState({ owColumns: cols })} />
                         {centerPanel}
                         <TwitchStreams streams={this.state.data.TwitchStreams} columns={twichColumns}></TwitchStreams>
