@@ -56,7 +56,7 @@ export class StatusBoard extends React.Component
 
     public async load(): Promise<void>
     {
-        const data = await this.get("http://192.168.1.19:3000/StatusBoard") as Response.Data;
+        const data = await this.get("http://192.168.1.33:3000/StatusBoard") as Response.Data;
 
         if (typeof data.SessionId === "number" && typeof sessionId === "number" && data.SessionId !== sessionId)
         {
