@@ -11,6 +11,7 @@ declare namespace Response
         Headlines: Headline[];
         SessionId: number;
         SteamFriends: SteamFriend[];
+        ChessGame?: LichessGame;
     }
 
     // Twitch
@@ -145,5 +146,22 @@ declare namespace Response
         Image: string;
         Game: string;
         LastLogOff: number;
+    }
+
+    interface LichessGame
+    {
+        GameId: string;
+        White: ChessPlayer;
+        Black: ChessPlayer;
+        Rated: boolean;
+        Speed: string;
+        Status: string;
+        Variant: string;
+    }
+
+    interface ChessPlayer
+    {
+        Rating: number;
+        Name: string;
     }
 }

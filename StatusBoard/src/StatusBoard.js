@@ -20,6 +20,7 @@ const GDQEvents_1 = require("./GDQEvents");
 const DateUtils_1 = require("./DateUtils");
 const Headlines_1 = require("./Headlines");
 const SteamFriendList_1 = require("./SteamFriendList");
+const Lichess_1 = require("./Lichess");
 let sessionId = null;
 class StatusBoard extends React.Component {
     constructor(props) {
@@ -50,7 +51,7 @@ class StatusBoard extends React.Component {
     }
     load() {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield this.get("http://192.168.1.33:3000/StatusBoard");
+            const data = yield this.get("http://localhost:3000/StatusBoard");
             if (typeof data.SessionId === "number" && typeof sessionId === "number" && data.SessionId !== sessionId) {
                 location.reload();
                 return;
@@ -61,7 +62,7 @@ class StatusBoard extends React.Component {
     }
     render() {
         const maxColumns = 5;
-        let { GDQ, StarcraftGroups, Weather, Overwatch, SteamFriends } = this.state.data;
+        let { GDQ, StarcraftGroups, Weather, Overwatch, SteamFriends, ChessGame } = this.state.data;
         let { owColumns, scColumns, gdqColumns } = this.state;
         let centerPanel = React.createElement(StarCraftMatches_1.StarCraftMatches, { groups: StarcraftGroups, adjustColumns: cols => {
                 if (scColumns != cols) {
@@ -81,6 +82,7 @@ class StatusBoard extends React.Component {
             React.createElement("div", { className: "calendar" },
                 React.createElement(Weather_1.WeatherPanel, { weather: Weather }),
                 React.createElement("div", { className: "columns" },
+                    React.createElement(Lichess_1.Lichess, { game: ChessGame }),
                     showSteam && React.createElement(SteamFriendList_1.SteamFriendList, { friends: SteamFriends }),
                     React.createElement(OverwatchEvents_1.OverwatchEvents, { matches: Overwatch, adjustColumns: cols => cols !== owColumns && this.setState({ owColumns: cols }) }),
                     centerPanel,
