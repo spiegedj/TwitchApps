@@ -164,8 +164,9 @@ $spaceBetween: 10px;
         }
     }
 
-    .col + .col {
-        margin-left: $spaceBetween;
+    > div + div
+    {
+        padding-left: $spacing;
     }
 }
 
@@ -455,27 +456,13 @@ $iconWidth: 25px;
     background-position-x: center;
     background-position-y: 100px;
     background-repeat: no-repeat;
-    width: 50%;
 
     table {
         border-collapse: collapse;
 
         tr {
-            width: 50px;
             border-bottom: 1px solid black; 
         }
-    }
-
-    .runDate {
-        width: 85px;
-    }
-
-    .runGame {
-        width: 500px;
-    }
-
-    .runner {
-        width: 250px;
     }
 
     .game-image {

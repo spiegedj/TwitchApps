@@ -20,7 +20,6 @@ const GDQEvents_1 = require("./GDQEvents");
 const DateUtils_1 = require("./DateUtils");
 const Headlines_1 = require("./Headlines");
 const SteamFriendList_1 = require("./SteamFriendList");
-const Lichess_1 = require("./Lichess");
 let sessionId = null;
 class StatusBoard extends React.Component {
     constructor(props) {
@@ -51,7 +50,7 @@ class StatusBoard extends React.Component {
     }
     load() {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield this.get("http://localhost:3000/StatusBoard");
+            const data = yield this.get("http://192.168.1.33:3000/StatusBoard");
             if (typeof data.SessionId === "number" && typeof sessionId === "number" && data.SessionId !== sessionId) {
                 location.reload();
                 return;
@@ -71,6 +70,7 @@ class StatusBoard extends React.Component {
             } });
         if (GDQ.length > 0 && DateUtils_1.DateUtils.getDaysFrom(new Date(GDQ[0].Date)) < 3) {
             centerPanel = React.createElement(GDQEvents_1.GDQEvents, { runs: GDQ });
+            gdqColumns = 2;
         }
         let twichColumns = maxColumns - (owColumns + scColumns + gdqColumns);
         let showSteam = false;
@@ -82,7 +82,6 @@ class StatusBoard extends React.Component {
             React.createElement("div", { className: "calendar" },
                 React.createElement(Weather_1.WeatherPanel, { weather: Weather }),
                 React.createElement("div", { className: "columns" },
-                    React.createElement(Lichess_1.Lichess, { game: ChessGame }),
                     showSteam && React.createElement(SteamFriendList_1.SteamFriendList, { friends: SteamFriends }),
                     React.createElement(OverwatchEvents_1.OverwatchEvents, { matches: Overwatch, adjustColumns: cols => cols !== owColumns && this.setState({ owColumns: cols }) }),
                     centerPanel,

@@ -55,7 +55,7 @@ class DateUtils {
         var hour = date.getHours();
         var minutes = date.getMinutes();
         var minutesString = (minutes < 10) ? "0" + minutes : minutes;
-        var amPm = (hour >= 12) ? "PM" : "AM";
+        var amPm = (hour >= 12 && hour < 24) ? "PM" : "AM";
         if (hour === 0) {
             amPm = "PM";
         }

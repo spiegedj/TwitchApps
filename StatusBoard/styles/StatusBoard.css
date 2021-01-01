@@ -36,8 +36,7 @@ body {
 
 .streams {
   width: 375px;
-  box-sizing: border-box;
-  padding-left: 10px; }
+  box-sizing: border-box; }
 
 .card {
   border: 2px solid black;

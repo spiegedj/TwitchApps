@@ -102,8 +102,8 @@
       border: 2px solid black; }
     .columns .col .group + .group {
       margin-top: 10px; }
-  .columns .col + .col {
-    margin-left: 10px; }
+  .columns > div + div {
+    padding-left: 10px; }
 
 .dark .col .group {
   border: 1px solid white; }
@@ -287,19 +287,11 @@
   background-size: 300px;
   background-position-x: center;
   background-position-y: 100px;
-  background-repeat: no-repeat;
-  width: 50%; }
+  background-repeat: no-repeat; }
   .gdq table {
     border-collapse: collapse; }
     .gdq table tr {
-      width: 50px;
       border-bottom: 1px solid black; }
-  .gdq .runDate {
-    width: 85px; }
-  .gdq .runGame {
-    width: 500px; }
-  .gdq .runner {
-    width: 250px; }
   .gdq .game-image {
     height: 50px;
     display: block; }

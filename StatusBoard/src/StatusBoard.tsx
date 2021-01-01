@@ -9,7 +9,6 @@ import { GDQEvents } from "./GDQEvents";
 import { DateUtils } from "./DateUtils";
 import { Headlines } from "./Headlines";
 import { SteamFriendList } from "./SteamFriendList";
-import { Lichess } from "./Lichess";
 
 let sessionId: number | null = null;
 
@@ -57,7 +56,7 @@ export class StatusBoard extends React.Component
 
     public async load(): Promise<void>
     {
-        const data = await this.get("http://localhost:3000/StatusBoard") as Response.Data;
+        const data = await this.get("http://192.168.1.33:3000/StatusBoard") as Response.Data;
 
         if (typeof data.SessionId === "number" && typeof sessionId === "number" && data.SessionId !== sessionId)
         {
@@ -85,6 +84,7 @@ export class StatusBoard extends React.Component
         if (GDQ.length > 0 && DateUtils.getDaysFrom(new Date(GDQ[0].Date)) < 3)
         {
             centerPanel = <GDQEvents runs={GDQ} />;
+            gdqColumns = 2;
         }
 
         let twichColumns = maxColumns - (owColumns + scColumns + gdqColumns);
@@ -100,7 +100,6 @@ export class StatusBoard extends React.Component
                 <div className="calendar">
                     <WeatherPanel weather={Weather} />
                     <div className="columns">
-                        <Lichess game={ChessGame} />
                         {showSteam && <SteamFriendList friends={SteamFriends} />}
                         <OverwatchEvents matches={Overwatch} adjustColumns={cols => cols !== owColumns && this.setState({ owColumns: cols })} />
                         {centerPanel}
