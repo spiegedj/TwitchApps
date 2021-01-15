@@ -152,6 +152,7 @@ $spaceBetween: 10px;
         display: flex;
         flex-direction: column;
         min-width: $panel-min-width;
+        max-width: 375px;
         height: 100%;
         flex: 1 1 auto;
         
