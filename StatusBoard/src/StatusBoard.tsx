@@ -71,28 +71,32 @@ export class StatusBoard extends React.Component
     public render(): React.ReactNode 
     {
         const maxColumns = 5;
-        let { GDQ, StarcraftGroups, Weather, Overwatch, SteamFriends, ChessGame } = this.state.data;
+        let { GDQ, StarcraftGroups, Weather, Overwatch, SteamFriends } = this.state.data;
         let { owColumns, scColumns, gdqColumns } = this.state;
 
-        let centerPanel = <StarCraftMatches groups={StarcraftGroups} adjustColumns={cols =>
+        let twitchColumns = maxColumns - (owColumns + scColumns + gdqColumns + 1);
+        if (twitchColumns < 2 && scColumns > 1)
         {
-            if (scColumns != cols)
-            {
-                this.setState({ scColumns: cols })
-            }
-        }} />
+            scColumns--;
+            twitchColumns++;
+        }
+
+        if (twitchColumns < 2 && owColumns > 1)
+        {
+            owColumns--;
+            twitchColumns++;
+        }
+
+        let centerPanel = <StarCraftMatches
+            groups={StarcraftGroups}
+            columns={scColumns}
+            adjustColumns={cols => (this.state.scColumns != cols) && this.setState({ scColumns: cols })}
+        />
+
         if (GDQ.length > 0 && DateUtils.getDaysFrom(new Date(GDQ[0].Date)) < 3)
         {
             centerPanel = <GDQEvents runs={GDQ} />;
             gdqColumns = 2;
-        }
-
-        let twichColumns = maxColumns - (owColumns + scColumns + gdqColumns);
-        let showSteam = false;
-        if (twichColumns > 2)
-        {
-            twichColumns--;
-            showSteam = true;
         }
 
         return (
@@ -100,10 +104,14 @@ export class StatusBoard extends React.Component
                 <div className="calendar">
                     <WeatherPanel weather={Weather} />
                     <div className="columns">
-                        {showSteam && <SteamFriendList friends={SteamFriends} />}
-                        <OverwatchEvents matches={Overwatch} adjustColumns={cols => cols !== owColumns && this.setState({ owColumns: cols })} />
+                        <SteamFriendList friends={SteamFriends} />
+                        <OverwatchEvents
+                            matches={Overwatch}
+                            columns={owColumns}
+                            adjustColumns={cols => cols !== this.state.owColumns && this.setState({ owColumns: cols })}
+                        />
                         {centerPanel}
-                        <TwitchStreams streams={this.state.data.TwitchStreams} columns={twichColumns}></TwitchStreams>
+                        <TwitchStreams streams={this.state.data.TwitchStreams} columns={twitchColumns}></TwitchStreams>
                     </div>
                 </div>
                 <Headlines headlines={this.state.data.Headlines} />

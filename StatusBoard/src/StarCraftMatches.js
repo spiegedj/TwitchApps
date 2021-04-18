@@ -50,7 +50,7 @@ class StarCraftMatches extends React.Component {
             }
         }
         this.props.adjustColumns(columnEls.length);
-        return columnEls;
+        return columnEls.slice(0, this.props.columns);
     }
 }
 exports.StarCraftMatches = StarCraftMatches;

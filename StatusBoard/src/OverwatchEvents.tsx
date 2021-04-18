@@ -8,11 +8,8 @@ interface owProps
 {
     matches: Response.MatchDetails[];
     adjustColumns: (cols: number) => void;
+    columns: number;
 };
-
-const swapColors = [
-    "toronto defiant"
-];
 
 const imageOverrides = {
     "philadelphia fusion": "Images/OWLOverrides/Fusion.svg",
@@ -61,7 +58,7 @@ export class OverwatchEvents extends React.Component<owProps>
         const compNamePieces1 = this.splitName(match.Competitor1.Name);
         const compNamePieces2 = this.splitName(match.Competitor2.Name);
 
-        const status = match.IsLive ? match.Score : DateUtils.getTimeString(new Date(match.Date));
+        const status = (match.IsLive && match.Score) ? match.Score : DateUtils.getTimeString(new Date(match.Date));
 
         const comp1ClassNames = ["comp", "comp-1"];
         if (this.useBlackText(match.Competitor1)) comp1ClassNames.push("blackText");
@@ -89,7 +86,7 @@ export class OverwatchEvents extends React.Component<owProps>
         const compNamePieces1 = this.splitName(match.Competitor1.Name);
         const compNamePieces2 = this.splitName(match.Competitor2.Name);
 
-        const status = match.IsLive ? match.Score : DateUtils.getTimeString(new Date(match.Date));
+        const status = (match.IsLive && match.Score) ? match.Score : DateUtils.getTimeString(new Date(match.Date));
 
         const comp1ClassNames = ["comp", "comp-1"];
         if (this.useBlackText(match.Competitor1)) comp1ClassNames.push("blackText");
@@ -114,7 +111,8 @@ export class OverwatchEvents extends React.Component<owProps>
     {
         const panels: JSX.Element[] = [];
 
-        const matchDays = this.splitByDay(this.props.matches || []);
+        const matches = (this.props.matches || []).slice();
+        const matchDays = this.splitByDay(matches);
         const nextDay = matchDays.shift();
         if (nextDay)
         {
@@ -123,15 +121,24 @@ export class OverwatchEvents extends React.Component<owProps>
             {
                 return m === nextMatch ? this.getLargePanel(m) : this.getSmallPanel(m);
             });
+
+            const oneMoreDay = matchDays[0];
+
             panels.push(<span className="ow col">
                 <span className="group">
                     <DateHeader dates={[nextDay.date]} showTimeCells={false}></DateHeader>
                     {matchPanels}
                 </span>
+                {
+                    oneMoreDay && <span className="group">
+                        <DateHeader dates={[oneMoreDay.date]} showTimeCells={false}></DateHeader>
+                        {oneMoreDay.matches.map(m => this.getSmallPanel(m))}
+                    </span>
+                }
             </span>);
         }
 
-        let nextMatches = matchDays.slice(0, 4);
+        let nextMatches = matchDays.slice(1, 5);
         if (nextMatches.length > 0)
         {
             panels.push(<span className="ow col">
@@ -145,7 +152,7 @@ export class OverwatchEvents extends React.Component<owProps>
 
         this.props.adjustColumns(panels.length);
 
-        return panels;
+        return panels.slice(0, this.props.columns);
     }
 
     private getImage(competitor: Response.CompetitorDetails): string
@@ -159,10 +166,6 @@ export class OverwatchEvents extends React.Component<owProps>
 
     private getColor(competitor: Response.CompetitorDetails): string
     {
-        if (swapColors.indexOf(competitor.Name.toLowerCase()) >= 0)
-        {
-            return competitor.SecondaryColor;
-        }
         return competitor.PrimaryColor;
     }
 

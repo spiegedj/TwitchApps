@@ -6,9 +6,6 @@ const React = require("react");
 const DateHeader_1 = require("./DateHeader");
 const DateUtils_1 = require("./DateUtils");
 ;
-const swapColors = [
-    "toronto defiant"
-];
 const imageOverrides = {
     "philadelphia fusion": "Images/OWLOverrides/Fusion.svg",
     "houston outlaws": "Images/OWLOverrides/Outlaws.svg",
@@ -39,7 +36,7 @@ class OverwatchEvents extends React.Component {
     getLargePanel(match) {
         const compNamePieces1 = this.splitName(match.Competitor1.Name);
         const compNamePieces2 = this.splitName(match.Competitor2.Name);
-        const status = match.IsLive ? match.Score : DateUtils_1.DateUtils.getTimeString(new Date(match.Date));
+        const status = (match.IsLive && match.Score) ? match.Score : DateUtils_1.DateUtils.getTimeString(new Date(match.Date));
         const comp1ClassNames = ["comp", "comp-1"];
         if (this.useBlackText(match.Competitor1))
             comp1ClassNames.push("blackText");
@@ -64,7 +61,7 @@ class OverwatchEvents extends React.Component {
     getSmallPanel(match) {
         const compNamePieces1 = this.splitName(match.Competitor1.Name);
         const compNamePieces2 = this.splitName(match.Competitor2.Name);
-        const status = match.IsLive ? match.Score : DateUtils_1.DateUtils.getTimeString(new Date(match.Date));
+        const status = (match.IsLive && match.Score) ? match.Score : DateUtils_1.DateUtils.getTimeString(new Date(match.Date));
         const comp1ClassNames = ["comp", "comp-1"];
         if (this.useBlackText(match.Competitor1))
             comp1ClassNames.push("blackText");
@@ -86,26 +83,31 @@ class OverwatchEvents extends React.Component {
     }
     render() {
         const panels = [];
-        const matchDays = this.splitByDay(this.props.matches || []);
+        const matches = (this.props.matches || []).slice();
+        const matchDays = this.splitByDay(matches);
         const nextDay = matchDays.shift();
         if (nextDay) {
             const nextMatch = nextDay.matches.find(m => !m.IsConcluded);
             const matchPanels = nextDay.matches.map((m) => {
                 return m === nextMatch ? this.getLargePanel(m) : this.getSmallPanel(m);
             });
+            const oneMoreDay = matchDays[0];
             panels.push(React.createElement("span", { className: "ow col" },
                 React.createElement("span", { className: "group" },
                     React.createElement(DateHeader_1.DateHeader, { dates: [nextDay.date], showTimeCells: false }),
-                    matchPanels)));
+                    matchPanels),
+                oneMoreDay && React.createElement("span", { className: "group" },
+                    React.createElement(DateHeader_1.DateHeader, { dates: [oneMoreDay.date], showTimeCells: false }),
+                    oneMoreDay.matches.map(m => this.getSmallPanel(m)))));
         }
-        let nextMatches = matchDays.slice(0, 4);
+        let nextMatches = matchDays.slice(1, 5);
         if (nextMatches.length > 0) {
             panels.push(React.createElement("span", { className: "ow col" }, nextMatches.map(day => React.createElement("span", { className: "group" },
                 React.createElement(DateHeader_1.DateHeader, { dates: [day.date], showTimeCells: false }),
                 day.matches.map(m => this.getSmallPanel(m))))));
         }
         this.props.adjustColumns(panels.length);
-        return panels;
+        return panels.slice(0, this.props.columns);
     }
     getImage(competitor) {
         if (imageOverrides[competitor.Name.toLowerCase()]) {
@@ -114,9 +116,6 @@ class OverwatchEvents extends React.Component {
         return competitor.ImageURL;
     }
     getColor(competitor) {
-        if (swapColors.indexOf(competitor.Name.toLowerCase()) >= 0) {
-            return competitor.SecondaryColor;
-        }
         return competitor.PrimaryColor;
     }
     useBlackText(competitor) {

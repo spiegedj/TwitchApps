@@ -61,31 +61,30 @@ class StatusBoard extends React.Component {
     }
     render() {
         const maxColumns = 5;
-        let { GDQ, StarcraftGroups, Weather, Overwatch, SteamFriends, ChessGame } = this.state.data;
+        let { GDQ, StarcraftGroups, Weather, Overwatch, SteamFriends } = this.state.data;
         let { owColumns, scColumns, gdqColumns } = this.state;
-        let centerPanel = React.createElement(StarCraftMatches_1.StarCraftMatches, { groups: StarcraftGroups, adjustColumns: cols => {
-                if (scColumns != cols) {
-                    this.setState({ scColumns: cols });
-                }
-            } });
+        let twitchColumns = maxColumns - (owColumns + scColumns + gdqColumns + 1);
+        if (twitchColumns < 2 && scColumns > 1) {
+            scColumns--;
+            twitchColumns++;
+        }
+        if (twitchColumns < 2 && owColumns > 1) {
+            owColumns--;
+            twitchColumns++;
+        }
+        let centerPanel = React.createElement(StarCraftMatches_1.StarCraftMatches, { groups: StarcraftGroups, columns: scColumns, adjustColumns: cols => (this.state.scColumns != cols) && this.setState({ scColumns: cols }) });
         if (GDQ.length > 0 && DateUtils_1.DateUtils.getDaysFrom(new Date(GDQ[0].Date)) < 3) {
             centerPanel = React.createElement(GDQEvents_1.GDQEvents, { runs: GDQ });
             gdqColumns = 2;
-        }
-        let twichColumns = maxColumns - (owColumns + scColumns + gdqColumns);
-        let showSteam = false;
-        if (twichColumns > 2) {
-            twichColumns--;
-            showSteam = true;
         }
         return (React.createElement(React.Fragment, null,
             React.createElement("div", { className: "calendar" },
                 React.createElement(Weather_1.WeatherPanel, { weather: Weather }),
                 React.createElement("div", { className: "columns" },
-                    showSteam && React.createElement(SteamFriendList_1.SteamFriendList, { friends: SteamFriends }),
-                    React.createElement(OverwatchEvents_1.OverwatchEvents, { matches: Overwatch, adjustColumns: cols => cols !== owColumns && this.setState({ owColumns: cols }) }),
+                    React.createElement(SteamFriendList_1.SteamFriendList, { friends: SteamFriends }),
+                    React.createElement(OverwatchEvents_1.OverwatchEvents, { matches: Overwatch, columns: owColumns, adjustColumns: cols => cols !== this.state.owColumns && this.setState({ owColumns: cols }) }),
                     centerPanel,
-                    React.createElement(TwitchStreams_1.TwitchStreams, { streams: this.state.data.TwitchStreams, columns: twichColumns }))),
+                    React.createElement(TwitchStreams_1.TwitchStreams, { streams: this.state.data.TwitchStreams, columns: twitchColumns }))),
             React.createElement(Headlines_1.Headlines, { headlines: this.state.data.Headlines })));
     }
 }

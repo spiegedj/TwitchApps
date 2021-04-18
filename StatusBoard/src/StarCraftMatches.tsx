@@ -6,6 +6,7 @@ import { DateUtils } from "./DateUtils";
 interface IStarCraftMatchesProps
 {
     groups: Response.Group[];
+    columns: number;
     adjustColumns: (cols: number) => void;
 };
 
@@ -80,6 +81,6 @@ export class StarCraftMatches extends React.Component<IStarCraftMatchesProps>
 
         this.props.adjustColumns(columnEls.length);
 
-        return columnEls;
+        return columnEls.slice(0, this.props.columns);
     }
 }

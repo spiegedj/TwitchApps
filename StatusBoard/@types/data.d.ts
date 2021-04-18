@@ -69,6 +69,7 @@ declare namespace Response
         IsConcluded: boolean;
         IsLive: boolean;
         Score: string;
+        IsEncore: boolean;
     }
 
     interface CompetitorDetails 
