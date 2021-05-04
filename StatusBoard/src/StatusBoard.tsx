@@ -56,7 +56,7 @@ export class StatusBoard extends React.Component
 
     public async load(): Promise<void>
     {
-        const data = await this.get(window.location.href + "/StatusBoard") as Response.Data;
+        const data = await this.get(window.location.href + "StatusBoard") as Response.Data;
 
         if (typeof data.SessionId === "number" && typeof sessionId === "number" && data.SessionId !== sessionId)
         {
