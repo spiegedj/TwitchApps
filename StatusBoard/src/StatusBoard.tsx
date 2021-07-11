@@ -96,7 +96,10 @@ export class StatusBoard extends React.Component
         if (GDQ.length > 0 && DateUtils.getDaysFrom(new Date(GDQ[0].Date)) < 3)
         {
             centerPanel = <GDQEvents runs={GDQ} />;
-            gdqColumns = 2;
+            if (gdqColumns !== 1)
+            {
+                this.setState({ gdqColumns: 1 });
+            }
         }
 
         return (

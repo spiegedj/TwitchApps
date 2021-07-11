@@ -75,7 +75,9 @@ class StatusBoard extends React.Component {
         let centerPanel = React.createElement(StarCraftMatches_1.StarCraftMatches, { groups: StarcraftGroups, columns: scColumns, adjustColumns: cols => (this.state.scColumns != cols) && this.setState({ scColumns: cols }) });
         if (GDQ.length > 0 && DateUtils_1.DateUtils.getDaysFrom(new Date(GDQ[0].Date)) < 3) {
             centerPanel = React.createElement(GDQEvents_1.GDQEvents, { runs: GDQ });
-            gdqColumns = 2;
+            if (gdqColumns !== 1) {
+                this.setState({ gdqColumns: 1 });
+            }
         }
         return (React.createElement(React.Fragment, null,
             React.createElement("div", { className: "calendar" },
