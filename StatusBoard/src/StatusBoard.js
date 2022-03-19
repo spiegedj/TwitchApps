@@ -79,6 +79,9 @@ class StatusBoard extends React.Component {
                 this.setState({ gdqColumns: 1 });
             }
         }
+        else if (gdqColumns > 0) {
+            this.setState({ gdqColumns: 0 });
+        }
         return (React.createElement(React.Fragment, null,
             React.createElement("div", { className: "calendar" },
                 React.createElement(Weather_1.WeatherPanel, { weather: Weather }),
