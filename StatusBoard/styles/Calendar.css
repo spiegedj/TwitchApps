@@ -94,10 +94,9 @@
   .columns .col {
     display: flex;
     flex-direction: column;
-    min-width: 250px;
-    max-width: 375px;
+    width: 375px;
     height: 100%;
-    flex: 1 1 auto; }
+    flex: 0 0 auto; }
     .columns .col .group {
       border: 2px solid black; }
     .columns .col .group + .group {

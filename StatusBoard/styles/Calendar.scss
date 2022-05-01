@@ -150,10 +150,9 @@ $spaceBetween: 10px;
     .col {
         display: flex;
         flex-direction: column;
-        min-width: $panel-min-width;
-        max-width: 375px;
+        width: 375px;
         height: 100%;
-        flex: 1 1 auto;
+        flex: 0 0 auto;
         
         .group {
             border: $cardBorder;

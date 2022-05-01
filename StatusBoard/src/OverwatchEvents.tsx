@@ -122,24 +122,26 @@ export class OverwatchEvents extends React.Component<owProps>
                 return m === nextMatch ? this.getLargePanel(m) : this.getSmallPanel(m);
             });
 
-            const oneMoreDay = matchDays[0];
+            const extraDaysOnFirstPanel = matchDays.slice(0, 2);
 
-            panels.push(<span className="ow col">
+            panels.push(<div className="ow col">
                 <span className="group">
                     <DateHeader dates={[nextDay.date]} showTimeCells={false}></DateHeader>
                     {matchPanels}
                 </span>
                 {
-                    oneMoreDay && <span className="group">
-                        <DateHeader dates={[oneMoreDay.date]} showTimeCells={false}></DateHeader>
-                        {oneMoreDay.matches.map(m => this.getSmallPanel(m))}
-                    </span>
+                    extraDaysOnFirstPanel.map(day =>
+                        <span className="group">
+                            <DateHeader dates={[day.date]} showTimeCells={false}></DateHeader>
+                            {day.matches.map(m => this.getSmallPanel(m))}
+                        </span>
+                    )
                 }
-            </span>);
+            </div>);
         }
 
         let nextMatches = matchDays.slice(1, 5);
-        if (nextMatches.length > 0)
+        if (nextMatches.length > 0 && false)
         {
             panels.push(<span className="ow col">
                 {nextMatches.map(day =>

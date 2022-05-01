@@ -4,13 +4,14 @@ $groupNameFontSize: 20pt;
 $tileFontSize: 17pt;
 $detailsFontSize: 9pt;
 $imageHeight: 82px;
+$imageHeightSmall: 45px;
 
 $altFontSize1: 14pt;
 $altFontSize2: 10pt;
 $altFontSize3: 12pt;
 
 .horizontal-lists {
-    flex-grow: 0;
+    flex-grow: 1;
 }
 
 .horizontal-list {
@@ -32,7 +33,7 @@ $altFontSize3: 12pt;
     }
 
     .tile +.tile {
-        border-left: none;
+        //border-left: none;
     }
 
     .tile {
@@ -44,6 +45,7 @@ $altFontSize3: 12pt;
         //white-space: nowrap;
         overflow: hidden;
         position: relative;
+        padding-right: 8px;
 
         div:empty {
             display: none; 
@@ -95,6 +97,18 @@ $altFontSize3: 12pt;
         .alt-line2 {
             font-size: $altFontSize2;
         }
+    }
+}
+
+.horizontal-list.narrow {
+    height: $imageHeightSmall;
+
+    .tile-image {
+        height: $imageHeightSmall;
+    }
+
+    .tile +.tile {
+        margin-left: 8px;
     }
 }
 

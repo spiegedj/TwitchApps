@@ -1,6 +1,7 @@
 /// <reference path="../@types/data.d.ts"/>
 
 import * as React from "react";
+import { useEffect, useState, useRef } from "react";
 import { IGroupedList, IGroup } from "./GroupedList";
 
 interface TwitchProps
@@ -54,14 +55,34 @@ export const TwitchStreams = (props: TwitchProps) =>
 {
     const { streams } = props;
 
+    const containerRef = useRef<HTMLDivElement>();
+    const [totalWidth, setTotalWidth] = useState(1520);
+    const remeasure = () =>
+    {
+        if (containerRef.current)
+        {
+            setTotalWidth(containerRef.current.clientWidth);
+        }
+    }
+
+    useEffect(() =>
+    {
+        const timerId = window.setInterval(remeasure, 300);
+        return () =>
+        {
+            window.clearInterval(timerId);
+        }
+    });
+
     const rows: JSX.Element[] = [];
 
-    const totalWidth = 1520;
     let currentRow: JSX.Element[] = [];
     let currentWidth = 0;
     for (let stream of streams)
     {
-        const width = getStreamWidth(stream);
+        const baseWidth = getStreamWidth(stream);
+        const width = baseWidth + 10;
+
         if ((currentWidth + width) > totalWidth)
         {
             rows.push(<div className="horizontal-list">{currentRow}</div>);
@@ -70,7 +91,7 @@ export const TwitchStreams = (props: TwitchProps) =>
         }
         currentWidth += width;
 
-        currentRow.push(<div className="tile card" style={{ flexBasis: width }}>
+        currentRow.push(<div className="tile card" style={{ flexBasis: baseWidth }}>
             <img className="tile-image" crossOrigin="anonymous" src={stream.ImageURL}></img>
             <div className="tile-title">{stream.Streamer}</div>
             <div className="tile-game">{stream.Game}</div>
@@ -83,5 +104,5 @@ export const TwitchStreams = (props: TwitchProps) =>
     }
     rows.push(<div className="horizontal-list">{currentRow}</div>);
 
-    return <div className="horizontal-lists" style={{ width: totalWidth }}>{rows}</div>;
+    return <div className="horizontal-lists" ref={containerRef}>{rows}</div>;
 }

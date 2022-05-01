@@ -29,22 +29,17 @@ export const SteamFriendList = (props: ISteamFriendsProps) =>
         return stateDiff;
     }).slice(0, 14);
 
-    return <div className="streams list-container">
-        <div className="list-group card">
-            <div className="list-group-name">Steam Friends</div>
-            {sortedFriends.map((friend) =>
-            {
-                const inGame = !!friend.Game;
-                const stateString = toStateString(friend);
-                return <div>
-                    <div className={"tile " + friendToCssClass(friend)}>
-                        <img className="tile-image" crossOrigin="anonymous" src={friend.Image}></img>
-                        <div className="alt-line1">{friend.Name}</div>
-                        <div className="alt-line2">{stateString}</div>
-                    </div>
-                </div>
-            })}
-        </div>
+    return <div className="horizontal-list narrow">
+        {sortedFriends.map((friend) =>
+        {
+            const inGame = !!friend.Game;
+            const stateString = toStateString(friend);
+            return <div className={"tile card " + friendToCssClass(friend)}>
+                <img className="tile-image" crossOrigin="anonymous" src={friend.Image}></img>
+                <div className="alt-line1">{friend.Name}</div>
+                <div className="alt-line2">{stateString}</div>
+            </div>
+        })}
     </div>;
 }
 
@@ -63,7 +58,7 @@ const toStateString = ({ State, Game, LastLogOff }: Response.SteamFriend): strin
     {
         case SteamPersonaState.Offline:
             const lastlogoffDate = new Date(LastLogOff * 1000);
-            return `Last online ${DateUtils.getAgoString(lastlogoffDate)}`;
+            return `${DateUtils.getAgoString(lastlogoffDate)}`;
         case SteamPersonaState.Online:
             return "Online";
         case SteamPersonaState.Busy:

@@ -11,18 +11,14 @@ exports.SteamFriendList = (props) => {
         }
         return stateDiff;
     }).slice(0, 14);
-    return React.createElement("div", { className: "streams list-container" },
-        React.createElement("div", { className: "list-group card" },
-            React.createElement("div", { className: "list-group-name" }, "Steam Friends"),
-            sortedFriends.map((friend) => {
-                const inGame = !!friend.Game;
-                const stateString = toStateString(friend);
-                return React.createElement("div", null,
-                    React.createElement("div", { className: "tile " + friendToCssClass(friend) },
-                        React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: friend.Image }),
-                        React.createElement("div", { className: "alt-line1" }, friend.Name),
-                        React.createElement("div", { className: "alt-line2" }, stateString)));
-            })));
+    return React.createElement("div", { className: "horizontal-list narrow" }, sortedFriends.map((friend) => {
+        const inGame = !!friend.Game;
+        const stateString = toStateString(friend);
+        return React.createElement("div", { className: "tile card " + friendToCssClass(friend) },
+            React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: friend.Image }),
+            React.createElement("div", { className: "alt-line1" }, friend.Name),
+            React.createElement("div", { className: "alt-line2" }, stateString));
+    }));
 };
 const toStateString = ({ State, Game, LastLogOff }) => {
     if (Game) {
@@ -34,7 +30,7 @@ const toStateString = ({ State, Game, LastLogOff }) => {
     switch (State) {
         case 0 /* Offline */:
             const lastlogoffDate = new Date(LastLogOff * 1000);
-            return `Last online ${DateUtils_1.DateUtils.getAgoString(lastlogoffDate)}`;
+            return `${DateUtils_1.DateUtils.getAgoString(lastlogoffDate)}`;
         case 1 /* Online */:
             return "Online";
         case 2 /* Busy */:

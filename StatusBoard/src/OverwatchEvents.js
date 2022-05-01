@@ -91,17 +91,17 @@ class OverwatchEvents extends React.Component {
             const matchPanels = nextDay.matches.map((m) => {
                 return m === nextMatch ? this.getLargePanel(m) : this.getSmallPanel(m);
             });
-            const oneMoreDay = matchDays[0];
-            panels.push(React.createElement("span", { className: "ow col" },
+            const extraDaysOnFirstPanel = matchDays.slice(0, 2);
+            panels.push(React.createElement("div", { className: "ow col" },
                 React.createElement("span", { className: "group" },
                     React.createElement(DateHeader_1.DateHeader, { dates: [nextDay.date], showTimeCells: false }),
                     matchPanels),
-                oneMoreDay && React.createElement("span", { className: "group" },
-                    React.createElement(DateHeader_1.DateHeader, { dates: [oneMoreDay.date], showTimeCells: false }),
-                    oneMoreDay.matches.map(m => this.getSmallPanel(m)))));
+                extraDaysOnFirstPanel.map(day => React.createElement("span", { className: "group" },
+                    React.createElement(DateHeader_1.DateHeader, { dates: [day.date], showTimeCells: false }),
+                    day.matches.map(m => this.getSmallPanel(m))))));
         }
         let nextMatches = matchDays.slice(1, 5);
-        if (nextMatches.length > 0) {
+        if (nextMatches.length > 0 && false) {
             panels.push(React.createElement("span", { className: "ow col" }, nextMatches.map(day => React.createElement("span", { className: "group" },
                 React.createElement(DateHeader_1.DateHeader, { dates: [day.date], showTimeCells: false }),
                 day.matches.map(m => this.getSmallPanel(m))))));

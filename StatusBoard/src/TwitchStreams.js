@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TwitchStreams = void 0;
 const React = require("react");
+const react_1 = require("react");
 ;
 let canvas = null;
 function getTextWidth(text, font) {
@@ -32,19 +33,32 @@ function addCommas(num) {
 }
 exports.TwitchStreams = (props) => {
     const { streams } = props;
+    const containerRef = react_1.useRef();
+    const [totalWidth, setTotalWidth] = react_1.useState(1520);
+    const remeasure = () => {
+        if (containerRef.current) {
+            setTotalWidth(containerRef.current.clientWidth);
+        }
+    };
+    react_1.useEffect(() => {
+        const timerId = window.setInterval(remeasure, 300);
+        return () => {
+            window.clearInterval(timerId);
+        };
+    });
     const rows = [];
-    const totalWidth = 1520;
     let currentRow = [];
     let currentWidth = 0;
     for (let stream of streams) {
-        const width = getStreamWidth(stream);
+        const baseWidth = getStreamWidth(stream);
+        const width = baseWidth + 10;
         if ((currentWidth + width) > totalWidth) {
             rows.push(React.createElement("div", { className: "horizontal-list" }, currentRow));
             currentRow = [];
             currentWidth = 0;
         }
         currentWidth += width;
-        currentRow.push(React.createElement("div", { className: "tile card", style: { flexBasis: width } },
+        currentRow.push(React.createElement("div", { className: "tile card", style: { flexBasis: baseWidth } },
             React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: stream.ImageURL }),
             React.createElement("div", { className: "tile-title" }, stream.Streamer),
             React.createElement("div", { className: "tile-game" }, stream.Game),
@@ -54,5 +68,5 @@ exports.TwitchStreams = (props) => {
                 React.createElement("span", null, addCommas(stream.Viewers)))));
     }
     rows.push(React.createElement("div", { className: "horizontal-list" }, currentRow));
-    return React.createElement("div", { className: "horizontal-lists", style: { width: totalWidth } }, rows);
+    return React.createElement("div", { className: "horizontal-lists", ref: containerRef }, rows);
 };
