@@ -1,43 +1,23 @@
 "use strict";
 /// <reference path="../@types/data.d.ts"/>
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TwitchStreams = void 0;
+exports.StreamCard = exports.TwitchStreams = void 0;
 const React = require("react");
 const react_1 = require("react");
+const Utils_1 = require("./Utils");
 ;
-let canvas = null;
-function getTextWidth(text, font) {
-    // re-use canvas object for better performance
-    canvas = canvas || document.createElement("canvas");
-    const context = canvas.getContext("2d");
-    context.font = font;
-    const metrics = context.measureText(text);
-    return Math.ceil(metrics.width);
-}
-const MAX_WIDTH = 300;
-function getStreamWidth(stream) {
-    return 250;
-    const titleWidth = getTextWidth(stream.Streamer, "17pt Industry");
-    const gameWidth = getTextWidth(stream.Game, "12pt Industry");
-    const statusWidth = (getTextWidth(stream.Status, "9pt Industry") / 2);
-    return Math.min(Math.max(titleWidth, statusWidth, gameWidth) + 82 + 5 + 2, MAX_WIDTH);
-}
-function addCommas(num) {
-    var numString = num.toString();
-    var commaString = "";
-    for (var i = numString.length; i > 3; i -= 3) {
-        commaString = "," + numString.substr(Math.max(0, i - 3), i) + commaString;
-    }
-    commaString = numString.substr(0, i) + commaString;
-    return commaString;
-}
+const MIN_TILE_WIDTH = 280;
+const MIN_TILE_HEIGHT_L = 80;
+const MIN_TILE_HEIGHT_S = 60;
 exports.TwitchStreams = (props) => {
     const { streams } = props;
     const containerRef = react_1.useRef();
-    const [totalWidth, setTotalWidth] = react_1.useState(1520);
+    const [containerWidth, setContainerWidth] = react_1.useState(1520);
+    const [containerHeight, setContainerHeight] = react_1.useState(1520);
     const remeasure = () => {
         if (containerRef.current) {
-            setTotalWidth(containerRef.current.clientWidth);
+            setContainerWidth(containerRef.current.offsetWidth);
+            setContainerHeight(containerRef.current.offsetHeight);
         }
     };
     react_1.useEffect(() => {
@@ -48,25 +28,36 @@ exports.TwitchStreams = (props) => {
     });
     const rows = [];
     let currentRow = [];
-    let currentWidth = 0;
+    let currentHeight = 0;
+    let currentWidth = MIN_TILE_WIDTH;
     for (let stream of streams) {
-        const baseWidth = getStreamWidth(stream);
-        const width = baseWidth + 10;
-        if ((currentWidth + width) > totalWidth) {
-            rows.push(React.createElement("div", { className: "horizontal-list" }, currentRow));
+        const shouldEmphasize = stream.Followed;
+        const tileHeight = shouldEmphasize ? MIN_TILE_HEIGHT_L : MIN_TILE_HEIGHT_S;
+        const tileWidth = MIN_TILE_WIDTH + 10;
+        if ((currentHeight + tileHeight) >= (containerHeight + 1)) {
+            rows.push(React.createElement("div", { className: "group", style: { minWidth: MIN_TILE_WIDTH } }, currentRow));
             currentRow = [];
-            currentWidth = 0;
+            currentHeight = 0;
+            currentWidth += tileWidth;
+            if (currentWidth > (containerWidth + 1)) {
+                break;
+            }
         }
-        currentWidth += width;
-        currentRow.push(React.createElement("div", { className: "tile card", style: { flexBasis: baseWidth } },
-            React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: stream.ImageURL }),
-            React.createElement("div", { className: "tile-title" }, stream.Streamer),
-            React.createElement("div", { className: "tile-game" }, stream.Game),
-            React.createElement("div", { className: "tile-details" }, stream.Status),
-            React.createElement("div", { className: "tile-viewers" },
-                React.createElement("span", { className: "live-indicator" }),
-                React.createElement("span", null, addCommas(stream.Viewers)))));
+        currentHeight += tileHeight;
+        currentRow.push(React.createElement(exports.StreamCard, { stream: stream, tileHeight: tileHeight }));
     }
-    rows.push(React.createElement("div", { className: "horizontal-list" }, currentRow));
-    return React.createElement("div", { className: "horizontal-lists", ref: containerRef }, rows);
+    if (currentRow.length > 0) {
+        rows.push(React.createElement("div", { className: "group", style: { minWidth: MIN_TILE_WIDTH } }, currentRow));
+    }
+    return React.createElement("div", { className: "twitchStreams", ref: containerRef }, rows);
+};
+exports.StreamCard = ({ stream, tileHeight }) => {
+    return React.createElement("div", { className: "tile card", style: { minHeight: tileHeight } },
+        React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: stream.ImageURL }),
+        React.createElement("div", { className: "tile-title" }, stream.Streamer),
+        React.createElement("div", { className: "tile-game" }, stream.Game),
+        React.createElement("div", { className: "tile-details" }, stream.Status),
+        React.createElement("div", { className: "tile-viewers" },
+            React.createElement("span", { className: "live-indicator" }),
+            React.createElement("span", null, Utils_1.addCommas(stream.Viewers))));
 };

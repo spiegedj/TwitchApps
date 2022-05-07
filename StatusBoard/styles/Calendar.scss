@@ -12,8 +12,10 @@ $large-font-size: 16pt;
 
 .calendar {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    flex-direction: column;
     font-size: $font-size;
+    margin-bottom: 25px;
     
     .underline {
         border-bottom: 1px solid #4D4D4D;
@@ -146,7 +148,9 @@ $spaceBetween: 10px;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    
+    flex: 1 1 auto;
+    overflow: hidden;
+
     .col {
         display: flex;
         flex-direction: column;

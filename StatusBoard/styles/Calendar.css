@@ -3,8 +3,10 @@
 
 .calendar {
   display: flex;
-  flex-wrap: wrap;
-  font-size: 14pt; }
+  flex-wrap: nowrap;
+  flex-direction: column;
+  font-size: 14pt;
+  margin-bottom: 25px; }
   .calendar .underline {
     border-bottom: 1px solid #4D4D4D; }
   .calendar .lighten {
@@ -90,7 +92,9 @@
 .columns {
   display: flex;
   justify-content: space-between;
-  width: 100%; }
+  width: 100%;
+  flex: 1 1 auto;
+  overflow: hidden; }
   .columns .col {
     display: flex;
     flex-direction: column;

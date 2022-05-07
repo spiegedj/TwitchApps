@@ -21,6 +21,7 @@ $altFontSize3: 12pt;
     height: $imageHeight;
     display: flex;
     flex-direction: row;
+    flex-shrink: 0;
 
     padding: 0;
     margin-bottom: 10px;
@@ -32,7 +33,7 @@ $altFontSize3: 12pt;
         margin-left: 10px;
     }
 
-    .tile +.tile {
+    .tile + .tile {
         //border-left: none;
     }
 
