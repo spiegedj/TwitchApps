@@ -12,7 +12,8 @@
   display: flex;
   color: white;
   width: 100%;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  flex-shrink: 0; }
   .weatherPanel > div {
     flex: 1 0 auto; }
   .weatherPanel > div + div {
