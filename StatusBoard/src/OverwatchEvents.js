@@ -83,7 +83,7 @@ class OverwatchEvents extends React.Component {
     }
     render() {
         const panels = [];
-        const matches = (this.props.matches || []).slice();
+        const matches = (this.props.matches || []).slice(0, 12);
         const matchDays = this.splitByDay(matches);
         const nextDay = matchDays.shift();
         if (nextDay) {
@@ -91,7 +91,7 @@ class OverwatchEvents extends React.Component {
             const matchPanels = nextDay.matches.map((m) => {
                 return m === nextMatch ? this.getLargePanel(m) : this.getSmallPanel(m);
             });
-            const extraDaysOnFirstPanel = matchDays.slice(0, 2);
+            const extraDaysOnFirstPanel = matchDays.slice(0, 3);
             panels.push(React.createElement("div", { className: "ow col" },
                 React.createElement("span", { className: "group" },
                     React.createElement(DateHeader_1.DateHeader, { dates: [nextDay.date], showTimeCells: false }),

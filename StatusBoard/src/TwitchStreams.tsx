@@ -66,7 +66,10 @@ export const TwitchStreams = (props: TwitchProps) =>
         }
 
         currentHeight += tileHeight;
-        currentRow.push(<StreamCard stream={stream} tileHeight={tileHeight} />);
+        currentRow.push(shouldEmphasize
+            ? <StreamCard stream={stream} tileHeight={tileHeight} />
+            : <SmallStreamCard stream={stream} tileHeight={tileHeight} />
+        );
     }
 
     if (currentRow.length > 0)
@@ -89,6 +92,22 @@ export const StreamCard = ({ stream, tileHeight }: StreamCardProps) =>
         <img className="tile-image" crossOrigin="anonymous" src={stream.ImageURL}></img>
         <div className="tile-title">{stream.Streamer}</div>
         <div className="tile-game">{stream.Game}</div>
+        <div className="tile-details">{stream.Status}</div>
+        <div className="tile-viewers">
+            <span className="live-indicator"></span>
+            <span>{addCommas(stream.Viewers)}</span>
+        </div>
+    </div>
+}
+
+export const SmallStreamCard = ({ stream, tileHeight }: StreamCardProps) =>
+{
+    return <div className="tile card small" style={{ minHeight: tileHeight }}>
+        <div className="inner">
+            <img className="tile-image" crossOrigin="anonymous" src={stream.ImageURL}></img>
+            <div className="tile-title">{stream.Streamer}</div>
+            <div className="tile-game">{stream.Game}</div>
+        </div>
         <div className="tile-details">{stream.Status}</div>
         <div className="tile-viewers">
             <span className="live-indicator"></span>

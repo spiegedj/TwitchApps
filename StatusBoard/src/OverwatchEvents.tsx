@@ -111,7 +111,8 @@ export class OverwatchEvents extends React.Component<owProps>
     {
         const panels: JSX.Element[] = [];
 
-        const matches = (this.props.matches || []).slice();
+        const matches = (this.props.matches || []).slice(0, 12);
+
         const matchDays = this.splitByDay(matches);
         const nextDay = matchDays.shift();
         if (nextDay)
@@ -122,7 +123,7 @@ export class OverwatchEvents extends React.Component<owProps>
                 return m === nextMatch ? this.getLargePanel(m) : this.getSmallPanel(m);
             });
 
-            const extraDaysOnFirstPanel = matchDays.slice(0, 2);
+            const extraDaysOnFirstPanel = matchDays.slice(0, 3);
 
             panels.push(<div className="ow col">
                 <span className="group">

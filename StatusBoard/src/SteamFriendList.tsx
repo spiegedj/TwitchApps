@@ -27,12 +27,11 @@ export const SteamFriendList = (props: ISteamFriendsProps) =>
             return b.LastLogOff - a.LastLogOff;
         }
         return stateDiff;
-    }).slice(0, 14);
+    }).slice(0, 12);
 
-    return <div className="horizontal-list narrow">
+    return <div className="steam-list">
         {sortedFriends.map((friend) =>
         {
-            const inGame = !!friend.Game;
             const stateString = toStateString(friend);
             return <div className={"tile card " + friendToCssClass(friend)}>
                 <img className="tile-image" crossOrigin="anonymous" src={friend.Image}></img>

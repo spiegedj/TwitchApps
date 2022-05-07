@@ -1,0 +1,7 @@
+.steam-list {
+  width: 225px;
+  flex-shrink: 0; }
+  .steam-list .tile {
+    height: 68px; }
+
+/*# sourceMappingURL=SteamFriendList.css.map */

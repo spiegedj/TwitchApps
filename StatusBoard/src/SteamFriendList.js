@@ -10,9 +10,8 @@ exports.SteamFriendList = (props) => {
             return b.LastLogOff - a.LastLogOff;
         }
         return stateDiff;
-    }).slice(0, 14);
-    return React.createElement("div", { className: "horizontal-list narrow" }, sortedFriends.map((friend) => {
-        const inGame = !!friend.Game;
+    }).slice(0, 12);
+    return React.createElement("div", { className: "steam-list" }, sortedFriends.map((friend) => {
         const stateString = toStateString(friend);
         return React.createElement("div", { className: "tile card " + friendToCssClass(friend) },
             React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: friend.Image }),

@@ -117,5 +117,17 @@ $altFontSize3: 12pt;
     .alt-line2 {
         font-size: $altFontSize2;
     }
+}
 
+.tile.small {
+    display: flex;
+    flex-direction: column;
+
+    .inner {
+        height: calc(100% - 16px);
+    }
+
+    .tile-details {
+        height: 16px;
+    }
 }

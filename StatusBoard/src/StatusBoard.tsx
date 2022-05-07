@@ -110,8 +110,8 @@ export class StatusBoard extends React.Component
             <React.Fragment>
                 <div className="calendar">
                     <WeatherPanel weather={Weather} />
-                    <SteamFriendList friends={SteamFriends} />
                     <div className="columns">
+                        <SteamFriendList friends={SteamFriends} />
                         <OverwatchEvents
                             matches={Overwatch}
                             columns={owColumns}

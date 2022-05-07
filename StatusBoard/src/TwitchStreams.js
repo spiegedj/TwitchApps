@@ -1,7 +1,7 @@
 "use strict";
 /// <reference path="../@types/data.d.ts"/>
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StreamCard = exports.TwitchStreams = void 0;
+exports.SmallStreamCard = exports.StreamCard = exports.TwitchStreams = void 0;
 const React = require("react");
 const react_1 = require("react");
 const Utils_1 = require("./Utils");
@@ -44,7 +44,9 @@ exports.TwitchStreams = (props) => {
             }
         }
         currentHeight += tileHeight;
-        currentRow.push(React.createElement(exports.StreamCard, { stream: stream, tileHeight: tileHeight }));
+        currentRow.push(shouldEmphasize
+            ? React.createElement(exports.StreamCard, { stream: stream, tileHeight: tileHeight })
+            : React.createElement(exports.SmallStreamCard, { stream: stream, tileHeight: tileHeight }));
     }
     if (currentRow.length > 0) {
         rows.push(React.createElement("div", { className: "group", style: { minWidth: MIN_TILE_WIDTH } }, currentRow));
@@ -56,6 +58,17 @@ exports.StreamCard = ({ stream, tileHeight }) => {
         React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: stream.ImageURL }),
         React.createElement("div", { className: "tile-title" }, stream.Streamer),
         React.createElement("div", { className: "tile-game" }, stream.Game),
+        React.createElement("div", { className: "tile-details" }, stream.Status),
+        React.createElement("div", { className: "tile-viewers" },
+            React.createElement("span", { className: "live-indicator" }),
+            React.createElement("span", null, Utils_1.addCommas(stream.Viewers))));
+};
+exports.SmallStreamCard = ({ stream, tileHeight }) => {
+    return React.createElement("div", { className: "tile card small", style: { minHeight: tileHeight } },
+        React.createElement("div", { className: "inner" },
+            React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: stream.ImageURL }),
+            React.createElement("div", { className: "tile-title" }, stream.Streamer),
+            React.createElement("div", { className: "tile-game" }, stream.Game)),
         React.createElement("div", { className: "tile-details" }, stream.Status),
         React.createElement("div", { className: "tile-viewers" },
             React.createElement("span", { className: "live-indicator" }),
