@@ -42,10 +42,9 @@ $altFontSize3: 12pt;
     width: 100%;
     min-width: 0;
     overflow: hidden;
-    margin-right: 10px;
-    gap: 10px;
 
     .group {
+        margin-right: 10px;
         height: 100%;
         display: flex;
         flex-direction: column;
