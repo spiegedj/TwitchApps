@@ -55,7 +55,7 @@ exports.TwitchStreams = (props) => {
 };
 exports.StreamCard = ({ stream, tileHeight }) => {
     return React.createElement("div", { className: "tile card", style: { minHeight: tileHeight } },
-        React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: stream.ImageURL }),
+        React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: stream.ImageURL, style: { height: tileHeight } }),
         React.createElement("div", { className: "tile-title" }, stream.Streamer),
         React.createElement("div", { className: "tile-game" }, stream.Game),
         React.createElement("div", { className: "tile-details" }, stream.Status),
@@ -66,7 +66,7 @@ exports.StreamCard = ({ stream, tileHeight }) => {
 exports.SmallStreamCard = ({ stream, tileHeight }) => {
     return React.createElement("div", { className: "tile card small", style: { minHeight: tileHeight } },
         React.createElement("div", { className: "inner" },
-            React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: stream.ImageURL }),
+            React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: stream.ImageURL, style: { height: tileHeight } }),
             React.createElement("div", { className: "tile-title" }, stream.Streamer),
             React.createElement("div", { className: "tile-game" }, stream.Game)),
         React.createElement("div", { className: "tile-details" }, stream.Status),

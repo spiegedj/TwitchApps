@@ -89,7 +89,7 @@ interface StreamCardProps
 export const StreamCard = ({ stream, tileHeight }: StreamCardProps) =>
 {
     return <div className="tile card" style={{ minHeight: tileHeight }}>
-        <img className="tile-image" crossOrigin="anonymous" src={stream.ImageURL}></img>
+        <img className="tile-image" crossOrigin="anonymous" src={stream.ImageURL} style={{ height: tileHeight }}></img>
         <div className="tile-title">{stream.Streamer}</div>
         <div className="tile-game">{stream.Game}</div>
         <div className="tile-details">{stream.Status}</div>
@@ -104,7 +104,7 @@ export const SmallStreamCard = ({ stream, tileHeight }: StreamCardProps) =>
 {
     return <div className="tile card small" style={{ minHeight: tileHeight }}>
         <div className="inner">
-            <img className="tile-image" crossOrigin="anonymous" src={stream.ImageURL}></img>
+            <img className="tile-image" crossOrigin="anonymous" src={stream.ImageURL} style={{ height: tileHeight }}></img>
             <div className="tile-title">{stream.Streamer}</div>
             <div className="tile-game">{stream.Game}</div>
         </div>

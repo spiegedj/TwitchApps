@@ -30,3 +30,8 @@ setInterval(() =>
     i = (i + 1) % backgrounds.length;
     document.body.style.backgroundImage = `url(./Images/${backgrounds[i]})`;
 }, 60 * 60 * 1000);
+
+setInterval(() =>
+{
+    location.reload();
+}, 30 * 60 * 1000)
