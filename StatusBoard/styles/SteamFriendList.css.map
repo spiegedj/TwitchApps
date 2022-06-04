@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAAA,WAAY;EACR,KAAK,EAAE,KAAK;EACZ,WAAW,EAAE,CAAC;EAEd,iBAAM;IACF,MAAM,EAAE,IAAI",
+"mappings": "AAAA,WAAY;EACR,KAAK,EAAE,KAAK;EACZ,WAAW,EAAE,CAAC;EAEd,iBAAM;IACF,MAAM,EAAE,IAAI;IAEZ,4BAAW;MACP,WAAW,EAAE,MAAM",
 "sources": ["SteamFriendList.scss"],
 "names": [],
 "file": "SteamFriendList.css"

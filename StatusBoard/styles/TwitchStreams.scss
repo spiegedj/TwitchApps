@@ -44,15 +44,18 @@ $altFontSize3: 12pt;
     overflow: hidden;
 
     .group {
-        margin-right: 10px;
         height: 100%;
         display: flex;
         flex-direction: column;
+        flex: 1 1;
     }
 }
 
-.tile + .tile {
-    border-top: none !important;
+.group-card {
+    border: 3px solid black;
+    border-radius: 5px;
+    background-color: $cardBackColorDark;
+    margin: $spacing;
 }
 
 .tile {
@@ -78,6 +81,8 @@ $altFontSize3: 12pt;
     .tile-image {
         margin-right: 5px;
         float: left;
+        border-radius: 5px;
+        height: 100%;
     }
 
     .tile-title { 
@@ -118,16 +123,15 @@ $altFontSize3: 12pt;
 }
 
 .tile.small {
-    display: flex;
-    flex-direction: column;
-
-    .inner {
-        height: calc(100% - 16px);
-    }
+    border-top: 3px solid black;
 
     .tile-details {
         height: 16px;
     }
+}
+
+.list-group-name {
+    text-align: center;
 }
 
 .live-indicator {

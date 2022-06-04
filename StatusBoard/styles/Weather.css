@@ -6,20 +6,19 @@
 .dark .condition,
 .dark .forecast-day,
 .clock {
-  border: 1px solid white; }
+  border: 3px solid black;
+  border-radius: 5px;
+  margin: 2px; }
 
 .weatherPanel {
   display: flex;
   color: white;
   width: 100%;
-  margin-bottom: 10px;
   flex-shrink: 0; }
   .weatherPanel > div {
     flex: 1 0 auto; }
   .weatherPanel > div + div {
-    margin-left: 10px; }
-  .weatherPanel > :last-child {
-    margin-right: 10px; }
+    margin: 2px; }
   .weatherPanel .temp-icon {
     width: 70px; }
   .weatherPanel .condition {
@@ -60,6 +59,9 @@
   .weatherPanel .icon-drop {
     width: 20px; }
 
+.hourly:nth-last-child(-n+2) {
+  border: none !important; }
+
 .hourly {
   display: flex;
   flex-direction: row;
@@ -97,9 +99,6 @@
 
 .clock {
   background-color: #031727;
-  margin-top: auto;
-  margin-bottom: auto;
-  height: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column; }

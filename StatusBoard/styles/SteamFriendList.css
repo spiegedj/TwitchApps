@@ -2,6 +2,8 @@
   width: 225px;
   flex-shrink: 0; }
   .steam-list .tile {
-    height: 68px; }
+    height: 60px; }
+    .steam-list .tile .alt-line1 {
+      white-space: nowrap; }
 
 /*# sourceMappingURL=SteamFriendList.css.map */

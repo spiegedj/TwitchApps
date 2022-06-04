@@ -105,11 +105,9 @@
       border: 2px solid black; }
     .columns .col .group + .group {
       margin-top: 10px; }
-  .columns > div + div {
-    padding-left: 10px; }
 
 .dark .col .group {
-  border: 1px solid white; }
+  border: 3px solid black; }
 
 .light .ow {
   color: black; }
@@ -283,7 +281,7 @@
 
 .dark .gdq table {
   background-color: #0A0A0A;
-  border: 1px solid white; }
+  border: 3px solid black; }
 
 .gdq {
   margin-bottom: 15px;

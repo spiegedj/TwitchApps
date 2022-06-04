@@ -126,13 +126,13 @@ export class OverwatchEvents extends React.Component<owProps>
             const extraDaysOnFirstPanel = matchDays.slice(0, 3);
 
             panels.push(<div className="ow col">
-                <span className="group">
+                <span className="group-card">
                     <DateHeader dates={[nextDay.date]} showTimeCells={false}></DateHeader>
                     {matchPanels}
                 </span>
                 {
                     extraDaysOnFirstPanel.map(day =>
-                        <span className="group">
+                        <span className="group-card">
                             <DateHeader dates={[day.date]} showTimeCells={false}></DateHeader>
                             {day.matches.map(m => this.getSmallPanel(m))}
                         </span>

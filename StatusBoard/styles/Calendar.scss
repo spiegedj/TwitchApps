@@ -166,11 +166,6 @@ $spaceBetween: 10px;
             margin-top: $spaceBetween;
         }
     }
-
-    > div + div
-    {
-        padding-left: $spacing;
-    }
 }
 
 .dark .col .group {

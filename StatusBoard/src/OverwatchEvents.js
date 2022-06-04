@@ -93,10 +93,10 @@ class OverwatchEvents extends React.Component {
             });
             const extraDaysOnFirstPanel = matchDays.slice(0, 3);
             panels.push(React.createElement("div", { className: "ow col" },
-                React.createElement("span", { className: "group" },
+                React.createElement("span", { className: "group-card" },
                     React.createElement(DateHeader_1.DateHeader, { dates: [nextDay.date], showTimeCells: false }),
                     matchPanels),
-                extraDaysOnFirstPanel.map(day => React.createElement("span", { className: "group" },
+                extraDaysOnFirstPanel.map(day => React.createElement("span", { className: "group-card" },
                     React.createElement(DateHeader_1.DateHeader, { dates: [day.date], showTimeCells: false }),
                     day.matches.map(m => this.getSmallPanel(m))))));
         }

@@ -3,6 +3,10 @@
     flex-shrink: 0;
 
     .tile {
-        height: 68px;
+        height: 60px;
+
+        .alt-line1 {
+            white-space: nowrap;
+        }
     }
 }

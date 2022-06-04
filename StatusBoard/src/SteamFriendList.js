@@ -10,10 +10,10 @@ exports.SteamFriendList = (props) => {
             return b.LastLogOff - a.LastLogOff;
         }
         return stateDiff;
-    }).slice(0, 12);
+    }).slice(0, 13);
     return React.createElement("div", { className: "steam-list" }, sortedFriends.map((friend) => {
         const stateString = toStateString(friend);
-        return React.createElement("div", { className: "tile card " + friendToCssClass(friend) },
+        return React.createElement("div", { className: "tile group-card " + friendToCssClass(friend) },
             React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: friend.Image }),
             React.createElement("div", { className: "alt-line1" }, friend.Name),
             React.createElement("div", { className: "alt-line2" }, stateString));

@@ -10,6 +10,8 @@
 .dark .forecast-day,
 .clock {
     border: $cardBorderDark;
+    border-radius: 5px;
+    margin: $spacing;
 }
 
 .weatherPanel {
@@ -17,7 +19,6 @@
     color: white;
     
     width: 100%;
-    margin-bottom: 10px;
     flex-shrink: 0;
 
     > div {
@@ -25,12 +26,7 @@
     }
 
     > div + div {
-        margin-left: 10px;
-    }
-
-    > :last-child
-    {
-        margin-right: 10px;
+        margin: $spacing;
     }
     
     .temp-icon { width: 70px; }
@@ -85,6 +81,8 @@
     }
 }
 
+.hourly:nth-last-child(-n+2) { border: none !important; }
+
 .hourly {
     display: flex;
     flex-direction: row;
@@ -92,7 +90,7 @@
     padding: 0 5px 0 5px;
     width: 175px;
     box-sizing: border-box;
-    border-bottom: $cardBorderDark;
+    border-bottom: 1px solid white;
     
     .temp-icon { 
         width: 35px;
@@ -135,10 +133,6 @@
 
 .clock {
     background-color: #031727;
-    margin-top: auto;
-    margin-bottom: auto;
-    height: 100%;
-
     display: flex;
     justify-content: center;
     flex-direction: column;
