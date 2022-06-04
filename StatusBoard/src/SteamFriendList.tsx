@@ -33,7 +33,7 @@ export const SteamFriendList = (props: ISteamFriendsProps) =>
         {sortedFriends.map((friend) =>
         {
             const stateString = toStateString(friend);
-            return <div className={"tile group-card " + friendToCssClass(friend)}>
+            return <div className={"tile group-card tag-style " + friendToCssClass(friend)}>
                 <img className="tile-image" crossOrigin="anonymous" src={friend.Image}></img>
                 <div className="alt-line1">{friend.Name}</div>
                 <div className="alt-line2">{stateString}</div>

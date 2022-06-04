@@ -141,7 +141,7 @@ const StreamColumn = ({ children }: { children: JSX.Element[] }) =>
 
 export const StreamCard = ({ stream, tileHeight }: StreamCardProps) =>
 {
-    return <div className="tile group-card" style={{ minHeight: tileHeight }}>
+    return <div className="tile group-card tag-style" style={{ minHeight: tileHeight }}>
         <img className="tile-image" crossOrigin="anonymous" src={stream.ImageURL}></img>
         <div>
             <div className="tile-title">{stream.Streamer}</div>

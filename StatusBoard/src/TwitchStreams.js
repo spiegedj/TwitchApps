@@ -90,7 +90,7 @@ const StreamColumn = ({ children }) => {
     return React.createElement("div", { className: "group", style: { minWidth: MIN_TILE_WIDTH } }, children);
 };
 exports.StreamCard = ({ stream, tileHeight }) => {
-    return React.createElement("div", { className: "tile group-card", style: { minHeight: tileHeight } },
+    return React.createElement("div", { className: "tile group-card tag-style", style: { minHeight: tileHeight } },
         React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: stream.ImageURL }),
         React.createElement("div", null,
             React.createElement("div", { className: "tile-title" }, stream.Streamer),
