@@ -83,8 +83,8 @@
     text-align: center; }
 
 .dark .dateHeader {
-  background-color: #0C0C0C;
-  color: white; }
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #D0E4F2; }
 
 .blackText {
   color: black !important; }
@@ -119,13 +119,13 @@
     color: black; }
 
 .dark .ow {
-  color: white; }
+  color: #D0E4F2; }
   .dark .ow .tile, .dark .ow .largeTile {
-    background-color: #0C0C0C;
+    background-color: rgba(0, 0, 0, 0.85);
     border-color: black; }
   .dark .ow .status {
-    background-color: #0C0C0C;
-    color: white; }
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #D0E4F2; }
 
 .ow {
   font-family: overwatch; }
@@ -206,15 +206,15 @@
       right: 5px; }
 
 .dark .sc2 {
-  color: white; }
+  color: #D0E4F2; }
   .dark .sc2 .group {
-    background-color: #0C0C0C; }
+    background-color: rgba(0, 0, 0, 0.85); }
   .dark .sc2 .playerTable {
-    background-color: #0C0C0C; }
+    background-color: rgba(0, 0, 0, 0.85); }
     .dark .sc2 .playerTable tr:not(:last-child) {
-      border-bottom: 3px solid #0C0C0C; }
+      border-bottom: 3px solid rgba(0, 0, 0, 0.85); }
     .dark .sc2 .playerTable td + td {
-      border-left: 3px solid #0C0C0C; }
+      border-left: 3px solid rgba(0, 0, 0, 0.85); }
 
 .sc2 {
   color: black;
@@ -280,7 +280,7 @@
   border: 2px solid black; }
 
 .dark .gdq table {
-  background-color: #0C0C0C;
+  background-color: rgba(0, 0, 0, 0.85);
   border: 3px solid black; }
 
 .gdq {

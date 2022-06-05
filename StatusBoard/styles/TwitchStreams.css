@@ -31,7 +31,7 @@
 .group-card {
   border: 3px solid black;
   border-radius: 5px;
-  background-color: #0C0C0C;
+  background-color: rgba(0, 0, 0, 0.85);
   margin: 2px; }
 
 .tile {
@@ -63,12 +63,13 @@
     max-height: 30px; }
   .tile .tile-viewers {
     color: #C9283E;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: black;
     font-size: 12pt;
     position: absolute;
     top: 2px;
     right: 2px;
     border-radius: 5px;
+    padding: 0 5px 0 5px;
     display: flex;
     align-items: center; }
   .tile .alt-line1 {
@@ -82,7 +83,8 @@
     height: 16px; }
 
 .list-group-name {
-  text-align: center; }
+  text-align: center;
+  background-color: black; }
 
 .live-indicator {
   background-color: #C9283E;

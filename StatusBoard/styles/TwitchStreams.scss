@@ -52,7 +52,7 @@ $altFontSize3: 12pt;
 }
 
 .group-card {
-    border: 3px solid black;
+    border: $cardBorderDark;
     border-radius: 5px;
     background-color: $cardBackColorDark;
     margin: $spacing;
@@ -103,12 +103,13 @@ $altFontSize3: 12pt;
 
     .tile-viewers {
         color: #C9283E;
-        background-color: rgba(0, 0, 0, .8);
+        background-color: rgba(0, 0, 0, 1);
         font-size: 12pt;
         position: absolute;
         top: 2px;
         right: 2px;
         border-radius: 5px;
+        padding: 0 5px 0 5px;
 
         display: flex;
         align-items: center
@@ -133,6 +134,7 @@ $altFontSize3: 12pt;
 
 .list-group-name {
     text-align: center;
+    background-color: black;
 }
 
 .live-indicator {

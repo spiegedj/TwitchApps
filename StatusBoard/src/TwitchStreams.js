@@ -18,7 +18,7 @@ const isGrouped = (a, b) => {
 };
 const getSize = (groups) => {
     var items = groups.reduce((items, group) => items.concat(...group.items), []);
-    return (items.length * (MIN_TILE_HEIGHT_S + 6)) + (groups.length * 32);
+    return (items.length * (MIN_TILE_HEIGHT_S + 3)) + (groups.length * 30);
 };
 exports.TwitchStreams = (props) => {
     const { streams } = props;

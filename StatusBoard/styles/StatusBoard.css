@@ -17,11 +17,11 @@ body {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../Images/back1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: .90; }
+  opacity: 1; }
 
 .dark {
   background-color: black;
-  color: white; }
+  color: #D0E4F2; }
 
 .calendar {
   position: absolute;
@@ -46,13 +46,13 @@ body {
 
 .dark .card {
   border: 3px solid black;
-  background-color: #0C0C0C; }
+  background-color: rgba(0, 0, 0, 0.85); }
 
 .marquee {
   position: fixed;
   bottom: 0;
   left: 0;
   border-top: 3px solid black;
-  background-color: #0C0C0C; }
+  background-color: rgba(0, 0, 0, 0.85); }
 
 /*# sourceMappingURL=StatusBoard.css.map */

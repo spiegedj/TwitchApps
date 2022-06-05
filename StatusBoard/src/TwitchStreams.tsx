@@ -30,7 +30,7 @@ const isGrouped = (a: Response.TwitchStream, b: Response.TwitchStream) =>
 const getSize = (groups: IGameGroup[]) =>
 {
     var items = groups.reduce((items, group) => items.concat(...group.items), [] as Response.TwitchStream[]);
-    return (items.length * (MIN_TILE_HEIGHT_S + 6)) + (groups.length * 32);
+    return (items.length * (MIN_TILE_HEIGHT_S + 3)) + (groups.length * 30);
 }
 
 export const TwitchStreams = (props: TwitchProps) =>

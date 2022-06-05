@@ -6,11 +6,12 @@ $spacing: 2px;
 $backColor: #cccccc;
 $backColorDark: black;
 $textColor: black;
-$textColorDark: white;
+$textColorDark: #D0E4F2;
 
 // Cards
+$opacity: 1;
 $cardBackColor: white;
-$cardBackColorDark: #0C0C0C;
+$cardBackColorDark: rgba(0, 0, 0, .85);
 $cardBorder: 2px solid black;
 $cardBorderDark: 3px solid black;
 
