@@ -59,7 +59,7 @@ export class StarCraftMatches extends React.Component<IStarCraftMatchesProps>
         const columns = 2;
 
         const columnEls: JSX.Element[] = [];
-        const groups = this.props.groups.slice();
+        const groups = (this.props.groups || []).slice();
 
         for (var i = 0; i < columns; i++)
         {

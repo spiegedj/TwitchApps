@@ -34,7 +34,7 @@ class StarCraftMatches extends React.Component {
         const totalRows = 23;
         const columns = 2;
         const columnEls = [];
-        const groups = this.props.groups.slice();
+        const groups = (this.props.groups || []).slice();
         for (var i = 0; i < columns; i++) {
             const columnGroup = [];
             let j = 0;
