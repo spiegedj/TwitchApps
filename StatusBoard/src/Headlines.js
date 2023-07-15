@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Marquee = exports.Headlines = void 0;
 const React = require("react");
-exports.Headlines = ({ headlines }) => {
+const Headlines = ({ headlines }) => {
     const div = document.createElement("div");
     const data = headlines.map(headline => {
         div.innerHTML = headline.Title;
@@ -11,6 +11,7 @@ exports.Headlines = ({ headlines }) => {
     const marquee = React.useRef(new Marquee());
     return React.createElement("canvas", { className: "marquee", ref: canvas => marquee.current.set_data(canvas, data), height: 25, width: 1920 });
 };
+exports.Headlines = Headlines;
 const TEXT_PADDING_TOP = 5;
 const TEXT_PADDING_LEFT = 50;
 const PIXELS_PER_SECOND = 75;

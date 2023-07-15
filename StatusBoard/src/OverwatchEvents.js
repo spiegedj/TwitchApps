@@ -36,7 +36,7 @@ class OverwatchEvents extends React.Component {
     getLargePanel(match) {
         const compNamePieces1 = this.splitName(match.Competitor1.Name);
         const compNamePieces2 = this.splitName(match.Competitor2.Name);
-        const status = (match.IsLive && match.Score) ? match.Score : DateUtils_1.DateUtils.getTimeString(new Date(match.Date));
+        const status = (match.Score) ? match.Score : DateUtils_1.DateUtils.getTimeString(new Date(match.Date));
         const comp1ClassNames = ["comp", "comp-1"];
         if (this.useBlackText(match.Competitor1))
             comp1ClassNames.push("blackText");
@@ -61,7 +61,7 @@ class OverwatchEvents extends React.Component {
     getSmallPanel(match) {
         const compNamePieces1 = this.splitName(match.Competitor1.Name);
         const compNamePieces2 = this.splitName(match.Competitor2.Name);
-        const status = (match.IsLive && match.Score) ? match.Score : DateUtils_1.DateUtils.getTimeString(new Date(match.Date));
+        const status = (match.Score) ? match.Score : DateUtils_1.DateUtils.getTimeString(new Date(match.Date));
         const comp1ClassNames = ["comp", "comp-1"];
         if (this.useBlackText(match.Competitor1))
             comp1ClassNames.push("blackText");

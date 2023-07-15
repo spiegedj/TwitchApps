@@ -35,7 +35,7 @@ export class OverwatchEvents extends React.Component<owProps>
             const matchDay: MatchDay = {
                 date: new Date(match.Date),
                 matches: [match]
-            }
+            };
 
             for (var i = 0; i < matches.length; i++)
             {
@@ -58,7 +58,7 @@ export class OverwatchEvents extends React.Component<owProps>
         const compNamePieces1 = this.splitName(match.Competitor1.Name);
         const compNamePieces2 = this.splitName(match.Competitor2.Name);
 
-        const status = (match.IsLive && match.Score) ? match.Score : DateUtils.getTimeString(new Date(match.Date));
+        const status = (match.Score) ? match.Score : DateUtils.getTimeString(new Date(match.Date));
 
         const comp1ClassNames = ["comp", "comp-1"];
         if (this.useBlackText(match.Competitor1)) comp1ClassNames.push("blackText");
@@ -78,7 +78,7 @@ export class OverwatchEvents extends React.Component<owProps>
                 <div className="comp-name-1"> {compNamePieces2.piece1}</div>
                 <div className="comp-name-2"> {compNamePieces2.piece2}</div>
             </div>
-        </div>
+        </div>;
     }
 
     private getSmallPanel(match: Response.MatchDetails): JSX.Element
@@ -86,7 +86,7 @@ export class OverwatchEvents extends React.Component<owProps>
         const compNamePieces1 = this.splitName(match.Competitor1.Name);
         const compNamePieces2 = this.splitName(match.Competitor2.Name);
 
-        const status = (match.IsLive && match.Score) ? match.Score : DateUtils.getTimeString(new Date(match.Date));
+        const status = (match.Score) ? match.Score : DateUtils.getTimeString(new Date(match.Date));
 
         const comp1ClassNames = ["comp", "comp-1"];
         if (this.useBlackText(match.Competitor1)) comp1ClassNames.push("blackText");
@@ -104,7 +104,7 @@ export class OverwatchEvents extends React.Component<owProps>
                 <div className="comp-name"><span className="comp-name-1">{compNamePieces2.piece1}</span>{compNamePieces2.piece2}</div>
             </div>
             <span className="status">{status}</span>
-        </div>
+        </div>;
     }
 
     public render(): React.ReactNode 
@@ -194,7 +194,7 @@ export class OverwatchEvents extends React.Component<owProps>
         };
     }
 
-    private splitName(name: string): { piece1: string, piece2: string }
+    private splitName(name: string): { piece1: string, piece2: string; }
     {
         const pieces = name.split(" ");
         const lastPiece = pieces.pop();

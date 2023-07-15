@@ -20,18 +20,18 @@ const getSize = (groups) => {
     var items = groups.reduce((items, group) => items.concat(...group.items), []);
     return (items.length * (MIN_TILE_HEIGHT_S + 3)) + (groups.length * 30);
 };
-exports.TwitchStreams = (props) => {
+const TwitchStreams = (props) => {
     const { streams } = props;
-    const containerRef = react_1.useRef();
-    const [containerWidth, setContainerWidth] = react_1.useState(1520);
-    const [containerHeight, setContainerHeight] = react_1.useState(1520);
+    const containerRef = (0, react_1.useRef)();
+    const [containerWidth, setContainerWidth] = (0, react_1.useState)(1520);
+    const [containerHeight, setContainerHeight] = (0, react_1.useState)(1520);
     const remeasure = () => {
         if (containerRef.current) {
             setContainerWidth(containerRef.current.offsetWidth);
             setContainerHeight(containerRef.current.offsetHeight);
         }
     };
-    react_1.useEffect(() => {
+    (0, react_1.useEffect)(() => {
         const timerId = window.setInterval(remeasure, 300);
         return () => {
             window.clearInterval(timerId);
@@ -86,10 +86,11 @@ exports.TwitchStreams = (props) => {
     }
     return React.createElement("div", { className: "twitchStreams", ref: containerRef }, rows);
 };
+exports.TwitchStreams = TwitchStreams;
 const StreamColumn = ({ children }) => {
     return React.createElement("div", { className: "group", style: { minWidth: MIN_TILE_WIDTH } }, children);
 };
-exports.StreamCard = ({ stream, tileHeight }) => {
+const StreamCard = ({ stream, tileHeight }) => {
     return React.createElement("div", { className: "tile group-card tag-style", style: { minHeight: tileHeight } },
         React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: stream.ImageURL }),
         React.createElement("div", null,
@@ -98,14 +99,16 @@ exports.StreamCard = ({ stream, tileHeight }) => {
             React.createElement("div", { className: "tile-details" }, stream.Status)),
         React.createElement("div", { className: "tile-viewers" },
             React.createElement("span", { className: "live-indicator" }),
-            React.createElement("span", null, Utils_1.addCommas(stream.Viewers))));
+            React.createElement("span", null, (0, Utils_1.addCommas)(stream.Viewers))));
 };
-exports.SmallStreamCard = ({ stream, tileHeight }) => {
+exports.StreamCard = StreamCard;
+const SmallStreamCard = ({ stream, tileHeight }) => {
     return React.createElement("div", { className: "tile small", style: { minHeight: tileHeight } },
         React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: stream.ImageURL, style: { width: tileHeight } }),
         React.createElement("div", { className: "tile-title" }, stream.Streamer),
         React.createElement("div", { className: "tile-details" }, stream.Status),
         React.createElement("div", { className: "tile-viewers" },
             React.createElement("span", { className: "live-indicator" }),
-            React.createElement("span", null, Utils_1.addCommas(stream.Viewers))));
+            React.createElement("span", null, (0, Utils_1.addCommas)(stream.Viewers))));
 };
+exports.SmallStreamCard = SmallStreamCard;

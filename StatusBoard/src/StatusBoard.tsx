@@ -91,7 +91,7 @@ export class StatusBoard extends React.Component
             groups={StarcraftGroups}
             columns={scColumns}
             adjustColumns={cols => (this.state.scColumns != cols) && this.setState({ scColumns: cols })}
-        />
+        />;
 
         if (GDQ.length > 0 && DateUtils.getDaysFrom(new Date(GDQ[0].Date)) < 3)
         {

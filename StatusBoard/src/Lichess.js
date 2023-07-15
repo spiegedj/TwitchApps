@@ -67,7 +67,7 @@ class ChessBoard {
         this.__ctx.drawImage(source, file * d, rank * d, d, d);
     }
 }
-exports.Lichess = ({ game }) => {
+const Lichess = ({ game }) => {
     if (!game) {
         return null;
     }
@@ -123,3 +123,4 @@ exports.Lichess = ({ game }) => {
             React.createElement("img", { id: "q", src: "./Images/Chess/bq.png" }),
             React.createElement("img", { id: "k", src: "./Images/Chess/bk.png" })));
 };
+exports.Lichess = Lichess;
