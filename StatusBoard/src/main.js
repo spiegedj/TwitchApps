@@ -9,18 +9,18 @@ $(document).ready(function () {
 });
 const backgrounds = [
     "back1.jpg",
-    "back2.jpg",
+    //"back2.jpg",
     //"back3.png",
-    "back4.jpg",
+    //"back4.jpg",
     "back5.jpg",
     //"back6.png",
     //"back7.jpg",
     "back8.jpg",
     //"back9.jpg",
-    "back10.jpg",
+    //"back10.jpg",
     "back11.jpg",
     "back12.jpg",
-    "back13.jpg",
+    //"back13.jpg",
 ];
 let i = 1;
 setInterval(() => {

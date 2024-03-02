@@ -1,38 +1,48 @@
 .online {
-  color: #57cbde; }
-  .online .alt-line2 {
-    color: #46829B; }
+  color: rgb(87, 203, 222);
+}
+.online .alt-line2 {
+  color: #46829B;
+}
 
 .inGame {
-  color: #90ba3c; }
-  .inGame .alt-line1 {
-    color: #D6F0B7; }
-  .inGame .alt-line2 {
-    font-size: 12pt !important; }
+  color: rgb(144, 186, 60);
+}
+.inGame .alt-line1 {
+  color: #D6F0B7;
+}
+.inGame .alt-line2 {
+  font-size: 12pt !important;
+}
 
 .offline {
-  color: #666666; }
+  color: rgb(102, 102, 102);
+}
 
 .away {
-  color: #437287; }
+  color: #437287;
+}
 
 .twitchStreams {
   display: flex;
   flex-direction: row-reverse;
   width: 100%;
   min-width: 0;
-  overflow: hidden; }
-  .twitchStreams .group {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    flex: 1 1; }
+  overflow: hidden;
+}
+.twitchStreams .group {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  gap: 6px;
+}
 
 .group-card {
-  border: 3px solid black;
+  border: 2px solid none;
   border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.85);
-  margin: 2px; }
+  background-color: rgba(0, 0, 0, 0.7);
+}
 
 .tile {
   flex-grow: 1;
@@ -40,51 +50,64 @@
   text-overflow: ellipsis;
   overflow: hidden;
   position: relative;
-  padding: 0; }
-  .tile div:empty {
-    display: none; }
-  .tile > div {
-    overflow: hidden;
-    text-overflow: ellipsis; }
-  .tile .tile-image {
-    margin-right: 5px;
-    float: left;
-    border-radius: 5px;
-    height: 100%;
-    max-height: 100%; }
-  .tile .tile-title {
-    font-size: 17pt; }
-  .tile .tile-game {
-    font-size: 12pt;
-    color: #c8c8c8; }
-  .tile .tile-details {
-    font-size: 9pt;
-    color: #c8c8c8;
-    max-height: 30px; }
-  .tile .tile-viewers {
-    color: #C9283E;
-    background-color: black;
-    font-size: 12pt;
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    border-radius: 5px;
-    padding: 0 5px 0 5px;
-    display: flex;
-    align-items: center; }
-  .tile .alt-line1 {
-    font-size: 14pt; }
-  .tile .alt-line2 {
-    font-size: 9pt; }
+  padding: 0;
+}
+.tile div:empty {
+  display: none;
+}
+.tile > div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tile .tile-image {
+  margin-right: 5px;
+  float: left;
+  border-radius: 5px;
+  height: 100%;
+  max-height: 100%;
+}
+.tile .tile-title {
+  font-size: 17pt;
+}
+.tile .tile-game {
+  font-size: 12pt;
+  color: rgb(200, 200, 200);
+}
+.tile .tile-details {
+  font-size: 9pt;
+  color: rgb(200, 200, 200);
+  max-height: 30px;
+}
+.tile .tile-viewers {
+  color: #C9283E;
+  background-color: rgb(0, 0, 0);
+  font-size: 12pt;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  border-radius: 5px;
+  padding: 0 5px 0 5px;
+  display: flex;
+  align-items: center;
+}
+.tile .alt-line1 {
+  font-size: 14pt;
+}
+.tile .alt-line2 {
+  font-size: 9pt;
+}
 
 .tile.small {
-  border-top: 3px solid black; }
-  .tile.small .tile-details {
-    height: 16px; }
+  border-top: 3px solid black;
+}
+.tile.small .tile-details {
+  height: 16px;
+}
 
 .list-group-name {
   text-align: center;
-  background-color: black; }
+  background-color: black;
+}
 
 .live-indicator {
   background-color: #C9283E;
@@ -93,12 +116,15 @@
   height: 0.45rem;
   display: inline-block;
   position: relative;
-  margin: 2px; }
+  margin: 2px;
+}
 
 .tag-style {
   border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px; }
-  .tag-style .tile-image {
-    border-radius: 50%; }
+  border-bottom-left-radius: 50px;
+}
+.tag-style .tile-image {
+  border-radius: 50%;
+}
 
 /*# sourceMappingURL=TwitchStreams.css.map */

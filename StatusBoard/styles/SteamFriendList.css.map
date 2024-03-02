@@ -1,7 +1,1 @@
-{
-"version": 3,
-"mappings": "AAAA,WAAY;EACR,KAAK,EAAE,KAAK;EACZ,WAAW,EAAE,CAAC;EAEd,iBAAM;IACF,MAAM,EAAE,IAAI;IAEZ,4BAAW;MACP,WAAW,EAAE,MAAM;IAGvB,4BAAW;MACP,WAAW,EAAE,MAAM",
-"sources": ["SteamFriendList.scss"],
-"names": [],
-"file": "SteamFriendList.css"
-}
+{"version":3,"sourceRoot":"","sources":["SteamFriendList.scss","_variables.scss"],"names":[],"mappings":"AAEA;EACC;EACA;EACA;EACA;EACA,KCLS;;ADOT;EACC;;AAEA;EACC;;AAGD;EACC","file":"SteamFriendList.css"}

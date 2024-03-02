@@ -7,117 +7,119 @@ $small-font-size: 10pt;
 $large-font-size: 16pt;
 
 .underline {
-    border-bottom: 1px solid #4D4D4D;
+	border-bottom: 1px solid #4D4D4D;
 }
 
 .calendar {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    font-size: $font-size;
-    margin-bottom: 25px;
-    
-    .underline {
-        border-bottom: 1px solid #4D4D4D;
-    }
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	font-size: $font-size;
+	margin-bottom: 25px;
 
-    .lighten {
-        font-size: $small-font-size;
-    }
+	.underline {
+		border-bottom: 1px solid #4D4D4D;
+	}
 
-    .rightAlign {
-        text-align: right;
-        padding-right: 15px;
-    }
+	.lighten {
+		font-size: $small-font-size;
+	}
 
-    .eventTile {
-        flex: 1 1 auto;
-        min-height: 200px;
-        min-width: $tile-width;
-        background-color: #2D2D2D;
-        padding-left: 5px;
-        
-        .eventName {
-            text-align: center;
-        }
-        
-        .eventLogo {
-            height: $logo-width;
-        }
+	.rightAlign {
+		text-align: right;
+		padding-right: 15px;
+	}
 
-        .live {
-            //border-bottom: 3px solid #00923F;
-            background-image: linear-gradient(to right, rgba(0,146,43, .5), transparent);
-        }
+	.eventTile {
+		flex: 1 1 auto;
+		min-height: 200px;
+		min-width: $tile-width;
+		background-color: #2D2D2D;
+		padding-left: 5px;
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
+		.eventName {
+			text-align: center;
+		}
 
-            .tournament-name {
-                //background-color: #01061A;
-                font-size: 20pt;
-                border-bottom: 1px solid #4D4D4D;
-            }
-        }
+		.eventLogo {
+			height: $logo-width;
+		}
 
-        .match-date {
-            border-top: 1px solid #4D4D4D;
-            font-size: 14pt;
-            text-align: center;
-        }
+		.live {
+			//border-bottom: 3px solid #00923F;
+			background-image: linear-gradient(to right, rgba(0, 146, 43, .5), transparent);
+		}
 
-        .matchTile {
-            display: flex;
-            align-items: center;
+		table {
+			width: 100%;
+			border-collapse: collapse;
 
-            .comp-name {
-                flex: 1 1 43%;
-                padding: 0 5px 0 5px;
-            }
+			.tournament-name {
+				//background-color: #01061A;
+				font-size: 20pt;
+				border-bottom: 1px solid #4D4D4D;
+			}
+		}
 
-            .comp-1 {
-                text-align: right;
-            }
+		.match-date {
+			border-top: 1px solid #4D4D4D;
+			font-size: 14pt;
+			text-align: center;
+		}
 
-            .comp-image { 
-                width: 35px;
-            }
+		.matchTile {
+			display: flex;
+			align-items: center;
 
-            .match-time {
-                flex: 0 0 115px;
-                text-align: center;
-            }
-        }
-    }
+			.comp-name {
+				flex: 1 1 43%;
+				padding: 0 5px 0 5px;
+			}
 
-    .wcs {
-        border-left: 8px solid #0677BD;
-        background-image: url("../Images/wcs.png");
-        background-position: center;
-        background-repeat: no-repeat; /* Do not repeat the image */
-        margin-left: 15px;
-        margin-bottom: 15px;
-        width: 100%;
+			.comp-1 {
+				text-align: right;
+			}
 
-        .tournament-name {
-            color: #0677BD;
-        }
-    }
+			.comp-image {
+				width: 35px;
+			}
 
-    .gsl {
-        border-left: 8px solid #F0CF5B;
-        background-image: url("../Images/gsl.png");
-        background-position: center;
-        background-repeat: no-repeat; /* Do not repeat the image */
-        background-size: 200px;
-        margin-left: 15px;
-        margin-bottom: 15px;
+			.match-time {
+				flex: 0 0 115px;
+				text-align: center;
+			}
+		}
+	}
 
-        .tournament-name {
-            color: #F0CF5B;
-        }
-    }
+	.wcs {
+		border-left: 8px solid #0677BD;
+		background-image: url("../Images/wcs.png");
+		background-position: center;
+		background-repeat: no-repeat;
+		/* Do not repeat the image */
+		margin-left: 15px;
+		margin-bottom: 15px;
+		width: 100%;
+
+		.tournament-name {
+			color: #0677BD;
+		}
+	}
+
+	.gsl {
+		border-left: 8px solid #F0CF5B;
+		background-image: url("../Images/gsl.png");
+		background-position: center;
+		background-repeat: no-repeat;
+		/* Do not repeat the image */
+		background-size: 200px;
+		margin-left: 15px;
+		margin-bottom: 15px;
+
+		.tournament-name {
+			color: #F0CF5B;
+		}
+	}
 }
 
 $panel-height: 195px;
@@ -125,346 +127,357 @@ $panel-min-width: 250px;
 $spaceBetween: 10px;
 
 .dateHeader {
-    font-family: overwatch;
-    width: 100%;
-    background-color: $cardBackColor;
-    color: $textColor;
-    border-collapse: collapse;
-    font-size: 18pt;
+	font-family: overwatch;
+	width: 100%;
+	background-color: $cardBackColor;
+	color: $textColor;
+	border-collapse: collapse;
+	font-size: 18pt;
 
-    td {
-        text-align: center;
-    }
+	td {
+		text-align: center;
+	}
 }
 
 .dark .dateHeader {
-    background-color: $cardBackColorDark;
-    color: $textColorDark;
+	background-color: $cardBackColorDark;
+	color: $textColorDark;
 }
 
-.blackText { color: black !important; }
+.blackText {
+	color: black !important;
+}
 
 .columns {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    flex: 1 1 auto;
-    overflow: hidden;
+	display: flex;
+	justify-content: space-between;
+	flex: 1 1 auto;
+	overflow: hidden;
+	margin: 0 $spacing;
+	gap: $spacing;
 
-    .col {
-        display: flex;
-        flex-direction: column;
-        width: 375px;
-        height: 100%;
-        flex: 0 0 auto;
-        
-        .group {
-            border: $cardBorder;
-        }
+	.col {
+		display: flex;
+		flex-direction: column;
+		width: 375px;
+		height: 100%;
+		flex: 0 0 auto;
 
-        .group + .group {
-            margin-top: $spaceBetween;
-        }
-    }
+		.group {
+			border: $cardBorder;
+		}
+
+		.group+.group {
+			margin-top: $spaceBetween;
+		}
+	}
 }
 
 .dark .col .group {
-    border: $cardBorderDark;
+	border: $cardBorderDark;
 }
 
 .light .ow {
-    color: $textColor;
+	color: $textColor;
 
-    .tile, .largeTile {
-        background-color: $cardBackColor;
-        border-color: white;
-    }
+	.tile,
+	.largeTile {
+		background-color: $cardBackColor;
+		border-color: white;
+	}
 
-    .status {
-        background-color: $cardBackColor;
-        color: $textColor;
-    }
+	.status {
+		background-color: $cardBackColor;
+		color: $textColor;
+	}
 }
 
 .dark .ow {
-    color: $textColorDark;
+	color: $textColorDark;
 
-    .tile, .largeTile {
-        background-color: $cardBackColorDark;
-        border-color: black;
-    }
+	.tile,
+	.largeTile {
+		background-color: $cardBackColorDark;
+		border-color: black;
+	}
 
-    .status {
-        background-color: $cardBackColorDark;
-        color: $textColorDark;
-    }
+	.status {
+		background-color: $cardBackColorDark;
+		color: $textColorDark;
+	}
 }
 
 .ow {
-    font-family: overwatch;
+	font-family: overwatch;
 
-    .largeTile {
-        position: relative;
-        height: $panel-height;
+	.largeTile {
+		position: relative;
+		height: $panel-height;
 
-        &:not(:last-child) {
-            border-bottom-width: 2px;
-            border-bottom-style: solid;
-        }
+		&:not(:last-child) {
+			border-bottom-width: 2px;
+			border-bottom-style: solid;
+		}
 
-        .comp {
-            height: 100%;
-            width: 50%;
+		.comp {
+			height: 100%;
+			width: 50%;
 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            float:left;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			float: left;
 
-            .image {
-                width: 110px;
-            }
+			.image {
+				width: 110px;
+			}
 
-            .comp-name-1 {
-                font-size: 15pt;
-                letter-spacing: 3px;
-            }
+			.comp-name-1 {
+				font-size: 15pt;
+				letter-spacing: 3px;
+			}
 
-            .comp-name-2 {
-                font-size: 28pt;
-                font-weight: 800;
-                letter-spacing: 3px;
-            }
-        }
-    }
+			.comp-name-2 {
+				font-size: 28pt;
+				font-weight: 800;
+				letter-spacing: 3px;
+			}
+		}
+	}
 
-    .status {
-        position: absolute;
+	.status {
+		position: absolute;
 
-        text-align: center;
-        height: 22px;
-        line-height: 23px;
-        font-size: 18pt;
-        z-index: 10;
-        
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
+		text-align: center;
+		height: 22px;
+		line-height: 23px;
+		font-size: 18pt;
+		z-index: 10;
 
-        bottom: 0;
-        width: 70px;
-        left: 50%;
-        margin-left: -35px;
-    }
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
 
-    .tile {
-        display: flex;
-        position: relative;
-        background-color: $cardBackColor;
-        font-family: "Industry";
+		bottom: 0;
+		width: 70px;
+		left: 50%;
+		margin-left: -35px;
+	}
 
-        .comp {
-            width: 50%;
-            display: flex;
-            flex-direction: column;
-            padding: 6px;
-            position: relative;
-            padding-left: 35px;
-        }
+	.tile {
+		display: flex;
+		position: relative;
+		background-color: $cardBackColor;
+		font-family: "Industry";
 
-        &:not(:last-child) {
-            border-bottom-width: 3px;
-            border-bottom-style: solid;
-        }
-        .comp + .comp {
-            margin-left: 3px;
-        }
+		.comp {
+			width: 50%;
+			display: flex;
+			flex-direction: column;
+			padding: 6px;
+			position: relative;
+			padding-left: 35px;
+		}
 
-        .status {
-            bottom: 8px;
-            border-radius: 3px;
-            font-size: 12pt;
-        }
+		&:not(:last-child) {
+			border-bottom-width: 3px;
+			border-bottom-style: solid;
+		}
 
-        .comp-2 {
-            text-align: right;
-            padding-right: 35px;
-            padding-left: 0;
-            font-size: 10pt;
-        }
+		.comp+.comp {
+			margin-left: 3px;
+		}
 
-        .comp-name {
-            font-size: 16pt;
-        }
+		.status {
+			bottom: 8px;
+			border-radius: 3px;
+			font-size: 12pt;
+		}
 
-        .comp-name-1 {
-            font-size: 8pt;
-            vertical-align: middle;
-            display: none;
-        }
+		.comp-2 {
+			text-align: right;
+			padding-right: 35px;
+			padding-left: 0;
+			font-size: 10pt;
+		}
 
-        .image {
-            position: absolute;
-            width: 25px;
-            height: 25px;
-        }
+		.comp-name {
+			font-size: 16pt;
+		}
 
-        .comp-1 .image {
-            left: 5px;
-        }
+		.comp-name-1 {
+			font-size: 8pt;
+			vertical-align: middle;
+			display: none;
+		}
 
-        .comp-2 .image {
-            right: 5px;
-        }
-    }
+		.image {
+			position: absolute;
+			width: 25px;
+			height: 25px;
+		}
+
+		.comp-1 .image {
+			left: 5px;
+		}
+
+		.comp-2 .image {
+			right: 5px;
+		}
+	}
 }
 
 $iconWidth: 25px;
 
 .dark {
-    .sc2 {
-        color: $textColorDark;
+	.sc2 {
+		color: $textColorDark;
 
-        .group {
-            background-color: $cardBackColorDark;
-        }
+		.group {
+			background-color: $cardBackColorDark;
+		}
 
-        .playerTable {
-            background-color: $cardBackColorDark;
+		.playerTable {
+			background-color: $cardBackColorDark;
 
-            tr:not(:last-child) {
-                border-bottom: 3px solid $cardBackColorDark;
-            }
-            td + td {
-                border-left: 3px solid $cardBackColorDark;
-            }
-        }
-    }
+			tr:not(:last-child) {
+				border-bottom: 3px solid $cardBackColorDark;
+			}
+
+			td+td {
+				border-left: 3px solid $cardBackColorDark;
+			}
+		}
+	}
 }
 
 .sc2 {
-    color: $textColor;
-    font-size: 20pt;
-    font-family: overwatch;
+	color: $textColor;
+	font-size: 20pt;
+	font-family: overwatch;
 
-    .group {
-        background-color: $cardBackColor;
-    }
-    
-    .groupName {
-        text-align: center;
-    }
+	.group {
+		background-color: $cardBackColor;
+	}
 
-    .date {
-        text-align: center;
-        font-family: "Industry";
-        font-size: 15pt;
-        letter-spacing: -1px;
-    }
-    
-    .playerTable {
-        width: 100%;
-        background-color: $cardBackColor;
-        border-collapse: collapse;
-        
-        tr:not(:last-child) {
-            border-bottom: 3px solid $cardBackColor;
-        }
-        td + td {
-            border-left: 3px solid $cardBackColor;
-        }
+	.groupName {
+		text-align: center;
+	}
 
-        td {
-            width: 50%;
-            position: relative;
-            color: white;
-            padding: 4px;
-            font-family: "Industry";
-            font-size: 16pt;
-            background-color: #bbbbbb;
-        }
+	.date {
+		text-align: center;
+		font-family: "Industry";
+		font-size: 15pt;
+		letter-spacing: -1px;
+	}
 
-        .playerLeft {
-            text-align: right;
-            padding-right: $iconWidth + 10;
+	.playerTable {
+		width: 100%;
+		background-color: $cardBackColor;
+		border-collapse: collapse;
 
-            .icon {
-                right: 5px;
-            }
-        }
+		tr:not(:last-child) {
+			border-bottom: 3px solid $cardBackColor;
+		}
 
-        .playerRight {
-            text-align: left;
-            padding-left: $iconWidth + 10;
+		td+td {
+			border-left: 3px solid $cardBackColor;
+		}
 
-            .icon {
-                left: 5px;
-            }
-        }
+		td {
+			width: 50%;
+			position: relative;
+			color: white;
+			padding: 4px;
+			font-family: "Industry";
+			font-size: 16pt;
+			background-color: #bbbbbb;
+		}
 
-        .icon {
-            display: inline-block;
-            position: absolute;
+		.playerLeft {
+			text-align: right;
+			padding-right: $iconWidth + 10;
 
-            width: $iconWidth;
-            height: $iconWidth;
-            background-position: center;
-            background-size: cover;
-        }
-        
-        .zerg {
-            background-color: purple;
-            .icon {
-                background-image: url("../Images/zerg.png");
-            }
-        }
+			.icon {
+				right: 5px;
+			}
+		}
 
-        .protoss {
-            background-color: #DC9D2C;
-            .icon {
-                background-image: url("../Images/protoss.png");
-            }
-        }
+		.playerRight {
+			text-align: left;
+			padding-left: $iconWidth + 10;
 
-        .terran {
-            background-color: #2C517B;
-            .icon {
-                background-image: url("../Images/terran.png");
-            }
-        }
-    }
+			.icon {
+				left: 5px;
+			}
+		}
+
+		.icon {
+			display: inline-block;
+			position: absolute;
+
+			width: $iconWidth;
+			height: $iconWidth;
+			background-position: center;
+			background-size: cover;
+		}
+
+		.zerg {
+			background-color: purple;
+
+			.icon {
+				background-image: url("../Images/zerg.png");
+			}
+		}
+
+		.protoss {
+			background-color: #DC9D2C;
+
+			.icon {
+				background-image: url("../Images/protoss.png");
+			}
+		}
+
+		.terran {
+			background-color: #2C517B;
+
+			.icon {
+				background-image: url("../Images/terran.png");
+			}
+		}
+	}
 }
 
 .light .gdq {
-    table {
-        background-color: $cardBackColor;
-        border: $cardBorder;
-    }
+	table {
+		background-color: $cardBackColor;
+		border: $cardBorder;
+	}
 }
 
 .dark .gdq {
-    table {
-        background-color: $cardBackColorDark;
-        border: $cardBorderDark;
-    }
+	table {
+		background-color: $cardBackColorDark;
+		border: $cardBorderDark;
+	}
 }
 
 .gdq {
-    margin-bottom: 15px;
-    background-size: 300px;
-    background-position-x: center;
-    background-position-y: 100px;
-    background-repeat: no-repeat;
+	margin-bottom: 15px;
+	background-size: 300px;
+	background-position-x: center;
+	background-position-y: 100px;
+	background-repeat: no-repeat;
 
-    table {
-        border-collapse: collapse;
+	table {
+		border-collapse: collapse;
 
-        tr {
-            border-bottom: 1px solid black; 
-        }
-    }
+		tr {
+			border-bottom: 1px solid black;
+		}
+	}
 
-    .game-image {
-        height: 50px;
-        display: block;
-    }
+	.game-image {
+		height: 50px;
+		display: block;
+	}
 }

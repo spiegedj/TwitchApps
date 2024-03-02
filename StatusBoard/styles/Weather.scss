@@ -3,209 +3,276 @@
 .light .condition,
 .light .forecast-day,
 .clock {
-    border: $cardBorder;
+	border: $cardBorder;
 }
 
 .dark .condition,
 .dark .forecast-day,
 .clock {
-    border: $cardBorderDark;
-    border-radius: 5px;
-    margin: $spacing;
+	border: $cardBorderDark;
+	border-radius: 15px;
+	//margin: $spacing;
 }
 
-.weatherPanel {
-    display: flex;
-    color: white;
-    
-    width: 100%;
-    flex-shrink: 0;
+.weather-column {
+	display: flex;
+	flex-direction: column;
+	gap: $spacing;
 
-    > div {
-        flex: 1 0 auto;
-    }
+	.weather-panel {
+		width: 200px;
+	}
 
-    > div + div {
-        margin: $spacing;
-    }
-    
-    .temp-icon { width: 70px; }
+	.forecast {
+		.label {
+			margin-top: 5px;
+		}
 
-    .condition {
-        background-color: #1f4371;
+		.temp-icon svg {
+			width: 60px;
+		}
+	}
 
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+	.hourly .forecast-list-item,
+	.forecast .forecast-list-item {
+		display: flex;
+		width: 100%;
+		align-items: center;
+		justify-content: space-between;
 
-        .now-condition {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex-grow: 1;
+		.title {
+			width: 60px;
+		}
 
-            .temp {
-                font-size: 55px;
-            }
-        }
-
-        .hourly-forcast {
-            display: flex;
-            flex-wrap: wrap;
-            width: 350px;
-            height: 100%;
-
-        }
-    }
-
-    .forecast-day {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        .temp {
-            font-size: 40px;
-            height: 67px;
-            line-height: 67px;
-        }
-
-        &.f0 { background-color: #1f4371; }
-        &.f1 { background-color: #2962a9; }
-        &.f2 { background-color: #347bd5; }
-        &.f3 { background-color: #609ae1; }
-        &.f4 { background-color: #76a7e3; }
-    }
-
-    .icon-drop {
-        width: 20px;
-    }
+		.flex-row {
+			width: 50px;
+			justify-content: end;
+		}
+	}
 }
 
-.hourly:nth-last-child(-n+2) { border: none !important; }
+.weather-row {
+	display: flex;
+	flex-direction: row;
+	gap: $spacing;
+	margin: $spacing;
+	height: 200px;
 
-.hourly {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0 5px 0 5px;
-    width: 175px;
-    box-sizing: border-box;
-    border-bottom: 1px solid white;
-    
-    .temp-icon { 
-        width: 35px;
-        height: 35px;
-    }
+	.forecast {
+		justify-content: space-between;
+		flex-grow: 1;
 
-    .icon-drop {
-        width: 20px;
-    }
+		.forecast-list-item {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			align-items: center;
+			justify-content: space-between;
 
-    .temp {
-        font-size: 35px;
-        padding: 0 2px 0 8px;
-    }
+			.title {
+				width: 60px;
+			}
 
-    .details {
-        display: flex;
-        flex-direction: column;
-        text-align: right;
-    }
+			.flex-row {
+				width: 50px;
+				justify-content: end;
+			}
 
-    .precip {
-        font-size: 14px;
-    }
+			.temp-icon svg {
+				width: 55px;
+			}
+		}
+	}
+}
+
+.weather-panel {
+	background-color: $cardBackColorDark;
+	border-radius: 15px;
+	padding: 10px;
+	position: relative;
+	border: $cardBorderDark;
+
+	.title {
+		font-size: 16px;
+		font-weight: 600;
+		margin-bottom: 5px;
+	}
+
+	.data,
+	.temp {
+		font-size: 30px;
+	}
+
+	.current-temp {
+		font-size: 55px;
+		margin-top: -10px;
+	}
+
+	.ampm {
+		font-size: 12px;
+		padding-left: 4px;
+	}
+
+	.label {
+		font-size: 14px;
+	}
+
+	svg {
+		width: 25px;
+	}
+
+	.icon-container {
+		position: absolute;
+		top: 35px;
+		right: 30px;
+
+		svg {
+			width: 50px;
+		}
+	}
+
+	.data-icon {
+		display: flex;
+		flex-direction: row;
+
+		>svg {
+			width: 20px;
+			fill: white;
+		}
+	}
+
+	.label-icon {
+		margin-left: -2px;
+		margin-right: 5px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+
+		>svg {
+			height: 40px;
+			width: 40px;
+			fill: white;
+		}
+	}
+}
+
+.precip {
+	color: #6ec4e9;
+	margin-right: 4px;
+}
+
+.flex-row {
+	display: flex;
+	flex-direction: row;
+	gap: 2px;
+}
+
+.flex-column {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
 }
 
 .slash {
-    margin-left: 0px;
-    margin-right: 7px;
-    border-right: 1px solid white;
-    -webkit-transform: skewX(-30deg);
-    -ms-transform: skewX(-30deg);
-    transform: skewX(-30deg);
+	margin-left: 0px;
+	margin-right: 7px;
+	border-right: 1px solid white;
+	-webkit-transform: skewX(-30deg);
+	-ms-transform: skewX(-30deg);
+	transform: skewX(-30deg);
 
-    display: inline-block;
-    height: 30px;
-    position: relative;
-    bottom: -2px;
+	display: inline-block;
+	height: 30px;
+	position: relative;
+	bottom: -2px;
 }
 
 .clock {
-    background-color: #031727;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+	background-color: $cardBackColorDark;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 10px;
+	width: 200px;
 
-    > div {
-        .clock-date {
-            text-align: center;
-            color: #C9283E;
-            font-size: 16pt;
-        }
-        
-        .clock-time {
-            text-align: center;
-            color: white;
-            font-size: 50pt;
-        }
-    }
+	>div {
+		.clock-date {
+			text-align: center;
+			//color: #C9283E;
+			font-size: 12pt;
+		}
+
+		.clock-time {
+			margin: -5px;
+			text-align: center;
+			color: white;
+			font-size: 50pt;
+		}
+	}
+
+	.ampm {
+		font-size: 16px;
+		padding-left: 4px;
+	}
 }
 
-.svg-cloud, .svg-star, .svg-wind {
-    fill: #fff;
+.svg-cloud,
+.svg-star,
+.svg-wind {
+	fill: #fff;
 }
 
 .svg-drop {
-    fill: #6ec4e9;
+	fill: #6ec4e9;
 }
 
 .svg-sun {
-    fill: #f9ed32
+	fill: #f9ed32
 }
 
-.svg-hail, .svg-snowflake {
-    fill: #fff;
-    stroke: #fff
+.svg-hail,
+.svg-snowflake {
+	fill: #fff;
+	stroke: #fff
 }
 
 .svg-moon {
-    fill: #e6e6e6;
+	fill: #e6e6e6;
 }
 
 .svg-fog-wave {
-    stroke: #fff;
-    fill: #fff
+	stroke: #fff;
+	fill: #fff
 }
 
 .svg-lightning {
-    fill: #f2df00
+	fill: #f2df00
 }
 
 .svg-bg-circle {
-    fill: #aaa;
-    stroke: #fff
+	fill: #aaa;
+	stroke: #fff
 }
 
 .svg-rt-lightning .svg-lightning {
-    fill: #fff
+	fill: #fff
 }
 
 svg {
-    --color-moon: #e3e3e3;
-    --color-star: #e3e3e3;
-    --color-cloud: #d3d3d3;
-    --color-na: #d3d3d3;
-    --color-fog: #d3d3d3;
-    --color-hail: #d3d3d3;
-    --color-tornado: #d3d3d3;
-    --color-wind: #d3d3d3;
-    --color-storm: #d3d3d3;
-    --color-lightning: #ebdb00;
-    --color-sun: #ebdb00;
-    --color-sun-center: #ebdb00;
-    --color-sun-ray: #ebdb00;
-    --color-drop: #6adef8;
-    --color-snowflake: #d3d3d3;
-    --color-thunderstorm-mask: #2b2b2b;
+	--color-moon: #e3e3e3;
+	--color-star: #e3e3e3;
+	--color-cloud: #d3d3d3;
+	--color-na: #d3d3d3;
+	--color-fog: #d3d3d3;
+	--color-hail: #d3d3d3;
+	--color-tornado: #d3d3d3;
+	--color-wind: #d3d3d3;
+	--color-storm: #d3d3d3;
+	--color-lightning: #ebdb00;
+	--color-sun: #ebdb00;
+	--color-sun-center: #ebdb00;
+	--color-sun-ray: #ebdb00;
+	--color-drop: #6adef8;
+	--color-snowflake: #d3d3d3;
+	--color-thunderstorm-mask: #2b2b2b;
 }

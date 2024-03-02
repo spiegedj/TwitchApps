@@ -50,7 +50,7 @@ class StatusBoard extends React.Component {
     }
     load() {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield this.get(window.location.href + "StatusBoard");
+            const data = yield this.get("http://localhost:3000/StatusBoard");
             if (typeof data.SessionId === "number" && typeof sessionId === "number" && data.SessionId !== sessionId) {
                 location.reload();
                 return;
@@ -86,9 +86,11 @@ class StatusBoard extends React.Component {
             React.createElement("div", { className: "calendar" },
                 React.createElement(Weather_1.WeatherPanel, { weather: Weather }),
                 React.createElement("div", { className: "columns" },
-                    React.createElement(SteamFriendList_1.SteamFriendList, { friends: SteamFriends }),
+                    React.createElement(Weather_1.NowConditionsColumn, { Weather: Weather }),
+                    React.createElement(Weather_1.HourlyForecastColumn, { Weather: Weather }),
                     React.createElement(OverwatchEvents_1.OverwatchEvents, { matches: Overwatch, columns: owColumns, adjustColumns: cols => cols !== this.state.owColumns && this.setState({ owColumns: cols }) }),
                     centerPanel,
+                    React.createElement(SteamFriendList_1.SteamFriendList, { friends: SteamFriends }),
                     React.createElement(TwitchStreams_1.TwitchStreams, { streams: this.state.data.TwitchStreams, columns: twitchColumns }))),
             React.createElement(Headlines_1.Headlines, { headlines: this.state.data.Headlines })));
     }

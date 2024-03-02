@@ -1,89 +1,151 @@
 .light .condition,
 .light .forecast-day,
 .clock {
-  border: 2px solid black; }
+  border: 2px solid none;
+}
 
 .dark .condition,
 .dark .forecast-day,
 .clock {
-  border: 3px solid black;
-  border-radius: 5px;
-  margin: 2px; }
+  border: 2px solid none;
+  border-radius: 15px;
+}
 
-.weatherPanel {
+.weather-column {
   display: flex;
-  color: white;
+  flex-direction: column;
+  gap: 6px;
+}
+.weather-column .weather-panel {
+  width: 200px;
+}
+.weather-column .forecast .label {
+  margin-top: 5px;
+}
+.weather-column .forecast .temp-icon svg {
+  width: 60px;
+}
+.weather-column .hourly .forecast-list-item,
+.weather-column .forecast .forecast-list-item {
+  display: flex;
   width: 100%;
-  flex-shrink: 0; }
-  .weatherPanel > div {
-    flex: 1 0 auto; }
-  .weatherPanel > div + div {
-    margin: 2px; }
-  .weatherPanel .temp-icon {
-    width: 70px; }
-  .weatherPanel .condition {
-    background-color: #1f4371;
-    display: flex;
-    flex-direction: row;
-    align-items: center; }
-    .weatherPanel .condition .now-condition {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex-grow: 1; }
-      .weatherPanel .condition .now-condition .temp {
-        font-size: 55px; }
-    .weatherPanel .condition .hourly-forcast {
-      display: flex;
-      flex-wrap: wrap;
-      width: 350px;
-      height: 100%; }
-  .weatherPanel .forecast-day {
-    display: flex;
-    flex-direction: column;
-    align-items: center; }
-    .weatherPanel .forecast-day .temp {
-      font-size: 40px;
-      height: 67px;
-      line-height: 67px; }
-    .weatherPanel .forecast-day.f0 {
-      background-color: #1f4371; }
-    .weatherPanel .forecast-day.f1 {
-      background-color: #2962a9; }
-    .weatherPanel .forecast-day.f2 {
-      background-color: #347bd5; }
-    .weatherPanel .forecast-day.f3 {
-      background-color: #609ae1; }
-    .weatherPanel .forecast-day.f4 {
-      background-color: #76a7e3; }
-  .weatherPanel .icon-drop {
-    width: 20px; }
+  align-items: center;
+  justify-content: space-between;
+}
+.weather-column .hourly .forecast-list-item .title,
+.weather-column .forecast .forecast-list-item .title {
+  width: 60px;
+}
+.weather-column .hourly .forecast-list-item .flex-row,
+.weather-column .forecast .forecast-list-item .flex-row {
+  width: 50px;
+  justify-content: end;
+}
 
-.hourly:nth-last-child(-n+2) {
-  border: none !important; }
+.weather-row {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  margin: 6px;
+  height: 200px;
+}
+.weather-row .forecast {
+  justify-content: space-between;
+  flex-grow: 1;
+}
+.weather-row .forecast .forecast-list-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.weather-row .forecast .forecast-list-item .title {
+  width: 60px;
+}
+.weather-row .forecast .forecast-list-item .flex-row {
+  width: 50px;
+  justify-content: end;
+}
+.weather-row .forecast .forecast-list-item .temp-icon svg {
+  width: 55px;
+}
 
-.hourly {
+.weather-panel {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
+  padding: 10px;
+  position: relative;
+  border: 2px solid none;
+}
+.weather-panel .title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.weather-panel .data,
+.weather-panel .temp {
+  font-size: 30px;
+}
+.weather-panel .current-temp {
+  font-size: 55px;
+  margin-top: -10px;
+}
+.weather-panel .ampm {
+  font-size: 12px;
+  padding-left: 4px;
+}
+.weather-panel .label {
+  font-size: 14px;
+}
+.weather-panel svg {
+  width: 25px;
+}
+.weather-panel .icon-container {
+  position: absolute;
+  top: 35px;
+  right: 30px;
+}
+.weather-panel .icon-container svg {
+  width: 50px;
+}
+.weather-panel .data-icon {
+  display: flex;
+  flex-direction: row;
+}
+.weather-panel .data-icon > svg {
+  width: 20px;
+  fill: white;
+}
+.weather-panel .label-icon {
+  margin-left: -2px;
+  margin-right: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0 5px 0 5px;
-  width: 175px;
-  box-sizing: border-box;
-  border-bottom: 1px solid white; }
-  .hourly .temp-icon {
-    width: 35px;
-    height: 35px; }
-  .hourly .icon-drop {
-    width: 20px; }
-  .hourly .temp {
-    font-size: 35px;
-    padding: 0 2px 0 8px; }
-  .hourly .details {
-    display: flex;
-    flex-direction: column;
-    text-align: right; }
-  .hourly .precip {
-    font-size: 14px; }
+}
+.weather-panel .label-icon > svg {
+  height: 40px;
+  width: 40px;
+  fill: white;
+}
+
+.precip {
+  color: #6ec4e9;
+  margin-right: 4px;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
 
 .slash {
   margin-left: 0px;
@@ -95,51 +157,73 @@
   display: inline-block;
   height: 30px;
   position: relative;
-  bottom: -2px; }
+  bottom: -2px;
+}
 
 .clock {
-  background-color: #031727;
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
-  flex-direction: column; }
-  .clock > div .clock-date {
-    text-align: center;
-    color: #C9283E;
-    font-size: 16pt; }
-  .clock > div .clock-time {
-    text-align: center;
-    color: white;
-    font-size: 50pt; }
+  flex-direction: column;
+  padding: 10px;
+  width: 200px;
+}
+.clock > div .clock-date {
+  text-align: center;
+  font-size: 12pt;
+}
+.clock > div .clock-time {
+  margin: -5px;
+  text-align: center;
+  color: white;
+  font-size: 50pt;
+}
+.clock .ampm {
+  font-size: 16px;
+  padding-left: 4px;
+}
 
-.svg-cloud, .svg-star, .svg-wind {
-  fill: #fff; }
+.svg-cloud,
+.svg-star,
+.svg-wind {
+  fill: #fff;
+}
 
 .svg-drop {
-  fill: #6ec4e9; }
+  fill: #6ec4e9;
+}
 
 .svg-sun {
-  fill: #f9ed32; }
+  fill: #f9ed32;
+}
 
-.svg-hail, .svg-snowflake {
+.svg-hail,
+.svg-snowflake {
   fill: #fff;
-  stroke: #fff; }
+  stroke: #fff;
+}
 
 .svg-moon {
-  fill: #e6e6e6; }
+  fill: #e6e6e6;
+}
 
 .svg-fog-wave {
   stroke: #fff;
-  fill: #fff; }
+  fill: #fff;
+}
 
 .svg-lightning {
-  fill: #f2df00; }
+  fill: #f2df00;
+}
 
 .svg-bg-circle {
   fill: #aaa;
-  stroke: #fff; }
+  stroke: #fff;
+}
 
 .svg-rt-lightning .svg-lightning {
-  fill: #fff; }
+  fill: #fff;
+}
 
 svg {
   --color-moon: #e3e3e3;
@@ -157,6 +241,7 @@ svg {
   --color-sun-ray: #ebdb00;
   --color-drop: #6adef8;
   --color-snowflake: #d3d3d3;
-  --color-thunderstorm-mask: #2b2b2b; }
+  --color-thunderstorm-mask: #2b2b2b;
+}
 
 /*# sourceMappingURL=Weather.css.map */

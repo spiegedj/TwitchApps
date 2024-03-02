@@ -1,119 +1,186 @@
 /// <reference path="../@types/data.d.ts"/>
 
 import * as React from "react";
+import { useState, useEffect } from "react";
 import { DateUtils } from "./DateUtils";
 
 type weatherProps = Partial<{
-    weather: Response.Weather
+	weather: Response.Weather;
 }>;
 
 export class WeatherPanel extends React.Component<weatherProps>
 {
-    public render(): React.ReactNode 
-    {
+	public render(): React.ReactNode 
+	{
+		const condition = this.props.weather.Condition;
+		const forecast = this.props.weather.Forecast;
 
-        const hourly = this.props.weather.Hourly.slice(0, 8);
-        const hourlyForcast = hourly.map((forecast, i) =>
-        {
-            const classes = "f" + i + " forecast-day";
-            return <div className="hourly">
-                <div className="temp-icon" dangerouslySetInnerHTML={{ __html: forecast.Icon }}></div>
-                <div className="details">
-                    <div className="hour">{forecast.Hour}</div>
-                    <div className="precip">
-                        <svg className="icon-drop" viewBox="0 0 200 200" transform="scale(4) translate(3, -3)">
-                            <use className="svg-drop" href="#svg-symbol-drop"></use>
-                        </svg>
-                        <span>{forecast.Precipitation}</span>
-                    </div>
-                </div>
-                <div className="temp">{forecast.Temp}</div>
-            </div>;
-        });
-
-        const condition = this.props.weather.Condition;
-        const conditionElement = <div className="condition">
-            <div className="now-condition">
-                <div>Now</div>
-                <div className="temp-icon" dangerouslySetInnerHTML={{ __html: condition.Icon }}></div>
-                <div>{condition.Phrase}</div>
-                <div className="temp">{condition.Temp}</div>
-                <div>{condition.FeelsLike}</div>
-            </div>
-            <div className="hourly-forcast">
-                {hourlyForcast}
-            </div>
-        </div>;
-
-        const forecast = this.props.weather.Forecast.slice(0, 5);
-        const weatherForecast = forecast.map((forecast, i) =>
-        {
-            const classes = "f" + i + " forecast-day";
-            return <div className={classes}>
-                <div className="day">{forecast.Date}</div>
-                <div className="temp-icon" dangerouslySetInnerHTML={{ __html: forecast.Icon }}></div>
-                <div>{forecast.Description}</div>
-                <div className="temp">
-                    <span>{forecast.High}</span>
-                    <span className="slash"></span>
-                    <span>{forecast.Low}</span>
-                </div>
-                <div>
-                    <svg className="icon-drop" viewBox="0 0 200 200" transform="scale(4) translate(3, -3)">
-                        <use className="svg-drop" href="#svg-symbol-drop"></use>
-                    </svg>
-                    <span>{forecast.Precipitation}</span>
-                </div>
-            </div>;
-        });
-
-
-        return (
-            <>
-                <div className="weatherPanel">
-                    <ClockPanel />
-                    {conditionElement}
-                    {weatherForecast}
-                </div>
-            </>
-        );
-    }
+		return (
+			<div className="weather-row">
+				<ClockPanel />
+				<div className="weather-panel" style={{ width: 200 }}>
+					<div className="title">Now</div>
+					<div className="current-temp">{condition.Temp}</div>
+					<div className="label">{condition.FeelsLike}</div>
+					<div className="icon-container">
+						<div className="temp-icon" dangerouslySetInnerHTML={{ __html: condition.Icon }}></div>
+						<div className="label">{condition.Phrase}</div>
+					</div>
+				</div>
+				<div className="weather-panel forecast flex-row">
+					{forecast.slice(0, 11).map(forecast => <ForecastPanel forecast={forecast} />)}
+				</div>
+			</div>
+		);
+	}
 }
 
-class ClockPanel extends React.Component 
+export const ClockPanel: React.FunctionComponent = () =>
 {
-    public state: { date: string, time: string } = { date: "", time: "" };
+	const [date, setDate] = useState("");
+	const [timeString, setTime] = useState("");
 
-    public constructor(props: any) 
-    {
-        super(props);
-        setInterval(this.updateClock.bind(this), 1000);
-        this.updateClock();
-    }
+	useEffect(() =>
+	{
+		// Use setTimeout to update the message after 2000 milliseconds (2 seconds)
+		const timeoutId = setTimeout(() =>
+		{
+			var now = new Date();
+			const date = now.toLocaleDateString("en-us",
+				{ weekday: "long", month: "long", day: "numeric", year: "numeric" }
+			);
+			const time = DateUtils.getTimeString(now);
 
-    private updateClock(): void
-    {
-        var now = new Date();
-        const date = now.toLocaleDateString("en-us",
-            { weekday: "long", month: "long", day: "numeric", year: "numeric" }
-        );
-        const time = DateUtils.getTimeString(now);
+			setDate(date);
+			setTime(time);
+		}, 1000);
 
-        this.setState({
-            date: date,
-            time: time
-        });
-    }
+		// Cleanup function to clear the timeout if the component unmounts
+		return () => clearTimeout(timeoutId);
+	}, []);
 
-    public render(): React.ReactNode 
-    {
-        return (
-            <div className="clock">
-                <div>
-                    <div className="clock-date">{this.state.date}</div>
-                    <div className="clock-time">{this.state.time}</div>
-                </div>
-            </div>
-        );
-    }
-}
+	const { time, ampm } = splitTime(timeString);
+	return (
+		<div className="clock">
+			<div>
+				<div className="clock-date">{date}</div>
+				<div className="clock-time">
+					{time}
+					<span className="ampm">{ampm}</span>
+				</div>
+			</div>
+		</div>
+	);
+};
+
+export const NowConditionsColumn: React.FunctionComponent<{ Weather: Response.Weather; }> = (props) =>
+{
+	const { Weather } = props;
+	const { Condition } = Weather;
+
+	const sunrise = splitTime(Condition?.Sunrise);
+	const sunset = splitTime(Condition?.Sunset);
+
+	return <div className="weather-column">
+		<div className="weather-panel">
+			<div className="title">Sunrise & sunset</div>
+			<div>
+				<span className="data">{sunrise.time}</span>
+				<span className="ampm">{sunrise.ampm}</span>
+			</div>
+			<div className="label">Sunrise</div>
+			<div>
+				<span className="data">{sunset.time}</span>
+				<span className="ampm">{sunset.ampm}</span>
+			</div>
+			<div className="label">Sunset</div>
+		</div>
+		{Condition.Details?.map(item => <WeatherItem item={item} />)}
+	</div>;
+};
+
+export const HourlyForecastColumn: React.FunctionComponent<{ Weather: Response.Weather; }> = (props) =>
+{
+	const { Weather } = props;
+	const { Hourly } = Weather;
+
+	return <div className="weather-column">
+		<div className="weather-panel hourly">
+			<div className="title">Hourly Forecast</div>
+			{Hourly.slice(0, 21).map(hourly => <HourlyPanel hourly={hourly} />)}
+		</div>
+	</div>;
+};
+
+const WeatherItem: React.FunctionComponent<{ item: Response.ItemDetails; }> = ({ item }) =>
+{
+	const { label, dataIcon, data, labelIcon } = item;
+	return <div className="weather-panel flex-row">
+		<div className="label-icon" dangerouslySetInnerHTML={{ __html: labelIcon }}></div>
+		<div>
+			<span className="title">{label}</span>
+			<div className="flex-row">
+				{dataIcon && <span className="data-icon" dangerouslySetInnerHTML={{ __html: dataIcon }}></span>}
+				<span>{data}</span>
+			</div>
+		</div>
+	</div>;
+};
+
+const HourlyPanel: React.FunctionComponent<{ hourly: Response.Hourly; }> = ({ hourly }) =>
+{
+	const precipitationStr = hourly.Precipitation;
+	const showPreciptation = parseInt(precipitationStr) > 5;
+	return <>
+		<div className="forecast-list-item">
+			<span className="title">{hourly.Hour}</span>
+			<span className="flex-row">
+				{showPreciptation && <span className="precip">{hourly.Precipitation}</span>}
+				<div className="temp-icon" dangerouslySetInnerHTML={{ __html: hourly.Icon }}></div>
+			</span>
+			<div className="temp">{hourly.Temp}</div>
+		</div></>;
+};
+
+const ForecastPanel: React.FunctionComponent<{ forecast: Response.Forecast; }> = ({ forecast }) =>
+{
+	return <>
+		<div className="forecast-list-item">
+			<div className="label">{forecast.Date}</div>
+			<div className="temp-icon" dangerouslySetInnerHTML={{ __html: forecast.Icon }}></div>
+			<div>
+				<span className="temp">
+					<span>{forecast.High}</span>
+					<span className="slash"></span>
+					<span>{forecast.Low}</span>
+				</span>
+			</div>
+		</div>
+	</>;
+};
+
+export const Precipitation: React.FunctionComponent<{ precipitation: string; }> = ({ precipitation }) =>
+{
+	return <div className="precip">
+		<svg className="icon-drop" viewBox="0 0 200 200" transform="scale(4) translate(3, -3)">
+			<use className="svg-drop" href="#svg-symbol-drop"></use>
+		</svg>
+		<span>{precipitation}</span>
+	</div>;
+};
+
+export const splitTime = (time: string | undefined): { time: string, ampm: string; } =>
+{
+	if (!time)
+	{
+		return { time: "", ampm: "" };
+	}
+
+	time = time.toLowerCase();
+	const isAM = time.indexOf("am") > 0;
+	const index = isAM ? time.indexOf("am") : time.indexOf("pm");
+	return {
+		time: time.slice(0, index).trim(),
+		ampm: isAM ? "AM" : "PM"
+	};
+};

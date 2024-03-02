@@ -1,11 +1,18 @@
 .steam-list {
   width: 225px;
-  flex-shrink: 0; }
-  .steam-list .tile {
-    height: 60px; }
-    .steam-list .tile .alt-line1 {
-      white-space: nowrap; }
-    .steam-list .tile .alt-line2 {
-      white-space: nowrap; }
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.steam-list .tile {
+  height: 60px;
+}
+.steam-list .tile .alt-line1 {
+  white-space: nowrap;
+}
+.steam-list .tile .alt-line2 {
+  white-space: nowrap;
+}
 
 /*# sourceMappingURL=SteamFriendList.css.map */

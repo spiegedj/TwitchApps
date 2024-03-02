@@ -1,27 +1,30 @@
 @font-face {
   src: url("../Fonts/bignoodletoo.ttf");
-  font-family: overwatch-slant; }
+  font-family: overwatch-slant;
+}
 @font-face {
   src: url("../Fonts/koverwatch.ttf");
-  font-family: overwatch; }
+  font-family: overwatch;
+}
 @font-face {
-  font-family: 'Industry';
+  font-family: "Industry";
   src: url("../Fonts/industry-medium-webfont.woff2");
   font-weight: 400;
-  font-style: normal; }
+  font-style: normal;
+}
 body {
-  font-family: 'Cabin', sans-serif;
-  background-color: #cccccc;
+  font-family: "Segoe UI", "Segoe WP", Arial, sans-serif;
   color: black;
   overflow: hidden;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../Images/back1.jpg);
+  background-color: #004A76;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 1; }
+  opacity: 1;
+}
 
 .dark {
-  background-color: black;
-  color: #D0E4F2; }
+  color: #D0E4F2;
+}
 
 .calendar {
   position: absolute;
@@ -30,29 +33,34 @@ body {
   bottom: 0;
   right: 0;
   box-sizing: border-box;
-  padding: 2px;
-  padding-right: 0; }
-  .calendar > :last-child {
-    padding-right: 2px; }
+  padding: 3px;
+}
+.calendar > :last-child {
+  padding-right: 6px;
+}
 
 .streams {
   width: 375px;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 .card {
-  border: 2px solid black;
+  border: 2px solid none;
   background-color: white;
-  padding-bottom: 6px; }
+  padding-bottom: 6px;
+}
 
 .dark .card {
-  border: 3px solid black;
-  background-color: rgba(0, 0, 0, 0.85); }
+  border: 2px solid none;
+  background-color: rgba(0, 0, 0, 0.7);
+}
 
 .marquee {
   position: fixed;
   bottom: 0;
   left: 0;
-  border-top: 3px solid black;
-  background-color: rgba(0, 0, 0, 0.85); }
+  border-top: 2px solid none;
+  background-color: rgba(0, 0, 0, 0.7);
+}
 
 /*# sourceMappingURL=StatusBoard.css.map */

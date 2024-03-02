@@ -1,75 +1,70 @@
 @font-face {
-    src: url('../Fonts/bignoodletoo.ttf');
-    font-family: overwatch-slant;
-}
-@font-face {
-    src: url('../Fonts/koverwatch.ttf');
-    font-family: overwatch;
+	src: url('../Fonts/bignoodletoo.ttf');
+	font-family: overwatch-slant;
 }
 
 @font-face {
-    font-family: 'Industry';
-    src: url('../Fonts/industry-medium-webfont.woff2');
-    font-weight: 400;
-    font-style: normal;
+	src: url('../Fonts/koverwatch.ttf');
+	font-family: overwatch;
+}
+
+@font-face {
+	font-family: 'Industry';
+	src: url('../Fonts/industry-medium-webfont.woff2');
+	font-weight: 400;
+	font-style: normal;
 }
 
 @import "variables";
 
 body {
-    font-family: 'Cabin', sans-serif;
-    background-color: $backColor;
-    color: $textColor;
-    overflow: hidden;
-    //cursor: none;
-
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../Images/back1.jpg);
-    //background: url(../Images/back7.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    opacity: $opacity;
+	font-family: "Segoe UI", "Segoe WP", Arial, sans-serif;
+	color: $textColor;
+	overflow: hidden;
+	background-color: #004A76;
+	background-repeat: no-repeat;
+	background-size: cover;
+	opacity: $opacity;
 }
 
 .dark {
-    background-color: $backColorDark;
-    color: $textColorDark;
+	color: $textColorDark;
 }
 
 .calendar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    box-sizing: border-box; 
-    padding: $spacing;
-    padding-right: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	box-sizing: border-box;
+	padding: $spacing / 2;
 
-    > :last-child{
-        padding-right: $spacing;
-    }
+	> :last-child {
+		padding-right: $spacing;
+	}
 }
 
 .streams {
-    width: $leftPanelWidth;
-    box-sizing: border-box; 
+	width: $leftPanelWidth;
+	box-sizing: border-box;
 }
 
 .card {
-    border: $cardBorder;
-    background-color: $cardBackColor;
-    padding-bottom: 6px;
+	border: $cardBorder;
+	background-color: $cardBackColor;
+	padding-bottom: 6px;
 }
 
 .dark .card {
-    border: $cardBorderDark;
-    background-color: $cardBackColorDark;
+	border: $cardBorderDark;
+	background-color: $cardBackColorDark;
 }
 
 .marquee {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    border-top: $cardBorderDark;
-    background-color: $cardBackColorDark;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	border-top: $cardBorderDark;
+	background-color: $cardBackColorDark;
 }

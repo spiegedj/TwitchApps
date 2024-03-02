@@ -1,16 +1,21 @@
+@import "variables";
+
 .steam-list {
-    width: 225px;
-    flex-shrink: 0;
+	width: 225px;
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+	gap: $spacing;
 
-    .tile {
-        height: 60px;
+	.tile {
+		height: 60px;
 
-        .alt-line1 {
-            white-space: nowrap;
-        }
+		.alt-line1 {
+			white-space: nowrap;
+		}
 
-        .alt-line2 {
-            white-space: nowrap;
-        }
-    }
+		.alt-line2 {
+			white-space: nowrap;
+		}
+	}
 }

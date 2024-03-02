@@ -9,148 +9,149 @@ $altFontSize2: 9pt;
 $altFontSize3: 12pt;
 
 .online {
-    color: rgb(87,203,222);
+	color: rgb(87, 203, 222);
 
-    .alt-line2 {
-        color: #46829B;
-    }
+	.alt-line2 {
+		color: #46829B;
+	}
 }
 
 .inGame {
-    color: rgb(144,186,60);
+	color: rgb(144, 186, 60);
 
-    .alt-line1 {
-        color: #D6F0B7;
-    }
+	.alt-line1 {
+		color: #D6F0B7;
+	}
 
-    .alt-line2 {
-        font-size: $altFontSize3 !important;
-    }
+	.alt-line2 {
+		font-size: $altFontSize3 !important;
+	}
 }
 
 .offline {
-    color: rgb(102,102,102);
+	color: rgb(102, 102, 102);
 }
 
 .away {
-    color: #437287;
+	color: #437287;
 }
 
 .twitchStreams {
-    display: flex;
-    flex-direction: row-reverse;
-    width: 100%;
-    min-width: 0;
-    overflow: hidden;
+	display: flex;
+	flex-direction: row-reverse;
+	width: 100%;
+	min-width: 0;
+	overflow: hidden;
 
-    .group {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        flex: 1 1;
-    }
+	.group {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		flex: 1 1;
+		gap: $spacing;
+	}
 }
 
 .group-card {
-    border: $cardBorderDark;
-    border-radius: 5px;
-    background-color: $cardBackColorDark;
-    margin: $spacing;
+	border: $cardBorderDark;
+	border-radius: 5px;
+	background-color: $cardBackColorDark;
 }
 
 .tile {
-    flex-grow: 1;
+	flex-grow: 1;
 
-    box-sizing: border-box;
-    text-overflow: ellipsis;
-    //white-space: nowrap;
-    overflow: hidden;
-    position: relative;
-    padding: 0;
+	box-sizing: border-box;
+	text-overflow: ellipsis;
+	//white-space: nowrap;
+	overflow: hidden;
+	position: relative;
+	padding: 0;
 
-    div:empty {
-        display: none; 
-    }
+	div:empty {
+		display: none;
+	}
 
-    > div {
-        //white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+	>div {
+		//white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
 
-    .tile-image {
-        margin-right: 5px;
-        float: left;
-        border-radius: 5px;
-        height: 100%;
-        max-height: 100%;
-    }
+	.tile-image {
+		margin-right: 5px;
+		float: left;
+		border-radius: 5px;
+		height: 100%;
+		max-height: 100%;
+	}
 
-    .tile-title { 
-        font-size: $tileFontSize;
-    }
+	.tile-title {
+		font-size: $tileFontSize;
+	}
 
-    .tile-game {
-        font-size: 12pt;
-        color: rgb(200, 200, 200);
-    }
+	.tile-game {
+		font-size: 12pt;
+		color: rgb(200, 200, 200);
+	}
 
-    .tile-details {
-        font-size: $detailsFontSize;
-        color: rgb(200, 200, 200);
-        max-height: 30px;
-    }
+	.tile-details {
+		font-size: $detailsFontSize;
+		color: rgb(200, 200, 200);
+		max-height: 30px;
+	}
 
-    .tile-viewers {
-        color: #C9283E;
-        background-color: rgba(0, 0, 0, 1);
-        font-size: 12pt;
-        position: absolute;
-        top: 2px;
-        right: 2px;
-        border-radius: 5px;
-        padding: 0 5px 0 5px;
+	.tile-viewers {
+		color: #C9283E;
+		background-color: rgba(0, 0, 0, 1);
+		font-size: 12pt;
+		position: absolute;
+		top: 2px;
+		right: 2px;
+		border-radius: 5px;
+		padding: 0 5px 0 5px;
 
-        display: flex;
-        align-items: center
-    }
+		display: flex;
+		align-items: center
+	}
 
-    .alt-line1 {
-        font-size: $altFontSize1;
-    }
+	.alt-line1 {
+		font-size: $altFontSize1;
+	}
 
-    .alt-line2 {
-        font-size: $altFontSize2;
-    }
+	.alt-line2 {
+		font-size: $altFontSize2;
+	}
 }
 
 .tile.small {
-    border-top: 3px solid black;
+	border-top: 3px solid black;
 
-    .tile-details {
-        height: 16px;
-    }
+	.tile-details {
+		height: 16px;
+	}
 }
 
 .list-group-name {
-    text-align: center;
-    background-color: black;
+	text-align: center;
+	background-color: black;
 }
 
 .live-indicator {
-    background-color: #C9283E;
-    border-radius: 20px;
-    width: 0.45rem;
-    height: 0.45rem;
-    display: inline-block;
-    position: relative;
-    margin: 2px;
+	background-color: #C9283E;
+	border-radius: 20px;
+	width: 0.45rem;
+	height: 0.45rem;
+	display: inline-block;
+	position: relative;
+	margin: 2px;
 }
 
 .tag-style {
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
-    .tile-image {
-        border-radius: 50%;
-    }
+	border-top-left-radius: 50px;
+	border-bottom-left-radius: 50px;
+
+	.tile-image {
+		border-radius: 50%;
+	}
 }
