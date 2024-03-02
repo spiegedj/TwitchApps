@@ -50,7 +50,7 @@ class StatusBoard extends React.Component {
     }
     load() {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield this.get("http://localhost:3000/StatusBoard");
+            const data = yield this.get(window.location.href + "/StatusBoard");
             if (typeof data.SessionId === "number" && typeof sessionId === "number" && data.SessionId !== sessionId) {
                 location.reload();
                 return;
