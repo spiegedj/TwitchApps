@@ -43,7 +43,7 @@ export const ClockPanel: React.FunctionComponent = () =>
 	useEffect(() =>
 	{
 		// Use setTimeout to update the message after 2000 milliseconds (2 seconds)
-		const timeoutId = setTimeout(() =>
+		const timeoutId = setInterval(() =>
 		{
 			var now = new Date();
 			const date = now.toLocaleDateString("en-us",

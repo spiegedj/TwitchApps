@@ -3,7 +3,9 @@
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+}
+.steam-list > div + div {
+  margin-top: 6px;
 }
 .steam-list .tile {
   height: 60px;

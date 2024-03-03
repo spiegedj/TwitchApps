@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["SteamFriendList.scss","_variables.scss"],"names":[],"mappings":"AAEA;EACC;EACA;EACA;EACA;EACA,KCLS;;ADOT;EACC;;AAEA;EACC;;AAGD;EACC","file":"SteamFriendList.css"}
+{"version":3,"sourceRoot":"","sources":["SteamFriendList.scss","_variables.scss"],"names":[],"mappings":"AAEA;EACC;EACA;EACA;EACA;;AAEA;EACC,YCPQ;;ADUT;EACC;;AAEA;EACC;;AAGD;EACC","file":"SteamFriendList.css"}

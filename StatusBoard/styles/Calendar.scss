@@ -154,7 +154,10 @@ $spaceBetween: 10px;
 	flex: 1 1 auto;
 	overflow: hidden;
 	margin: 0 $spacing;
-	gap: $spacing;
+
+	>div+div {
+		margin-left: $spacing;
+	}
 
 	.col {
 		display: flex;

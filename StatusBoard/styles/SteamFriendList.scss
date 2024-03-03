@@ -5,7 +5,10 @@
 	flex-shrink: 0;
 	display: flex;
 	flex-direction: column;
-	gap: $spacing;
+
+	>div+div {
+		margin-top: $spacing;
+	}
 
 	.tile {
 		height: 60px;

@@ -120,7 +120,9 @@
   flex: 1 1 auto;
   overflow: hidden;
   margin: 0 6px;
-  gap: 6px;
+}
+.columns > div + div {
+  margin-left: 6px;
 }
 .columns .col {
   display: flex;

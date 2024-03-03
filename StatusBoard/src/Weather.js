@@ -27,7 +27,7 @@ const ClockPanel = () => {
     const [timeString, setTime] = (0, react_1.useState)("");
     (0, react_1.useEffect)(() => {
         // Use setTimeout to update the message after 2000 milliseconds (2 seconds)
-        const timeoutId = setTimeout(() => {
+        const timeoutId = setInterval(() => {
             var now = new Date();
             const date = now.toLocaleDateString("en-us", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
             const time = DateUtils_1.DateUtils.getTimeString(now);

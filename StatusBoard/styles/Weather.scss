@@ -17,7 +17,10 @@
 .weather-column {
 	display: flex;
 	flex-direction: column;
-	gap: $spacing;
+
+	>div+div {
+		margin-top: $spacing;
+	}
 
 	.weather-panel {
 		width: 200px;
@@ -54,9 +57,12 @@
 .weather-row {
 	display: flex;
 	flex-direction: row;
-	gap: $spacing;
 	margin: $spacing;
 	height: 200px;
+
+	>div+div {
+		margin-left: $spacing;
+	}
 
 	.forecast {
 		justify-content: space-between;
@@ -164,13 +170,11 @@
 .flex-row {
 	display: flex;
 	flex-direction: row;
-	gap: 2px;
 }
 
 .flex-column {
 	display: flex;
 	flex-direction: column;
-	gap: 2px;
 }
 
 .slash {
