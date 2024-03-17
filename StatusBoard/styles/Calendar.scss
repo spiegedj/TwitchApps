@@ -183,12 +183,6 @@ $spaceBetween: 10px;
 .light .ow {
 	color: $textColor;
 
-	.tile,
-	.largeTile {
-		background-color: $cardBackColor;
-		border-color: white;
-	}
-
 	.status {
 		background-color: $cardBackColor;
 		color: $textColor;
@@ -198,12 +192,6 @@ $spaceBetween: 10px;
 .dark .ow {
 	color: $textColorDark;
 
-	.tile,
-	.largeTile {
-		background-color: $cardBackColorDark;
-		border-color: black;
-	}
-
 	.status {
 		background-color: $cardBackColorDark;
 		color: $textColorDark;
@@ -211,20 +199,39 @@ $spaceBetween: 10px;
 }
 
 .ow {
-	font-family: overwatch;
+	width: 450px !important;
+
+	.group-card {
+		border-radius: 15px;
+
+	}
+
+	.date-header {
+		//text-align: center;
+		//padding: 5px;
+		padding-top: 10px;
+		padding-left: 10px;
+		font-size: 16px;
+		font-weight: 600;
+	}
+
+	.tournament {
+		text-align: center;
+		padding: 2px;
+		font-size: 16px;
+		font-weight: 600;
+		margin-top: 8px;
+		border-bottom: 2px solid black;
+	}
 
 	.largeTile {
 		position: relative;
 		height: $panel-height;
 
-		&:not(:last-child) {
-			border-bottom-width: 2px;
-			border-bottom-style: solid;
-		}
-
 		.comp {
 			height: 100%;
 			width: 50%;
+			font-family: Overwatch;
 
 			display: flex;
 			flex-direction: column;
@@ -249,6 +256,7 @@ $spaceBetween: 10px;
 	}
 
 	.status {
+		font-family: Overwatch;
 		position: absolute;
 
 		text-align: center;
@@ -266,65 +274,54 @@ $spaceBetween: 10px;
 		margin-left: -35px;
 	}
 
+
+	.tile.active {
+		background-color: #0677BD;
+	}
+
 	.tile {
 		display: flex;
 		position: relative;
-		background-color: $cardBackColor;
-		font-family: "Industry";
 
 		.comp {
 			width: 50%;
 			display: flex;
-			flex-direction: column;
+			flex-direction: row;
 			padding: 6px;
 			position: relative;
-			padding-left: 35px;
+			gap: 5px;
 		}
 
-		&:not(:last-child) {
-			border-bottom-width: 3px;
-			border-bottom-style: solid;
-		}
+		.comp-1 {
+			margin-right: 35px;
 
-		.comp+.comp {
-			margin-left: 3px;
+			.comp-name {
+				text-align: right;
+			}
 		}
 
 		.status {
 			bottom: 8px;
 			border-radius: 3px;
-			font-size: 12pt;
 		}
 
 		.comp-2 {
-			text-align: right;
-			padding-right: 35px;
-			padding-left: 0;
+			margin-left: 35px;
 			font-size: 10pt;
 		}
 
 		.comp-name {
 			font-size: 16pt;
-		}
+			flex-grow: 1;
 
-		.comp-name-1 {
-			font-size: 8pt;
-			vertical-align: middle;
-			display: none;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
 		}
 
 		.image {
-			position: absolute;
 			width: 25px;
 			height: 25px;
-		}
-
-		.comp-1 .image {
-			left: 5px;
-		}
-
-		.comp-2 .image {
-			right: 5px;
 		}
 	}
 }

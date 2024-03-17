@@ -1,61 +1,49 @@
 /// <reference path="../@types/data.d.ts"/>
 
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { DateUtils } from "./DateUtils";
 
 type weatherProps = Partial<{
 	weather: Response.Weather;
 }>;
 
-export class WeatherPanel extends React.Component<weatherProps>
+export const WeatherPanel: React.FunctionComponent<{ weather: Response.Weather; }> = (props) =>
 {
-	public render(): React.ReactNode 
-	{
-		const condition = this.props.weather.Condition;
-		const forecast = this.props.weather.Forecast;
+	const condition = props.weather.Condition;
+	const forecast = props.weather.Forecast;
 
-		return (
-			<div className="weather-row">
-				<ClockPanel />
-				<div className="weather-panel" style={{ width: 200 }}>
-					<div className="title">Now</div>
-					<div className="current-temp">{condition.Temp}</div>
-					<div className="label">{condition.FeelsLike}</div>
-					<div className="icon-container">
-						<div className="temp-icon" dangerouslySetInnerHTML={{ __html: condition.Icon }}></div>
-						<div className="label">{condition.Phrase}</div>
-					</div>
-				</div>
-				<div className="weather-panel forecast flex-row">
-					{forecast.slice(0, 11).map(forecast => <ForecastPanel forecast={forecast} />)}
+	return (
+		<div className="weather-row">
+			<ClockPanel />
+			<div className="weather-panel" style={{ width: 200 }}>
+				<div className="title">Now</div>
+				<div className="current-temp">{condition.Temp}</div>
+				<div className="label">{condition.FeelsLike}</div>
+				<div className="icon-container">
+					<div className="temp-icon" dangerouslySetInnerHTML={{ __html: condition.Icon }}></div>
+					<div className="label">{condition.Phrase}</div>
 				</div>
 			</div>
-		);
-	}
-}
+			<div className="weather-panel forecast flex-row">
+				{forecast.slice(0, 11).map(forecast => <ForecastPanel forecast={forecast} />)}
+			</div>
+		</div>
+	);
+};
 
 export const ClockPanel: React.FunctionComponent = () =>
 {
-	const [date, setDate] = useState("");
 	const [timeString, setTime] = useState("");
 
 	useEffect(() =>
 	{
-		// Use setTimeout to update the message after 2000 milliseconds (2 seconds)
 		const timeoutId = setInterval(() =>
 		{
-			var now = new Date();
-			const date = now.toLocaleDateString("en-us",
-				{ weekday: "long", month: "long", day: "numeric", year: "numeric" }
-			);
-			const time = DateUtils.getTimeString(now);
-
-			setDate(date);
+			const time = DateUtils.getTimeString(new Date());
 			setTime(time);
 		}, 1000);
 
-		// Cleanup function to clear the timeout if the component unmounts
 		return () => clearTimeout(timeoutId);
 	}, []);
 
@@ -63,7 +51,6 @@ export const ClockPanel: React.FunctionComponent = () =>
 	return (
 		<div className="clock">
 			<div>
-				<div className="clock-date">{date}</div>
 				<div className="clock-time">
 					{time}
 					<span className="ampm">{ampm}</span>
@@ -71,6 +58,30 @@ export const ClockPanel: React.FunctionComponent = () =>
 			</div>
 		</div>
 	);
+};
+
+export const DatePanel: React.FunctionComponent = () =>
+{
+	const [date, setDate] = useState("");
+	const updateDate = useCallback(() =>
+	{
+		const date = new Date().toLocaleDateString("en-us",
+			{ weekday: "long", month: "long", day: "numeric", year: "numeric" }
+		);
+		setDate(date);
+	}, [setDate]);
+
+	useEffect(() =>
+	{
+		updateDate();
+		const timeoutId = setInterval(() => updateDate, 60 * 1000);
+
+		return () => clearTimeout(timeoutId);
+	}, []);
+
+	return <div className="weather-panel">
+		<div className="clock-date">{date}</div>
+	</div>;
 };
 
 export const NowConditionsColumn: React.FunctionComponent<{ Weather: Response.Weather; }> = (props) =>
@@ -82,6 +93,7 @@ export const NowConditionsColumn: React.FunctionComponent<{ Weather: Response.We
 	const sunset = splitTime(Condition?.Sunset);
 
 	return <div className="weather-column">
+		<DatePanel />
 		<div className="weather-panel">
 			<div className="title">Sunrise & sunset</div>
 			<div>

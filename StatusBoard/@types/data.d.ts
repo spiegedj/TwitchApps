@@ -63,6 +63,7 @@ declare namespace Response
 	// OWL
 	interface MatchDetails 
 	{
+		TournamentName: string;
 		Competitor1: CompetitorDetails;
 		Competitor2: CompetitorDetails;
 		Date: number;
@@ -75,6 +76,7 @@ declare namespace Response
 	interface CompetitorDetails 
 	{
 		Name: string;
+		NameAbbr?: string;
 		ImageURL?: string;
 		PrimaryColor?: string;
 		SecondaryColor?: string;

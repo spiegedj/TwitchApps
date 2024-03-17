@@ -39,6 +39,9 @@
 .twitchStreams .group > div + div {
   margin-top: 6px;
 }
+.twitchStreams .group + .group {
+  margin-right: 6px;
+}
 
 .group-card {
   border: 2px solid none;

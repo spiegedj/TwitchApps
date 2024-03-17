@@ -2,6 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DateUtils = void 0;
 class DateUtils {
+    static isTodayOrInFuture(date) {
+        return this.isToday(date)
+            || (date.valueOf() > (new Date()).valueOf());
+    }
     static getDaysFrom(date) {
         if (!date)
             return 0;

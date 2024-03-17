@@ -191,6 +191,12 @@
 	bottom: -2px;
 }
 
+.clock-date {
+	text-align: center;
+	font-size: 16px;
+	font-weight: 600;
+}
+
 .clock {
 	background-color: $cardBackColorDark;
 	display: flex;
@@ -200,17 +206,11 @@
 	width: 200px;
 
 	>div {
-		.clock-date {
-			text-align: center;
-			//color: #C9283E;
-			font-size: 12pt;
-		}
-
 		.clock-time {
 			margin: -5px;
 			text-align: center;
 			color: white;
-			font-size: 50pt;
+			font-size: 60pt;
 		}
 	}
 

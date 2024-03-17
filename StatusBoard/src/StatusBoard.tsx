@@ -87,6 +87,7 @@ export class StatusBoard extends React.Component
 			twitchColumns++;
 		}
 
+		StarcraftGroups = []; // TODO Remove
 		let centerPanel = <StarCraftMatches
 			groups={StarcraftGroups}
 			columns={scColumns}

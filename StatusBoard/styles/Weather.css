@@ -162,6 +162,12 @@
   bottom: -2px;
 }
 
+.clock-date {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
 .clock {
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
@@ -170,15 +176,11 @@
   padding: 10px;
   width: 200px;
 }
-.clock > div .clock-date {
-  text-align: center;
-  font-size: 12pt;
-}
 .clock > div .clock-time {
   margin: -5px;
   text-align: center;
   color: white;
-  font-size: 50pt;
+  font-size: 60pt;
 }
 .clock .ampm {
   font-size: 16px;

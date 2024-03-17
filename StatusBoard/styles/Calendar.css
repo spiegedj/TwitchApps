@@ -145,11 +145,6 @@
 .light .ow {
   color: black;
 }
-.light .ow .tile,
-.light .ow .largeTile {
-  background-color: white;
-  border-color: white;
-}
 .light .ow .status {
   background-color: white;
   color: black;
@@ -158,30 +153,39 @@
 .dark .ow {
   color: #D0E4F2;
 }
-.dark .ow .tile,
-.dark .ow .largeTile {
-  background-color: rgba(0, 0, 0, 0.7);
-  border-color: black;
-}
 .dark .ow .status {
   background-color: rgba(0, 0, 0, 0.7);
   color: #D0E4F2;
 }
 
 .ow {
-  font-family: overwatch;
+  width: 450px !important;
+}
+.ow .group-card {
+  border-radius: 15px;
+}
+.ow .date-header {
+  padding-top: 10px;
+  padding-left: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.ow .tournament {
+  text-align: center;
+  padding: 2px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 8px;
+  border-bottom: 2px solid black;
 }
 .ow .largeTile {
   position: relative;
   height: 195px;
 }
-.ow .largeTile:not(:last-child) {
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
-}
 .ow .largeTile .comp {
   height: 100%;
   width: 50%;
+  font-family: Overwatch;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -200,6 +204,7 @@
   letter-spacing: 3px;
 }
 .ow .status {
+  font-family: Overwatch;
   position: absolute;
   text-align: center;
   height: 22px;
@@ -213,56 +218,45 @@
   left: 50%;
   margin-left: -35px;
 }
+.ow .tile.active {
+  background-color: #0677BD;
+}
 .ow .tile {
   display: flex;
   position: relative;
-  background-color: white;
-  font-family: "Industry";
 }
 .ow .tile .comp {
   width: 50%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding: 6px;
   position: relative;
-  padding-left: 35px;
+  gap: 5px;
 }
-.ow .tile:not(:last-child) {
-  border-bottom-width: 3px;
-  border-bottom-style: solid;
+.ow .tile .comp-1 {
+  margin-right: 35px;
 }
-.ow .tile .comp + .comp {
-  margin-left: 3px;
+.ow .tile .comp-1 .comp-name {
+  text-align: right;
 }
 .ow .tile .status {
   bottom: 8px;
   border-radius: 3px;
-  font-size: 12pt;
 }
 .ow .tile .comp-2 {
-  text-align: right;
-  padding-right: 35px;
-  padding-left: 0;
+  margin-left: 35px;
   font-size: 10pt;
 }
 .ow .tile .comp-name {
   font-size: 16pt;
-}
-.ow .tile .comp-name-1 {
-  font-size: 8pt;
-  vertical-align: middle;
-  display: none;
+  flex-grow: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .ow .tile .image {
-  position: absolute;
   width: 25px;
   height: 25px;
-}
-.ow .tile .comp-1 .image {
-  left: 5px;
-}
-.ow .tile .comp-2 .image {
-  right: 5px;
 }
 
 .dark .sc2 {

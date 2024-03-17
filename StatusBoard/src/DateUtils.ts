@@ -1,156 +1,162 @@
 export class DateUtils
 {
-    public static getDaysFrom(date: Date): number
-    {
-        if (!date) return 0;
-        var now = new Date();
-        return (date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24);
-    }
+	public static isTodayOrInFuture(date: Date): boolean
+	{
+		return this.isToday(date)
+			|| (date.valueOf() > (new Date()).valueOf());
+	}
 
-    public static onSameDay(date: Date, other: Date): boolean
-    {
-        return date.getDate() === other.getDate() &&
-            date.getMonth() === other.getMonth() &&
-            date.getFullYear() === other.getFullYear();
-    }
+	public static getDaysFrom(date: Date): number
+	{
+		if (!date) return 0;
+		var now = new Date();
+		return (date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24);
+	}
 
-    public static isToday(date: Date): boolean
-    {
-        return this.onSameDay(date, new Date());
-    }
+	public static onSameDay(date: Date, other: Date): boolean
+	{
+		return date.getDate() === other.getDate() &&
+			date.getMonth() === other.getMonth() &&
+			date.getFullYear() === other.getFullYear();
+	}
 
-    public static isTomorrow(date: Date): boolean
-    {
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        return this.onSameDay(date, tomorrow);
-    }
+	public static isToday(date: Date): boolean
+	{
+		return this.onSameDay(date, new Date());
+	}
 
-    public static getDateString(date: Date): string
-    {
-        if (!date) return "";
+	public static isTomorrow(date: Date): boolean
+	{
+		const tomorrow = new Date();
+		tomorrow.setDate(tomorrow.getDate() + 1);
+		return this.onSameDay(date, tomorrow);
+	}
 
-        if (isNaN(date.getTime()))
-        {
-            return "Live";
-        }
+	public static getDateString(date: Date): string
+	{
+		if (!date) return "";
 
-        return `${this.getDayString(date)} ${this.getTimeString(date)}`;
-    }
+		if (isNaN(date.getTime()))
+		{
+			return "Live";
+		}
 
-    public static getDayString(date: Date): string
-    {
-        if (!date) return "";
+		return `${this.getDayString(date)} ${this.getTimeString(date)}`;
+	}
 
-        if (this.isToday(date))
-        {
-            return "Today";
-        }
+	public static getDayString(date: Date): string
+	{
+		if (!date) return "";
 
-        if (this.isTomorrow(date))
-        {
-            return "Tomorrow";
-        }
+		if (this.isToday(date))
+		{
+			return "Today";
+		}
 
-        const monthNames = ["Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
-        const dayOfWeekNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+		if (this.isTomorrow(date))
+		{
+			return "Tomorrow";
+		}
 
-        const month = monthNames[date.getMonth()];
-        const day = date.getDate();
-        const dayOfWeek = dayOfWeekNames[date.getDay()];
+		const monthNames = ["Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+		const dayOfWeekNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-        const daysFrom = this.getDaysFrom(date);
-        if (daysFrom < 6)
-        {
-            return `${dayOfWeek}`;
-        }
-        else
-        {
-            return `${month} ${day}`;
-        }
-    }
+		const month = monthNames[date.getMonth()];
+		const day = date.getDate();
+		const dayOfWeek = dayOfWeekNames[date.getDay()];
 
-    public static getTimeString(date: Date): string 
-    {
-        var hour = date.getHours();
-        var minutes = date.getMinutes();
-        var minutesString = (minutes < 10) ? "0" + minutes : minutes;
-        var amPm = (hour >= 12 && hour < 24) ? "PM" : "AM";
-        if (hour === 0) { amPm = "PM"; }
-        hour = hour % 12;
-        hour = hour == 0 ? hour + 12 : hour;
+		const daysFrom = this.getDaysFrom(date);
+		if (daysFrom < 6)
+		{
+			return `${dayOfWeek}`;
+		}
+		else
+		{
+			return `${month} ${day}`;
+		}
+	}
 
-        return `${hour}:${minutesString} ${amPm}`
-    }
+	public static getTimeString(date: Date): string 
+	{
+		var hour = date.getHours();
+		var minutes = date.getMinutes();
+		var minutesString = (minutes < 10) ? "0" + minutes : minutes;
+		var amPm = (hour >= 12 && hour < 24) ? "PM" : "AM";
+		if (hour === 0) { amPm = "PM"; }
+		hour = hour % 12;
+		hour = hour == 0 ? hour + 12 : hour;
 
-    public static getCountdownString(date: Date): string
-    {
-        if (!date) { return "Live now"; }
+		return `${hour}:${minutesString} ${amPm}`;
+	}
 
-        var daysFrom = this.getDaysFrom(date);
-        var days = Math.floor(daysFrom);
-        var hoursFrom = (daysFrom - days) * 24;
-        var hours = Math.floor(hoursFrom);
-        var minutesFrom = (hoursFrom - hours) * 60;
-        var minutes = Math.floor(minutesFrom);
+	public static getCountdownString(date: Date): string
+	{
+		if (!date) { return "Live now"; }
 
-        return days + "d " + hours + "h " + minutes + "m";
-    }
+		var daysFrom = this.getDaysFrom(date);
+		var days = Math.floor(daysFrom);
+		var hoursFrom = (daysFrom - days) * 24;
+		var hours = Math.floor(hoursFrom);
+		var minutesFrom = (hoursFrom - hours) * 60;
+		var minutes = Math.floor(minutesFrom);
 
-    public static getAgoString(date: Date): string
-    {
-        const daysAgo = -this.getDaysFrom(date);
-        const yearsAgo = Math.floor(daysAgo / 365);
-        if (yearsAgo > 1)
-        {
-            return `${yearsAgo} years ago`;
-        }
+		return days + "d " + hours + "h " + minutes + "m";
+	}
 
-        const monthsAgo = Math.floor(daysAgo / 28);
-        if (monthsAgo >= 2)
-        {
-            return `${monthsAgo} months ago`;
-        }
+	public static getAgoString(date: Date): string
+	{
+		const daysAgo = -this.getDaysFrom(date);
+		const yearsAgo = Math.floor(daysAgo / 365);
+		if (yearsAgo > 1)
+		{
+			return `${yearsAgo} years ago`;
+		}
 
-        const weeksAgo = Math.floor(daysAgo / 7);
-        if (weeksAgo > 1) return `${weeksAgo} weeks ago`;
-        if (weeksAgo == 1) return `1 week ago`;
+		const monthsAgo = Math.floor(daysAgo / 28);
+		if (monthsAgo >= 2)
+		{
+			return `${monthsAgo} months ago`;
+		}
 
-        const days = Math.floor(daysAgo);
-        var hoursFrom = (daysAgo - days) * 24;
-        var hours = Math.floor(hoursFrom);
-        if (days >= 1)
-        {
-            let agoString = `${days > 1 ? `${days} days` : "1 day"}`;
-            if (days < 2 && hours > 0)
-            {
-                agoString += ` ${hours > 1 ? `${hours} hours` : "1 hour"}`;
-            }
-            return agoString + " ago";
-        }
+		const weeksAgo = Math.floor(daysAgo / 7);
+		if (weeksAgo > 1) return `${weeksAgo} weeks ago`;
+		if (weeksAgo == 1) return `1 week ago`;
 
-        if (hours > 2) return `${hours} hours ago`;
+		const days = Math.floor(daysAgo);
+		var hoursFrom = (daysAgo - days) * 24;
+		var hours = Math.floor(hoursFrom);
+		if (days >= 1)
+		{
+			let agoString = `${days > 1 ? `${days} days` : "1 day"}`;
+			if (days < 2 && hours > 0)
+			{
+				agoString += ` ${hours > 1 ? `${hours} hours` : "1 hour"}`;
+			}
+			return agoString + " ago";
+		}
 
-        var minutesFrom = (hoursFrom - hours) * 60;
-        var minutes = Math.floor(minutesFrom);
-        if (hours >= 1)
-        {
-            let agoString = `${hours > 1 ? `${hours} hours` : "1 hour"}`;
-            if (minutes > 0)
-            {
-                agoString += ` ${minutes > 1 ? `${minutes} minutes` : "1 minute"}`;
-            }
-            return agoString + " ago";
-        }
+		if (hours > 2) return `${hours} hours ago`;
 
-        return `${minutes} minutes ago`;
-    }
+		var minutesFrom = (hoursFrom - hours) * 60;
+		var minutes = Math.floor(minutesFrom);
+		if (hours >= 1)
+		{
+			let agoString = `${hours > 1 ? `${hours} hours` : "1 hour"}`;
+			if (minutes > 0)
+			{
+				agoString += ` ${minutes > 1 ? `${minutes} minutes` : "1 minute"}`;
+			}
+			return agoString + " ago";
+		}
 
-    public static isLive(startDate: Date, endDate: Date)
-    {
-        if (!startDate || !endDate) { return false; }
+		return `${minutes} minutes ago`;
+	}
 
-        const now = new Date().valueOf();
-        return startDate.valueOf() <= now && now <= endDate.valueOf();
-    }
+	public static isLive(startDate: Date, endDate: Date)
+	{
+		if (!startDate || !endDate) { return false; }
+
+		const now = new Date().valueOf();
+		return startDate.valueOf() <= now && now <= endDate.valueOf();
+	}
 }

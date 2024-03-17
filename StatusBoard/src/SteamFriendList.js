@@ -4,7 +4,7 @@ exports.SteamFriendList = void 0;
 const React = require("react");
 const DateUtils_1 = require("./DateUtils");
 const SteamFriendList = (props) => {
-    const sortedFriends = props.friends.sort((a, b) => {
+    const sortedFriends = (props.friends || []).sort((a, b) => {
         const stateDiff = stateToSortOrder(a.State, a.Game) - stateToSortOrder(b.State, b.Game);
         if (stateDiff == 0) {
             return b.LastLogOff - a.LastLogOff;

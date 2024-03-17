@@ -53,6 +53,10 @@ $altFontSize3: 12pt;
 			margin-top: $spacing;
 		}
 	}
+
+	.group+.group {
+		margin-right: $spacing;
+	}
 }
 
 .group-card {
