@@ -74,13 +74,16 @@ const SmallPanel = ({ match, isActive }) => {
     return React.createElement("div", { className: containerClassNames.join(" ") },
         React.createElement("div", { className: comp1ClassNames.join(" ") },
             React.createElement("div", { className: "comp-name" }, match.Competitor1.Name),
-            React.createElement("img", { src: match.Competitor1.ImageURL, className: "image" })),
+            React.createElement("img", { src: getImage(match.Competitor1), className: "image" })),
         React.createElement("div", { className: comp2ClassNames.join(" ") },
-            React.createElement("img", { src: match.Competitor2.ImageURL, className: "image" }),
+            React.createElement("img", { src: getImage(match.Competitor2), className: "image" }),
             React.createElement("div", { className: "comp-name" }, match.Competitor2.Name)),
         React.createElement("span", { className: "status" }, status));
 };
 exports.SmallPanel = SmallPanel;
+function getImage(comp) {
+    return window.location.href + comp.ImageURL;
+}
 function splitName(name) {
     const pieces = name.split(" ");
     const lastPiece = pieces.pop();

@@ -113,15 +113,20 @@ export const SmallPanel: React.FunctionComponent<{ match: Response.MatchDetails,
 	return <div className={containerClassNames.join(" ")}>
 		<div className={comp1ClassNames.join(" ")}>
 			<div className="comp-name">{match.Competitor1.Name}</div>
-			<img src={match.Competitor1.ImageURL} className="image" />
+			<img src={getImage(match.Competitor1)} className="image" />
 		</div>
 		<div className={comp2ClassNames.join(" ")}>
-			<img src={match.Competitor2.ImageURL} className="image" />
+			<img src={getImage(match.Competitor2)} className="image" />
 			<div className="comp-name">{match.Competitor2.Name}</div>
 		</div>
 		<span className="status">{status}</span>
 	</div>;
 };
+
+function getImage(comp: Response.CompetitorDetails): string
+{
+	return window.location.href + comp.ImageURL;
+}
 
 function splitName(name: string): { piece1: string, piece2: string; }
 {
