@@ -23,8 +23,9 @@ export const OverwatchEvents: React.FunctionComponent<owProps> = (props) =>
 	let { matches, adjustColumns, columns } = props;
 
 	matches = (matches || [])
+		.filter(match => match.TournamentName.includes("OWCS"))
 		.filter(match => DateUtils.isTodayOrInFuture(new Date(match.Date)))
-		.slice(0, 12);
+		.slice(0, 13);
 
 	const matchDays = splitByDay(matches);
 	const nextDay = matchDays.shift();
@@ -51,13 +52,13 @@ export const OverwatchEvents: React.FunctionComponent<owProps> = (props) =>
 			{
 				extraDaysOnFirstPanel.map(day =>
 					<span className="group-card">
-						<div>{DateUtils.getDayString(day.date)}</div>
+						<div className="date-header">{DateUtils.getDayString(day.date)}</div>
 						{day.matches.map(m =>
 						{
 							let showTournmanet = (currentTournament !== m.TournamentName);
 							currentTournament = m.TournamentName;
 							return <>
-								{showTournmanet && <div>{currentTournament}</div>}
+								{showTournmanet && <div className="tournament">{currentTournament}</div>}
 								<SmallPanel match={m} />
 							</>;
 						})}

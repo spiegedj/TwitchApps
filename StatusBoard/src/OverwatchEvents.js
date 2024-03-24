@@ -9,8 +9,9 @@ const OverwatchEvents = (props) => {
     const panels = [];
     let { matches, adjustColumns, columns } = props;
     matches = (matches || [])
+        .filter(match => match.TournamentName.includes("OWCS"))
         .filter(match => DateUtils_1.DateUtils.isTodayOrInFuture(new Date(match.Date)))
-        .slice(0, 12);
+        .slice(0, 13);
     const matchDays = splitByDay(matches);
     const nextDay = matchDays.shift();
     if (nextDay) {
@@ -28,12 +29,12 @@ const OverwatchEvents = (props) => {
                         React.createElement(exports.SmallPanel, { match: m, isActive: m === nextMatch }));
                 })),
             extraDaysOnFirstPanel.map(day => React.createElement("span", { className: "group-card" },
-                React.createElement("div", null, DateUtils_1.DateUtils.getDayString(day.date)),
+                React.createElement("div", { className: "date-header" }, DateUtils_1.DateUtils.getDayString(day.date)),
                 day.matches.map(m => {
                     let showTournmanet = (currentTournament !== m.TournamentName);
                     currentTournament = m.TournamentName;
                     return React.createElement(React.Fragment, null,
-                        showTournmanet && React.createElement("div", null, currentTournament),
+                        showTournmanet && React.createElement("div", { className: "tournament" }, currentTournament),
                         React.createElement(exports.SmallPanel, { match: m }));
                 })))));
     }

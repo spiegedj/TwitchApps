@@ -95,13 +95,14 @@ const WeatherItem = ({ item }) => {
 const HourlyPanel = ({ hourly }) => {
     const precipitationStr = hourly.Precipitation;
     const showPreciptation = parseInt(precipitationStr) > 5;
-    return React.createElement(React.Fragment, null,
-        React.createElement("div", { className: "forecast-list-item" },
-            React.createElement("span", { className: "title" }, hourly.Hour),
-            React.createElement("span", { className: "flex-row" },
-                showPreciptation && React.createElement("span", { className: "precip" }, hourly.Precipitation),
-                React.createElement("div", { className: "temp-icon", dangerouslySetInnerHTML: { __html: hourly.Icon } })),
-            React.createElement("div", { className: "temp" }, hourly.Temp)));
+    const hour = parseInt(hourly.Hour);
+    const addBorder = (hour % 12) === 0;
+    return React.createElement("div", { className: "forecast-list-item" + (addBorder ? " divider-bottom " : "") },
+        React.createElement("span", { className: "title" }, hourly.Hour),
+        React.createElement("span", { className: "flex-row" },
+            showPreciptation && React.createElement("span", { className: "precip" }, hourly.Precipitation),
+            React.createElement("div", { className: "temp-icon", dangerouslySetInnerHTML: { __html: hourly.Icon } })),
+        React.createElement("div", { className: "temp" }, hourly.Temp));
 };
 const ForecastPanel = ({ forecast }) => {
     return React.createElement(React.Fragment, null,

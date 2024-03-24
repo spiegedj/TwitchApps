@@ -143,15 +143,18 @@ const HourlyPanel: React.FunctionComponent<{ hourly: Response.Hourly; }> = ({ ho
 {
 	const precipitationStr = hourly.Precipitation;
 	const showPreciptation = parseInt(precipitationStr) > 5;
-	return <>
-		<div className="forecast-list-item">
-			<span className="title">{hourly.Hour}</span>
-			<span className="flex-row">
-				{showPreciptation && <span className="precip">{hourly.Precipitation}</span>}
-				<div className="temp-icon" dangerouslySetInnerHTML={{ __html: hourly.Icon }}></div>
-			</span>
-			<div className="temp">{hourly.Temp}</div>
-		</div></>;
+
+	const hour = parseInt(hourly.Hour);
+	const addBorder = (hour % 12) === 0;
+
+	return <div className={"forecast-list-item" + (addBorder ? " divider-bottom " : "")}>
+		<span className="title">{hourly.Hour}</span>
+		<span className="flex-row">
+			{showPreciptation && <span className="precip">{hourly.Precipitation}</span>}
+			<div className="temp-icon" dangerouslySetInnerHTML={{ __html: hourly.Icon }}></div>
+		</span>
+		<div className="temp">{hourly.Temp}</div>
+	</div>;
 };
 
 const ForecastPanel: React.FunctionComponent<{ forecast: Response.Forecast; }> = ({ forecast }) =>
