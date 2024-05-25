@@ -3,11 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Marquee = exports.Headlines = void 0;
 const React = require("react");
 const Headlines = ({ headlines }) => {
+    var _a;
     const div = document.createElement("div");
-    const data = headlines.map(headline => {
+    const data = (_a = headlines === null || headlines === void 0 ? void 0 : headlines.map(headline => {
         div.innerHTML = headline.Title;
         return div.innerText;
-    });
+    })) !== null && _a !== void 0 ? _a : [];
     const marquee = React.useRef(new Marquee());
     return React.createElement("canvas", { className: "marquee", ref: canvas => marquee.current.set_data(canvas, data), height: 25, width: 1920 });
 };
