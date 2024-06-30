@@ -87,7 +87,6 @@ declare namespace Response
 	{
 		Date: number;
 		EndDate?: number;
-		Length: number;
 		Game: string;
 		Category: string;
 		Runner: string;
@@ -95,6 +94,7 @@ declare namespace Response
 		SetupLength: string;
 		Commentator: string;
 		GameImage: string;
+		IsLive: boolean;
 	}
 
 	// Weather

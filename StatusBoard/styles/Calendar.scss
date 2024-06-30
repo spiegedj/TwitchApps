@@ -465,10 +465,10 @@ $iconWidth: 25px;
 
 .gdq {
 	margin-bottom: 15px;
-	gap: $spacing;
 	font-family: Lexend;
 
 	.row {
+		margin-bottom: $spacing;
 		background-color: $cardBackColorDark;
 		border-radius: 15px;
 		overflow: hidden;
@@ -507,6 +507,22 @@ $iconWidth: 25px;
 
 	.runGame {
 		font-weight: 700;
-		color: #C9283E;
+	}
+
+	.live {
+		border: 2px solid #FF004D;
+		animation: glow 1.0s linear infinite alternate;
+		box-shadow: #FF004D 0px 3px 8px;
+	}
+}
+
+$glowColor: yellow;
+
+@keyframes glow {
+	to {
+		border-color: $glowColor;
+		-webkit-box-shadow: 0 0 5px $glowColor;
+		-moz-box-shadow: 0 0 5px $glowColor;
+		box-shadow: 0 0 5px $glowColor;
 	}
 }

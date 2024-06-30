@@ -8,8 +8,7 @@ class GDQEvents extends React.Component {
     render() {
         let tableRows = this.props.runs.map((run) => {
             const runDate = new Date(run.Date);
-            const endDate = new Date(run.EndDate);
-            const isLive = DateUtils_1.DateUtils.isLive(runDate, endDate);
+            const isLive = run.IsLive;
             return (React.createElement("div", { className: "row " + (isLive ? "live" : "") },
                 React.createElement("div", { className: "imageCol" },
                     React.createElement("img", { src: run.GameImage, className: "game-image" })),

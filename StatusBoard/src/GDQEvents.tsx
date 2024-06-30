@@ -14,8 +14,7 @@ export class GDQEvents extends React.Component<gdqProps>
 		let tableRows = this.props.runs.map((run: Response.EventRun) =>
 		{
 			const runDate = new Date(run.Date);
-			const endDate = new Date(run.EndDate);
-			const isLive = DateUtils.isLive(runDate, endDate);
+			const isLive = run.IsLive;
 			return (
 				<div className={"row " + (isLive ? "live" : "")}>
 					<div className="imageCol">
