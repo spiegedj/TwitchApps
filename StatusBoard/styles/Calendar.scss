@@ -15,7 +15,6 @@ $large-font-size: 16pt;
 	flex-wrap: nowrap;
 	flex-direction: column;
 	font-size: $font-size;
-	margin-bottom: 25px;
 
 	.underline {
 		border-bottom: 1px solid #4D4D4D;
@@ -27,7 +26,7 @@ $large-font-size: 16pt;
 
 	.rightAlign {
 		text-align: right;
-		padding-right: 15px;
+		padding-right: 10px;
 	}
 
 	.eventTile {
@@ -466,21 +465,48 @@ $iconWidth: 25px;
 
 .gdq {
 	margin-bottom: 15px;
-	background-size: 300px;
-	background-position-x: center;
-	background-position-y: 100px;
-	background-repeat: no-repeat;
+	gap: $spacing;
+	font-family: Lexend;
 
-	table {
-		border-collapse: collapse;
+	.row {
+		background-color: $cardBackColorDark;
+		border-radius: 15px;
+		overflow: hidden;
+		flex-shrink: 0;
+		display: flex;
+		gap: 5px;
 
-		tr {
-			border-bottom: 1px solid black;
+		div {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 	}
 
 	.game-image {
-		height: 50px;
+		height: 70px;
 		display: block;
+	}
+
+	.mainCol {
+		flex: 1 1 auto;
+	}
+
+	.imageCol,
+	.timeCol {
+		flex-shrink: 0;
+	}
+
+	.timeCol {
+		width: 100px;
+	}
+
+	.lighten {
+		font-size: 11pt;
+	}
+
+	.runGame {
+		font-weight: 700;
+		color: #C9283E;
 	}
 }

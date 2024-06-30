@@ -10,23 +10,20 @@ class GDQEvents extends React.Component {
             const runDate = new Date(run.Date);
             const endDate = new Date(run.EndDate);
             const isLive = DateUtils_1.DateUtils.isLive(runDate, endDate);
-            return (React.createElement("tr", { className: (isLive ? "live underline" : "underline") },
-                React.createElement("td", null,
+            return (React.createElement("div", { className: "row " + (isLive ? "live" : "") },
+                React.createElement("div", { className: "imageCol" },
                     React.createElement("img", { src: run.GameImage, className: "game-image" })),
-                React.createElement("td", { className: "rightAlign runDate" },
+                React.createElement("div", { className: "rightAlign timeCol" },
                     React.createElement("div", null, DateUtils_1.DateUtils.getTimeString(runDate)),
-                    React.createElement("div", { className: "lighten" }, run.TimeEstimate)),
-                React.createElement("td", { className: "runGame" },
-                    React.createElement("div", null, run.Game),
-                    React.createElement("div", { className: "lighten" }, run.Category)),
-                React.createElement("td", { className: "runner" },
-                    React.createElement("div", null, run.Runner),
+                    React.createElement("div", { className: "lighten" }, run.TimeEstimate),
+                    React.createElement("div", { className: "lighten" }, run.Runner)),
+                React.createElement("div", { className: "runGame-cell mainCol" },
+                    React.createElement("div", { className: "runGame" }, run.Game),
+                    React.createElement("div", { className: "lighten" }, run.Category),
                     React.createElement("div", { className: "lighten" }, run.Commentator))));
         });
         tableRows = tableRows.slice(0, 15);
-        return (React.createElement("div", { className: "gdq col" },
-            React.createElement("table", null,
-                React.createElement("tbody", null, tableRows))));
+        return (React.createElement("div", { className: "gdq col" }, tableRows));
     }
 }
 exports.GDQEvents = GDQEvents;

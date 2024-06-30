@@ -18,7 +18,6 @@ const TwitchStreams_1 = require("./TwitchStreams");
 const OverwatchEvents_1 = require("./OverwatchEvents");
 const GDQEvents_1 = require("./GDQEvents");
 const DateUtils_1 = require("./DateUtils");
-const Headlines_1 = require("./Headlines");
 const SteamFriendList_1 = require("./SteamFriendList");
 let sessionId = null;
 class StatusBoard extends React.Component {
@@ -92,8 +91,7 @@ class StatusBoard extends React.Component {
                     React.createElement(OverwatchEvents_1.OverwatchEvents, { matches: Overwatch, columns: owColumns, adjustColumns: cols => cols !== this.state.owColumns && this.setState({ owColumns: cols }) }),
                     centerPanel,
                     React.createElement(SteamFriendList_1.SteamFriendList, { friends: SteamFriends }),
-                    React.createElement(TwitchStreams_1.TwitchStreams, { streams: this.state.data.TwitchStreams, columns: twitchColumns }))),
-            React.createElement(Headlines_1.Headlines, { headlines: this.state.data.Headlines })));
+                    React.createElement(TwitchStreams_1.TwitchStreams, { streams: this.state.data.TwitchStreams, columns: twitchColumns })))));
     }
 }
 exports.StatusBoard = StatusBoard;

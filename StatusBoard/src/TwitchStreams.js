@@ -8,7 +8,7 @@ const Utils_1 = require("./Utils");
 const GroupedList_1 = require("./GroupedList");
 ;
 const MIN_TILE_WIDTH = 280;
-const MIN_TILE_HEIGHT_L = 80;
+const MIN_TILE_HEIGHT_L = 84;
 const MIN_TILE_HEIGHT_S = 48;
 const createGroup = (item) => {
     return { name: item.Game, items: [], key: item.Game };

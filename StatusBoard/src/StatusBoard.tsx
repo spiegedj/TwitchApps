@@ -7,7 +7,6 @@ import { TwitchStreams } from "./TwitchStreams";
 import { OverwatchEvents } from "./OverwatchEvents";
 import { GDQEvents } from "./GDQEvents";
 import { DateUtils } from "./DateUtils";
-import { Headlines } from "./Headlines";
 import { SteamFriendList } from "./SteamFriendList";
 
 let sessionId: number | null = null;
@@ -124,7 +123,6 @@ export class StatusBoard extends React.Component
 						<TwitchStreams streams={this.state.data.TwitchStreams} columns={twitchColumns}></TwitchStreams>
 					</div>
 				</div>
-				<Headlines headlines={this.state.data.Headlines} />
 			</React.Fragment>
 		);
 	}
