@@ -17,6 +17,9 @@ class DateUtils {
             date.getMonth() === other.getMonth() &&
             date.getFullYear() === other.getFullYear();
     }
+    static isTodayOrTomorrow(date) {
+        return this.isToday(date) || this.isTomorrow(date);
+    }
     static isToday(date) {
         return this.onSameDay(date, new Date());
     }

@@ -9,9 +9,9 @@ const OverwatchEvents = (props) => {
     const panels = [];
     let { matches, adjustColumns, columns } = props;
     matches = (matches || [])
-        .filter(match => match.TournamentName.includes("OWCS"))
+        //.filter(match => match.TournamentName.includes("OWCS"))
         .filter(match => DateUtils_1.DateUtils.isTodayOrInFuture(new Date(match.Date)))
-        .slice(0, 13);
+        .slice(0, 20);
     const matchDays = splitByDay(matches);
     const nextDay = matchDays.shift();
     if (nextDay) {

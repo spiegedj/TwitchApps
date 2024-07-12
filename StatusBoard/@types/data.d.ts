@@ -3,7 +3,7 @@ declare namespace Response
 	interface Data
 	{
 		Starcraft: StarCraftTournaments;
-		Overwatch: MatchDetails[];
+		Liquipedia: ITournament[];
 		GDQ: EventRun[];
 		Weather: Weather;
 		StarcraftGroups: Group[];
@@ -60,8 +60,21 @@ declare namespace Response
 		Race: string;
 	}
 
-	// OWL
-	interface MatchDetails 
+	// Liquidpedia
+	interface ITournament
+	{
+		name: string;
+		game: EsportGame;
+		dates: string;
+		tier: number;
+		sortKey: string;
+		matches: IMatchDetails[];
+	}
+
+	type EsportGame = "starcraft2" | "overwatch";
+	type Race = "Zerg" | "Protoss" | "Terran";
+
+	interface IMatchDetails 
 	{
 		TournamentName: string;
 		Competitor1: CompetitorDetails;
@@ -80,6 +93,7 @@ declare namespace Response
 		ImageURL?: string;
 		PrimaryColor?: string;
 		SecondaryColor?: string;
+		Race?: Race;
 	}
 
 	// GDQ

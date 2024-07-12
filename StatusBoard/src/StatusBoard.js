@@ -15,7 +15,7 @@ const React = require("react");
 const Weather_1 = require("./Weather");
 const StarCraftMatches_1 = require("./StarCraftMatches");
 const TwitchStreams_1 = require("./TwitchStreams");
-const OverwatchEvents_1 = require("./OverwatchEvents");
+const Liquipedia_1 = require("./Liquipedia");
 const GDQEvents_1 = require("./GDQEvents");
 const DateUtils_1 = require("./DateUtils");
 const SteamFriendList_1 = require("./SteamFriendList");
@@ -28,7 +28,7 @@ class StatusBoard extends React.Component {
         this.state = {
             data: {
                 Starcraft: { WCS: [], GSL: [] },
-                Overwatch: [],
+                Liquipedia: [],
                 GDQ: [],
                 Weather: { Condition: {}, Forecast: [], Hourly: [] },
                 StarcraftGroups: [],
@@ -60,7 +60,7 @@ class StatusBoard extends React.Component {
     }
     render() {
         const maxColumns = 5;
-        let { GDQ, StarcraftGroups, Weather, Overwatch, SteamFriends } = this.state.data;
+        let { GDQ, StarcraftGroups, Weather, Liquipedia, SteamFriends } = this.state.data;
         let { owColumns, scColumns, gdqColumns } = this.state;
         let twitchColumns = maxColumns - (owColumns + scColumns + gdqColumns + 1);
         if (twitchColumns < 2 && scColumns > 1) {
@@ -88,7 +88,7 @@ class StatusBoard extends React.Component {
                 React.createElement("div", { className: "columns" },
                     React.createElement(Weather_1.NowConditionsColumn, { Weather: Weather }),
                     React.createElement(Weather_1.HourlyForecastColumn, { Weather: Weather }),
-                    React.createElement(OverwatchEvents_1.OverwatchEvents, { matches: Overwatch, columns: owColumns, adjustColumns: cols => cols !== this.state.owColumns && this.setState({ owColumns: cols }) }),
+                    React.createElement(Liquipedia_1.EsportTournaments, { tournaments: Liquipedia, columns: owColumns, adjustColumns: cols => cols !== this.state.owColumns && this.setState({ owColumns: cols }) }),
                     centerPanel,
                     React.createElement(SteamFriendList_1.SteamFriendList, { friends: SteamFriends }),
                     React.createElement(TwitchStreams_1.TwitchStreams, { streams: this.state.data.TwitchStreams, columns: twitchColumns })))));

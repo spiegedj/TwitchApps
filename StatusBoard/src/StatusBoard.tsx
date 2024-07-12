@@ -4,7 +4,7 @@ import * as React from "react";
 import { NowConditionsColumn, HourlyForecastColumn, WeatherPanel } from "./Weather";
 import { StarCraftMatches } from "./StarCraftMatches";
 import { TwitchStreams } from "./TwitchStreams";
-import { OverwatchEvents } from "./OverwatchEvents";
+import { EsportTournaments } from "./Liquipedia";
 import { GDQEvents } from "./GDQEvents";
 import { DateUtils } from "./DateUtils";
 import { SteamFriendList } from "./SteamFriendList";
@@ -30,7 +30,7 @@ export class StatusBoard extends React.Component
 		this.state = {
 			data: {
 				Starcraft: { WCS: [], GSL: [] },
-				Overwatch: [],
+				Liquipedia: [],
 				GDQ: [],
 				Weather: { Condition: {} as any, Forecast: [], Hourly: [] },
 				StarcraftGroups: [],
@@ -70,7 +70,7 @@ export class StatusBoard extends React.Component
 	public render(): React.ReactNode 
 	{
 		const maxColumns = 5;
-		let { GDQ, StarcraftGroups, Weather, Overwatch, SteamFriends } = this.state.data;
+		let { GDQ, StarcraftGroups, Weather, Liquipedia, SteamFriends } = this.state.data;
 		let { owColumns, scColumns, gdqColumns } = this.state;
 
 		let twitchColumns = maxColumns - (owColumns + scColumns + gdqColumns + 1);
@@ -113,8 +113,8 @@ export class StatusBoard extends React.Component
 					<div className="columns">
 						<NowConditionsColumn Weather={Weather} />
 						<HourlyForecastColumn Weather={Weather} />
-						<OverwatchEvents
-							matches={Overwatch}
+						<EsportTournaments
+							tournaments={Liquipedia}
 							columns={owColumns}
 							adjustColumns={cols => cols !== this.state.owColumns && this.setState({ owColumns: cols })}
 						/>

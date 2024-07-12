@@ -20,6 +20,11 @@ export class DateUtils
 			date.getFullYear() === other.getFullYear();
 	}
 
+	public static isTodayOrTomorrow(date: Date): boolean
+	{
+		return this.isToday(date) || this.isTomorrow(date);
+	}
+
 	public static isToday(date: Date): boolean
 	{
 		return this.onSameDay(date, new Date());
