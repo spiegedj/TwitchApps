@@ -6,6 +6,10 @@ class DateUtils {
         return this.isToday(date)
             || (date.valueOf() > (new Date()).valueOf());
     }
+    static isTodayOrInPast(date) {
+        return this.isToday(date)
+            || (date.valueOf() <= (new Date()).valueOf());
+    }
     static getDaysFrom(date) {
         if (!date)
             return 0;
@@ -71,16 +75,13 @@ class DateUtils {
         return `${hour}:${minutesString} ${amPm}`;
     }
     static getCountdownString(date) {
-        if (!date) {
-            return "Live now";
+        const daysFrom = this.getDaysFrom(date);
+        if (daysFrom < 6) {
+            return `Starting ${this.getDayString(date)}`;
         }
-        var daysFrom = this.getDaysFrom(date);
-        var days = Math.floor(daysFrom);
-        var hoursFrom = (daysFrom - days) * 24;
-        var hours = Math.floor(hoursFrom);
-        var minutesFrom = (hoursFrom - hours) * 60;
-        var minutes = Math.floor(minutesFrom);
-        return days + "d " + hours + "h " + minutes + "m";
+        else {
+            return `In ${Math.ceil(daysFrom)} days`;
+        }
     }
     static getAgoString(date) {
         const daysAgo = -this.getDaysFrom(date);

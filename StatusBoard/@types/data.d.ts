@@ -67,6 +67,7 @@ declare namespace Response
 		game: EsportGame;
 		dates: string;
 		tier: number;
+		tierName: string;
 		sortKey: string;
 		matches: IMatchDetails[];
 	}
