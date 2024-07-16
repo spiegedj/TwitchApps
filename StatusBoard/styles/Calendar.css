@@ -275,7 +275,10 @@
   margin-left: -35px;
 }
 .ow .tile.active {
-  background-color: #0677BD;
+  border: 2px solid #FF004D;
+  animation: glow 2s linear infinite alternate;
+  box-shadow: #FF004D 0px 3px 8px;
+  border-radius: 8px;
 }
 .ow .tile {
   display: flex;

@@ -46,16 +46,16 @@ const MatchList = ({ tournament }) => {
         return React.createElement("div", null,
             React.createElement("div", { className: "day-header" }, DateUtils_1.DateUtils.getDayString(day.date)),
             day.matches.map((m) => {
-                return React.createElement(SmallPanel, { match: m, isActive: false });
+                return React.createElement(SmallPanel, { match: m });
             }));
     }));
 };
-const SmallPanel = ({ match, isActive }) => {
+const SmallPanel = ({ match }) => {
     const status = (match.score) ? match.score : DateUtils_1.DateUtils.getTimeString(new Date(match.date));
     const comp1ClassNames = ["comp", "comp-1"];
     const comp2ClassNames = ["comp", "comp-2"];
     const containerClassNames = ["tile"];
-    if (isActive) {
+    if (match.isLive) {
         containerClassNames.push("active");
     }
     return React.createElement("div", { className: containerClassNames.join(" ") },

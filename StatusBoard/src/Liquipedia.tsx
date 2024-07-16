@@ -80,13 +80,13 @@ const MatchList: FunctionComponent<{ tournament: ITournament; }> = ({ tournament
 			<div className="day-header">{DateUtils.getDayString(day.date)}</div>
 			{day.matches.map((m) =>
 			{
-				return <SmallPanel match={m} isActive={false} />;
+				return <SmallPanel match={m} />;
 			})}
 		</div>;
 	})}</>;
 };
 
-const SmallPanel: FunctionComponent<{ match: IMatchDetails, isActive?: boolean; }> = ({ match, isActive }) =>
+const SmallPanel: FunctionComponent<{ match: IMatchDetails; }> = ({ match }) =>
 {
 	const status = (match.score) ? match.score : DateUtils.getTimeString(new Date(match.date));
 
@@ -94,7 +94,7 @@ const SmallPanel: FunctionComponent<{ match: IMatchDetails, isActive?: boolean; 
 	const comp2ClassNames = ["comp", "comp-2"];
 
 	const containerClassNames = ["tile"];
-	if (isActive)
+	if (match.isLive)
 	{
 		containerClassNames.push("active");
 	}
