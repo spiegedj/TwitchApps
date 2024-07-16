@@ -7,7 +7,7 @@ const react_1 = require("react");
 const DateUtils_1 = require("./DateUtils");
 ;
 const EsportTournaments = (props) => {
-    let { tournaments, adjustColumns, columns } = props;
+    let { tournaments } = props;
     const containerRef = (0, react_1.useRef)();
     const [numberToRender, setNumberToRender] = (0, react_1.useState)(5);
     const foundLimit = (0, react_1.useRef)(false);
@@ -16,11 +16,7 @@ const EsportTournaments = (props) => {
         setNumberToRender(5);
     }, [tournaments]);
     const tournamentsToRender = prioritizeTournaments((tournaments || []), numberToRender);
-    //.filter(match => match.TournamentName.includes("OWCS"))
-    //.filter(match => DateUtils.isTodayOrInFuture(new Date(match.Date)))
-    //.filter(match => match.tier < 2 || match.matches.length > 0)
-    //.slice(0, numberToRender);
-    (0, react_1.useEffect)(() => {
+    (0, react_1.useLayoutEffect)(() => {
         if (containerRef.current && !foundLimit.current) {
             if (!isOverflown(containerRef.current) && tournaments.length > numberToRender) {
                 setNumberToRender(numberToRender + 1);
@@ -49,13 +45,13 @@ const MatchList = ({ tournament }) => {
     return React.createElement(React.Fragment, null, matchDays.map(day => {
         return React.createElement("div", null,
             React.createElement("div", { className: "day-header" }, DateUtils_1.DateUtils.getDayString(day.date)),
-            day.matches.filter(m => !m.IsConcluded).map((m) => {
+            day.matches.map((m) => {
                 return React.createElement(SmallPanel, { match: m, isActive: false });
             }));
     }));
 };
 const SmallPanel = ({ match, isActive }) => {
-    const status = (match.Score) ? match.Score : DateUtils_1.DateUtils.getTimeString(new Date(match.Date));
+    const status = (match.score) ? match.score : DateUtils_1.DateUtils.getTimeString(new Date(match.date));
     const comp1ClassNames = ["comp", "comp-1"];
     const comp2ClassNames = ["comp", "comp-2"];
     const containerClassNames = ["tile"];
@@ -64,11 +60,11 @@ const SmallPanel = ({ match, isActive }) => {
     }
     return React.createElement("div", { className: containerClassNames.join(" ") },
         React.createElement("div", { className: comp1ClassNames.join(" ") },
-            React.createElement("div", { className: "comp-name" }, match.Competitor1.Name),
-            React.createElement("img", { src: getImage(match.Competitor1), className: "image" })),
+            React.createElement("div", { className: "comp-name" }, match.competitor1.name),
+            React.createElement("img", { src: getImage(match.competitor1), className: "image" })),
         React.createElement("div", { className: comp2ClassNames.join(" ") },
-            React.createElement("img", { src: getImage(match.Competitor2), className: "image" }),
-            React.createElement("div", { className: "comp-name" }, match.Competitor2.Name)),
+            React.createElement("img", { src: getImage(match.competitor2), className: "image" }),
+            React.createElement("div", { className: "comp-name" }, match.competitor2.name)),
         React.createElement("span", { className: "status" }, status));
 };
 const GameIcon = ({ tournament }) => {
@@ -81,15 +77,11 @@ const TierBadge = ({ tournament }) => {
     return React.createElement("div", { className: `tier-badge tier${tournament.tier}` }, tournament.tierName);
 };
 const Countdown = ({ tournament }) => {
-    if (!tournament.dates) {
+    if (!tournament.dates || !tournament.startDate) {
         return null;
     }
-    const firstDay = new Date(tournament.dates.split("-")[0]);
-    if (!firstDay.valueOf()) {
-        return null;
-    }
-    firstDay.setFullYear(new Date().getFullYear());
-    if (DateUtils_1.DateUtils.isTodayOrInPast(firstDay)) {
+    const firstDay = new Date(tournament.startDate);
+    if (!tournament.isUpcoming) {
         return React.createElement("span", null,
             "Ongoing (",
             tournament.dates,
@@ -102,58 +94,63 @@ const Countdown = ({ tournament }) => {
         ")");
 };
 function prioritizeTournaments(tournaments, renderCount) {
-    const sortedTournaments = tournaments
-        .slice()
-        .sort(sortTournaments)
-        .map(t => { return Object.assign({}, t); });
-    let sortedMatches = sortedTournaments.reduce((matches, tournament) => {
+    if (tournaments.length === 0) {
+        return tournaments;
+    }
+    tournaments = tournaments.map(t => { return Object.assign({}, t); });
+    let matches = tournaments.reduce((matches, tournament) => {
         return matches.concat(tournament.matches.map(match => {
-            return Object.assign({ tournament: tournament }, match);
+            return Object.assign(Object.assign({ tournament: tournament }, match), { tier: tournament.tier });
         }));
-    }, []);
-    sortedMatches = sortedMatches
-        .filter(m => !m.IsConcluded)
-        .sort((a, b) => { var _a, _b; return ((_a = a.tournament.tier) !== null && _a !== void 0 ? _a : 6) - ((_b = b.tournament.tier) !== null && _b !== void 0 ? _b : 6); });
-    sortedTournaments.forEach(t => t.matches = []);
-    let addedCount = 0;
-    let prioritizedTournaments = [];
-    while (addedCount < renderCount && (sortedTournaments.length > 0 || sortedMatches.length > 0)) {
-        const nextTournament = sortedTournaments[0];
-        let nextMatch = sortedMatches[0];
-        addedCount++;
-        if (nextTournament && (!nextMatch || nextTournament.tier <= nextMatch.tournament.tier)) {
-            prioritizedTournaments.push(sortedTournaments.shift());
+    }, []).filter(m => !m.isConcluded);
+    tournaments.forEach(t => t.matches = []);
+    let prioritizedElements = [...tournaments, ...matches]
+        .sort(sortElements);
+    prioritizedElements = prioritizedElements.slice(0, renderCount);
+    prioritizedElements.forEach(match => {
+        if (isMatch(match)) {
+            match.tournament.matches.push(match);
         }
-        else if (nextMatch) {
-            nextMatch = sortedMatches.shift();
-            nextMatch.tournament.matches.push(nextMatch);
-        }
-    }
-    return prioritizedTournaments;
+    });
+    return prioritizedElements.filter(el => !isMatch(el));
 }
-function sortTournaments(a, b) {
-    var _a, _b, _c, _d;
-    if (a.tier === b.tier) {
-        return ((_a = getStartDate(a)) === null || _a === void 0 ? void 0 : _a.valueOf()) - ((_b = getStartDate(b)) === null || _b === void 0 ? void 0 : _b.valueOf());
+function sortElements(a, b) {
+    if (a.tier !== b.tier) {
+        return a.tier - b.tier;
     }
-    return ((_c = a.tier) !== null && _c !== void 0 ? _c : 6) - ((_d = b.tier) !== null && _d !== void 0 ? _d : 6);
+    const aStartDate = getStartDate(a);
+    const bStartDate = getStartDate(b);
+    if (aStartDate !== bStartDate) {
+        return aStartDate - bStartDate;
+    }
+    if (isTournament(a) && !isTournament(b)) {
+        return -1;
+    }
+    if (!isTournament(a) && isTournament(b)) {
+        return 1;
+    }
+    return 0;
 }
 function getStartDate(tournament) {
-    if (!tournament.dates) {
-        return null;
+    if (isMatch(tournament)) {
+        return tournament.date;
     }
-    const startDate = new Date(tournament.dates.split("-")[0]);
-    if (!startDate.valueOf()) {
-        return null;
+    if (tournament.nextMatchDate !== undefined) {
+        return tournament.nextMatchDate;
     }
-    startDate.setFullYear(new Date().getFullYear());
-    return startDate;
+    return 100000000000 + tournament.startDate;
+}
+function isMatch(a) {
+    return a.hasOwnProperty("tournament");
+}
+function isTournament(a) {
+    return a.hasOwnProperty("matches");
 }
 function getImage(comp) {
-    if (comp.Race) {
-        return `./Images/${comp.Race}.png`;
+    if (comp.race) {
+        return `./Images/${comp.race}.png`;
     }
-    return window.location.href + comp.ImageURL;
+    return window.location.href + comp.imageUrl;
 }
 function splitByDay(matches) {
     const days = [];
@@ -161,12 +158,12 @@ function splitByDay(matches) {
     while (matches.length > 0) {
         const match = matches.shift();
         const matchDay = {
-            date: new Date(match.Date),
+            date: new Date(match.date),
             matches: [match]
         };
         for (var i = 0; i < matches.length; i++) {
             const iMatch = matches[i];
-            if (DateUtils_1.DateUtils.onSameDay(matchDay.date, new Date(iMatch.Date))) {
+            if (DateUtils_1.DateUtils.onSameDay(matchDay.date, new Date(iMatch.date))) {
                 matches.splice(i, 1);
                 matchDay.matches.push(iMatch);
                 i--;

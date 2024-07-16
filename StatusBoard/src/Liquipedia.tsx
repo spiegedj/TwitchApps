@@ -1,12 +1,13 @@
 /// <reference path="../@types/data.d.ts"/>
 
 import * as React from "react";
-import { FunctionComponent, useEffect, useRef, useMemo, useState } from "react";
+import { FunctionComponent, useLayoutEffect, useRef, useMemo, useState } from "react";
 import { DateUtils } from "./DateUtils";
+import { ICompetitorDetails, IMatchDetails, ITournament } from "./IResponseInterfaces";
 
 interface owProps
 {
-	tournaments: Response.ITournament[];
+	tournaments: ITournament[];
 	adjustColumns: (cols: number) => void;
 	columns: number;
 };
@@ -14,12 +15,12 @@ interface owProps
 interface MatchDay
 {
 	date: Date,
-	matches: Response.IMatchDetails[];
+	matches: IMatchDetails[];
 }
 
 export const EsportTournaments: FunctionComponent<owProps> = (props) =>
 {
-	let { tournaments, adjustColumns, columns } = props;
+	let { tournaments } = props;
 
 	const containerRef = useRef<HTMLDivElement>();
 
@@ -32,12 +33,8 @@ export const EsportTournaments: FunctionComponent<owProps> = (props) =>
 	}, [tournaments]);
 
 	const tournamentsToRender = prioritizeTournaments((tournaments || []), numberToRender);
-	//.filter(match => match.TournamentName.includes("OWCS"))
-	//.filter(match => DateUtils.isTodayOrInFuture(new Date(match.Date)))
-	//.filter(match => match.tier < 2 || match.matches.length > 0)
-	//.slice(0, numberToRender);
 
-	useEffect(() =>
+	useLayoutEffect(() =>
 	{
 		if (containerRef.current && !foundLimit.current)
 		{
@@ -73,7 +70,7 @@ export const EsportTournaments: FunctionComponent<owProps> = (props) =>
 	</div>;
 };
 
-const MatchList: FunctionComponent<{ tournament: Response.ITournament; }> = ({ tournament }) =>
+const MatchList: FunctionComponent<{ tournament: ITournament; }> = ({ tournament }) =>
 {
 	const matchDays = splitByDay(tournament.matches);
 
@@ -81,7 +78,7 @@ const MatchList: FunctionComponent<{ tournament: Response.ITournament; }> = ({ t
 	{
 		return <div>
 			<div className="day-header">{DateUtils.getDayString(day.date)}</div>
-			{day.matches.filter(m => !m.IsConcluded).map((m) =>
+			{day.matches.map((m) =>
 			{
 				return <SmallPanel match={m} isActive={false} />;
 			})}
@@ -89,9 +86,9 @@ const MatchList: FunctionComponent<{ tournament: Response.ITournament; }> = ({ t
 	})}</>;
 };
 
-const SmallPanel: FunctionComponent<{ match: Response.IMatchDetails, isActive?: boolean; }> = ({ match, isActive }) =>
+const SmallPanel: FunctionComponent<{ match: IMatchDetails, isActive?: boolean; }> = ({ match, isActive }) =>
 {
-	const status = (match.Score) ? match.Score : DateUtils.getTimeString(new Date(match.Date));
+	const status = (match.score) ? match.score : DateUtils.getTimeString(new Date(match.date));
 
 	const comp1ClassNames = ["comp", "comp-1"];
 	const comp2ClassNames = ["comp", "comp-2"];
@@ -104,18 +101,18 @@ const SmallPanel: FunctionComponent<{ match: Response.IMatchDetails, isActive?: 
 
 	return <div className={containerClassNames.join(" ")}>
 		<div className={comp1ClassNames.join(" ")}>
-			<div className="comp-name">{match.Competitor1.Name}</div>
-			<img src={getImage(match.Competitor1)} className="image" />
+			<div className="comp-name">{match.competitor1.name}</div>
+			<img src={getImage(match.competitor1)} className="image" />
 		</div>
 		<div className={comp2ClassNames.join(" ")}>
-			<img src={getImage(match.Competitor2)} className="image" />
-			<div className="comp-name">{match.Competitor2.Name}</div>
+			<img src={getImage(match.competitor2)} className="image" />
+			<div className="comp-name">{match.competitor2.name}</div>
 		</div>
 		<span className="status">{status}</span>
 	</div>;
 };
 
-const GameIcon: FunctionComponent<{ tournament: Response.ITournament; }> = ({ tournament }) =>
+const GameIcon: FunctionComponent<{ tournament: ITournament; }> = ({ tournament }) =>
 {
 	if (tournament.game === "overwatch")
 	{
@@ -124,26 +121,20 @@ const GameIcon: FunctionComponent<{ tournament: Response.ITournament; }> = ({ to
 	return <img src="./Images/sc2.png" className="game-icon" />;
 };
 
-const TierBadge: FunctionComponent<{ tournament: Response.ITournament; }> = ({ tournament }) =>
+const TierBadge: FunctionComponent<{ tournament: ITournament; }> = ({ tournament }) =>
 {
 	return <div className={`tier-badge tier${tournament.tier}`}>{tournament.tierName}</div>;
 };
 
-const Countdown: FunctionComponent<{ tournament: Response.ITournament; }> = ({ tournament }) =>
+const Countdown: FunctionComponent<{ tournament: ITournament; }> = ({ tournament }) =>
 {
-	if (!tournament.dates)
+	if (!tournament.dates || !tournament.startDate)
 	{
 		return null;
 	}
 
-	const firstDay = new Date(tournament.dates.split("-")[0]);
-	if (!firstDay.valueOf())
-	{
-		return null;
-	}
-	firstDay.setFullYear(new Date().getFullYear());
-
-	if (DateUtils.isTodayOrInPast(firstDay))
+	const firstDay = new Date(tournament.startDate);
+	if (!tournament.isUpcoming)
 	{
 		return <span>Ongoing ({tournament.dates})</span>;
 	}
@@ -151,90 +142,106 @@ const Countdown: FunctionComponent<{ tournament: Response.ITournament; }> = ({ t
 	return <span>{DateUtils.getCountdownString(firstDay)} ({tournament.dates})</span>;
 };
 
-function prioritizeTournaments(tournaments: Response.ITournament[], renderCount: number): Response.ITournament[]
+function prioritizeTournaments(tournaments: ITournament[], renderCount: number): ITournament[]
 {
-	const sortedTournaments = tournaments
-		.slice()
-		.sort(sortTournaments)
-		.map(t => { return { ...t }; });
+	if (tournaments.length === 0) { return tournaments; }
 
-	let sortedMatches = sortedTournaments.reduce<IMatchWithTournament[]>((matches, tournament) =>
+	tournaments = tournaments.map(t => { return { ...t }; });
+
+	let matches = tournaments.reduce<IMatchWithTournament[]>((matches, tournament) =>
 	{
 		return matches.concat(tournament.matches.map(match =>
 		{
-			return { tournament: tournament, ...match };
+			return { tournament: tournament, ...match, tier: tournament.tier };
 		}));
-	}, []);
+	}, []).filter(m => !m.isConcluded);
+	tournaments.forEach(t => t.matches = []);
 
-	sortedMatches = sortedMatches
-		.filter(m => !m.IsConcluded)
-		.sort((a, b) => (a.tournament.tier ?? 6) - (b.tournament.tier ?? 6));
+	let prioritizedElements = [...tournaments, ...matches]
+		.sort(sortElements);
 
-	sortedTournaments.forEach(t => t.matches = []);
+	prioritizedElements = prioritizedElements.slice(0, renderCount);
 
-	let addedCount = 0;
-	let prioritizedTournaments: Response.ITournament[] = [];
-	while (addedCount < renderCount && (sortedTournaments.length > 0 || sortedMatches.length > 0))
+	prioritizedElements.forEach(match =>
 	{
-		const nextTournament = sortedTournaments[0];
-		let nextMatch = sortedMatches[0];
-
-		addedCount++;
-		if (nextTournament && (!nextMatch || nextTournament.tier <= nextMatch.tournament.tier))
+		if (isMatch(match))
 		{
-			prioritizedTournaments.push(sortedTournaments.shift());
+			match.tournament.matches.push(match);
 		}
-		else if (nextMatch)
-		{
-			nextMatch = sortedMatches.shift();
-			nextMatch.tournament.matches.push(nextMatch);
-		}
-	}
+	});
 
-	return prioritizedTournaments;
+	return prioritizedElements.filter(el => !isMatch(el)) as ITournament[];
 }
 
-function sortTournaments(a: Response.ITournament, b: Response.ITournament): number
+function sortElements(a: ITournament | IMatchWithTournament, b: ITournament | IMatchWithTournament): number
 {
-	if (a.tier === b.tier)
+	if (a.tier !== b.tier)
 	{
-		return getStartDate(a)?.valueOf() - getStartDate(b)?.valueOf();
+		return a.tier - b.tier;
 	}
-	return (a.tier ?? 6) - (b.tier ?? 6);
+
+	const aStartDate = getStartDate(a);
+	const bStartDate = getStartDate(b);
+	if (aStartDate !== bStartDate)
+	{
+		return aStartDate - bStartDate;
+	}
+
+	if (isTournament(a) && !isTournament(b)) 
+	{
+		return -1;
+	}
+
+	if (!isTournament(a) && isTournament(b)) 
+	{
+		return 1;
+	}
+
+	return 0;
 }
 
-function getStartDate(tournament: Response.ITournament): Date | null
+function getStartDate(tournament: ITournament | IMatchWithTournament): number
 {
-	if (!tournament.dates)
+	if (isMatch(tournament))
 	{
-		return null;
+		return tournament.date;
 	}
 
-	const startDate = new Date(tournament.dates.split("-")[0]);
-	if (!startDate.valueOf())
+	if (tournament.nextMatchDate !== undefined)
 	{
-		return null;
+		return tournament.nextMatchDate;
 	}
-	startDate.setFullYear(new Date().getFullYear());
-	return startDate;
+
+	return 100000000000 + tournament.startDate;
 }
 
-interface IMatchWithTournament extends Response.IMatchDetails
+function isMatch(a: Object): a is IMatchWithTournament
 {
-	tournament: Response.ITournament;
+	return a.hasOwnProperty("tournament");
 }
 
-function getImage(comp: Response.CompetitorDetails): string
+function isTournament(a: Object): a is ITournament
 {
-	if (comp.Race)
+	return a.hasOwnProperty("matches");
+}
+
+interface IMatchWithTournament extends IMatchDetails
+{
+	tournament: ITournament;
+	tier: number;
+}
+
+function getImage(comp: ICompetitorDetails): string
+{
+	if (comp.race)
 	{
-		return `./Images/${comp.Race}.png`;
+		return `./Images/${comp.race}.png`;
 	}
 
-	return window.location.href + comp.ImageURL;
+	return window.location.href + comp.imageUrl;
 }
 
-function splitByDay(matches: Response.IMatchDetails[]): MatchDay[]
+function splitByDay(matches: IMatchDetails[]): MatchDay[]
 {
 	const days: MatchDay[] = [];
 	matches = matches.slice();
@@ -242,14 +249,14 @@ function splitByDay(matches: Response.IMatchDetails[]): MatchDay[]
 	{
 		const match = matches.shift();
 		const matchDay: MatchDay = {
-			date: new Date(match.Date),
+			date: new Date(match.date),
 			matches: [match]
 		};
 
 		for (var i = 0; i < matches.length; i++)
 		{
 			const iMatch = matches[i];
-			if (DateUtils.onSameDay(matchDay.date, new Date(iMatch.Date)))
+			if (DateUtils.onSameDay(matchDay.date, new Date(iMatch.date)))
 			{
 				matches.splice(i, 1);
 				matchDay.matches.push(iMatch);

@@ -1,18 +1,6 @@
 declare namespace Response
 {
-	interface Data
-	{
-		Starcraft: StarCraftTournaments;
-		Liquipedia: ITournament[];
-		GDQ: EventRun[];
-		Weather: Weather;
-		StarcraftGroups: Group[];
-		TwitchStreams: TwitchStream[];
-		Headlines: Headline[];
-		SessionId: number;
-		SteamFriends: SteamFriend[];
-		ChessGame?: LichessGame;
-	}
+	type Data = import("../src/IResponseInterfaces").IData;
 
 	// Twitch
 	interface TwitchStream 
@@ -58,43 +46,6 @@ declare namespace Response
 	{
 		Name: string;
 		Race: string;
-	}
-
-	// Liquidpedia
-	interface ITournament
-	{
-		name: string;
-		game: EsportGame;
-		dates: string;
-		tier: number;
-		tierName: string;
-		sortKey: string;
-		matches: IMatchDetails[];
-	}
-
-	type EsportGame = "starcraft2" | "overwatch";
-	type Race = "Zerg" | "Protoss" | "Terran";
-
-	interface IMatchDetails 
-	{
-		TournamentName: string;
-		Competitor1: CompetitorDetails;
-		Competitor2: CompetitorDetails;
-		Date: number;
-		IsConcluded: boolean;
-		IsLive: boolean;
-		Score: string;
-		IsEncore: boolean;
-	}
-
-	interface CompetitorDetails 
-	{
-		Name: string;
-		NameAbbr?: string;
-		ImageURL?: string;
-		PrimaryColor?: string;
-		SecondaryColor?: string;
-		Race?: Race;
 	}
 
 	// GDQ
