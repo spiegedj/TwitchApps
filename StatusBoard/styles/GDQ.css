@@ -1,0 +1,58 @@
+.light .gdq table {
+  background-color: white;
+  border: 2px solid none;
+}
+
+.dark .gdq table {
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 2px solid none;
+}
+
+.gdq {
+  margin-bottom: 15px;
+  font-family: Lexend;
+}
+.gdq .row {
+  margin-bottom: 6px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  gap: 5px;
+}
+.gdq .row div {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gdq .game-image {
+  height: 70px;
+  display: block;
+}
+.gdq .short .game-image {
+  height: 50px;
+}
+.gdq .mainCol {
+  flex: 1 1 auto;
+}
+.gdq .imageCol,
+.gdq .timeCol {
+  flex-shrink: 0;
+}
+.gdq .timeCol {
+  width: 90px;
+}
+.gdq .lighten {
+  font-size: 11pt;
+}
+.gdq .runGame {
+  font-weight: 700;
+}
+.gdq .live {
+  border: 2px solid #FF004D;
+  animation: glow 1s linear infinite alternate;
+  box-shadow: #FF004D 0px 3px 8px;
+}
+
+/*# sourceMappingURL=GDQ.css.map */

@@ -250,6 +250,13 @@ svg {
   --color-drop: #6adef8;
   --color-snowflake: #d3d3d3;
   --color-thunderstorm-mask: #2b2b2b;
+  --cloud: #a1b6c3;
+  --wind: #a1b6c3;
+  --snow: #a1b6c3;
+  --moon: #a1b6c3;
+  --rain: #3f95b2;
+  --sun-lightning: #ffb900;
+  --severe: #ba0d00;
 }
 
 /*# sourceMappingURL=Weather.css.map */

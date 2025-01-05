@@ -7,7 +7,7 @@ const react_1 = require("react");
 const DateUtils_1 = require("./DateUtils");
 ;
 const EsportTournaments = (props) => {
-    let { tournaments } = props;
+    const { tournaments } = props;
     const containerRef = (0, react_1.useRef)();
     const [numberToRender, setNumberToRender] = (0, react_1.useState)(5);
     const foundLimit = (0, react_1.useRef)(false);
@@ -17,8 +17,9 @@ const EsportTournaments = (props) => {
     }, [tournaments]);
     const tournamentsToRender = prioritizeTournaments((tournaments || []), numberToRender);
     (0, react_1.useLayoutEffect)(() => {
+        var _a;
         if (containerRef.current && !foundLimit.current) {
-            if (!isOverflown(containerRef.current) && tournaments.length > numberToRender) {
+            if (!isOverflown(containerRef.current) && ((_a = tournaments === null || tournaments === void 0 ? void 0 : tournaments.length) !== null && _a !== void 0 ? _a : 0) > numberToRender) {
                 setNumberToRender(numberToRender + 1);
             }
             else {

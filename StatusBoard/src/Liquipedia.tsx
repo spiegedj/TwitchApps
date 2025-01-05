@@ -20,7 +20,7 @@ interface MatchDay
 
 export const EsportTournaments: FunctionComponent<owProps> = (props) =>
 {
-	let { tournaments } = props;
+	const { tournaments } = props;
 
 	const containerRef = useRef<HTMLDivElement>();
 
@@ -38,7 +38,7 @@ export const EsportTournaments: FunctionComponent<owProps> = (props) =>
 	{
 		if (containerRef.current && !foundLimit.current)
 		{
-			if (!isOverflown(containerRef.current) && tournaments.length > numberToRender)
+			if (!isOverflown(containerRef.current) && (tournaments?.length ?? 0) > numberToRender)
 			{
 				setNumberToRender(numberToRender + 1);
 			}
