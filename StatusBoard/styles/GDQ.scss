@@ -29,8 +29,8 @@
 
 		div {
 			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
+			//overflow: hidden;
+			//text-overflow: ellipsis;
 		}
 	}
 
@@ -45,6 +45,7 @@
 
 	.mainCol {
 		flex: 1 1 auto;
+		overflow: hidden;
 	}
 
 	.imageCol,
@@ -69,4 +70,20 @@
 		animation: glow 1.0s linear infinite alternate;
 		box-shadow: #FF004D 0px 3px 8px;
 	}
+}
+
+@keyframes sweep {
+
+	0% {
+		transform: translate(0%, 0);
+	}
+
+	100% {
+		transform: translate(-100%, 0);
+	}
+}
+
+.scrolling-text {
+	overflow: hidden;
+	width: 100%;
 }

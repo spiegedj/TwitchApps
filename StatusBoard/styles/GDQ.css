@@ -23,8 +23,6 @@
 }
 .gdq .row div {
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .gdq .game-image {
   height: 70px;
@@ -35,6 +33,7 @@
 }
 .gdq .mainCol {
   flex: 1 1 auto;
+  overflow: hidden;
 }
 .gdq .imageCol,
 .gdq .timeCol {
@@ -53,6 +52,19 @@
   border: 2px solid #FF004D;
   animation: glow 1s linear infinite alternate;
   box-shadow: #FF004D 0px 3px 8px;
+}
+
+@keyframes sweep {
+  0% {
+    transform: translate(0%, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
+.scrolling-text {
+  overflow: hidden;
+  width: 100%;
 }
 
 /*# sourceMappingURL=GDQ.css.map */

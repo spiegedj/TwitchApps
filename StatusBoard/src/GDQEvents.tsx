@@ -1,51 +1,125 @@
 /// <reference path="../@types/data.d.ts"/>
 
 import * as React from "react";
+import { FunctionComponent, useEffect, useRef, useCallback, useState } from "react";
 import { DateUtils } from "./DateUtils";
 
 type gdqProps = Partial<{
 	runs: Response.EventRun[];
 }>;
 
-export class GDQEvents extends React.Component<gdqProps>
+export const GDQEvents: FunctionComponent<gdqProps> = (props) =>
 {
-	public render(): React.ReactNode 
+
+	let tableRows = props.runs.map((run: Response.EventRun, index: number) =>
 	{
-		let tableRows = this.props.runs.map((run: Response.EventRun, index: number) =>
-		{
-			const runDate = new Date(run.Date);
-			const isLive = run.IsLive;
-			const isShort = index > 3;
+		const runDate = new Date(run.Date);
+		const isLive = run.IsLive;
+		const isShort = index > 3;
 
-			const rowClasses = ["row"];
-			isLive && rowClasses.push("live");
-			isShort && rowClasses.push("short");
-
-			return (
-				<div className={rowClasses.join(" ")}>
-					<div className="imageCol">
-						<img src={run.GameImage} className="game-image" />
-					</div>
-					<div className="rightAlign timeCol">
-						<div>{DateUtils.getTimeString(runDate)}</div>
-						<div className="lighten">{run.TimeEstimate}</div>
-						{!isShort && <div className="lighten">{run.Runner}</div>}
-					</div>
-					<div className="runGame-cell mainCol">
-						<div className="runGame">{run.Game}</div>
-						<div className="lighten">{run.Category}</div>
-						{!isShort && <div className="lighten">{run.Commentator}</div>}
-					</div>
-				</div>
-			);
-		});
-
-		tableRows = tableRows.slice(0, 15);
+		const rowClasses = ["row"];
+		isLive && rowClasses.push("live");
+		isShort && rowClasses.push("short");
 
 		return (
-			<div className="gdq col">
-				{tableRows}
+			<div className={rowClasses.join(" ")}>
+				<div className="imageCol">
+					<img src={run.GameImage} className="game-image" />
+				</div>
+				<div className="rightAlign timeCol">
+					<div>{DateUtils.getTimeString(runDate)}</div>
+					<div className="lighten">{run.TimeEstimate}</div>
+					{!isShort && <div className="lighten">{run.Runner}</div>}
+				</div>
+				<div className="runGame-cell mainCol">
+					<ScrollingText text={run.Game} />
+					<div className="lighten">{run.Category}</div>
+					{!isShort && <div className="lighten">{run.Commentator}</div>}
+				</div>
 			</div>
 		);
-	}
-}
+	});
+
+	tableRows = tableRows.slice(0, 15);
+
+	return (
+		<div className="gdq col">
+			{tableRows}
+		</div>
+	);
+};
+
+const DELAY_AFTER_SCROLL = 2 * 1000;
+const DELAY_BEFORE_SCROLL = 10 * 1000;
+const SPEED = 30;
+
+export const ScrollingText: FunctionComponent<{ text: string; }> = (props) =>
+{
+	const { text } = props;
+	const textContainer = useRef<HTMLDivElement>();
+	const timerHandle = useRef<number | undefined>();
+	const currentX = useRef(0);
+
+	const animate = useCallback((previousTimestamp: number) =>
+	{
+		const el = textContainer.current;
+		if (!el) { return; }
+
+		const timestamp = Date.now();
+		const delta = (timestamp - previousTimestamp) / SPEED;
+		let x = (currentX.current - delta);
+		if (-x > (el.scrollWidth - el.clientWidth + 10))
+		{
+			currentX.current = 0;
+			timerHandle.current = setTimeout(startAnimation, DELAY_AFTER_SCROLL);
+			return;
+		}
+
+		setPosition(x);
+
+		currentX.current = x;
+		timerHandle.current = requestAnimationFrame(() => animate(timestamp));
+	}, []);
+
+	const startAnimation = useCallback(() =>
+	{
+		stopAnimation();
+		timerHandle.current = setTimeout(() =>
+		{
+			timerHandle.current = requestAnimationFrame(() => animate(Date.now()));
+		}, DELAY_BEFORE_SCROLL);
+	}, []);
+
+	const stopAnimation = useCallback(() =>
+	{
+		setPosition(0);
+		cancelAnimationFrame(timerHandle.current);
+		clearTimeout(timerHandle.current);
+		timerHandle.current = undefined;
+	}, []);
+
+	const setPosition = useCallback((x: number) =>
+	{
+		if (textContainer.current)
+		{
+			textContainer.current.style.transform = `translateX(${x}px)`;
+		}
+	}, []);
+
+	useEffect(() =>
+	{
+		const el = textContainer.current;
+		if (el && (el.clientWidth < el.scrollWidth || el.clientHeight < el.scrollHeight))
+		{
+			startAnimation();
+		}
+		else
+		{
+			stopAnimation();
+		}
+	}, [textContainer, text]);
+
+	return <div className="scrolling-text">
+		<div ref={textContainer} className="scroll">{text}</div>
+	</div>;
+};
