@@ -4,6 +4,7 @@ import * as React from "react";
 import { useEffect, useState, useRef } from "react";
 import { addCommas } from "./Utils";
 import { IGroupedList, IGroup } from "./GroupedList";
+import { ScrollingText } from "./GDQEvents";
 
 interface TwitchProps
 {
@@ -146,7 +147,10 @@ export const StreamCard = ({ stream, tileHeight }: StreamCardProps) =>
 		<div>
 			<div className="tile-title">{stream.Streamer}</div>
 			<div className="tile-game">{stream.Game}</div>
-			<div className="tile-details">{stream.Status}</div>
+			<div className="tile-details">
+				<ScrollingText text={stream.Status} />
+
+			</div>
 		</div>
 		<div className="tile-viewers">
 			<span className="live-indicator"></span>

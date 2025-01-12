@@ -65,6 +65,7 @@
 .scrolling-text {
   overflow: hidden;
   width: 100%;
+  white-space: nowrap;
 }
 
 /*# sourceMappingURL=GDQ.css.map */

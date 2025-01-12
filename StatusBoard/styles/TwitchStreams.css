@@ -72,10 +72,10 @@
   max-height: 100%;
 }
 .tile .tile-title {
-  font-size: 17pt;
+  font-size: 22pt;
 }
 .tile .tile-game {
-  font-size: 12pt;
+  font-size: 14pt;
   color: rgb(200, 200, 200);
 }
 .tile .tile-details {

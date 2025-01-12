@@ -6,6 +6,7 @@ const React = require("react");
 const react_1 = require("react");
 const Utils_1 = require("./Utils");
 const GroupedList_1 = require("./GroupedList");
+const GDQEvents_1 = require("./GDQEvents");
 ;
 const MIN_TILE_WIDTH = 280;
 const MIN_TILE_HEIGHT_L = 84;
@@ -96,7 +97,8 @@ const StreamCard = ({ stream, tileHeight }) => {
         React.createElement("div", null,
             React.createElement("div", { className: "tile-title" }, stream.Streamer),
             React.createElement("div", { className: "tile-game" }, stream.Game),
-            React.createElement("div", { className: "tile-details" }, stream.Status)),
+            React.createElement("div", { className: "tile-details" },
+                React.createElement(GDQEvents_1.ScrollingText, { text: stream.Status }))),
         React.createElement("div", { className: "tile-viewers" },
             React.createElement("span", { className: "live-indicator" }),
             React.createElement("span", null, (0, Utils_1.addCommas)(stream.Viewers))));
