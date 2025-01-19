@@ -146,10 +146,11 @@ export const StreamCard = ({ stream, tileHeight }: StreamCardProps) =>
 		<img className="tile-image" crossOrigin="anonymous" src={stream.ImageURL}></img>
 		<div>
 			<div className="tile-title">{stream.Streamer}</div>
-			<div className="tile-game">{stream.Game}</div>
+			<div className="tile-game">
+				<ScrollingText text={stream.Game} />
+			</div>
 			<div className="tile-details">
 				<ScrollingText text={stream.Status} />
-
 			</div>
 		</div>
 		<div className="tile-viewers">

@@ -79,9 +79,10 @@
   color: rgb(200, 200, 200);
 }
 .tile .tile-details {
-  font-size: 9pt;
+  font-size: 10pt;
   color: rgb(200, 200, 200);
   max-height: 30px;
+  margin: 4px 0;
 }
 .tile .tile-viewers {
   color: #C9283E;

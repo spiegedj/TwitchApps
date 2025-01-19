@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SteamFriendList = void 0;
 const React = require("react");
 const DateUtils_1 = require("./DateUtils");
+const GDQEvents_1 = require("./GDQEvents");
 const SteamFriendList = (props) => {
     const sortedFriends = (props.friends || []).sort((a, b) => {
         const stateDiff = stateToSortOrder(a.State, a.Game) - stateToSortOrder(b.State, b.Game);
@@ -15,7 +16,8 @@ const SteamFriendList = (props) => {
         const stateString = toStateString(friend);
         return React.createElement("div", { className: "tile group-card tag-style " + friendToCssClass(friend) },
             React.createElement("img", { className: "tile-image", crossOrigin: "anonymous", src: friend.Image }),
-            React.createElement("div", { className: "alt-line1" }, friend.Name),
+            React.createElement("div", { className: "alt-line1" },
+                React.createElement(GDQEvents_1.ScrollingText, { text: friend.Name })),
             React.createElement("div", { className: "alt-line2" }, stateString));
     }));
 };

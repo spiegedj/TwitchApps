@@ -49,8 +49,8 @@ export const GDQEvents: FunctionComponent<gdqProps> = (props) =>
 	);
 };
 
-const DELAY_AFTER_SCROLL = 3 * 1000;
-const DELAY_BEFORE_SCROLL = 10 * 1000;
+const DELAY_AFTER_SCROLL = 2 * 1000;
+const DELAY_BEFORE_SCROLL = 5 * 1000;
 const SPEED = 20;
 
 export const ScrollingText: FunctionComponent<{ text: string; }> = (props) =>

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { DateUtils } from "./DateUtils";
+import { ScrollingText } from "./GDQEvents";
 
 const enum SteamPersonaState
 {
@@ -35,7 +36,9 @@ export const SteamFriendList = (props: ISteamFriendsProps) =>
 			const stateString = toStateString(friend);
 			return <div className={"tile group-card tag-style " + friendToCssClass(friend)}>
 				<img className="tile-image" crossOrigin="anonymous" src={friend.Image}></img>
-				<div className="alt-line1">{friend.Name}</div>
+				<div className="alt-line1">
+					<ScrollingText text={friend.Name} />
+				</div>
 				<div className="alt-line2">{stateString}</div>
 			</div>;
 		})}

@@ -2,7 +2,7 @@
 
 $groupNameFontSize: 20pt;
 $tileFontSize: 22pt;
-$detailsFontSize: 9pt;
+$detailsFontSize: 10pt;
 
 $altFontSize1: 14pt;
 $altFontSize2: 9pt;
@@ -70,7 +70,6 @@ $altFontSize3: 12pt;
 
 	box-sizing: border-box;
 	text-overflow: ellipsis;
-	//white-space: nowrap;
 	overflow: hidden;
 	position: relative;
 	padding: 0;
@@ -80,7 +79,6 @@ $altFontSize3: 12pt;
 	}
 
 	>div {
-		//white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
@@ -106,6 +104,7 @@ $altFontSize3: 12pt;
 		font-size: $detailsFontSize;
 		color: rgb(200, 200, 200);
 		max-height: 30px;
+		margin: 4px 0;
 	}
 
 	.tile-viewers {
