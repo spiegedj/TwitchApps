@@ -29,18 +29,13 @@
   width: 100%;
   min-width: 0;
   overflow: hidden;
+  position: relative;
 }
-.twitchStreams .group {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  flex: 1 1;
-}
-.twitchStreams .group > div + div {
-  margin-top: 6px;
-}
-.twitchStreams .group + .group {
-  margin-right: 6px;
+.twitchStreams .tile {
+  position: absolute;
+  transition: all 2s ease 0s;
+  top: 0;
+  left: 0;
 }
 
 .group-card {
@@ -50,7 +45,6 @@
 }
 
 .tile {
-  flex-grow: 1;
   box-sizing: border-box;
   text-overflow: ellipsis;
   overflow: hidden;
