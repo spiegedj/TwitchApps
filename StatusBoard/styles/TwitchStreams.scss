@@ -4,6 +4,8 @@ $groupNameFontSize: 20pt;
 $tileFontSize: 22pt;
 $detailsFontSize: 10pt;
 
+$smallTileFontSize: 12pt;
+
 $altFontSize1: 14pt;
 $altFontSize2: 9pt;
 $altFontSize3: 12pt;
@@ -122,10 +124,18 @@ $altFontSize3: 12pt;
 }
 
 .tile.small {
-	border-top: 3px solid black;
+
+	.tile-title,
+	.tile-game {
+		font-size: $smallTileFontSize;
+	}
 
 	.tile-details {
 		height: 16px;
+	}
+
+	.tile-details {
+		margin: 0;
 	}
 }
 

@@ -3,9 +3,7 @@
 import * as React from "react";
 import { useEffect, useState, useRef } from "react";
 import { addCommas } from "./Utils";
-import { IGroupedList, IGroup } from "./GroupedList";
 import { ScrollingText } from "./GDQEvents";
-import { render } from "react-dom";
 
 interface TwitchProps
 {
@@ -14,9 +12,8 @@ interface TwitchProps
 };
 
 const MIN_TILE_WIDTH = 280;
-const MIN_TILE_HEIGHT_L = 84;
-const MIN_TILE_HEIGHT_S = 48;
-
+const MIN_TILE_HEIGHT_L = 86;
+const MIN_TILE_HEIGHT_S = 60;
 
 export const TwitchStreams = (props: TwitchProps) =>
 {
@@ -46,39 +43,26 @@ export const TwitchStreams = (props: TwitchProps) =>
 
 
 	let curCol = 0;
-	let curRow = -1;
 
-	let children: JSX.Element[] = [];
 	let currentHeight = 0;
 	let currentWidth = MIN_TILE_WIDTH;
 
-	// const [a, setIsSmall] = useState(false);
-	// useEffect(() =>
-	// {
-	// 	const timerId = window.setInterval(() =>
-	// 	{
-	// 		setIsSmall(!a);
-	// 	}, 2000);
-	// 	return () =>
-	// 	{
-	// 		window.clearInterval(timerId);
-	// 	};
-	// });
-
 	const tileWidth = containerWidth / Math.floor(containerWidth / MIN_TILE_WIDTH);
-	const tileHeight = containerHeight / Math.floor(containerHeight / MIN_TILE_HEIGHT_L);
+	let tileHeight: number;
 
-	const followedStreams = streams.filter(s => s.Followed);
+	const followedStreams = streams;
 
 	const newMap: { key: string, el: JSX.Element; }[] = [];
 	for (let stream of followedStreams)
 	{
-		if ((currentHeight + tileHeight) >= (containerHeight + 1))
+		tileHeight = getTileHeight(containerHeight, currentHeight, stream.Followed);
+
+		if (tileHeight === 0)
 		{
 			curCol++;
 			currentHeight = 0;
 			currentWidth += tileWidth;
-			curRow = -1;
+			tileHeight = getTileHeight(containerHeight, currentHeight, stream.Followed);
 
 			if (currentWidth > (containerWidth + 1))
 			{
@@ -86,14 +70,16 @@ export const TwitchStreams = (props: TwitchProps) =>
 			}
 		}
 
-		curRow++;
+		const x = curCol * tileWidth;
+		const y = currentHeight;
+
 		currentHeight += tileHeight;
 
-		const x = curCol * tileWidth;
-		const y = curRow * tileHeight;
-		children.push(<StreamCard stream={stream} height={tileHeight} x={x} y={y} width={tileWidth} key={stream.Streamer} />);
+		const card = stream.Followed
+			? <StreamCard stream={stream} height={tileHeight} x={x} y={y} width={tileWidth} key={stream.Streamer} />
+			: <SmallStreamCard stream={stream} height={tileHeight} x={x} y={y} width={tileWidth} key={stream.Streamer} />;
 
-		newMap.push({ key: stream.Streamer, el: <StreamCard stream={stream} height={tileHeight} x={x} y={y} width={tileWidth} key={stream.Streamer} /> });
+		newMap.push({ key: stream.Streamer, el: card });
 	}
 
 	const renderedOrder = useRef(new Map<string, number>());
@@ -110,6 +96,14 @@ export const TwitchStreams = (props: TwitchProps) =>
 	</div>;
 };
 
+function getTileHeight(containerHeight: number, currentHeight: number, isFollowed: boolean): number
+{
+	const minTileHeight = isFollowed ? MIN_TILE_HEIGHT_L : MIN_TILE_HEIGHT_S;
+	const remainingHeight = containerHeight - currentHeight;
+	if (remainingHeight <= 0) { return 0; }
+	return remainingHeight / Math.floor(remainingHeight / minTileHeight);
+}
+
 interface StreamCardProps
 {
 	stream: Response.TwitchStream;
@@ -118,11 +112,6 @@ interface StreamCardProps
 	width: number;
 	height: number;
 }
-
-const StreamColumn = ({ children }: { children: JSX.Element[]; }) => 
-{
-	return <div className="group" style={{ minWidth: MIN_TILE_WIDTH }}>{children}</div>;
-};
 
 export const StreamCard = ({ stream, x, y, width, height }: StreamCardProps) =>
 {
@@ -152,12 +141,27 @@ export const StreamCard = ({ stream, x, y, width, height }: StreamCardProps) =>
 	</div>;
 };
 
-export const SmallStreamCard = ({ stream, height }: StreamCardProps) =>
+export const SmallStreamCard = ({ stream, x, y, width, height }: StreamCardProps) =>
 {
-	return <div className="tile small" style={{ minHeight: height }}>
+	const horMargin = 5;
+	const vertMargin = 6;
+	width -= horMargin;
+	height -= vertMargin;
+
+	return <div
+		className="tile small group-card tag-style"
+		style={{ top: y, left: x, width, height, margin: `${vertMargin}px ${horMargin}px` }}
+	>
 		<img className="tile-image" crossOrigin="anonymous" src={stream.ImageURL} style={{ width: height }}></img>
-		<div className="tile-title">{stream.Streamer}</div>
-		<div className="tile-details">{stream.Status}</div>
+		<div>
+			<div className="tile-title">{stream.Streamer}</div>
+			<div className="tile-details">
+				<ScrollingText text={stream.Game} />
+			</div>
+			<div className="tile-details">
+				<ScrollingText text={stream.Status} />
+			</div>
+		</div>
 		<div className="tile-viewers">
 			<span className="live-indicator"></span>
 			<span>{addCommas(stream.Viewers)}</span>

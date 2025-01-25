@@ -97,11 +97,15 @@
   font-size: 9pt;
 }
 
-.tile.small {
-  border-top: 3px solid black;
+.tile.small .tile-title,
+.tile.small .tile-game {
+  font-size: 12pt;
 }
 .tile.small .tile-details {
   height: 16px;
+}
+.tile.small .tile-details {
+  margin: 0;
 }
 
 .list-group-name {

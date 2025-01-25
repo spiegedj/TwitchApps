@@ -23,7 +23,7 @@ let sessionId = null;
 class StatusBoard extends React.Component {
     constructor(props) {
         super(props);
-        setInterval(() => this.load(), 60 * 1000);
+        setInterval(() => this.load(), 10 * 1000);
         this.load();
         this.state = {
             data: {
