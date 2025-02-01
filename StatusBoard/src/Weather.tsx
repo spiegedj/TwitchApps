@@ -4,10 +4,6 @@ import * as React from "react";
 import { useState, useEffect, useCallback } from "react";
 import { DateUtils } from "./DateUtils";
 
-type weatherProps = Partial<{
-	weather: Response.Weather;
-}>;
-
 export const WeatherPanel: React.FunctionComponent<{ weather: Response.Weather; }> = (props) =>
 {
 	const condition = props.weather.Condition;
@@ -26,7 +22,9 @@ export const WeatherPanel: React.FunctionComponent<{ weather: Response.Weather; 
 				</div>
 			</div>
 			<div className="weather-panel forecast flex-row">
-				{forecast.slice(0, 11).map(forecast => <ForecastPanel forecast={forecast} />)}
+				{forecast.slice(0, 11).map(forecast =>
+					<ForecastPanel key={forecast.Date} forecast={forecast} />
+				)}
 			</div>
 		</div>
 	);
@@ -107,7 +105,7 @@ export const NowConditionsColumn: React.FunctionComponent<{ Weather: Response.We
 			</div>
 			<div className="label">Sunset</div>
 		</div>
-		{Condition.Details?.map(item => <WeatherItem item={item} />)}
+		{Condition.Details?.map(item => <WeatherItem key={item.label} item={item} />)}
 	</div>;
 };
 
@@ -119,7 +117,7 @@ export const HourlyForecastColumn: React.FunctionComponent<{ Weather: Response.W
 	return <div className="weather-column">
 		<div className="weather-panel hourly">
 			<div className="title">Hourly Forecast</div>
-			{Hourly.slice(0, 21).map(hourly => <HourlyPanel hourly={hourly} />)}
+			{Hourly.slice(0, 21).map(hourly => <HourlyPanel key={hourly.Day + hourly.Hour} hourly={hourly} />)}
 		</div>
 	</div>;
 };

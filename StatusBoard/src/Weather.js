@@ -17,7 +17,7 @@ const WeatherPanel = (props) => {
             React.createElement("div", { className: "icon-container" },
                 React.createElement("div", { className: "temp-icon", dangerouslySetInnerHTML: { __html: condition.Icon } }),
                 React.createElement("div", { className: "label" }, condition.Phrase))),
-        React.createElement("div", { className: "weather-panel forecast flex-row" }, forecast.slice(0, 11).map(forecast => React.createElement(ForecastPanel, { forecast: forecast })))));
+        React.createElement("div", { className: "weather-panel forecast flex-row" }, forecast.slice(0, 11).map(forecast => React.createElement(ForecastPanel, { key: forecast.Date, forecast: forecast })))));
 };
 exports.WeatherPanel = WeatherPanel;
 const ClockPanel = () => {
@@ -70,7 +70,7 @@ const NowConditionsColumn = (props) => {
                 React.createElement("span", { className: "data" }, sunset.time),
                 React.createElement("span", { className: "ampm" }, sunset.ampm)),
             React.createElement("div", { className: "label" }, "Sunset")), (_a = Condition.Details) === null || _a === void 0 ? void 0 :
-        _a.map(item => React.createElement(WeatherItem, { item: item })));
+        _a.map(item => React.createElement(WeatherItem, { key: item.label, item: item })));
 };
 exports.NowConditionsColumn = NowConditionsColumn;
 const HourlyForecastColumn = (props) => {
@@ -79,7 +79,7 @@ const HourlyForecastColumn = (props) => {
     return React.createElement("div", { className: "weather-column" },
         React.createElement("div", { className: "weather-panel hourly" },
             React.createElement("div", { className: "title" }, "Hourly Forecast"),
-            Hourly.slice(0, 21).map(hourly => React.createElement(HourlyPanel, { hourly: hourly }))));
+            Hourly.slice(0, 21).map(hourly => React.createElement(HourlyPanel, { key: hourly.Day + hourly.Hour, hourly: hourly }))));
 };
 exports.HourlyForecastColumn = HourlyForecastColumn;
 const WeatherItem = ({ item }) => {

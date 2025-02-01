@@ -30,7 +30,7 @@ export class StatusBoard extends React.Component
 		this.state = {
 			data: {
 				Starcraft: { WCS: [], GSL: [] },
-				Liquipedia: [],
+				Liquipedia: { tournaments: [], hash: 0 },
 				GDQ: [],
 				Weather: { Condition: {} as any, Forecast: [], Hourly: [] },
 				StarcraftGroups: [],
@@ -114,7 +114,7 @@ export class StatusBoard extends React.Component
 						<NowConditionsColumn Weather={Weather} />
 						<HourlyForecastColumn Weather={Weather} />
 						<EsportTournaments
-							tournaments={Liquipedia}
+							data={Liquipedia}
 							columns={owColumns}
 							adjustColumns={cols => cols !== this.state.owColumns && this.setState({ owColumns: cols })}
 						/>

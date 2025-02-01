@@ -7,14 +7,14 @@ const react_1 = require("react");
 const DateUtils_1 = require("./DateUtils");
 ;
 const EsportTournaments = (props) => {
-    const { tournaments } = props;
+    const { tournaments, hash } = props.data;
     const containerRef = (0, react_1.useRef)();
     const [numberToRender, setNumberToRender] = (0, react_1.useState)(5);
     const foundLimit = (0, react_1.useRef)(false);
     (0, react_1.useMemo)(() => {
         foundLimit.current = false;
         setNumberToRender(5);
-    }, [tournaments]);
+    }, [hash]);
     const tournamentsToRender = prioritizeTournaments((tournaments || []), numberToRender);
     (0, react_1.useLayoutEffect)(() => {
         var _a;
@@ -29,7 +29,7 @@ const EsportTournaments = (props) => {
         }
     }, [tournaments, containerRef, numberToRender]);
     return React.createElement("div", { className: "ow col", ref: containerRef }, tournamentsToRender.map(tournament => {
-        return React.createElement("span", { className: "group-card" },
+        return React.createElement("span", { className: "group-card", key: tournament.name + " " + tournament.dates },
             React.createElement("div", { className: "group-card-header" },
                 React.createElement(GameIcon, { tournament: tournament }),
                 React.createElement("div", { className: "tournament" },
@@ -44,10 +44,10 @@ exports.EsportTournaments = EsportTournaments;
 const MatchList = ({ tournament }) => {
     const matchDays = splitByDay(tournament.matches);
     return React.createElement(React.Fragment, null, matchDays.map(day => {
-        return React.createElement("div", null,
+        return React.createElement("div", { key: day.date.valueOf() },
             React.createElement("div", { className: "day-header" }, DateUtils_1.DateUtils.getDayString(day.date)),
             day.matches.map((m) => {
-                return React.createElement(SmallPanel, { match: m });
+                return React.createElement(SmallPanel, { key: [m.competitor1.name, m.competitor2.name, m.date].join("^"), match: m });
             }));
     }));
 };

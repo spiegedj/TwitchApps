@@ -34,7 +34,7 @@ export const SteamFriendList = (props: ISteamFriendsProps) =>
 		{sortedFriends.map((friend) =>
 		{
 			const stateString = toStateString(friend);
-			return <div className={"tile group-card tag-style " + friendToCssClass(friend)}>
+			return <div key={friend.Name} className={"tile group-card tag-style " + friendToCssClass(friend)}>
 				<img className="tile-image" crossOrigin="anonymous" src={friend.Image}></img>
 				<div className="alt-line1">
 					<ScrollingText text={friend.Name} />

@@ -2,7 +2,10 @@ export interface IData
 {
 	SessionId: number;
 	Starcraft: Response.StarCraftTournaments;
-	Liquipedia: ITournament[];
+	Liquipedia: {
+		hash: number;
+		tournaments: ITournament[];
+	};
 	GDQ: Response.EventRun[];
 	Weather: Response.Weather;
 	StarcraftGroups: Response.Group[];

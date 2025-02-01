@@ -28,7 +28,7 @@ class StatusBoard extends React.Component {
         this.state = {
             data: {
                 Starcraft: { WCS: [], GSL: [] },
-                Liquipedia: [],
+                Liquipedia: { tournaments: [], hash: 0 },
                 GDQ: [],
                 Weather: { Condition: {}, Forecast: [], Hourly: [] },
                 StarcraftGroups: [],
@@ -88,7 +88,7 @@ class StatusBoard extends React.Component {
                 React.createElement("div", { className: "columns" },
                     React.createElement(Weather_1.NowConditionsColumn, { Weather: Weather }),
                     React.createElement(Weather_1.HourlyForecastColumn, { Weather: Weather }),
-                    React.createElement(Liquipedia_1.EsportTournaments, { tournaments: Liquipedia, columns: owColumns, adjustColumns: cols => cols !== this.state.owColumns && this.setState({ owColumns: cols }) }),
+                    React.createElement(Liquipedia_1.EsportTournaments, { data: Liquipedia, columns: owColumns, adjustColumns: cols => cols !== this.state.owColumns && this.setState({ owColumns: cols }) }),
                     centerPanel,
                     React.createElement(SteamFriendList_1.SteamFriendList, { friends: SteamFriends }),
                     React.createElement(TwitchStreams_1.TwitchStreams, { streams: this.state.data.TwitchStreams, columns: twitchColumns })))));

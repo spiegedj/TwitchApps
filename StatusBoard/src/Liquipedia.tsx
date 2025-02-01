@@ -3,11 +3,11 @@
 import * as React from "react";
 import { FunctionComponent, useLayoutEffect, useRef, useMemo, useState } from "react";
 import { DateUtils } from "./DateUtils";
-import { ICompetitorDetails, IMatchDetails, ITournament } from "./IResponseInterfaces";
+import { IData, ICompetitorDetails, IMatchDetails, ITournament } from "./IResponseInterfaces";
 
 interface owProps
 {
-	tournaments: ITournament[];
+	data: IData["Liquipedia"];
 	adjustColumns: (cols: number) => void;
 	columns: number;
 };
@@ -20,7 +20,7 @@ interface MatchDay
 
 export const EsportTournaments: FunctionComponent<owProps> = (props) =>
 {
-	const { tournaments } = props;
+	const { tournaments, hash } = props.data;
 
 	const containerRef = useRef<HTMLDivElement>();
 
@@ -30,7 +30,7 @@ export const EsportTournaments: FunctionComponent<owProps> = (props) =>
 	{
 		foundLimit.current = false;
 		setNumberToRender(5);
-	}, [tournaments]);
+	}, [hash]);
 
 	const tournamentsToRender = prioritizeTournaments((tournaments || []), numberToRender);
 
@@ -53,7 +53,7 @@ export const EsportTournaments: FunctionComponent<owProps> = (props) =>
 	return <div className="ow col" ref={containerRef}>
 		{tournamentsToRender.map(tournament =>
 		{
-			return <span className="group-card">
+			return <span className="group-card" key={tournament.name + " " + tournament.dates}>
 				<div className="group-card-header">
 					<GameIcon tournament={tournament} />
 					<div className="tournament">
@@ -76,11 +76,14 @@ const MatchList: FunctionComponent<{ tournament: ITournament; }> = ({ tournament
 
 	return <>{matchDays.map(day =>
 	{
-		return <div>
+		return <div key={day.date.valueOf()}>
 			<div className="day-header">{DateUtils.getDayString(day.date)}</div>
 			{day.matches.map((m) =>
 			{
-				return <SmallPanel match={m} />;
+				return <SmallPanel
+					key={[m.competitor1.name, m.competitor2.name, m.date].join("^")}
+					match={m}
+				/>;
 			})}
 		</div>;
 	})}</>;

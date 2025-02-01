@@ -97,12 +97,13 @@ declare namespace Response
 
 	interface Hourly
 	{
-		Temp: string;
+		Day: string;
 		Hour: string;
-		Description: string;
-		Precipitation: string;
-		Wind: string;
-		Icon: string;
+		Temp: string;
+		Description?: string;
+		Precipitation?: string;
+		Wind?: string;
+		Icon?: string;
 	}
 
 	interface ItemDetails
