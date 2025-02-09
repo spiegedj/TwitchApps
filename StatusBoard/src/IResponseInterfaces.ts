@@ -1,19 +1,23 @@
 export interface IData
 {
 	SessionId: number;
-	Starcraft: Response.StarCraftTournaments;
-	Liquipedia: {
-		hash: number;
-		tournaments: ITournament[];
-	};
-	GDQ: Response.EventRun[];
-	Weather: Response.Weather;
-	StarcraftGroups: Response.Group[];
-	TwitchStreams: Response.TwitchStream[];
-	Headlines: Response.Headline[];
-	SteamFriends: Response.SteamFriend[];
-	ChessGame?: Response.LichessGame;
+	Starcraft?: IDataPart<Response.StarCraftTournaments>;
+	Liquipedia?: IDataPart<ITournament[]>;
+	GDQ?: IDataPart<Response.EventRun[]>;
+	Weather?: IDataPart<Response.Weather>;
+	StarcraftGroups?: IDataPart<Response.Group[]>;
+	TwitchStreams?: IDataPart<Response.TwitchStream[]>;
+	Headlines?: IDataPart<Response.Headline[]>;
+	SteamFriends?: IDataPart<Response.SteamFriend[]>;
+	ChessGame?: IDataPart<Response.LichessGame>;
 }
+
+export interface IDataPart<T>
+{
+	hash: number;
+	data: T;
+}
+
 
 // Liquidpedia
 export type EsportGame = "starcraft2" | "overwatch";

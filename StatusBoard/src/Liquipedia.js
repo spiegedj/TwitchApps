@@ -6,8 +6,12 @@ const React = require("react");
 const react_1 = require("react");
 const DateUtils_1 = require("./DateUtils");
 ;
-const EsportTournaments = (props) => {
-    const { tournaments, hash } = props.data;
+exports.EsportTournaments = React.memo((props) => {
+    if (!props.data) {
+        return null;
+    }
+    const { data, hash } = props.data;
+    const tournaments = data;
     const containerRef = (0, react_1.useRef)();
     const [numberToRender, setNumberToRender] = (0, react_1.useState)(5);
     const foundLimit = (0, react_1.useRef)(false);
@@ -39,8 +43,7 @@ const EsportTournaments = (props) => {
                 React.createElement(TierBadge, { tournament: tournament })),
             React.createElement(MatchList, { tournament: tournament }));
     }));
-};
-exports.EsportTournaments = EsportTournaments;
+}, (prev, cur) => { var _a, _b; return ((_a = prev === null || prev === void 0 ? void 0 : prev.data) === null || _a === void 0 ? void 0 : _a.hash) === ((_b = cur === null || cur === void 0 ? void 0 : cur.data) === null || _b === void 0 ? void 0 : _b.hash) && (prev === null || prev === void 0 ? void 0 : prev.columns) === (cur === null || cur === void 0 ? void 0 : cur.columns); });
 const MatchList = ({ tournament }) => {
     const matchDays = splitByDay(tournament.matches);
     return React.createElement(React.Fragment, null, matchDays.map(day => {

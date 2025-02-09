@@ -4,10 +4,15 @@ import * as React from "react";
 import { useState, useEffect, useCallback } from "react";
 import { DateUtils } from "./DateUtils";
 
-export const WeatherPanel: React.FunctionComponent<{ weather: Response.Weather; }> = (props) =>
+export const WeatherPanel: React.FunctionComponent<{ Weather: Response.Weather | undefined, hash: number; }> = React.memo((props) =>
 {
-	const condition = props.weather.Condition;
-	const forecast = props.weather.Forecast;
+	const { Weather } = props;
+	if (!Weather)
+	{
+		return null;
+	}
+	const condition = Weather.Condition;
+	const forecast = Weather.Forecast;
 
 	return (
 		<div className="weather-row">
@@ -28,7 +33,7 @@ export const WeatherPanel: React.FunctionComponent<{ weather: Response.Weather; 
 			</div>
 		</div>
 	);
-};
+}, (prevProps, nextProps) => prevProps.hash === nextProps.hash);
 
 export const ClockPanel: React.FunctionComponent = () =>
 {
@@ -82,9 +87,13 @@ export const DatePanel: React.FunctionComponent = () =>
 	</div>;
 };
 
-export const NowConditionsColumn: React.FunctionComponent<{ Weather: Response.Weather; }> = (props) =>
+export const NowConditionsColumn: React.FunctionComponent<{ Weather: Response.Weather | undefined; }> = (props) =>
 {
 	const { Weather } = props;
+	if (!Weather)
+	{
+		return null;
+	}
 	const { Condition } = Weather;
 
 	const sunrise = splitTime(Condition?.Sunrise);
@@ -109,9 +118,13 @@ export const NowConditionsColumn: React.FunctionComponent<{ Weather: Response.We
 	</div>;
 };
 
-export const HourlyForecastColumn: React.FunctionComponent<{ Weather: Response.Weather; }> = (props) =>
+export const HourlyForecastColumn: React.FunctionComponent<{ Weather: Response.Weather | undefined, hash: number; }> = React.memo((props) =>
 {
 	const { Weather } = props;
+	if (!Weather)
+	{
+		return null;
+	}
 	const { Hourly } = Weather;
 
 	return <div className="weather-column">
@@ -120,7 +133,7 @@ export const HourlyForecastColumn: React.FunctionComponent<{ Weather: Response.W
 			{Hourly.slice(0, 21).map(hourly => <HourlyPanel key={hourly.Day + hourly.Hour} hourly={hourly} />)}
 		</div>
 	</div>;
-};
+}, (prevProps, nextProps) => prevProps.hash === nextProps.hash);
 
 const WeatherItem: React.FunctionComponent<{ item: Response.ItemDetails; }> = ({ item }) =>
 {

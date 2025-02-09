@@ -5,9 +5,13 @@ exports.splitTime = exports.Precipitation = exports.HourlyForecastColumn = expor
 const React = require("react");
 const react_1 = require("react");
 const DateUtils_1 = require("./DateUtils");
-const WeatherPanel = (props) => {
-    const condition = props.weather.Condition;
-    const forecast = props.weather.Forecast;
+exports.WeatherPanel = React.memo((props) => {
+    const { Weather } = props;
+    if (!Weather) {
+        return null;
+    }
+    const condition = Weather.Condition;
+    const forecast = Weather.Forecast;
     return (React.createElement("div", { className: "weather-row" },
         React.createElement(exports.ClockPanel, null),
         React.createElement("div", { className: "weather-panel", style: { width: 200 } },
@@ -18,8 +22,7 @@ const WeatherPanel = (props) => {
                 React.createElement("div", { className: "temp-icon", dangerouslySetInnerHTML: { __html: condition.Icon } }),
                 React.createElement("div", { className: "label" }, condition.Phrase))),
         React.createElement("div", { className: "weather-panel forecast flex-row" }, forecast.slice(0, 11).map(forecast => React.createElement(ForecastPanel, { key: forecast.Date, forecast: forecast })))));
-};
-exports.WeatherPanel = WeatherPanel;
+}, (prevProps, nextProps) => prevProps.hash === nextProps.hash);
 const ClockPanel = () => {
     const [timeString, setTime] = (0, react_1.useState)("");
     (0, react_1.useEffect)(() => {
@@ -55,6 +58,9 @@ exports.DatePanel = DatePanel;
 const NowConditionsColumn = (props) => {
     var _a;
     const { Weather } = props;
+    if (!Weather) {
+        return null;
+    }
     const { Condition } = Weather;
     const sunrise = (0, exports.splitTime)(Condition === null || Condition === void 0 ? void 0 : Condition.Sunrise);
     const sunset = (0, exports.splitTime)(Condition === null || Condition === void 0 ? void 0 : Condition.Sunset);
@@ -73,15 +79,17 @@ const NowConditionsColumn = (props) => {
         _a.map(item => React.createElement(WeatherItem, { key: item.label, item: item })));
 };
 exports.NowConditionsColumn = NowConditionsColumn;
-const HourlyForecastColumn = (props) => {
+exports.HourlyForecastColumn = React.memo((props) => {
     const { Weather } = props;
+    if (!Weather) {
+        return null;
+    }
     const { Hourly } = Weather;
     return React.createElement("div", { className: "weather-column" },
         React.createElement("div", { className: "weather-panel hourly" },
             React.createElement("div", { className: "title" }, "Hourly Forecast"),
             Hourly.slice(0, 21).map(hourly => React.createElement(HourlyPanel, { key: hourly.Day + hourly.Hour, hourly: hourly }))));
-};
-exports.HourlyForecastColumn = HourlyForecastColumn;
+}, (prevProps, nextProps) => prevProps.hash === nextProps.hash);
 const WeatherItem = ({ item }) => {
     const { label, dataIcon, data, labelIcon } = item;
     return React.createElement("div", { className: "weather-panel flex-row" },

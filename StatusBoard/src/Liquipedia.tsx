@@ -5,7 +5,7 @@ import { FunctionComponent, useLayoutEffect, useRef, useMemo, useState } from "r
 import { DateUtils } from "./DateUtils";
 import { IData, ICompetitorDetails, IMatchDetails, ITournament } from "./IResponseInterfaces";
 
-interface owProps
+interface IEsportTournamentsProps
 {
 	data: IData["Liquipedia"];
 	adjustColumns: (cols: number) => void;
@@ -18,9 +18,14 @@ interface MatchDay
 	matches: IMatchDetails[];
 }
 
-export const EsportTournaments: FunctionComponent<owProps> = (props) =>
+export const EsportTournaments: FunctionComponent<IEsportTournamentsProps> = React.memo((props) =>
 {
-	const { tournaments, hash } = props.data;
+	if (!props.data)
+	{
+		return null;
+	}
+	const { data, hash } = props.data;
+	const tournaments = data;
 
 	const containerRef = useRef<HTMLDivElement>();
 
@@ -68,7 +73,9 @@ export const EsportTournaments: FunctionComponent<owProps> = (props) =>
 			</span>;
 		})}
 	</div>;
-};
+}, (prev, cur) =>
+	prev?.data?.hash === cur?.data?.hash && prev?.columns === cur?.columns
+);
 
 const MatchList: FunctionComponent<{ tournament: ITournament; }> = ({ tournament }) =>
 {

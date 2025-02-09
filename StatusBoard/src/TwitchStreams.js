@@ -10,7 +10,7 @@ const GDQEvents_1 = require("./GDQEvents");
 const MIN_TILE_WIDTH = 280;
 const MIN_TILE_HEIGHT_L = 86;
 const MIN_TILE_HEIGHT_S = 60;
-const TwitchStreams = (props) => {
+exports.TwitchStreams = React.memo((props) => {
     const { streams } = props;
     const containerRef = (0, react_1.useRef)();
     const [containerWidth, setContainerWidth] = (0, react_1.useState)(1520);
@@ -62,8 +62,7 @@ const TwitchStreams = (props) => {
     });
     renderedOrder.current = newMap.reduce((acc, el, idx) => acc.set(el.key, idx), new Map());
     return React.createElement("div", { className: "twitchStreams", ref: containerRef }, newMap.map(x => x.el));
-};
-exports.TwitchStreams = TwitchStreams;
+}, (prev, next) => prev.hash === next.hash && prev.columns === next.columns);
 function getTileHeight(containerHeight, currentHeight, isFollowed) {
     const minTileHeight = isFollowed ? MIN_TILE_HEIGHT_L : MIN_TILE_HEIGHT_S;
     const remainingHeight = containerHeight - currentHeight;

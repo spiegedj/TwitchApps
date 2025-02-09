@@ -28,17 +28,7 @@ export class StatusBoard extends React.Component
 		this.load();
 
 		this.state = {
-			data: {
-				Starcraft: { WCS: [], GSL: [] },
-				Liquipedia: { tournaments: [], hash: 0 },
-				GDQ: [],
-				Weather: { Condition: {} as any, Forecast: [], Hourly: [] },
-				StarcraftGroups: [],
-				TwitchStreams: [],
-				Headlines: [],
-				SteamFriends: [],
-				SessionId: null,
-			},
+			data: { SessionId: null },
 			gdqColumns: 0,
 			owColumns: 0,
 			scColumns: 0,
@@ -71,6 +61,7 @@ export class StatusBoard extends React.Component
 	{
 		const maxColumns = 5;
 		let { GDQ, StarcraftGroups, Weather, Liquipedia, SteamFriends } = this.state.data;
+		let TwitchStreamsResponse = this.state.data.TwitchStreams;
 		let { owColumns, scColumns, gdqColumns } = this.state;
 
 		let twitchColumns = maxColumns - (owColumns + scColumns + gdqColumns + 1);
@@ -86,16 +77,15 @@ export class StatusBoard extends React.Component
 			twitchColumns++;
 		}
 
-		StarcraftGroups = []; // TODO Remove
 		let centerPanel = <StarCraftMatches
-			groups={StarcraftGroups}
+			groups={StarcraftGroups?.data ?? []}
 			columns={scColumns}
 			adjustColumns={cols => (this.state.scColumns != cols) && this.setState({ scColumns: cols })}
 		/>;
 
-		if (GDQ.length > 0 && DateUtils.getDaysFrom(new Date(GDQ[0].Date)) < 3)
+		if (GDQ?.data && GDQ.data.length > 0 && DateUtils.getDaysFrom(new Date(GDQ[0].Date)) < 3)
 		{
-			centerPanel = <GDQEvents runs={GDQ} />;
+			centerPanel = <GDQEvents runs={GDQ.data} />;
 			if (gdqColumns !== 1)
 			{
 				this.setState({ gdqColumns: 1 });
@@ -109,18 +99,22 @@ export class StatusBoard extends React.Component
 		return (
 			<React.Fragment>
 				<div className="calendar">
-					<WeatherPanel weather={Weather} />
+					<WeatherPanel Weather={Weather?.data} hash={Weather?.hash} />
 					<div className="columns">
-						<NowConditionsColumn Weather={Weather} />
-						<HourlyForecastColumn Weather={Weather} />
+						<NowConditionsColumn Weather={Weather?.data} />
+						<HourlyForecastColumn Weather={Weather?.data} hash={Weather?.hash} />
 						<EsportTournaments
 							data={Liquipedia}
 							columns={owColumns}
 							adjustColumns={cols => cols !== this.state.owColumns && this.setState({ owColumns: cols })}
 						/>
 						{centerPanel}
-						<SteamFriendList friends={SteamFriends} />
-						<TwitchStreams streams={this.state.data.TwitchStreams} columns={twitchColumns}></TwitchStreams>
+						<SteamFriendList friends={SteamFriends?.data ?? []} />
+						<TwitchStreams
+							streams={TwitchStreamsResponse?.data ?? []}
+							hash={TwitchStreamsResponse?.hash ?? 0}
+							columns={twitchColumns}
+						/>
 					</div>
 				</div>
 			</React.Fragment>

@@ -26,17 +26,7 @@ class StatusBoard extends React.Component {
         setInterval(() => this.load(), 10 * 1000);
         this.load();
         this.state = {
-            data: {
-                Starcraft: { WCS: [], GSL: [] },
-                Liquipedia: { tournaments: [], hash: 0 },
-                GDQ: [],
-                Weather: { Condition: {}, Forecast: [], Hourly: [] },
-                StarcraftGroups: [],
-                TwitchStreams: [],
-                Headlines: [],
-                SteamFriends: [],
-                SessionId: null,
-            },
+            data: { SessionId: null },
             gdqColumns: 0,
             owColumns: 0,
             scColumns: 0,
@@ -59,8 +49,10 @@ class StatusBoard extends React.Component {
         });
     }
     render() {
+        var _a, _b, _c, _d;
         const maxColumns = 5;
         let { GDQ, StarcraftGroups, Weather, Liquipedia, SteamFriends } = this.state.data;
+        let TwitchStreamsResponse = this.state.data.TwitchStreams;
         let { owColumns, scColumns, gdqColumns } = this.state;
         let twitchColumns = maxColumns - (owColumns + scColumns + gdqColumns + 1);
         if (twitchColumns < 2 && scColumns > 1) {
@@ -71,10 +63,9 @@ class StatusBoard extends React.Component {
             owColumns--;
             twitchColumns++;
         }
-        StarcraftGroups = []; // TODO Remove
-        let centerPanel = React.createElement(StarCraftMatches_1.StarCraftMatches, { groups: StarcraftGroups, columns: scColumns, adjustColumns: cols => (this.state.scColumns != cols) && this.setState({ scColumns: cols }) });
-        if (GDQ.length > 0 && DateUtils_1.DateUtils.getDaysFrom(new Date(GDQ[0].Date)) < 3) {
-            centerPanel = React.createElement(GDQEvents_1.GDQEvents, { runs: GDQ });
+        let centerPanel = React.createElement(StarCraftMatches_1.StarCraftMatches, { groups: (_a = StarcraftGroups === null || StarcraftGroups === void 0 ? void 0 : StarcraftGroups.data) !== null && _a !== void 0 ? _a : [], columns: scColumns, adjustColumns: cols => (this.state.scColumns != cols) && this.setState({ scColumns: cols }) });
+        if ((GDQ === null || GDQ === void 0 ? void 0 : GDQ.data) && GDQ.data.length > 0 && DateUtils_1.DateUtils.getDaysFrom(new Date(GDQ[0].Date)) < 3) {
+            centerPanel = React.createElement(GDQEvents_1.GDQEvents, { runs: GDQ.data });
             if (gdqColumns !== 1) {
                 this.setState({ gdqColumns: 1 });
             }
@@ -84,14 +75,14 @@ class StatusBoard extends React.Component {
         }
         return (React.createElement(React.Fragment, null,
             React.createElement("div", { className: "calendar" },
-                React.createElement(Weather_1.WeatherPanel, { weather: Weather }),
+                React.createElement(Weather_1.WeatherPanel, { Weather: Weather === null || Weather === void 0 ? void 0 : Weather.data, hash: Weather === null || Weather === void 0 ? void 0 : Weather.hash }),
                 React.createElement("div", { className: "columns" },
-                    React.createElement(Weather_1.NowConditionsColumn, { Weather: Weather }),
-                    React.createElement(Weather_1.HourlyForecastColumn, { Weather: Weather }),
+                    React.createElement(Weather_1.NowConditionsColumn, { Weather: Weather === null || Weather === void 0 ? void 0 : Weather.data }),
+                    React.createElement(Weather_1.HourlyForecastColumn, { Weather: Weather === null || Weather === void 0 ? void 0 : Weather.data, hash: Weather === null || Weather === void 0 ? void 0 : Weather.hash }),
                     React.createElement(Liquipedia_1.EsportTournaments, { data: Liquipedia, columns: owColumns, adjustColumns: cols => cols !== this.state.owColumns && this.setState({ owColumns: cols }) }),
                     centerPanel,
-                    React.createElement(SteamFriendList_1.SteamFriendList, { friends: SteamFriends }),
-                    React.createElement(TwitchStreams_1.TwitchStreams, { streams: this.state.data.TwitchStreams, columns: twitchColumns })))));
+                    React.createElement(SteamFriendList_1.SteamFriendList, { friends: (_b = SteamFriends === null || SteamFriends === void 0 ? void 0 : SteamFriends.data) !== null && _b !== void 0 ? _b : [] }),
+                    React.createElement(TwitchStreams_1.TwitchStreams, { streams: (_c = TwitchStreamsResponse === null || TwitchStreamsResponse === void 0 ? void 0 : TwitchStreamsResponse.data) !== null && _c !== void 0 ? _c : [], hash: (_d = TwitchStreamsResponse === null || TwitchStreamsResponse === void 0 ? void 0 : TwitchStreamsResponse.hash) !== null && _d !== void 0 ? _d : 0, columns: twitchColumns })))));
     }
 }
 exports.StatusBoard = StatusBoard;

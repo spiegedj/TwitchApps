@@ -8,6 +8,7 @@ import { ScrollingText } from "./GDQEvents";
 interface TwitchProps
 {
 	streams: Response.TwitchStream[];
+	hash: number;
 	columns: number;
 };
 
@@ -15,7 +16,7 @@ const MIN_TILE_WIDTH = 280;
 const MIN_TILE_HEIGHT_L = 86;
 const MIN_TILE_HEIGHT_S = 60;
 
-export const TwitchStreams = (props: TwitchProps) =>
+export const TwitchStreams = React.memo((props: TwitchProps) =>
 {
 	const { streams } = props;
 
@@ -94,7 +95,7 @@ export const TwitchStreams = (props: TwitchProps) =>
 	return <div className="twitchStreams" ref={containerRef}>
 		{newMap.map(x => x.el)}
 	</div>;
-};
+}, (prev, next) => prev.hash === next.hash && prev.columns === next.columns);
 
 function getTileHeight(containerHeight: number, currentHeight: number, isFollowed: boolean): number
 {
