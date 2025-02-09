@@ -21,9 +21,40 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
+	<script src="//www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
+
+	<script>
+		function onFrameworkLoaded() {
+			const userAgent = navigator.userAgent;
+			if (userAgent.includes("CrKey")) {
+				// Running on the Chromecast, load the receiver app.
+				const context = cast.framework.CastReceiverContext.getInstance();
+				const options = new cast.framework.CastReceiverOptions();
+
+				// Do not load unnecessary JS files for players we don't need.
+				options.skipPlayersLoad = true;
+
+				// Disable the idle timeout. Note that this is something actually useful to have, but it should
+				// be easy to implement with some bookkeeping and `setTimeout`.
+				options.disableIdleTimeout = true;
+
+				// Enable basic media commands.
+				options.supportedCommands =
+					cast.framework.messages.Command.ALL_BASIC_MEDIA;
+
+				// Optional, maximize the debug level to diagnose problems.
+				// context.setLoggerLevel(cast.framework.LoggerLevel.DEBUG);
+
+				context.start(options);
+
+				document.body.style.zoom = .7;
+			}
+		}
+	</script>
 </head>
 
-<body class="dark">
+<body class="dark" onload="onFrameworkLoaded();">
 	<div id="main-div"></div>
 	<div style="display:none;">
 		<svg>
