@@ -37,15 +37,13 @@ const ScrollingText = (props) => {
     const textContainer = (0, react_1.useRef)();
     const timerHandle = (0, react_1.useRef)();
     const currentX = (0, react_1.useRef)(0);
+    const scrollWidth = (0, react_1.useRef)(0);
+    const clientWidth = (0, react_1.useRef)(0);
     const animate = (0, react_1.useCallback)((previousTimestamp) => {
-        const el = textContainer.current;
-        if (!el) {
-            return;
-        }
         const timestamp = Date.now();
         const delta = (timestamp - previousTimestamp) / SPEED;
         let x = (currentX.current - delta);
-        if (-x > (el.scrollWidth - el.clientWidth + 10)) {
+        if (-x > (scrollWidth.current - clientWidth.current + 10)) {
             currentX.current = 0;
             timerHandle.current = setTimeout(startAnimation, DELAY_AFTER_SCROLL);
             return;
@@ -57,6 +55,9 @@ const ScrollingText = (props) => {
     const startAnimation = (0, react_1.useCallback)(() => {
         stopAnimation();
         timerHandle.current = setTimeout(() => {
+            var _a, _b, _c, _d;
+            scrollWidth.current = (_b = (_a = textContainer.current) === null || _a === void 0 ? void 0 : _a.scrollWidth) !== null && _b !== void 0 ? _b : 0;
+            clientWidth.current = (_d = (_c = textContainer.current) === null || _c === void 0 ? void 0 : _c.clientWidth) !== null && _d !== void 0 ? _d : 0;
             timerHandle.current = requestAnimationFrame(() => animate(Date.now()));
         }, DELAY_BEFORE_SCROLL);
     }, []);

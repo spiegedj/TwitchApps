@@ -59,16 +59,15 @@ export const ScrollingText: FunctionComponent<{ text: string; }> = (props) =>
 	const textContainer = useRef<HTMLDivElement>();
 	const timerHandle = useRef<number | undefined>();
 	const currentX = useRef(0);
+	const scrollWidth = useRef(0);
+	const clientWidth = useRef(0);
 
 	const animate = useCallback((previousTimestamp: number) =>
 	{
-		const el = textContainer.current;
-		if (!el) { return; }
-
 		const timestamp = Date.now();
 		const delta = (timestamp - previousTimestamp) / SPEED;
 		let x = (currentX.current - delta);
-		if (-x > (el.scrollWidth - el.clientWidth + 10))
+		if (-x > (scrollWidth.current - clientWidth.current + 10))
 		{
 			currentX.current = 0;
 			timerHandle.current = setTimeout(startAnimation, DELAY_AFTER_SCROLL);
@@ -86,6 +85,9 @@ export const ScrollingText: FunctionComponent<{ text: string; }> = (props) =>
 		stopAnimation();
 		timerHandle.current = setTimeout(() =>
 		{
+			scrollWidth.current = textContainer.current?.scrollWidth ?? 0;
+			clientWidth.current = textContainer.current?.clientWidth ?? 0;
+
 			timerHandle.current = requestAnimationFrame(() => animate(Date.now()));
 		}, DELAY_BEFORE_SCROLL);
 	}, []);
