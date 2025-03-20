@@ -5,6 +5,7 @@ exports.splitTime = exports.Precipitation = exports.HourlyForecastColumn = expor
 const React = require("react");
 const react_1 = require("react");
 const DateUtils_1 = require("./DateUtils");
+const WeatherEffects_1 = require("./WeatherEffects");
 exports.WeatherPanel = React.memo((props) => {
     const { Weather } = props;
     if (!Weather) {
@@ -113,10 +114,15 @@ const HourlyPanel = ({ hourly }) => {
         React.createElement("div", { className: "temp" }, hourly.Temp));
 };
 const ForecastPanel = ({ forecast }) => {
+    const containerRef = React.useRef();
+    (0, react_1.useEffect)(() => {
+        if (containerRef.current && forecast.Description.includes("Rain")) {
+            (0, WeatherEffects_1.addRainEffect)(containerRef.current);
+        }
+    }, []);
     return React.createElement(React.Fragment, null,
-        React.createElement("div", { className: "forecast-list-item" },
-            React.createElement("div", { className: "label" }, forecast.Date),
-            React.createElement("div", { className: "temp-icon", dangerouslySetInnerHTML: { __html: forecast.Icon } }),
+        React.createElement("div", { className: "forecast-list-item", ref: containerRef },
+            React.createElement("div", { className: "temp-icon" }),
             React.createElement("div", null,
                 React.createElement("span", { className: "temp" },
                     React.createElement("span", null, forecast.High),

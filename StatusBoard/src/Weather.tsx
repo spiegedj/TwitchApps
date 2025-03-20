@@ -3,6 +3,7 @@
 import * as React from "react";
 import { useState, useEffect, useCallback } from "react";
 import { DateUtils } from "./DateUtils";
+import { addRainEffect } from "./WeatherEffects";
 
 export const WeatherPanel: React.FunctionComponent<{ Weather: Response.Weather | undefined, hash: number; }> = React.memo((props) =>
 {
@@ -170,10 +171,20 @@ const HourlyPanel: React.FunctionComponent<{ hourly: Response.Hourly; }> = ({ ho
 
 const ForecastPanel: React.FunctionComponent<{ forecast: Response.Forecast; }> = ({ forecast }) =>
 {
+	const containerRef = React.useRef<HTMLDivElement>();
+
+	useEffect(() =>
+	{
+		if (containerRef.current && forecast.Description.includes("Rain"))
+		{
+			addRainEffect(containerRef.current);
+		}
+	}, []);
+
 	return <>
-		<div className="forecast-list-item">
-			<div className="label">{forecast.Date}</div>
-			<div className="temp-icon" dangerouslySetInnerHTML={{ __html: forecast.Icon }}></div>
+		<div className="forecast-list-item" ref={containerRef}>
+			{/* <div className="label">{forecast.Description}</div> */}
+			<div className="temp-icon"></div>
 			<div>
 				<span className="temp">
 					<span>{forecast.High}</span>

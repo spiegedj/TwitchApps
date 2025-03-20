@@ -78,6 +78,9 @@
 			width: 100%;
 			align-items: center;
 			justify-content: space-between;
+			position: relative;
+			overflow: visible;
+			padding: 10px;
 
 			.title {
 				width: 60px;
@@ -98,9 +101,9 @@
 .weather-panel {
 	background-color: $cardBackColorDark;
 	border-radius: 15px;
-	padding: 10px;
 	position: relative;
 	border: $cardBorderDark;
+	overflow: hidden;
 
 	.title {
 		font-size: 16px;
@@ -222,6 +225,12 @@
 		font-size: 16px;
 		padding-left: 4px;
 	}
+}
+
+.rain-effects-canvas {
+	position: absolute;
+	//z-index: -1;
+	top: -10px;
 }
 
 .svg-cloud,

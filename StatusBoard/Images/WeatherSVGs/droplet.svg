@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   name="rain"
+   class="DetailsSummary--wxIcon--kg5jB WxIcon--lightBG--W8gFc WxIcon--Icon--PemPL Icon--icon--ySD-o"
+   viewBox="0 0 2.5669985 4.4307976"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="droplet.svg"
+   width="2.5669985"
+   height="4.4307976"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <path
+     d="M 1.1119498,0.49374874 0.04544977,3.4240487 C -0.09625023,3.8132487 0.10444977,4.2436487 0.49364977,4.3853487 0.88294977,4.5270487 1.3133498,4.3263487 1.4550498,3.9370487 L 2.5215498,1.0067487 C 2.6632498,0.61754874 2.4625498,0.18714874 2.0732498,0.04544874 1.6840498,-0.09625126 1.2536498,0.10444874 1.1119498,0.49374874 Z"
+     id="path2"
+     style="fill:#3f95b2;fill-opacity:1" />
+  <metadata
+     id="metadata4">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>Rain</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>

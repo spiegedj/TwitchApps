@@ -67,6 +67,9 @@
   width: 100%;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  overflow: visible;
+  padding: 10px;
 }
 .weather-row .forecast .forecast-list-item .title {
   width: 60px;
@@ -82,9 +85,9 @@
 .weather-panel {
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 15px;
-  padding: 10px;
   position: relative;
   border: 2px solid none;
+  overflow: hidden;
 }
 .weather-panel .title {
   font-size: 16px;
@@ -189,6 +192,11 @@
 .clock .ampm {
   font-size: 16px;
   padding-left: 4px;
+}
+
+.rain-effects-canvas {
+  position: absolute;
+  top: -10px;
 }
 
 .svg-cloud,
