@@ -109,7 +109,7 @@ export class StatusBoard extends React.Component
 							adjustColumns={cols => cols !== this.state.owColumns && this.setState({ owColumns: cols })}
 						/>
 						{centerPanel}
-						<SteamFriendList friends={SteamFriends?.data ?? []} />
+						{/* <SteamFriendList friends={SteamFriends?.data ?? []} /> */}
 						<TwitchStreams
 							streams={TwitchStreamsResponse?.data ?? []}
 							hash={TwitchStreamsResponse?.hash ?? 0}

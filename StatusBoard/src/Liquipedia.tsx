@@ -124,10 +124,14 @@ const SmallPanel: FunctionComponent<{ match: IMatchDetails; }> = ({ match }) =>
 
 const GameIcon: FunctionComponent<{ tournament: ITournament; }> = ({ tournament }) =>
 {
-	if (tournament.game === "overwatch")
+	switch (tournament.game)
 	{
-		return <img src="./Images/ow.svg" className="game-icon" />;
+		case "overwatch":
+			return <img src="./Images/ow.svg" className="game-icon" />;
+		case "marvelrivals":
+			return <img src="./Images/mr.png" className="game-icon" />;
 	}
+
 	return <img src="./Images/sc2.png" className="game-icon" />;
 };
 

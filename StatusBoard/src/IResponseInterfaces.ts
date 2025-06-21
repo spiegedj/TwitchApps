@@ -20,7 +20,7 @@ export interface IDataPart<T>
 
 
 // Liquidpedia
-export type EsportGame = "starcraft2" | "overwatch";
+export type EsportGame = "starcraft2" | "overwatch" | "marvelrivals";
 export type Race = "Zerg" | "Protoss" | "Terran";
 
 export interface ITournament

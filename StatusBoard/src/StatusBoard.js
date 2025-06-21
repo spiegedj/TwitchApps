@@ -18,7 +18,6 @@ const TwitchStreams_1 = require("./TwitchStreams");
 const Liquipedia_1 = require("./Liquipedia");
 const GDQEvents_1 = require("./GDQEvents");
 const DateUtils_1 = require("./DateUtils");
-const SteamFriendList_1 = require("./SteamFriendList");
 let sessionId = null;
 class StatusBoard extends React.Component {
     constructor(props) {
@@ -49,7 +48,7 @@ class StatusBoard extends React.Component {
         });
     }
     render() {
-        var _a, _b, _c, _d;
+        var _a, _b, _c;
         const maxColumns = 5;
         let { GDQ, StarcraftGroups, Weather, Liquipedia, SteamFriends } = this.state.data;
         let TwitchStreamsResponse = this.state.data.TwitchStreams;
@@ -81,8 +80,7 @@ class StatusBoard extends React.Component {
                     React.createElement(Weather_1.HourlyForecastColumn, { Weather: Weather === null || Weather === void 0 ? void 0 : Weather.data, hash: Weather === null || Weather === void 0 ? void 0 : Weather.hash }),
                     React.createElement(Liquipedia_1.EsportTournaments, { data: Liquipedia, columns: owColumns, adjustColumns: cols => cols !== this.state.owColumns && this.setState({ owColumns: cols }) }),
                     centerPanel,
-                    React.createElement(SteamFriendList_1.SteamFriendList, { friends: (_b = SteamFriends === null || SteamFriends === void 0 ? void 0 : SteamFriends.data) !== null && _b !== void 0 ? _b : [] }),
-                    React.createElement(TwitchStreams_1.TwitchStreams, { streams: (_c = TwitchStreamsResponse === null || TwitchStreamsResponse === void 0 ? void 0 : TwitchStreamsResponse.data) !== null && _c !== void 0 ? _c : [], hash: (_d = TwitchStreamsResponse === null || TwitchStreamsResponse === void 0 ? void 0 : TwitchStreamsResponse.hash) !== null && _d !== void 0 ? _d : 0, columns: twitchColumns })))));
+                    React.createElement(TwitchStreams_1.TwitchStreams, { streams: (_b = TwitchStreamsResponse === null || TwitchStreamsResponse === void 0 ? void 0 : TwitchStreamsResponse.data) !== null && _b !== void 0 ? _b : [], hash: (_c = TwitchStreamsResponse === null || TwitchStreamsResponse === void 0 ? void 0 : TwitchStreamsResponse.hash) !== null && _c !== void 0 ? _c : 0, columns: twitchColumns })))));
     }
 }
 exports.StatusBoard = StatusBoard;

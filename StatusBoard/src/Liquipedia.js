@@ -72,8 +72,11 @@ const SmallPanel = ({ match }) => {
         React.createElement("span", { className: "status" }, status));
 };
 const GameIcon = ({ tournament }) => {
-    if (tournament.game === "overwatch") {
-        return React.createElement("img", { src: "./Images/ow.svg", className: "game-icon" });
+    switch (tournament.game) {
+        case "overwatch":
+            return React.createElement("img", { src: "./Images/ow.svg", className: "game-icon" });
+        case "marvelrivals":
+            return React.createElement("img", { src: "./Images/mr.png", className: "game-icon" });
     }
     return React.createElement("img", { src: "./Images/sc2.png", className: "game-icon" });
 };
