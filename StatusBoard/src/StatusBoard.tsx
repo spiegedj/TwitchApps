@@ -83,7 +83,7 @@ export class StatusBoard extends React.Component
 			adjustColumns={cols => (this.state.scColumns != cols) && this.setState({ scColumns: cols })}
 		/>;
 
-		if (GDQ?.data && GDQ.data.length > 0 && DateUtils.getDaysFrom(new Date(GDQ[0].Date)) < 3)
+		if (GDQ?.data && GDQ.data.length > 0 && DateUtils.getDaysFrom(new Date(GDQ.data[0].Date)) < 3)
 		{
 			centerPanel = <GDQEvents runs={GDQ.data} />;
 			if (gdqColumns !== 1)

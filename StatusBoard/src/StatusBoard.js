@@ -63,7 +63,7 @@ class StatusBoard extends React.Component {
             twitchColumns++;
         }
         let centerPanel = React.createElement(StarCraftMatches_1.StarCraftMatches, { groups: (_a = StarcraftGroups === null || StarcraftGroups === void 0 ? void 0 : StarcraftGroups.data) !== null && _a !== void 0 ? _a : [], columns: scColumns, adjustColumns: cols => (this.state.scColumns != cols) && this.setState({ scColumns: cols }) });
-        if ((GDQ === null || GDQ === void 0 ? void 0 : GDQ.data) && GDQ.data.length > 0 && DateUtils_1.DateUtils.getDaysFrom(new Date(GDQ[0].Date)) < 3) {
+        if ((GDQ === null || GDQ === void 0 ? void 0 : GDQ.data) && GDQ.data.length > 0 && DateUtils_1.DateUtils.getDaysFrom(new Date(GDQ.data[0].Date)) < 3) {
             centerPanel = React.createElement(GDQEvents_1.GDQEvents, { runs: GDQ.data });
             if (gdqColumns !== 1) {
                 this.setState({ gdqColumns: 1 });
