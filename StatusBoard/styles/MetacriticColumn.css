@@ -1,0 +1,58 @@
+.metacritic-column {
+  width: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.metacritic-column .title-card {
+  width: 100%;
+  font-size: 16pt;
+  text-align: center;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  margin-bottom: 3px;
+}
+.metacritic-column .card {
+  margin: 3px;
+  padding: 2px;
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  width: calc(50% - 6px);
+  border-radius: 5px;
+  min-height: 100px;
+  position: relative;
+}
+.metacritic-column .card img {
+  width: 100%;
+  border-radius: 5px;
+}
+.metacritic-column .card .alt-line1 {
+  font-size: 10pt;
+  padding: 3px 3px 0 3px;
+  white-space: nowrap;
+}
+
+.metascore {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: black;
+  padding: 3px;
+  border-radius: 5px;
+  border-radius: 2px;
+  font-size: 15px;
+}
+.metascore.green {
+  background-color: #00ce7a;
+}
+.metascore.yellow {
+  background-color: #f0c330;
+}
+.metascore.red {
+  background-color: #ff4d4d;
+}
+
+/*# sourceMappingURL=MetacriticColumn.css.map */

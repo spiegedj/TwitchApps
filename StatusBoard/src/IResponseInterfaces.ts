@@ -10,6 +10,7 @@ export interface IData
 	Headlines?: IDataPart<Response.Headline[]>;
 	SteamFriends?: IDataPart<Response.SteamFriend[]>;
 	ChessGame?: IDataPart<Response.LichessGame>;
+	Metacritic?: IDataPart<Response.Metacritic>;
 }
 
 export interface IDataPart<T>
@@ -18,7 +19,6 @@ export interface IDataPart<T>
 	data: T;
 }
 
-
 // Liquidpedia
 export type EsportGame = "starcraft2" | "overwatch" | "marvelrivals";
 export type Race = "Zerg" | "Protoss" | "Terran";
@@ -26,6 +26,7 @@ export type Race = "Zerg" | "Protoss" | "Terran";
 export interface ITournament
 {
 	name: string;
+	altIdentifier: string;
 	game: EsportGame;
 	dates: string;
 	tier: number;

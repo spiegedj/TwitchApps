@@ -18,6 +18,7 @@ const TwitchStreams_1 = require("./TwitchStreams");
 const Liquipedia_1 = require("./Liquipedia");
 const GDQEvents_1 = require("./GDQEvents");
 const DateUtils_1 = require("./DateUtils");
+const Metacritic_1 = require("./Metacritic");
 let sessionId = null;
 class StatusBoard extends React.Component {
     constructor(props) {
@@ -50,7 +51,7 @@ class StatusBoard extends React.Component {
     render() {
         var _a, _b, _c;
         const maxColumns = 5;
-        let { GDQ, StarcraftGroups, Weather, Liquipedia, SteamFriends } = this.state.data;
+        let { GDQ, StarcraftGroups, Weather, Liquipedia, Metacritic } = this.state.data;
         let TwitchStreamsResponse = this.state.data.TwitchStreams;
         let { owColumns, scColumns, gdqColumns } = this.state;
         let twitchColumns = maxColumns - (owColumns + scColumns + gdqColumns + 1);
@@ -76,8 +77,8 @@ class StatusBoard extends React.Component {
             React.createElement("div", { className: "calendar" },
                 React.createElement(Weather_1.WeatherPanel, { Weather: Weather === null || Weather === void 0 ? void 0 : Weather.data, hash: Weather === null || Weather === void 0 ? void 0 : Weather.hash }),
                 React.createElement("div", { className: "columns" },
-                    React.createElement(Weather_1.NowConditionsColumn, { Weather: Weather === null || Weather === void 0 ? void 0 : Weather.data }),
                     React.createElement(Weather_1.HourlyForecastColumn, { Weather: Weather === null || Weather === void 0 ? void 0 : Weather.data, hash: Weather === null || Weather === void 0 ? void 0 : Weather.hash }),
+                    React.createElement(Metacritic_1.MetacriticColumn, { data: Metacritic === null || Metacritic === void 0 ? void 0 : Metacritic.data }),
                     React.createElement(Liquipedia_1.EsportTournaments, { data: Liquipedia, columns: owColumns, adjustColumns: cols => cols !== this.state.owColumns && this.setState({ owColumns: cols }) }),
                     centerPanel,
                     React.createElement(TwitchStreams_1.TwitchStreams, { streams: (_b = TwitchStreamsResponse === null || TwitchStreamsResponse === void 0 ? void 0 : TwitchStreamsResponse.data) !== null && _b !== void 0 ? _b : [], hash: (_c = TwitchStreamsResponse === null || TwitchStreamsResponse === void 0 ? void 0 : TwitchStreamsResponse.hash) !== null && _c !== void 0 ? _c : 0, columns: twitchColumns })))));

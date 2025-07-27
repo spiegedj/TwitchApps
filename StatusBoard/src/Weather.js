@@ -45,10 +45,10 @@ const DatePanel = () => {
     const updateDate = (0, react_1.useCallback)(() => {
         const date = new Date().toLocaleDateString("en-us", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
         setDate(date);
-    }, [setDate]);
+    }, []);
     (0, react_1.useEffect)(() => {
         updateDate();
-        const timeoutId = setInterval(() => updateDate, 60 * 1000);
+        const timeoutId = setInterval(() => updateDate(), 60 * 1000);
         return () => clearTimeout(timeoutId);
     }, []);
     return React.createElement("div", { className: "weather-panel" },
@@ -86,6 +86,7 @@ exports.HourlyForecastColumn = React.memo((props) => {
     }
     const { Hourly } = Weather;
     return React.createElement("div", { className: "weather-column" },
+        React.createElement(exports.DatePanel, null),
         React.createElement("div", { className: "weather-panel hourly" },
             React.createElement("div", { className: "title" }, "Hourly Forecast"),
             Hourly.slice(0, 21).map(hourly => React.createElement(HourlyPanel, { key: hourly.Day + hourly.Hour, hourly: hourly }))));

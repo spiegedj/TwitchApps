@@ -72,12 +72,12 @@ export const DatePanel: React.FunctionComponent = () =>
 			{ weekday: "long", month: "long", day: "numeric", year: "numeric" }
 		);
 		setDate(date);
-	}, [setDate]);
+	}, []);
 
 	useEffect(() =>
 	{
 		updateDate();
-		const timeoutId = setInterval(() => updateDate, 60 * 1000);
+		const timeoutId = setInterval(() => updateDate(), 60 * 1000);
 
 		return () => clearTimeout(timeoutId);
 	}, []);
@@ -128,6 +128,7 @@ export const HourlyForecastColumn: React.FunctionComponent<{ Weather: Response.W
 	const { Hourly } = Weather;
 
 	return <div className="weather-column">
+		<DatePanel />
 		<div className="weather-panel hourly">
 			<div className="title">Hourly Forecast</div>
 			{Hourly.slice(0, 21).map(hourly => <HourlyPanel key={hourly.Day + hourly.Hour} hourly={hourly} />)}

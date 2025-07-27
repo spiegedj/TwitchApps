@@ -1,0 +1,67 @@
+@import "variables";
+
+.metacritic-column {
+	width: 220px;
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+
+	.title-card {
+		width: 100%;
+		font-size: $large-font-size;
+		text-align: center;
+		padding: 5px;
+		background-color: $cardBackColorDark;
+		border-radius: 5px;
+		margin-bottom: $spacing / 2;
+	}
+
+	.card {
+		margin: $spacing / 2;
+		padding: 2px;
+		display: flex;
+		box-sizing: border-box;
+		flex-direction: column;
+		width: calc(50% - $spacing);
+		border-radius: 5px;
+
+		min-height: 100px;
+		position: relative;
+
+		img {
+			width: 100%;
+			border-radius: 5px;
+		}
+
+		.alt-line1 {
+			font-size: $small-font-size;
+			padding: 3px 3px 0 3px;
+			white-space: nowrap;
+		}
+	}
+}
+
+.metascore {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	color: black;
+	padding: 3px;
+	border-radius: 5px;
+
+	border-radius: 2px;
+	font-size: 15px;
+
+	&.green {
+		background-color: #00ce7a;
+	}
+
+	&.yellow {
+		background-color: #f0c330;
+	}
+
+	&.red {
+		background-color: #ff4d4d;
+	}
+}

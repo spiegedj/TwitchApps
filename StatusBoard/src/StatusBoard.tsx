@@ -7,7 +7,7 @@ import { TwitchStreams } from "./TwitchStreams";
 import { EsportTournaments } from "./Liquipedia";
 import { GDQEvents } from "./GDQEvents";
 import { DateUtils } from "./DateUtils";
-import { SteamFriendList } from "./SteamFriendList";
+import { MetacriticColumn } from "./Metacritic";
 
 let sessionId: number | null = null;
 
@@ -60,7 +60,7 @@ export class StatusBoard extends React.Component
 	public render(): React.ReactNode 
 	{
 		const maxColumns = 5;
-		let { GDQ, StarcraftGroups, Weather, Liquipedia, SteamFriends } = this.state.data;
+		let { GDQ, StarcraftGroups, Weather, Liquipedia, Metacritic } = this.state.data;
 		let TwitchStreamsResponse = this.state.data.TwitchStreams;
 		let { owColumns, scColumns, gdqColumns } = this.state;
 
@@ -101,8 +101,8 @@ export class StatusBoard extends React.Component
 				<div className="calendar">
 					<WeatherPanel Weather={Weather?.data} hash={Weather?.hash} />
 					<div className="columns">
-						<NowConditionsColumn Weather={Weather?.data} />
 						<HourlyForecastColumn Weather={Weather?.data} hash={Weather?.hash} />
+						<MetacriticColumn data={Metacritic?.data} />
 						<EsportTournaments
 							data={Liquipedia}
 							columns={owColumns}

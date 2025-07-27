@@ -66,18 +66,18 @@ declare namespace Response
 	// Weather
 	interface Weather
 	{
-		Condition: Condition;
+		Condition?: Condition;
 		Forecast: Forecast[];
 		Hourly: Hourly[];
 	}
 
 	interface Condition
 	{
-		Temp: string;
-		FeelsLike: string;
-		HighLow: string;
-		Phrase: string;
-		Icon: string;
+		Temp?: string;
+		FeelsLike?: string;
+		HighLow?: string;
+		Phrase?: string;
+		Icon?: string;
 		Sunrise?: string;
 		Sunset?: string;
 		Details?: ItemDetails[];
@@ -85,14 +85,14 @@ declare namespace Response
 
 	interface Forecast
 	{
-		Date: string;
-		Description: string;
-		High: string;
-		Low: string;
-		Precipitation: string;
-		Wind: string;
-		Humidity: string;
-		Icon: string;
+		Date?: string;
+		Description?: string;
+		High?: string;
+		Low?: string;
+		Precipitation?: string;
+		Wind?: string;
+		Humidity?: string;
+		Icon?: string;
 	}
 
 	interface Hourly
@@ -144,5 +144,24 @@ declare namespace Response
 	{
 		Rating: number;
 		Name: string;
+	}
+
+	interface Metacritic
+	{
+		Components: MetacriticComponent[];
+	}
+
+	interface MetacriticComponent
+	{
+		Title: string;
+		Items: MetacriticItem[];
+	}
+
+	interface MetacriticItem
+	{
+		Title: string;
+		ImageSrc?: string;
+		Type?: string;
+		Score?: string;
 	}
 }
