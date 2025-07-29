@@ -42,7 +42,7 @@ const MetacriticComponent = (props: { component: Response.MetacriticComponent; }
 	}
 	return <div className="metacritic-column">
 		<div className="title-card">{component.Title}</div>
-		{items.map((entry) =>
+		{items.slice(0, 10).map((entry) =>
 		{
 			return <div key={entry.Title} className="card">
 				<img crossOrigin="anonymous" src={entry.ImageSrc}></img>

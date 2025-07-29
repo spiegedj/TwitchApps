@@ -30,7 +30,7 @@ const MetacriticComponent = (props) => {
     }
     return React.createElement("div", { className: "metacritic-column" },
         React.createElement("div", { className: "title-card" }, component.Title),
-        items.map((entry) => {
+        items.slice(0, 10).map((entry) => {
             return React.createElement("div", { key: entry.Title, className: "card" },
                 React.createElement("img", { crossOrigin: "anonymous", src: entry.ImageSrc }),
                 React.createElement("div", { className: "alt-line1" },
