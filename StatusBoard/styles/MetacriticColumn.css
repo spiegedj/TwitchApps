@@ -1,4 +1,12 @@
+.metacritic-component {
+  width: 220px;
+  min-width: 220px;
+  position: relative;
+}
+
 .metacritic-column {
+  transition: all 2s ease 0s;
+  position: absolute;
   width: 220px;
   flex-shrink: 0;
   display: flex;
@@ -26,6 +34,7 @@
   position: relative;
 }
 .metacritic-column .card img {
+  min-height: 150px;
   width: 100%;
   border-radius: 5px;
 }

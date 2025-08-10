@@ -17,18 +17,19 @@ const MetacriticColumn = (props) => {
     if (!props.data || !props.data.Components || props.data.Components.length === 0) {
         return null;
     }
-    const component = props.data.Components[currentIndex];
-    return React.createElement(MetacriticComponent, { component: component });
+    return React.createElement("div", { className: "metacritic-component" }, props.data.Components.map((component, i) => {
+        return React.createElement(MetacriticComponent, { component: component, top: (i - currentIndex) * 932 });
+    }));
 };
 exports.MetacriticColumn = MetacriticColumn;
 const MetacriticComponent = (props) => {
     var _a;
-    const { component } = props;
+    const { component, top } = props;
     const items = (_a = component === null || component === void 0 ? void 0 : component.Items) !== null && _a !== void 0 ? _a : [];
     if (items.length === 0) {
         return null;
     }
-    return React.createElement("div", { className: "metacritic-column" },
+    return React.createElement("div", { className: "metacritic-column", style: { top: `${top}px` } },
         React.createElement("div", { className: "title-card" }, component.Title),
         items.slice(0, 10).map((entry) => {
             return React.createElement("div", { key: entry.Title, className: "card" },

@@ -27,20 +27,23 @@ export const MetacriticColumn = (props: IMetacriticColumnProps) =>
 		return null;
 	}
 
-	const component = props.data.Components[currentIndex];
-
-	return <MetacriticComponent component={component} />;
+	return <div className="metacritic-component">
+		{props.data.Components.map((component, i) =>
+		{
+			return <MetacriticComponent component={component} top={(i - currentIndex) * 932} />;
+		})}
+	</div>;
 };
 
-const MetacriticComponent = (props: { component: Response.MetacriticComponent; }) =>
+const MetacriticComponent = (props: { component: Response.MetacriticComponent, top: number; }) =>
 {
-	const { component } = props;
+	const { component, top } = props;
 	const items = component?.Items ?? [];
 	if (items.length === 0)
 	{
 		return null;
 	}
-	return <div className="metacritic-column">
+	return <div className="metacritic-column" style={{ top: `${top}px` }}>
 		<div className="title-card">{component.Title}</div>
 		{items.slice(0, 10).map((entry) =>
 		{
