@@ -7,7 +7,7 @@ import { DateUtils } from "./DateUtils";
 export const WeatherPanel: React.FunctionComponent<{ Weather: Response.Weather | undefined, hash: number; }> = React.memo((props) =>
 {
 	const { Weather } = props;
-	if (!Weather)
+	if (!Weather || !Weather.Condition || !Weather.Forecast)
 	{
 		return null;
 	}

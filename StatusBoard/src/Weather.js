@@ -7,7 +7,7 @@ const react_1 = require("react");
 const DateUtils_1 = require("./DateUtils");
 exports.WeatherPanel = React.memo((props) => {
     const { Weather } = props;
-    if (!Weather) {
+    if (!Weather || !Weather.Condition || !Weather.Forecast) {
         return null;
     }
     const condition = Weather.Condition;
