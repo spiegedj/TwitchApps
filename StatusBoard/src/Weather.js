@@ -5,23 +5,27 @@ exports.splitTime = exports.Precipitation = exports.HourlyForecastColumn = expor
 const React = require("react");
 const react_1 = require("react");
 const DateUtils_1 = require("./DateUtils");
+const GDQEvents_1 = require("./GDQEvents");
 exports.WeatherPanel = React.memo((props) => {
     const { Weather } = props;
-    if (!Weather || !Weather.Condition || !Weather.Forecast) {
+    if (!Weather) {
         return null;
     }
     const condition = Weather.Condition;
     const forecast = Weather.Forecast;
     return (React.createElement("div", { className: "weather-row" },
         React.createElement(exports.ClockPanel, null),
-        React.createElement("div", { className: "weather-panel", style: { width: 200 } },
+        condition && React.createElement("div", { className: "weather-panel", style: { width: 200 } },
             React.createElement("div", { className: "title" }, "Now"),
-            React.createElement("div", { className: "current-temp" }, condition.Temp),
+            React.createElement("div", { className: "current-temp" },
+                condition.Temp,
+                "\u00B0"),
             React.createElement("div", { className: "label" }, condition.FeelsLike),
+            React.createElement(GDQEvents_1.ScrollingText, { text: condition.Quickie, className: "label" }),
             React.createElement("div", { className: "icon-container" },
-                React.createElement("div", { className: "temp-icon", dangerouslySetInnerHTML: { __html: condition.Icon } }),
-                React.createElement("div", { className: "label" }, condition.Phrase))),
-        React.createElement("div", { className: "weather-panel forecast flex-row" }, forecast.slice(0, 11).map(forecast => React.createElement(ForecastPanel, { key: forecast.Date, forecast: forecast })))));
+                React.createElement(GDQEvents_1.ScrollingText, { text: condition.Phrase, className: "label" }),
+                React.createElement("div", { className: "temp-icon", dangerouslySetInnerHTML: { __html: condition.Icon } }))),
+        forecast && React.createElement("div", { className: "weather-panel forecast flex-row" }, forecast.slice(0, 11).map(forecast => React.createElement(ForecastPanel, { key: forecast.Date, forecast: forecast })))));
 }, (prevProps, nextProps) => prevProps.hash === nextProps.hash);
 const ClockPanel = () => {
     const [timeString, setTime] = (0, react_1.useState)("");

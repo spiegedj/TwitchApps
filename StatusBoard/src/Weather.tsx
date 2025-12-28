@@ -3,11 +3,12 @@
 import * as React from "react";
 import { useState, useEffect, useCallback } from "react";
 import { DateUtils } from "./DateUtils";
+import { ScrollingText } from "./GDQEvents";
 
 export const WeatherPanel: React.FunctionComponent<{ Weather: Response.Weather | undefined, hash: number; }> = React.memo((props) =>
 {
 	const { Weather } = props;
-	if (!Weather || !Weather.Condition || !Weather.Forecast)
+	if (!Weather)
 	{
 		return null;
 	}
@@ -17,20 +18,21 @@ export const WeatherPanel: React.FunctionComponent<{ Weather: Response.Weather |
 	return (
 		<div className="weather-row">
 			<ClockPanel />
-			<div className="weather-panel" style={{ width: 200 }}>
+			{condition && <div className="weather-panel" style={{ width: 200 }}>
 				<div className="title">Now</div>
-				<div className="current-temp">{condition.Temp}</div>
+				<div className="current-temp">{condition.Temp}°</div>
 				<div className="label">{condition.FeelsLike}</div>
+				<ScrollingText text={condition.Quickie} className="label" />
 				<div className="icon-container">
+					<ScrollingText text={condition.Phrase} className="label" />
 					<div className="temp-icon" dangerouslySetInnerHTML={{ __html: condition.Icon }}></div>
-					<div className="label">{condition.Phrase}</div>
 				</div>
-			</div>
-			<div className="weather-panel forecast flex-row">
+			</div>}
+			{forecast && <div className="weather-panel forecast flex-row">
 				{forecast.slice(0, 11).map(forecast =>
 					<ForecastPanel key={forecast.Date} forecast={forecast} />
 				)}
-			</div>
+			</div>}
 		</div>
 	);
 }, (prevProps, nextProps) => prevProps.hash === nextProps.hash);

@@ -33,7 +33,7 @@ const DELAY_AFTER_SCROLL = 2 * 1000;
 const DELAY_BEFORE_SCROLL = 5 * 1000;
 const SPEED = 20;
 const ScrollingText = (props) => {
-    const { text } = props;
+    const { text, className } = props;
     const textContainer = (0, react_1.useRef)();
     const timerHandle = (0, react_1.useRef)();
     const currentX = (0, react_1.useRef)(0);
@@ -81,7 +81,7 @@ const ScrollingText = (props) => {
             stopAnimation();
         }
     }, [textContainer, text]);
-    return React.createElement("div", { className: "scrolling-text" },
+    return React.createElement("div", { className: `scrolling-text ${className !== null && className !== void 0 ? className : ""}` },
         React.createElement("div", { ref: textContainer, className: "scroll" }, text));
 };
 exports.ScrollingText = ScrollingText;

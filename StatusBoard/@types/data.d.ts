@@ -73,11 +73,18 @@ declare namespace Response
 
 	interface Condition
 	{
+		/** The current temperature */
 		Temp?: string;
+		/** The "feels like" temperature */
 		FeelsLike?: string;
+		/** The high/low temperature string */
 		HighLow?: string;
+		/** A phrase describing the current weather, e.g. "Rain" */
 		Phrase?: string;
+		/** The current weather icon (as html) */
 		Icon?: string;
+		/** A full sentence describing the current weather */
+		Quickie?: string;
 		Sunrise?: string;
 		Sunset?: string;
 		Details?: ItemDetails[];

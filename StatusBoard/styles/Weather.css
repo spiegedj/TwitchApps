@@ -24,7 +24,8 @@
 .weather-column .forecast .label {
   margin-top: 5px;
 }
-.weather-column .forecast .temp-icon svg {
+.weather-column .forecast .temp-icon svg,
+.weather-column .forecast .temp-icon img {
   width: 60px;
 }
 .weather-column .hourly .forecast-list-item,
@@ -87,7 +88,7 @@
   border: 2px solid none;
 }
 .weather-panel .title {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   margin-bottom: 5px;
 }
@@ -98,6 +99,7 @@
 .weather-panel .current-temp {
   font-size: 55px;
   margin-top: -10px;
+  margin-bottom: -5px;
 }
 .weather-panel .ampm {
   font-size: 12px;
@@ -111,10 +113,14 @@
 }
 .weather-panel .icon-container {
   position: absolute;
-  top: 35px;
-  right: 30px;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.weather-panel .icon-container svg {
+.weather-panel .icon-container svg,
+.weather-panel .icon-container img {
   width: 50px;
 }
 .weather-panel .data-icon {

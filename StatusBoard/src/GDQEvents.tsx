@@ -53,9 +53,9 @@ const DELAY_AFTER_SCROLL = 2 * 1000;
 const DELAY_BEFORE_SCROLL = 5 * 1000;
 const SPEED = 20;
 
-export const ScrollingText: FunctionComponent<{ text: string; }> = (props) =>
+export const ScrollingText: FunctionComponent<{ text: string, className?: string; }> = (props) =>
 {
-	const { text } = props;
+	const { text, className } = props;
 	const textContainer = useRef<HTMLDivElement>();
 	const timerHandle = useRef<number | undefined>();
 	const currentX = useRef(0);
@@ -121,7 +121,7 @@ export const ScrollingText: FunctionComponent<{ text: string; }> = (props) =>
 		}
 	}, [textContainer, text]);
 
-	return <div className="scrolling-text">
+	return <div className={`scrolling-text ${className ?? ""}`}>
 		<div ref={textContainer} className="scroll">{text}</div>
 	</div>;
 };

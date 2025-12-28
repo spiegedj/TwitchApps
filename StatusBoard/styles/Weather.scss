@@ -31,7 +31,8 @@
 			margin-top: 5px;
 		}
 
-		.temp-icon svg {
+		.temp-icon svg,
+		.temp-icon img {
 			width: 60px;
 		}
 	}
@@ -103,7 +104,7 @@
 	border: $cardBorderDark;
 
 	.title {
-		font-size: 16px;
+		font-size: 14px;
 		font-weight: 600;
 		margin-bottom: 5px;
 	}
@@ -116,6 +117,7 @@
 	.current-temp {
 		font-size: 55px;
 		margin-top: -10px;
+		margin-bottom: -5px;
 	}
 
 	.ampm {
@@ -133,10 +135,14 @@
 
 	.icon-container {
 		position: absolute;
-		top: 35px;
-		right: 30px;
+		top: 15px;
+		right: 15px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 
-		svg {
+		svg,
+		img {
 			width: 50px;
 		}
 	}
