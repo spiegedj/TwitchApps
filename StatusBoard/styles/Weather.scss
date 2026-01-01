@@ -52,6 +52,10 @@
 			width: 50px;
 			justify-content: end;
 		}
+
+		.temp-icon img {
+			width: 25px;
+		}
 	}
 }
 
@@ -89,8 +93,10 @@
 				justify-content: end;
 			}
 
-			.temp-icon svg {
-				width: 55px;
+			.temp-icon svg,
+			.temp-icon img {
+				width: 45px;
+				padding: 5px 0;
 			}
 		}
 	}

@@ -63,16 +63,21 @@ class DateUtils {
         }
     }
     static getTimeString(date) {
+        const { hour, minutes, ampm } = this.getTimeParts(date);
+        return `${hour}:${minutes} ${ampm}`;
+    }
+    static getHourString(date) {
+        const { hour, ampm } = this.getTimeParts(date);
+        return `${hour} ${ampm}`;
+    }
+    static getTimeParts(date) {
         var hour = date.getHours();
         var minutes = date.getMinutes();
         var minutesString = (minutes < 10) ? "0" + minutes : minutes;
-        var amPm = (hour >= 12 && hour < 24) ? "PM" : "AM";
-        if (hour === 0) {
-            amPm = "PM";
-        }
+        var amPm = (hour < 12) ? "AM" : "PM";
         hour = hour % 12;
-        hour = hour == 0 ? hour + 12 : hour;
-        return `${hour}:${minutesString} ${amPm}`;
+        hour = hour == 0 ? 12 : hour;
+        return { hour: `${hour}`, minutes: `${minutesString}`, ampm: amPm };
     }
     static getCountdownString(date) {
         const daysFrom = this.getDaysFrom(date);

@@ -89,15 +89,26 @@ export class DateUtils
 
 	public static getTimeString(date: Date): string 
 	{
+		const { hour, minutes, ampm } = this.getTimeParts(date);
+		return `${hour}:${minutes} ${ampm}`;
+	}
+
+	public static getHourString(date: Date): string
+	{
+		const { hour, ampm } = this.getTimeParts(date);
+		return `${hour} ${ampm}`;
+	}
+
+	private static getTimeParts(date: Date): { hour: string; minutes: string; ampm: string; }
+	{
 		var hour = date.getHours();
 		var minutes = date.getMinutes();
 		var minutesString = (minutes < 10) ? "0" + minutes : minutes;
-		var amPm = (hour >= 12 && hour < 24) ? "PM" : "AM";
-		if (hour === 0) { amPm = "PM"; }
+		var amPm = (hour < 12) ? "AM" : "PM";
 		hour = hour % 12;
-		hour = hour == 0 ? hour + 12 : hour;
+		hour = hour == 0 ? 12 : hour;
 
-		return `${hour}:${minutesString} ${amPm}`;
+		return { hour: `${hour}`, minutes: `${minutesString}`, ampm: amPm };
 	}
 
 	public static getCountdownString(date: Date): string

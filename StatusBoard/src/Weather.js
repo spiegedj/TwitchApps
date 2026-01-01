@@ -93,7 +93,7 @@ exports.HourlyForecastColumn = React.memo((props) => {
         React.createElement(exports.DatePanel, null),
         React.createElement("div", { className: "weather-panel hourly" },
             React.createElement("div", { className: "title" }, "Hourly Forecast"),
-            Hourly.slice(0, 21).map(hourly => React.createElement(HourlyPanel, { key: hourly.Day + hourly.Hour, hourly: hourly }))));
+            Hourly.slice(0, 21).map(hourly => React.createElement(HourlyPanel, { key: hourly.Date, hourly: hourly }))));
 }, (prevProps, nextProps) => prevProps.hash === nextProps.hash);
 const WeatherItem = ({ item }) => {
     const { label, dataIcon, data, labelIcon } = item;
@@ -108,10 +108,11 @@ const WeatherItem = ({ item }) => {
 const HourlyPanel = ({ hourly }) => {
     const precipitationStr = hourly.Precipitation;
     const showPreciptation = parseInt(precipitationStr) > 5;
-    const hour = parseInt(hourly.Hour);
-    const addBorder = (hour % 12) === 0;
+    const hourString = DateUtils_1.DateUtils.getHourString(new Date(hourly.Date));
+    const hour = parseInt(hourString);
+    const addBorder = (hour % 11) === 0;
     return React.createElement("div", { className: "forecast-list-item" + (addBorder ? " divider-bottom " : "") },
-        React.createElement("span", { className: "title" }, hourly.Hour),
+        React.createElement("span", { className: "title" }, hourString),
         React.createElement("span", { className: "flex-row" },
             showPreciptation && React.createElement("span", { className: "precip" }, hourly.Precipitation),
             React.createElement("div", { className: "temp-icon", dangerouslySetInnerHTML: { __html: hourly.Icon } })),

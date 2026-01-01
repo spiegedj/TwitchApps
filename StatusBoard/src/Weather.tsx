@@ -133,7 +133,7 @@ export const HourlyForecastColumn: React.FunctionComponent<{ Weather: Response.W
 		<DatePanel />
 		<div className="weather-panel hourly">
 			<div className="title">Hourly Forecast</div>
-			{Hourly.slice(0, 21).map(hourly => <HourlyPanel key={hourly.Day + hourly.Hour} hourly={hourly} />)}
+			{Hourly.slice(0, 21).map(hourly => <HourlyPanel key={hourly.Date} hourly={hourly} />)}
 		</div>
 	</div>;
 }, (prevProps, nextProps) => prevProps.hash === nextProps.hash);
@@ -158,11 +158,12 @@ const HourlyPanel: React.FunctionComponent<{ hourly: Response.Hourly; }> = ({ ho
 	const precipitationStr = hourly.Precipitation;
 	const showPreciptation = parseInt(precipitationStr) > 5;
 
-	const hour = parseInt(hourly.Hour);
-	const addBorder = (hour % 12) === 0;
+	const hourString = DateUtils.getHourString(new Date(hourly.Date));
+	const hour = parseInt(hourString);
+	const addBorder = (hour % 11) === 0;
 
 	return <div className={"forecast-list-item" + (addBorder ? " divider-bottom " : "")}>
-		<span className="title">{hourly.Hour}</span>
+		<span className="title">{hourString}</span>
 		<span className="flex-row">
 			{showPreciptation && <span className="precip">{hourly.Precipitation}</span>}
 			<div className="temp-icon" dangerouslySetInnerHTML={{ __html: hourly.Icon }}></div>

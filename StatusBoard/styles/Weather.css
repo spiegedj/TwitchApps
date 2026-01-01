@@ -44,6 +44,10 @@
   width: 50px;
   justify-content: end;
 }
+.weather-column .hourly .forecast-list-item .temp-icon img,
+.weather-column .forecast .forecast-list-item .temp-icon img {
+  width: 25px;
+}
 
 .divider-bottom {
   border-bottom: 1px solid white;
@@ -76,8 +80,10 @@
   width: 50px;
   justify-content: end;
 }
-.weather-row .forecast .forecast-list-item .temp-icon svg {
-  width: 55px;
+.weather-row .forecast .forecast-list-item .temp-icon svg,
+.weather-row .forecast .forecast-list-item .temp-icon img {
+  width: 45px;
+  padding: 5px 0;
 }
 
 .weather-panel {

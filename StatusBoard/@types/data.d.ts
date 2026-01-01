@@ -92,7 +92,7 @@ declare namespace Response
 
 	interface Forecast
 	{
-		Date?: string;
+		Date: string;
 		Description?: string;
 		High?: string;
 		Low?: string;
@@ -104,8 +104,8 @@ declare namespace Response
 
 	interface Hourly
 	{
-		Day: string;
-		Hour: string;
+		Date: string;
+		DayOfWeek: string;
 		Temp: string;
 		Description?: string;
 		Precipitation?: string;
